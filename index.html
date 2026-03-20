@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura. — Tecnologia para Negócios</title>
+  <meta name="description" content="Software de gestão com assistente de negócios incluso. Para MEI e pequenos negócios. A partir de R$59/mês.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --v600: #6d28d9; --v500: #7c3aed; --v400: #8b5cf6; --v300: #a78bfa;
+      --v200: #c084fc; --v100: #ddd6fe; --v50: #ede9fe;
+      --white: #ffffff; --gray400: #9ca3af; --gray600: #4b5563;
+      --bg: #0a0618; --surface: #110a2e; --surface2: #1a1040;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; background: rgba(10,6,24,0.88); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(167,139,250,0.1); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-wordmark { font-family: var(--serif); font-size: 22px; color: var(--v200); letter-spacing: -0.5px; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--v100); font-size: 14px; text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
+    .nav-links a:hover { opacity: 1; }
+    .nav-ctas { display: flex; gap: 12px; align-items: center; }
+    .btn-ghost { color: var(--v200); font-size: 14px; text-decoration: none; padding: 8px 16px; border-radius: 8px; border: 1px solid rgba(192,132,252,0.25); transition: all 0.2s; }
+    .btn-ghost:hover { background: rgba(192,132,252,0.08); border-color: var(--v300); }
+    .btn-primary { background: var(--v600); color: var(--white); padding: 9px 20px; border-radius: 8px; font-size: 14px; font-weight: 500; text-decoration: none; transition: all 0.2s; display: inline-block; }
+    .btn-primary:hover { background: var(--v500); transform: translateY(-1px); }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 0 80px; position: relative; overflow: hidden; }
+    .hero-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.15; pointer-events: none; }
+    .hero-orb-1 { width: 600px; height: 600px; background: var(--v600); top: -200px; right: -100px; }
+    .hero-orb-2 { width: 400px; height: 400px; background: #2d1b69; bottom: -100px; left: -100px; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; position: relative; z-index: 1; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(109,40,217,0.15); border: 1px solid rgba(167,139,250,0.2); padding: 6px 14px; border-radius: 100px; margin-bottom: 24px; font-size: 12px; color: var(--v300); font-weight: 500; letter-spacing: 0.5px; }
+    .hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: var(--v400); display: inline-block; }
+    .hero-title { font-family: var(--serif); font-size: clamp(38px, 5vw, 60px); line-height: 1.1; letter-spacing: -1px; margin-bottom: 24px; font-weight: 400; }
+    .hero-title em { font-style: italic; color: var(--v200); }
+    .hero-sub { font-size: 17px; color: var(--v100); opacity: 0.75; max-width: 440px; margin-bottom: 36px; line-height: 1.7; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
+    .btn-lg { padding: 14px 28px; border-radius: 10px; font-size: 16px; font-weight: 500; text-decoration: none; display: inline-block; transition: all 0.25s; font-family: var(--sans); }
+    .btn-filled { background: var(--v600); color: var(--white); border: none; cursor: pointer; }
+    .btn-filled:hover { background: var(--v500); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(109,40,217,0.4); }
+    .btn-outline { background: transparent; color: var(--v200); border: 1px solid rgba(192,132,252,0.3); }
+    .btn-outline:hover { background: rgba(192,132,252,0.08); border-color: var(--v300); }
+    .hero-price { display: inline-flex; align-items: center; gap: 14px; background: rgba(16,10,40,0.6); border: 1px solid rgba(167,139,250,0.15); border-radius: 12px; padding: 14px 20px; }
+    .price-before { font-size: 13px; color: var(--gray400); line-height: 1.4; }
+    .price-before strong { display: block; font-size: 18px; color: rgba(156,163,175,0.7); text-decoration: line-through; }
+    .price-arrow { color: var(--v400); font-size: 20px; }
+    .price-after strong { display: block; font-size: 24px; font-weight: 600; color: var(--v200); }
+    .price-after span { font-size: 12px; color: var(--v300); }
+
+    /* FORM CARD */
+    .form-card { background: var(--surface); border: 1px solid rgba(167,139,250,0.15); border-radius: 20px; padding: 36px; position: relative; overflow: hidden; }
+    .form-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--v600), var(--v200)); }
+    .form-card h2 { font-family: var(--serif); font-size: 22px; margin-bottom: 6px; font-weight: 400; }
+    .form-card p { font-size: 14px; color: var(--v100); opacity: 0.6; margin-bottom: 24px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 13px; color: var(--v100); opacity: 0.7; margin-bottom: 6px; font-weight: 500; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(167,139,250,0.15); border-radius: 8px; padding: 11px 14px; color: var(--white); font-size: 14px; font-family: var(--sans); outline: none; transition: border-color 0.2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--v400); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+    .form-group select { appearance: none; }
+    .form-group select option { background: var(--surface); }
+    .form-submit { width: 100%; background: var(--v600); color: var(--white); padding: 13px; border-radius: 8px; font-size: 15px; font-weight: 500; border: none; cursor: pointer; font-family: var(--sans); transition: all 0.2s; margin-top: 4px; }
+    .form-submit:hover { background: var(--v500); }
+    .form-privacy { font-size: 11px; color: var(--gray400); text-align: center; margin-top: 12px; }
+    .form-success { display: none; text-align: center; padding: 20px; color: var(--v200); font-size: 15px; }
+
+    /* SECTIONS */
+    section { padding: 96px 0; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--v300); margin-bottom: 16px; }
+    .section-title { font-family: var(--serif); font-size: clamp(30px, 4vw, 46px); line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 16px; font-weight: 400; }
+    .section-sub { font-size: 17px; color: var(--v100); opacity: 0.65; max-width: 560px; line-height: 1.7; }
+    .section-header { margin-bottom: 56px; }
+    .section-header.centered { text-align: center; }
+    .section-header.centered .section-sub { margin: 0 auto; }
+
+    /* VALOR */
+    .s-valor { background: var(--surface); }
+    .valor-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .valor-card { background: var(--bg); border: 1px solid rgba(167,139,250,0.12); border-radius: 16px; padding: 32px; transition: all 0.3s; }
+    .valor-card:hover { border-color: rgba(167,139,250,0.3); transform: translateY(-4px); }
+    .valor-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(109,40,217,0.15); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .valor-icon svg { width: 24px; height: 24px; }
+    .valor-card h3 { font-family: var(--serif); font-size: 22px; font-weight: 400; margin-bottom: 12px; }
+    .valor-card p { font-size: 14px; color: var(--v100); opacity: 0.65; line-height: 1.7; }
+
+    /* MÓDULOS */
+    .modulos-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: rgba(167,139,250,0.08); border-radius: 20px; overflow: hidden; }
+    .modulo { background: var(--bg); padding: 28px 24px; transition: background 0.2s; }
+    .modulo:hover { background: var(--surface); }
+    .modulo-num { font-size: 11px; font-weight: 600; color: var(--v400); letter-spacing: 1px; margin-bottom: 10px; }
+    .modulo-name { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 8px; }
+    .modulo-desc { font-size: 13px; color: var(--v100); opacity: 0.55; line-height: 1.6; }
+    .modulo-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+    .tag { font-size: 11px; padding: 3px 8px; border-radius: 4px; background: rgba(109,40,217,0.12); color: var(--v300); font-weight: 500; }
+
+    /* COMPARATIVO */
+    .s-comp { background: var(--surface); }
+    .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .comp-table { width: 100%; border-collapse: collapse; }
+    .comp-table th { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gray400); padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(167,139,250,0.1); }
+    .comp-table td { padding: 14px 16px; font-size: 14px; border-bottom: 1px solid rgba(167,139,250,0.06); }
+    .comp-table tr:last-child td { border-bottom: none; }
+    .comp-table .total td { font-weight: 600; font-size: 16px; border-top: 1px solid rgba(167,139,250,0.15); padding-top: 18px; border-bottom: none; }
+    .price-cross { color: var(--gray400); text-decoration: line-through; }
+    .price-bad { color: #f87171; font-weight: 600; }
+    .comp-result { background: linear-gradient(135deg, rgba(109,40,217,0.15), rgba(192,132,252,0.05)); border: 1px solid rgba(167,139,250,0.2); border-radius: 20px; padding: 40px; text-align: center; }
+    .comp-result-label { font-size: 13px; color: var(--v300); margin-bottom: 16px; font-weight: 500; }
+    .comp-price { font-family: var(--serif); font-size: 64px; color: var(--v200); line-height: 1; margin-bottom: 4px; }
+    .comp-period { font-size: 14px; color: var(--v100); opacity: 0.6; margin-bottom: 24px; }
+    .comp-savings { background: rgba(109,40,217,0.2); border-radius: 8px; padding: 14px; font-size: 14px; color: var(--v200); margin-bottom: 28px; }
+    .comp-savings strong { display: block; font-size: 22px; margin-bottom: 2px; }
+    .comp-includes { list-style: none; text-align: left; margin-bottom: 28px; }
+    .comp-includes li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--v100); padding: 7px 0; border-bottom: 1px solid rgba(167,139,250,0.06); }
+    .comp-includes li:last-child { border-bottom: none; }
+    .check { color: var(--v300); }
+
+    /* PLANOS */
+    .planos-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .plano { border: 1px solid rgba(167,139,250,0.12); border-radius: 20px; padding: 32px; background: var(--surface); position: relative; transition: transform 0.3s; }
+    .plano:hover { transform: translateY(-4px); }
+    .plano.featured { border-color: var(--v600); background: var(--surface2); }
+    .plano-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--v600); color: var(--white); font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 100px; white-space: nowrap; }
+    .plano-label { font-size: 11px; font-weight: 600; color: var(--v300); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+    .plano-name { font-family: var(--serif); font-size: 22px; font-weight: 400; margin-bottom: 4px; }
+    .plano-tagline { font-size: 13px; color: var(--v100); opacity: 0.55; margin-bottom: 20px; }
+    .plano-price { font-family: var(--serif); font-size: 48px; line-height: 1; margin-bottom: 4px; }
+    .plano-price span { font-size: 18px; font-family: var(--sans); font-weight: 400; }
+    .plano-period { font-size: 13px; color: var(--gray400); margin-bottom: 24px; }
+    .plano-div { height: 1px; background: rgba(167,139,250,0.1); margin-bottom: 24px; }
+    .plano-features { list-style: none; margin-bottom: 32px; }
+    .plano-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--v100); padding: 6px 0; opacity: 0.85; }
+    .plano-cta { display: block; width: 100%; text-align: center; padding: 12px; border-radius: 10px; font-size: 15px; font-weight: 500; text-decoration: none; transition: all 0.2s; font-family: var(--sans); cursor: pointer; }
+    .cta-outline { border: 1px solid rgba(167,139,250,0.25); color: var(--v200); background: none; }
+    .cta-outline:hover { background: rgba(192,132,252,0.08); }
+    .cta-filled { background: var(--v600); color: var(--white); border: none; }
+    .cta-filled:hover { background: var(--v500); }
+
+    /* DEPOIMENTOS */
+    .s-dep { background: var(--surface); }
+    .dep-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .dep-card { background: var(--bg); border: 1px dashed rgba(167,139,250,0.2); border-radius: 16px; padding: 32px; display: flex; align-items: center; justify-content: center; min-height: 180px; }
+    .dep-placeholder { text-align: center; }
+    .dep-placeholder p { font-size: 13px; color: var(--gray400); font-style: italic; }
+    .dep-placeholder span { display: block; font-size: 24px; margin-bottom: 12px; opacity: 0.3; }
+
+    /* FAQ */
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .faq-list { display: flex; flex-direction: column; }
+    .faq-item { border-bottom: 1px solid rgba(167,139,250,0.08); }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 20px 0; font-size: 15px; color: var(--white); font-family: var(--sans); text-align: left; gap: 16px; font-weight: 400; }
+    .faq-q:hover { color: var(--v200); }
+    .faq-icon { width: 24px; height: 24px; border-radius: 50%; background: rgba(109,40,217,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; color: var(--v300); transition: transform 0.3s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { font-size: 14px; color: var(--v100); opacity: 0.7; line-height: 1.7; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s; }
+    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 20px; }
+
+    /* FOOTER */
+    footer { background: var(--surface); border-top: 1px solid rgba(167,139,250,0.08); padding: 56px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand p { font-size: 14px; color: var(--gray400); line-height: 1.7; max-width: 280px; margin: 12px 0 16px; }
+    .footer-disclaimer { font-size: 11px; color: var(--gray400); opacity: 0.7; background: rgba(255,255,255,0.03); border-radius: 6px; padding: 10px 12px; border-left: 2px solid var(--v600); line-height: 1.6; }
+    .footer-col h4 { font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--v300); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { font-size: 14px; color: var(--gray400); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--v200); }
+    .footer-bottom { border-top: 1px solid rgba(167,139,250,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { font-size: 13px; color: var(--gray400); }
+
+    /* FLOATING */
+    .float-btn { position: fixed; bottom: 24px; right: 24px; z-index: 99; background: var(--surface); border: 1px solid rgba(167,139,250,0.2); border-radius: 100px; padding: 12px 20px; display: flex; align-items: center; gap: 8px; text-decoration: none; font-size: 13px; font-weight: 500; color: var(--v200); transition: all 0.2s; box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+    .float-btn:hover { border-color: var(--v400); }
+    .float-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--v400); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-grid, .valor-grid, .comp-grid, .planos-grid, .dep-grid, .faq-grid, .footer-grid { grid-template-columns: 1fr; }
+      .modulos-grid { grid-template-columns: 1fr 1fr; }
+      .hero-ctas { flex-direction: column; }
+    }
+    @media (max-width: 480px) { .modulos-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg viewBox="0 0 200 200" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="ng" cx="38%" cy="35%" r="70%"><stop offset="0%" stop-color="#2d1b69"/><stop offset="100%" stop-color="#110a2e"/></radialGradient>
+          <radialGradient id="nc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#a855f7"/></radialGradient>
+          <linearGradient id="na1" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#e9d5ff" stop-opacity="0"/></linearGradient>
+          <linearGradient id="na2" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#c084fc" stop-opacity=".85"/><stop offset="100%" stop-color="#c084fc" stop-opacity="0"/></linearGradient>
+          <linearGradient id="na3" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#a855f7" stop-opacity=".65"/><stop offset="100%" stop-color="#a855f7" stop-opacity="0"/></linearGradient>
+          <linearGradient id="na4" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#7c3aed" stop-opacity=".4"/><stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/></linearGradient>
+          <radialGradient id="nd" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#f5f3ff"/><stop offset="50%" stop-color="#c084fc"/><stop offset="100%" stop-color="#7c3aed"/></radialGradient>
+        </defs>
+        <rect width="200" height="200" rx="44" fill="url(#ng)"/>
+        <path d="M 95,29 A 76,76 0 1 1 20,108" fill="none" stroke="url(#na4)" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M 95,42 A 63,63 0 1 1 33,115" fill="none" stroke="url(#na3)" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M 95,56 A 49,49 0 1 1 47,122" fill="none" stroke="url(#na2)" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M 95,71 A 34,34 0 1 1 62,127" fill="none" stroke="url(#na1)" stroke-width="3.4" stroke-linecap="round"/>
+        <circle cx="95" cy="105" r="12" fill="url(#nc)"/>
+        <circle cx="95" cy="105" r="4.5" fill="#fff" opacity=".98"/>
+        <circle cx="146" cy="148" r="9" fill="url(#nd)"/>
+        <circle cx="143" cy="145" r="3" fill="#fff" opacity=".55"/>
+      </svg>
+      <span class="nav-wordmark">aura.</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#valor">Por que Aura</a></li>
+      <li><a href="#modulos">O que faz</a></li>
+      <li><a href="#planos">Planos</a></li>
+      <li><a href="#faq">Dúvidas</a></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="https://app.getaura.com.br" class="btn-ghost">Entrar</a>
+      <a href="#planos" class="btn-primary">Começar</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow"><span></span> Para MEI e pequenos negócios</div>
+        <h1 class="hero-title">Gestão completa.<br><em>Assistente de negócios incluso.</em></h1>
+        <p class="hero-sub">Controle financeiro, emissão de nota fiscal, vendas, clientes e muito mais — com um assistente real do seu lado para lembrar prazos e tirar dúvidas. Sem complicação.</p>
+        <div class="hero-ctas">
+          <a href="#planos" class="btn-lg btn-filled">Começar agora</a>
+          <a href="#contato" class="btn-lg btn-outline">Falar com especialista</a>
+        </div>
+        <div class="hero-price">
+          <div class="price-before">Mercado hoje<strong>R$ 860+/mês</strong></div>
+          <div class="price-arrow">→</div>
+          <div class="price-after"><strong>R$ 200/mês</strong><span>com tudo incluso</span></div>
+        </div>
+      </div>
+      <div class="form-card" id="contato">
+        <h2>Fale com um especialista</h2>
+        <p>Tire suas dúvidas antes de assinar. Respondemos pelo WhatsApp em minutos.</p>
+        <form id="heroForm" action="https://formspree.io/f/xojkbrkz" method="POST">
+          <div class="form-group"><label>Seu nome</label><input type="text" name="nome" placeholder="Como você se chama?" required></div>
+          <div class="form-group"><label>WhatsApp</label><input type="tel" name="whatsapp" placeholder="(11) 99999-9999" required></div>
+          <div class="form-group">
+            <label>Tipo de negócio</label>
+            <select name="tipo">
+              <option value="">Selecione...</option>
+              <option>MEI</option>
+              <option>Microempresa</option>
+              <option>Ainda não tenho CNPJ</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Sua dúvida (opcional)</label><textarea name="mensagem" rows="3" placeholder="O que você gostaria de saber?"></textarea></div>
+          <button type="submit" class="form-submit">Quero falar com um especialista →</button>
+          <p class="form-privacy">Seus dados não serão compartilhados com terceiros.</p>
+        </form>
+        <div class="form-success" id="heroSuccess">✓ Mensagem enviada! Entraremos em contato pelo WhatsApp em breve.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALOR -->
+<section class="s-valor" id="valor">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Por que Aura</p>
+      <h2 class="section-title">Tudo que seu negócio precisa,<br>em um só lugar.</h2>
+      <p class="section-sub">Chega de pagar caro por várias ferramentas separadas e ainda não ter ninguém para te ajudar.</p>
+    </div>
+    <div class="valor-grid">
+      <div class="valor-card">
+        <div class="valor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>Software completo</h3>
+        <p>Financeiro, caixa de vendas, estoque, clientes, nota fiscal, WhatsApp e muito mais — tudo integrado, sem precisar juntar vários aplicativos.</p>
+      </div>
+      <div class="valor-card">
+        <div class="valor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.5"><path d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM12 14a7 7 0 0 0-7 7h14a7 7 0 0 0-7-7z"/></svg></div>
+        <h3>Assistente de negócios incluso</h3>
+        <p>Todos os planos pagos incluem um assistente real — te lembra de prazos importantes, responde suas dúvidas e te ajuda a entender os números do negócio.</p>
+      </div>
+      <div class="valor-card">
+        <div class="valor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.5"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg></div>
+        <h3>Preço que faz sentido</h3>
+        <p>A partir de R$59/mês. Para quem precisa de tudo, R$200 inclui o que o mercado cobra R$860 ou mais separado. Economia real todo mês.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULOS -->
+<section id="modulos">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">O que a Aura faz</p>
+      <h2 class="section-title">Uma plataforma.<br>Seis áreas cobertas.</h2>
+      <p class="section-sub">Cada parte foi pensada para o dia a dia de quem toca um negócio — direto, simples e sem precisar entender de tecnologia.</p>
+    </div>
+    <div class="modulos-grid">
+      <div class="modulo">
+        <div class="modulo-num">01</div>
+        <div class="modulo-name">Financeiro</div>
+        <div class="modulo-desc">Veja tudo que entra e sai, acompanhe os resultados do mês e saiba exatamente quanto pode retirar do negócio.</div>
+        <div class="modulo-tags"><span class="tag">Contas a receber</span><span class="tag">Resultados</span><span class="tag">Nota fiscal — NF-e</span></div>
+      </div>
+      <div class="modulo">
+        <div class="modulo-num">02</div>
+        <div class="modulo-name">Vendas & Caixa</div>
+        <div class="modulo-desc">Caixa de vendas (PDV) rápido no celular, controle de estoque com leitura de código de barras e ranking de produtos mais vendidos.</div>
+        <div class="modulo-tags"><span class="tag">Caixa (PDV)</span><span class="tag">Estoque</span><span class="tag">Código de barras</span></div>
+      </div>
+      <div class="modulo">
+        <div class="modulo-num">03</div>
+        <div class="modulo-name">Clientes</div>
+        <div class="modulo-desc">Ficha completa de cada cliente, ranking dos mais fiéis, lembretes de aniversário e coleta de avaliações automática.</div>
+        <div class="modulo-tags"><span class="tag">Fidelidade</span><span class="tag">Avaliações</span><span class="tag">Aniversários</span></div>
+      </div>
+      <div class="modulo">
+        <div class="modulo-num">04</div>
+        <div class="modulo-name">Presença Digital</div>
+        <div class="modulo-desc">Mini-site profissional, loja online e presença no Google — tudo criado e gerenciado dentro da Aura, sem precisar de agência.</div>
+        <div class="modulo-tags"><span class="tag">Mini-site</span><span class="tag">Loja online</span><span class="tag">Google</span></div>
+      </div>
+      <div class="modulo">
+        <div class="modulo-num">05</div>
+        <div class="modulo-name">Apoio Fiscal</div>
+        <div class="modulo-desc">Calendário de obrigações, estimativa do boleto mensal com código Pix e alertas automáticos para você nunca perder um prazo.</div>
+        <div class="modulo-tags"><span class="tag">Alertas de prazo</span><span class="tag">Boleto mensal</span><span class="tag">Pix</span></div>
+      </div>
+      <div class="modulo">
+        <div class="modulo-num">06</div>
+        <div class="modulo-name">Assistente com IA</div>
+        <div class="modulo-desc">Posts prontos para redes sociais, previsão de quanto vai entrar no caixa e cobranças automáticas via WhatsApp.</div>
+        <div class="modulo-tags"><span class="tag">Plano Máximo</span><span class="tag">IA</span><span class="tag">WhatsApp</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATIVO -->
+<section class="s-comp">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Comparativo</p>
+      <h2 class="section-title">Quanto você paga hoje<br>sem a Aura?</h2>
+    </div>
+    <div class="comp-grid">
+      <table class="comp-table">
+        <thead><tr><th>O que você paga hoje</th><th style="text-align:right">Por mês</th></tr></thead>
+        <tbody>
+          <tr><td>Software de gestão</td><td style="text-align:right" class="price-cross">R$ 310</td></tr>
+          <tr><td>Contador</td><td style="text-align:right" class="price-cross">R$ 400</td></tr>
+          <tr><td>Outros aplicativos (cobrança, nota fiscal, agenda)</td><td style="text-align:right" class="price-cross">R$ 150</td></tr>
+          <tr class="total"><td>Total</td><td style="text-align:right" class="price-bad">R$ 860+/mês</td></tr>
+        </tbody>
+      </table>
+      <div class="comp-result">
+        <div class="comp-result-label">Com o plano Completo da Aura</div>
+        <div class="comp-price">R$200</div>
+        <div class="comp-period">por mês, tudo incluso</div>
+        <div class="comp-savings"><strong>R$ 660 economizados</strong>todo mês — R$ 7.920 por ano</div>
+        <ul class="comp-includes">
+          <li><span class="check">✓</span> Software completo de gestão</li>
+          <li><span class="check">✓</span> Assistente de negócios incluso</li>
+          <li><span class="check">✓</span> Nota fiscal automática</li>
+          <li><span class="check">✓</span> Caixa de vendas e estoque</li>
+          <li><span class="check">✓</span> Presença digital e loja online</li>
+        </ul>
+        <a href="#planos" class="btn-lg btn-filled" style="display:block;text-align:center;">Quero economizar →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section id="planos">
+  <div class="container">
+    <div class="section-header centered">
+      <p class="section-label">Planos</p>
+      <h2 class="section-title">Escolha o que faz sentido<br>para você agora.</h2>
+      <p class="section-sub">Todos os planos incluem assistente de negócios. Sem contrato de fidelidade — cancele quando quiser.</p>
+    </div>
+    <div class="planos-grid">
+      <div class="plano">
+        <div class="plano-label">Essencial</div>
+        <div class="plano-name">O essencial</div>
+        <div class="plano-tagline">Para quem está começando e quer controle sem complicação.</div>
+        <div class="plano-price"><span>R$</span>59</div>
+        <div class="plano-period">por mês</div>
+        <div class="plano-div"></div>
+        <ul class="plano-features">
+          <li><span class="check">✓</span> Controle financeiro completo</li>
+          <li><span class="check">✓</span> Caixa de vendas (PDV) e estoque</li>
+          <li><span class="check">✓</span> Nota fiscal automática</li>
+          <li><span class="check">✓</span> Alertas de prazo fiscal</li>
+          <li><span class="check">✓</span> Assistente de negócios incluso</li>
+        </ul>
+        <a href="https://app.getaura.com.br/cadastro?plano=essencial" class="plano-cta cta-outline">Começar com o Essencial</a>
+      </div>
+      <div class="plano featured">
+        <div class="plano-badge">Mais escolhido</div>
+        <div class="plano-label">Negócio</div>
+        <div class="plano-name">O completo</div>
+        <div class="plano-tagline">Para quem quer crescer com todas as ferramentas na mão.</div>
+        <div class="plano-price"><span>R$</span>200</div>
+        <div class="plano-period">por mês</div>
+        <div class="plano-div"></div>
+        <ul class="plano-features">
+          <li><span class="check">✓</span> Tudo do plano Essencial</li>
+          <li><span class="check">✓</span> Gestão de clientes e fidelidade</li>
+          <li><span class="check">✓</span> Presença digital e loja online</li>
+          <li><span class="check">✓</span> WhatsApp integrado</li>
+          <li><span class="check">✓</span> Múltiplos usuários (R$19 cada)</li>
+          <li><span class="check">✓</span> Módulos por segmento disponíveis</li>
+        </ul>
+        <a href="https://app.getaura.com.br/cadastro?plano=negocio" class="plano-cta cta-filled">Começar com o Completo</a>
+      </div>
+      <div class="plano">
+        <div class="plano-label">Expansão</div>
+        <div class="plano-name">O máximo</div>
+        <div class="plano-tagline">Para quem quer escalar com inteligência artificial no time.</div>
+        <div class="plano-price"><span>R$</span>320</div>
+        <div class="plano-period">por mês</div>
+        <div class="plano-div"></div>
+        <ul class="plano-features">
+          <li><span class="check">✓</span> Tudo do plano Completo</li>
+          <li><span class="check">✓</span> Assistente com inteligência artificial</li>
+          <li><span class="check">✓</span> Previsão de caixa automática</li>
+          <li><span class="check">✓</span> Cobranças automáticas via WhatsApp</li>
+          <li><span class="check">✓</span> Posts para redes sociais com IA</li>
+        </ul>
+        <a href="https://app.getaura.com.br/cadastro?plano=expansao" class="plano-cta cta-outline">Começar com o Máximo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="s-dep">
+  <div class="container">
+    <div class="section-header centered">
+      <p class="section-label">Depoimentos</p>
+      <h2 class="section-title">O que nossos clientes dizem.</h2>
+    </div>
+    <div class="dep-grid">
+      <div class="dep-card"><div class="dep-placeholder"><span>★★★★★</span><p>Em breve — depoimento de cliente real</p></div></div>
+      <div class="dep-card"><div class="dep-placeholder"><span>★★★★★</span><p>Em breve — depoimento de cliente real</p></div></div>
+      <div class="dep-card"><div class="dep-placeholder"><span>★★★★★</span><p>Em breve — depoimento de cliente real</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Dúvidas frequentes</p>
+      <h2 class="section-title">Perguntas que todo mundo faz.</h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">O que é a Aura?<span class="faq-icon">+</span></button>
+          <div class="faq-a">A Aura é um software de gestão completo para MEI e pequenos negócios — com financeiro, caixa de vendas, gestão de clientes, nota fiscal e presença digital em um só lugar. O diferencial é o assistente de negócios incluso em todos os planos pagos, que te ajuda a não perder prazos e a entender os números.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Preciso de contador separado?<span class="faq-icon">+</span></button>
+          <div class="faq-a">A Aura cuida do que é possível automaticamente — gera o boleto mensal, emite notas fiscais e te alerta sobre prazos. Para obrigações que exigem um contador registrado, indicamos profissionais parceiros. O assistente de negócios incluso te ajuda a entender o que precisa de atenção.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Funciona para MEI?<span class="faq-icon">+</span></button>
+          <div class="faq-a">Sim. A Aura foi desenvolvida pensando no MEI — controla seu faturamento anual em tempo real, calcula e alerta sobre o boleto mensal, emite nota fiscal automática e te lembra de todas as obrigações do ano.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">O que é o assistente de negócios?<span class="faq-icon">+</span></button>
+          <div class="faq-a">É uma pessoa real que acompanha o seu negócio. Ele te avisa sobre prazos importantes, responde suas dúvidas pelo WhatsApp e te ajuda a interpretar os números da Aura. Não é um robô — é alguém do nosso time dedicado a você.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Posso cancelar quando quiser?<span class="faq-icon">+</span></button>
+          <div class="faq-a">Sim. Não existe contrato de fidelidade nem multa. Você pode cancelar a qualquer momento direto pelo aplicativo, sem precisar ligar para ninguém.</div>
+        </div>
+      </div>
+      <div class="form-card" id="faq-contato">
+        <h2>Ainda tem dúvidas?</h2>
+        <p>Manda sua pergunta — alguém do nosso time responde pelo WhatsApp.</p>
+        <form id="faqForm" action="https://formspree.io/f/xojkbrkz" method="POST">
+          <div class="form-group"><label>Seu nome</label><input type="text" name="nome" placeholder="Como você se chama?" required></div>
+          <div class="form-group"><label>WhatsApp</label><input type="tel" name="whatsapp" placeholder="(11) 99999-9999" required></div>
+          <div class="form-group"><label>Sua dúvida</label><textarea name="mensagem" rows="4" placeholder="O que você gostaria de saber?" required></textarea></div>
+          <input type="hidden" name="origem" value="faq">
+          <button type="submit" class="form-submit">Enviar minha dúvida →</button>
+        </form>
+        <div class="form-success" id="faqSuccess">✓ Dúvida enviada! Entraremos em contato pelo WhatsApp em breve.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="nav-logo" style="display:inline-flex;margin-bottom:4px;">
+          <svg viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="fg" cx="38%" cy="35%" r="70%"><stop offset="0%" stop-color="#2d1b69"/><stop offset="100%" stop-color="#110a2e"/></radialGradient>
+              <radialGradient id="fc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#a855f7"/></radialGradient>
+              <linearGradient id="fa1" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#e9d5ff" stop-opacity="0"/></linearGradient>
+              <linearGradient id="fa2" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#c084fc" stop-opacity=".85"/><stop offset="100%" stop-color="#c084fc" stop-opacity="0"/></linearGradient>
+              <radialGradient id="fd" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#f5f3ff"/><stop offset="50%" stop-color="#c084fc"/><stop offset="100%" stop-color="#7c3aed"/></radialGradient>
+            </defs>
+            <rect width="200" height="200" rx="44" fill="url(#fg)"/>
+            <path d="M 95,56 A 49,49 0 1 1 47,122" fill="none" stroke="url(#fa2)" stroke-width="2.8" stroke-linecap="round"/>
+            <path d="M 95,71 A 34,34 0 1 1 62,127" fill="none" stroke="url(#fa1)" stroke-width="3.4" stroke-linecap="round"/>
+            <circle cx="95" cy="105" r="12" fill="url(#fc)"/>
+            <circle cx="95" cy="105" r="4.5" fill="#fff" opacity=".98"/>
+            <circle cx="146" cy="148" r="7" fill="url(#fd)"/>
+          </svg>
+          <span class="nav-wordmark" style="font-size:18px;">aura.</span>
+        </a>
+        <p>Tecnologia para negócios que querem crescer sem complicação. Vale do Paraíba, SP.</p>
+        <div class="footer-disclaimer">A Aura. é uma empresa de tecnologia. As funcionalidades fiscais são informativas e de apoio — quando necessário, indicamos contadores parceiros para as obrigações que exigem profissional registrado.</div>
+      </div>
+      <div class="footer-col">
+        <h4>Produto</h4>
+        <ul>
+          <li><a href="#valor">Por que Aura</a></li>
+          <li><a href="#modulos">O que faz</a></li>
+          <li><a href="#planos">Planos</a></li>
+          <li><a href="#faq">Dúvidas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Acesso</h4>
+        <ul>
+          <li><a href="https://app.getaura.com.br">Entrar no app</a></li>
+          <li><a href="https://app.getaura.com.br/cadastro">Criar conta</a></li>
+          <li><a href="mailto:contato@getaura.com.br">contato@getaura.com.br</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Aura. Tecnologia para Negócios. Jacareí, SP.</p>
+      <p style="font-size:12px;">getaura.com.br</p>
+    </div>
+  </div>
+</footer>
+
+<!-- BOTÃO FLUTUANTE -->
+<a href="https://app.getaura.com.br" class="float-btn">
+  <span class="float-dot"></span> Já sou cliente — Entrar no app
+</a>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  function setupForm(formId, successId) {
+    const form = document.getElementById(formId);
+    if (!form) return;
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('.form-submit');
+      btn.textContent = 'Enviando...'; btn.disabled = true;
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+        if (res.ok) { form.style.display = 'none'; document.getElementById(successId).style.display = 'block'; }
+        else { btn.textContent = 'Tente novamente'; btn.disabled = false; }
+      } catch { btn.textContent = 'Tente novamente'; btn.disabled = false; }
+    });
+  }
+
+  setupForm('heroForm', 'heroSuccess');
+  setupForm('faqForm', 'faqSuccess');
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
