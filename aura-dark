@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 200" width="560" height="200">
+  <defs>
+
+    <!-- Fundo dark -->
+    <radialGradient id="dark-bg" cx="30%" cy="40%" r="75%">
+      <stop offset="0%"   stop-color="#1a0f3a"/>
+      <stop offset="100%" stop-color="#0a0618"/>
+    </radialGradient>
+
+    <!-- Núcleo -->
+    <radialGradient id="core-dark" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#ffffff"/>
+      <stop offset="40%"  stop-color="#ddd6fe"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </radialGradient>
+
+    <!-- Ponto -->
+    <radialGradient id="dot-dark" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#f5f3ff"/>
+      <stop offset="45%"  stop-color="#c084fc"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </radialGradient>
+
+    <!-- Arcos — fade direcional sobre fundo escuro (mais brilhantes) -->
+    <linearGradient id="da1" x1="8%" y1="0%" x2="92%" y2="92%">
+      <stop offset="0%"   stop-color="#f5f3ff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#f5f3ff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="da2" x1="8%" y1="0%" x2="92%" y2="92%">
+      <stop offset="0%"   stop-color="#ddd6fe" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#ddd6fe" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="da3" x1="8%" y1="0%" x2="92%" y2="92%">
+      <stop offset="0%"   stop-color="#c084fc" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#c084fc" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="da4" x1="8%" y1="0%" x2="92%" y2="92%">
+      <stop offset="0%"   stop-color="#a855f7" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
+    </linearGradient>
+
+    <filter id="dk-core" x="-90%" y="-90%" width="280%" height="280%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="dk-dot" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="dk-arc" x="-18%" y="-18%" width="136%" height="136%">
+      <feGaussianBlur stdDeviation="1.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Fundo com padding interno (sem rect full — transparente nas bordas) -->
+  <rect x="0" y="0" width="560" height="200" rx="0" fill="url(#dark-bg)"/>
+
+  <!-- Brilho ambiente sutil no quadrante do símbolo -->
+  <ellipse cx="90" cy="85" rx="80" ry="70"
+    fill="#6d28d9" opacity="0.08"/>
+
+  <!-- ══════════════════════════════════ -->
+  <!--  SÍMBOLO — centro (90, 95)         -->
+  <!-- ══════════════════════════════════ -->
+
+  <path d="M 90,17 A 78,78 0 1 1 13,98"
+    fill="none" stroke="url(#da4)" stroke-width="1.2"
+    stroke-linecap="round" filter="url(#dk-arc)"/>
+
+  <path d="M 90,30 A 65,65 0 1 1 26,106"
+    fill="none" stroke="url(#da3)" stroke-width="1.8"
+    stroke-linecap="round" filter="url(#dk-arc)"/>
+
+  <path d="M 90,44 A 51,51 0 1 1 40,113"
+    fill="none" stroke="url(#da2)" stroke-width="2.4"
+    stroke-linecap="round" filter="url(#dk-arc)"/>
+
+  <path d="M 90,58 A 37,37 0 1 1 54,120"
+    fill="none" stroke="url(#da1)" stroke-width="3.0"
+    stroke-linecap="round" filter="url(#dk-arc)"/>
+
+  <!-- Núcleo -->
+  <circle cx="90" cy="95" r="14"
+    fill="url(#core-dark)"
+    filter="url(#dk-core)"/>
+  <circle cx="90" cy="95" r="5"
+    fill="#ffffff" opacity="0.98"/>
+
+  <!-- ══════════════════════════════════ -->
+  <!--  WORDMARK — claro sobre escuro     -->
+  <!-- ══════════════════════════════════ -->
+
+  <text
+    x="188" y="113"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="76"
+    font-weight="400"
+    letter-spacing="-2"
+    fill="#ede9fe">aura</text>
+
+  <!-- Véu violeta claro — liga wordmark ao símbolo no dark -->
+  <text
+    x="188" y="113"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="76"
+    font-weight="400"
+    letter-spacing="-2"
+    fill="#c084fc"
+    opacity="0.14">aura</text>
+
+  <!-- PONTO dark -->
+  <circle cx="414" cy="104" r="12"
+    fill="#7c3aed" opacity="0.22"
+    filter="url(#dk-dot)"/>
+  <circle cx="414" cy="104" r="8"
+    fill="url(#dot-dark)"
+    filter="url(#dk-dot)"/>
+  <circle cx="411" cy="101" r="2.5"
+    fill="#ffffff" opacity="0.55"/>
+
+  <!-- ══════════════════════════════════ -->
+  <!--  TAGLINE — versão clara            -->
+  <!-- ══════════════════════════════════ -->
+
+  <line x1="189" y1="127" x2="428" y2="127"
+    stroke="#7c3aed" stroke-width="0.5" opacity="0.5"/>
+
+  <text
+    x="190" y="146"
+    font-family="'Helvetica Neue', Arial, sans-serif"
+    font-size="10"
+    font-weight="400"
+    letter-spacing="3.6"
+    fill="#c084fc"
+    opacity="0.70">TECNOLOGIA PARA NEGÓCIOS</text>
+
+</svg>
