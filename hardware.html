@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hardware Compatível — Aura.</title>
+  <meta name="description" content="Lista de impressoras e leitores de código de barras compatíveis com a Aura. Qualquer dispositivo ESC/POS e HID funciona.">
+  <style>
+    :root {
+      --purple: #6d28d9;
+      --purple-light: #ede9fe;
+      --text: #1a1a2e;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #f9fafb;
+      --card: #ffffff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+
+    /* Nav */
+    nav { background: #fff; border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-size: 1.25rem; font-weight: 700; color: var(--purple); text-decoration: none; }
+    .nav-back { font-size: .875rem; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: .375rem; }
+    .nav-back:hover { color: var(--purple); }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%); color: #fff; padding: 3rem 2rem; text-align: center; }
+    .hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: .75rem; }
+    .hero p { font-size: 1.1rem; opacity: .9; max-width: 600px; margin: 0 auto; }
+
+    /* Content */
+    .content { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+
+    /* Alert */
+    .alert { background: var(--purple-light); border: 1px solid #c4b5fd; border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 2rem; font-size: .95rem; color: #5b21b6; display: flex; gap: .75rem; align-items: flex-start; }
+    .alert-icon { font-size: 1.25rem; flex-shrink: 0; }
+
+    /* Section */
+    .section { margin-bottom: 2.5rem; }
+    .section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem; }
+    .section-desc { color: var(--muted); font-size: .925rem; margin-bottom: 1.25rem; }
+
+    /* Cards grid */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+    .card-label { font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--purple); margin-bottom: .5rem; }
+    .card-name { font-size: 1rem; font-weight: 600; margin-bottom: .25rem; }
+    .card-detail { font-size: .875rem; color: var(--muted); margin-bottom: .5rem; }
+    .card-price { font-size: .875rem; font-weight: 500; color: #059669; }
+    .card-tag { display: inline-block; font-size: .7rem; background: #f3f4f6; color: #374151; border-radius: 99px; padding: .2rem .6rem; margin-top: .5rem; margin-right: .25rem; }
+
+    /* Profile table */
+    .profile-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .profile-table th { background: var(--purple-light); color: var(--purple); padding: .75rem 1rem; text-align: left; font-weight: 600; }
+    .profile-table td { padding: .75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .profile-table tr:last-child td { border-bottom: none; }
+    .profile-table tr:nth-child(even) td { background: #f9fafb; }
+    .tag-works { color: #059669; font-weight: 500; }
+    .tag-r0 { color: var(--purple); font-weight: 500; }
+
+    /* Note */
+    .note { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 10px; padding: 1rem 1.25rem; font-size: .875rem; color: #92400e; margin-top: 2rem; }
+
+    /* Footer */
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .875rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+    footer a { color: var(--purple); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.5rem; }
+      .profile-table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Aura.</a>
+  <a href="/" class="nav-back">← Voltar ao site</a>
+</nav>
+
+<div class="hero">
+  <h1>Hardware Compatível</h1>
+  <p>A Aura funciona com qualquer leitor e impressora do mercado. Esta lista é um guia de custo-benefício, não uma lista exclusiva.</p>
+</div>
+
+<div class="content">
+
+  <div class="alert">
+    <span class="alert-icon">💡</span>
+    <div>
+      <strong>Compatibilidade universal:</strong> Leitores USB seguem o protocolo HID (plug and play, sem driver). Impressoras seguem o protocolo ESC/POS. Qualquer dispositivo desses padrões funciona com a Aura — sem configuração.
+    </div>
+  </div>
+
+  <!-- Leitores -->
+  <div class="section">
+    <div class="section-title">📷 Leitores de Código de Barras e QR Code</div>
+    <div class="section-desc">Conecte via USB e já funciona — o leitor é reconhecido como teclado pelo computador ou tablet.</div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-label">Entrada · 1D</div>
+        <div class="card-name">C3Tech BC-1300BK</div>
+        <div class="card-detail">Leitura 1D USB com fio. Ideal para varejo simples.</div>
+        <div class="card-price">~R$ 80–100</div>
+        <span class="card-tag">USB</span>
+        <span class="card-tag">1D</span>
+      </div>
+      <div class="card">
+        <div class="card-label">Custo-benefício · 2D</div>
+        <div class="card-name">C3Tech BC-2100BK</div>
+        <div class="card-detail">Leitura 2D USB com fio. Lê QR Code e EAN. Recomendado para a maioria dos clientes.</div>
+        <div class="card-price">~R$ 150–180</div>
+        <span class="card-tag">USB</span>
+        <span class="card-tag">2D / QR</span>
+      </div>
+      <div class="card">
+        <div class="card-label">Popular · 2D</div>
+        <div class="card-name">Elgin FOX EL-SC 2D</div>
+        <div class="card-detail">Leitura 2D USB com fio. Marca referência no Brasil, boa durabilidade.</div>
+        <div class="card-price">~R$ 200–280</div>
+        <span class="card-tag">USB</span>
+        <span class="card-tag">2D / QR</span>
+      </div>
+      <div class="card">
+        <div class="card-label">Sem fio · 2D</div>
+        <div class="card-name">Elgin BT 2D EL-SC40</div>
+        <div class="card-detail">Bluetooth HID — funciona igual ao USB, sem fio. Ideal para estoque em movimento.</div>
+        <div class="card-price">~R$ 400–500</div>
+        <span class="card-tag">Bluetooth</span>
+        <span class="card-tag">2D / QR</span>
+      </div>
+      <div class="card">
+        <div class="card-label">Celular · Grátis</div>
+        <div class="card-name">Câmera do celular (ZXing)</div>
+        <div class="card-detail">A Aura usa a câmera nativa do celular para ler códigos. Sem hardware adicional.</div>
+        <div class="card-price">R$ 0 — já incluso</div>
+        <span class="card-tag">Celular</span>
+        <span class="card-tag">1D e 2D / QR</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Impressoras -->
+  <div class="section">
+    <div class="section-title">🖨️ Impressoras Térmicas (Cupom / Etiqueta)</div>
+    <div class="section-desc">Todas usam o protocolo ESC/POS. A impressão na Aura abre o diálogo padrão do sistema — clique OK e pronto.</div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-label">Entrada · USB</div>
+        <div class="card-name">C3Tech IT-100</div>
+        <div class="card-detail">Impressora térmica 80mm USB. Compacta e silenciosa. Boa para PDV de pequeno volume.</div>
+        <div class="card-price">~R$ 300–380</div>
+        <span class="card-tag">USB</span>
+        <span class="card-tag">80mm</span>
+      </div>
+      <div class="card">
+        <div class="card-label">Popular · USB</div>
+        <div class="card-name">Elgin i8</div>
+        <div class="card-detail">80mm USB. Velocidade 200mm/s. Padrão de mercado para PDV de médio volume.</div>
+        <div class="card-price">~R$ 400–500</div>
+        <span class="card-tag">USB</span>
+        <span class="card-tag">80mm</span>
+      </div>
+      <div class="card">
+        <div class="card-label">Profissional · USB + Ethernet</div>
+        <div class="card-name">Elgin i9</div>
+        <div class="card-detail">80mm USB + Ethernet. Conecta na rede — vários caixas imprimem na mesma impressora.</div>
+        <div class="card-price">~R$ 550–650</div>
+        <span class="card-tag">USB</span>
+        <span class="card-tag">Ethernet</span>
+        <span class="card-tag">80mm</span>
+      </div>
+      <div class="card">
+        <div class="card-label">Referência · USB</div>
+        <div class="card-name">Bematech MP-4200 TH</div>
+        <div class="card-detail">80mm USB. Alta durabilidade, muito usada em franquias e redes.</div>
+        <div class="card-price">~R$ 500–650</div>
+        <span class="card-tag">USB</span>
+        <span class="card-tag">80mm</span>
+      </div>
+      <div class="card">
+        <div class="card-label">Premium · USB + Serial</div>
+        <div class="card-name">Epson TM-T20III</div>
+        <div class="card-detail">80mm USB. Qualidade Epson, ideal para clientes que exigem confiabilidade máxima.</div>
+        <div class="card-price">~R$ 700–900</div>
+        <span class="card-tag">USB</span>
+        <span class="card-tag">80mm</span>
+      </div>
+      <div class="card">
+        <div class="card-label">Celular · Grátis</div>
+        <div class="card-name">Qualquer impressora Wi-Fi</div>
+        <div class="card-detail">No celular, a Aura usa o compartilhamento de impressão nativo do Android/iOS.</div>
+        <div class="card-price">Qualquer impressora Wi-Fi</div>
+        <span class="card-tag">Wi-Fi</span>
+        <span class="card-tag">Mobile</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Por perfil -->
+  <div class="section">
+    <div class="section-title">🎯 Recomendação por Perfil de Negócio</div>
+    <div class="section-desc">Configurações testadas e aprovadas para cada tipo de operação.</div>
+
+    <table class="profile-table">
+      <thead>
+        <tr>
+          <th>Perfil</th>
+          <th>Leitor</th>
+          <th>Impressora</th>
+          <th>Investimento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>MEI / Começo</strong><br><span style="font-size:.8rem;color:#6b7280">PDV no celular, baixo volume</span></td>
+          <td><span class="tag-r0">Câmera do celular</span><br><small>R$ 0</small></td>
+          <td><span class="tag-r0">Impressora Wi-Fi existente</span><br><small>R$ 0</small></td>
+          <td><strong class="tag-works">R$ 0</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Varejo / Loja</strong><br><span style="font-size:.8rem;color:#6b7280">PDV fixo, volume médio</span></td>
+          <td>C3Tech 2D USB<br><small>~R$ 150</small></td>
+          <td>Elgin i8<br><small>~R$ 450</small></td>
+          <td><strong>~R$ 600</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Barbearia / Salão</strong><br><span style="font-size:.8rem;color:#6b7280">PDV fixo, ticket pequeno</span></td>
+          <td>C3Tech 2D USB<br><small>~R$ 150</small></td>
+          <td>C3Tech IT-100<br><small>~R$ 350</small></td>
+          <td><strong>~R$ 500</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Estoque intenso</strong><br><span style="font-size:.8rem;color:#6b7280">Giro alto, mobilidade</span></td>
+          <td>Elgin BT 2D (sem fio)<br><small>~R$ 450</small></td>
+          <td>Elgin i9 (rede)<br><small>~R$ 600</small></td>
+          <td><strong>~R$ 1.050</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Consultório</strong><br><span style="font-size:.8rem;color:#6b7280">Sem PDV físico, recibos</span></td>
+          <td>Câmera do celular<br><small>R$ 0</small></td>
+          <td>Qualquer impressora A4 existente<br><small>R$ 0</small></td>
+          <td><strong class="tag-works">R$ 0</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <strong>Importante:</strong> Esta lista é um guia de custo-benefício, não uma lista exclusiva. Qualquer leitor USB que emule teclado (HID) e qualquer impressora ESC/POS funcionam com a Aura — inclusive modelos genéricos importados. Se tiver dúvidas sobre um modelo específico, entre em contato com nosso suporte.
+  </div>
+
+</div>
+
+<footer>
+  <p>Aura. — Tecnologia para Negócios &nbsp;·&nbsp; <a href="/">getaura.com.br</a> &nbsp;·&nbsp; <a href="mailto:contato@getaura.com.br">contato@getaura.com.br</a></p>
+</footer>
+
+</body>
+</html>
