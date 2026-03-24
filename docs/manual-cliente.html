@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual do Cliente — Aura.</title>
+  <meta name="description" content="Aprenda a usar cada módulo da Aura. para o seu negócio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--v600:#6d28d9;--v500:#7c3aed;--v400:#8b5cf6;--v300:#a78bfa;--v200:#c084fc;--v100:#ddd6fe;--white:#fff;--gray400:#9ca3af;--bg:#0a0618;--surface:#110a2e;--serif:'Instrument Serif',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--white);line-height:1.7;overflow-x:hidden}
+nav{position:sticky;top:0;z-index:100;padding:14px 0;background:rgba(10,6,24,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(167,139,250,.1)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:940px;margin:0 auto;padding:0 24px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-wordmark{font-family:var(--serif);font-size:20px;color:var(--v200);letter-spacing:-.5px}
+.nav-tag{font-size:11px;background:rgba(109,40,217,.2);color:var(--v300);padding:3px 10px;border-radius:99px;font-weight:600;border:1px solid rgba(167,139,250,.15)}
+.nav-back{color:var(--v300);font-size:13px;text-decoration:none;opacity:.7}
+.nav-back:hover{opacity:1}
+.doc-hero{padding:64px 0 48px;border-bottom:1px solid rgba(167,139,250,.08);position:relative;overflow:hidden}
+.doc-hero::before{content:'';position:absolute;top:-100px;right:-200px;width:500px;height:500px;background:var(--v600);border-radius:50%;filter:blur(120px);opacity:.08;pointer-events:none}
+.inner{max-width:940px;margin:0 auto;padding:0 24px}
+.doc-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(109,40,217,.15);border:1px solid rgba(167,139,250,.2);padding:5px 14px;border-radius:100px;margin-bottom:20px;font-size:11px;color:var(--v300);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.doc-eyebrow span{width:6px;height:6px;border-radius:50%;background:var(--v400);display:inline-block}
+h1{font-family:var(--serif);font-size:clamp(30px,5vw,50px);font-weight:400;line-height:1.1;letter-spacing:-.5px;margin-bottom:14px}
+h1 em{font-style:italic;color:var(--v200)}
+.doc-hero p{font-size:17px;color:var(--v100);opacity:.7;max-width:600px;line-height:1.7}
+.doc-meta{display:flex;gap:20px;margin-top:20px;flex-wrap:wrap}
+.doc-meta span{font-size:12px;color:var(--gray400);display:flex;align-items:center;gap:6px}
+.doc-meta span::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--v400);display:inline-block}
+.doc-layout{display:grid;grid-template-columns:200px 1fr;gap:48px;max-width:940px;margin:0 auto;padding:48px 24px 80px}
+.doc-sidebar{position:sticky;top:80px;align-self:start}
+.sidebar-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--v300);margin-bottom:12px}
+.sidebar-nav{list-style:none;display:flex;flex-direction:column;gap:1px}
+.sidebar-nav a{display:block;font-size:13px;color:var(--gray400);text-decoration:none;padding:6px 10px;border-radius:6px;border-left:2px solid transparent;transition:all .2s}
+.sidebar-nav a:hover,.sidebar-nav a.active{color:var(--v200);background:rgba(109,40,217,.08);border-left-color:var(--v500)}
+.sidebar-nav .group{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--v400);padding:10px 10px 3px;margin-top:6px}
+.sidebar-div{height:1px;background:rgba(167,139,250,.08);margin:10px 0}
+.doc-content{min-width:0}
+.doc-section{margin-bottom:52px;scroll-margin-top:90px}
+.doc-section h2{font-family:var(--serif);font-size:26px;font-weight:400;margin-bottom:6px;color:var(--white);padding-bottom:12px;border-bottom:1px solid rgba(167,139,250,.1)}
+.doc-section h3{font-size:16px;font-weight:500;color:var(--v200);margin:24px 0 8px}
+.doc-section p{font-size:15px;color:var(--v100);opacity:.8;margin-bottom:12px;line-height:1.8}
+.doc-section ul{margin:10px 0 14px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+.doc-section ul li{font-size:15px;color:var(--v100);opacity:.8;display:flex;gap:10px;align-items:flex-start;line-height:1.6}
+.doc-section ul li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--v400);flex-shrink:0;margin-top:9px}
+.steps{display:flex;flex-direction:column;gap:0;margin:16px 0}
+.step{display:flex;gap:14px;position:relative;padding-bottom:20px}
+.step:last-child{padding-bottom:0}
+.step:not(:last-child)::before{content:'';position:absolute;left:16px;top:36px;bottom:0;width:2px;background:rgba(167,139,250,.12)}
+.step-num{width:32px;height:32px;border-radius:50%;background:rgba(109,40,217,.2);border:1px solid rgba(109,40,217,.4);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--v300);flex-shrink:0}
+.step-body{padding-top:4px}
+.step-body strong{display:block;font-size:14px;font-weight:500;color:var(--white);margin-bottom:3px}
+.step-body p{font-size:13px;color:var(--gray400);margin:0;line-height:1.6}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.info-card{background:var(--surface);border:1px solid rgba(167,139,250,.12);border-radius:10px;padding:16px 18px}
+.info-card.purple{border-color:rgba(109,40,217,.3);background:rgba(109,40,217,.08)}
+.info-card.green{border-color:rgba(34,197,94,.2);background:rgba(34,197,94,.04)}
+.info-card h4{font-size:13px;font-weight:500;color:var(--white);margin-bottom:5px}
+.info-card.green h4{color:#86efac}
+.info-card p{font-size:13px;color:var(--gray400);opacity:1;margin:0;line-height:1.5}
+.callout{border-radius:10px;padding:14px 18px;margin:14px 0;display:flex;gap:12px;font-size:14px;line-height:1.7}
+.callout p{margin:0;opacity:1}
+.callout strong{display:block;margin-bottom:3px;font-size:13px;font-weight:600}
+.callout.tip{background:rgba(109,40,217,.1);border:1px solid rgba(109,40,217,.25);color:var(--v100)}
+.callout.warning{background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.25);color:#fed7aa}
+.callout.success{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);color:#bbf7d0}
+.doc-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+.doc-table th{background:rgba(109,40,217,.15);color:var(--v300);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;padding:9px 13px;text-align:left;border-bottom:1px solid rgba(167,139,250,.15)}
+.doc-table td{padding:10px 13px;border-bottom:1px solid rgba(167,139,250,.06);color:var(--v100);line-height:1.6}
+.doc-table tr:last-child td{border-bottom:none}
+.pb{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--v600),var(--v200));z-index:200;width:0;transition:width .1s}
+footer{background:var(--surface);border-top:1px solid rgba(167,139,250,.08);padding:28px 0;text-align:center}
+footer p{font-size:13px;color:var(--gray400)}
+footer a{color:var(--v300);text-decoration:none}
+@media(max-width:768px){.doc-layout{grid-template-columns:1fr}.doc-sidebar{display:none}.card-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="pb" id="pb"></div>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg viewBox="0 0 200 200" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ng" cx="38%" cy="35%" r="70%"><stop offset="0%" stop-color="#2d1b69"/><stop offset="100%" stop-color="#110a2e"/></radialGradient><radialGradient id="nc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#a855f7"/></radialGradient><linearGradient id="na1" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#e9d5ff" stop-opacity="0"/></linearGradient><linearGradient id="na2" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#c084fc" stop-opacity=".85"/><stop offset="100%" stop-color="#c084fc" stop-opacity="0"/></linearGradient><linearGradient id="na3" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#a855f7" stop-opacity=".65"/><stop offset="100%" stop-color="#a855f7" stop-opacity="0"/></linearGradient><linearGradient id="na4" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#7c3aed" stop-opacity=".4"/><stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/></linearGradient><radialGradient id="nd" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#f5f3ff"/><stop offset="50%" stop-color="#c084fc"/><stop offset="100%" stop-color="#7c3aed"/></radialGradient></defs><rect width="200" height="200" rx="44" fill="url(#ng)"/><path d="M 95,29 A 76,76 0 1 1 20,108" fill="none" stroke="url(#na4)" stroke-width="1.6" stroke-linecap="round"/><path d="M 95,42 A 63,63 0 1 1 33,115" fill="none" stroke="url(#na3)" stroke-width="2.2" stroke-linecap="round"/><path d="M 95,56 A 49,49 0 1 1 47,122" fill="none" stroke="url(#na2)" stroke-width="2.8" stroke-linecap="round"/><path d="M 95,71 A 34,34 0 1 1 62,127" fill="none" stroke="url(#na1)" stroke-width="3.4" stroke-linecap="round"/><circle cx="95" cy="105" r="12" fill="url(#nc)"/><circle cx="95" cy="105" r="4.5" fill="#fff" opacity=".98"/><circle cx="146" cy="148" r="9" fill="url(#nd)"/><circle cx="143" cy="145" r="3" fill="#fff" opacity=".55"/></svg>
+      <span class="nav-wordmark">aura.</span>
+    </a>
+    <span class="nav-tag">DOC-01 · Manual do Cliente</span>
+    <a href="/" class="nav-back">&#8592; Voltar ao site</a>
+  </div>
+</nav>
+<div class="doc-hero">
+  <div class="inner">
+    <div class="doc-eyebrow"><span></span> Documentação · Cliente</div>
+    <h1>Manual do <em>Cliente Aura.</em></h1>
+    <p>Tudo que você precisa saber para tirar o máximo da Aura. — do primeiro acesso ao uso diário. Simples, sem jargão técnico.</p>
+    <div class="doc-meta"><span>Versão 1.0</span><span>Março 2026</span><span>Para todos os planos</span></div>
+  </div>
+</div>
+<div class="doc-layout">
+  <aside class="doc-sidebar">
+    <div class="sidebar-title">Neste guia</div>
+    <ul class="sidebar-nav">
+      <li><a href="#comecando">Primeiros passos</a></li>
+      <li class="group">Módulos</li>
+      <li><a href="#financeiro">Financeiro</a></li>
+      <li><a href="#pdv">Caixa de Vendas</a></li>
+      <li><a href="#estoque">Estoque</a></li>
+      <li><a href="#clientes">Clientes</a></li>
+      <li><a href="#fiscal">Apoio Fiscal</a></li>
+      <li><a href="#presenca">Presença Digital</a></li>
+      <div class="sidebar-div"></div>
+      <li><a href="#assistente">Assistente</a></li>
+      <li><a href="#ajuda">Preciso de ajuda</a></li>
+    </ul>
+  </aside>
+  <main class="doc-content">
+    <div class="doc-section" id="comecando">
+      <h2>Primeiros passos</h2>
+      <p>Bem-vindo à Aura. Você acabou de ter acesso a uma plataforma que reúne tudo que seu negócio precisa em um só lugar — financeiro, vendas, clientes, nota fiscal e muito mais.</p>
+      <h3>O que você encontra na tela principal</h3>
+      <p>Ao entrar na Aura, você verá o Painel. Ele mostra o resumo do seu dia: quanto entrou, as vendas de hoje, alertas importantes e atalhos para as funções mais usadas.</p>
+      <div class="card-grid">
+        <div class="info-card purple"><h4>Menu lateral (sidebar)</h4><p>Acesse todos os módulos pelo menu à esquerda. Organizado por categoria: Principal, Contábil, Vendas, Clientes.</p></div>
+        <div class="info-card purple"><h4>Avatar no canto superior</h4><p>Clique na sua foto ou iniciais para configurações, alternar o tema e gerenciar seu plano.</p></div>
+      </div>
+      <h3>Configure sua empresa primeiro</h3>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Acesse Minha Empresa</strong><p>Clique no avatar → Minha Empresa. Preencha CNPJ, razão social, endereço e regime tributário.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Adicione seus produtos ou serviços</strong><p>Vá em Estoque → Produtos → Novo produto. Coloque nome, preço e quantidade inicial.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Cadastre seus primeiros clientes</strong><p>Vá em Clientes → Novo cliente. Você pode adicionar pelo nome ou cadastrar na hora da venda.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Faça sua primeira venda no Caixa</strong><p>Acesse PDV no menu → selecione os produtos → escolha a forma de pagamento → finalize.</p></div></div>
+      </div>
+      <div class="callout tip"><span>💡</span><p><strong>Dica de início</strong> Não precisa preencher tudo de uma vez. A Aura funciona mesmo com configurações básicas. Complete aos poucos enquanto usa no dia a dia.</p></div>
+    </div>
+    <div class="doc-section" id="financeiro">
+      <h2>Financeiro</h2>
+      <p>O módulo Financeiro é o coração da Aura. Aqui você acompanha tudo que entra e sai do seu negócio, vê os resultados do mês e sabe exatamente quanto pode retirar.</p>
+      <h3>As 4 abas do Financeiro</h3>
+      <table class="doc-table">
+        <thead><tr><th>Aba</th><th>O que você faz aqui</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Lançamentos</strong></td><td>Registra entradas e saídas manualmente. Ex: aluguel, compra de estoque, recebimento avulso.</td></tr>
+          <tr><td><strong>A Receber</strong></td><td>Lista de cobranças pendentes. Veja quem deve, quanto e quando vence. Marque como recebido com um clique.</td></tr>
+          <tr><td><strong>Minha Retirada</strong></td><td>Calculadora que mostra quanto você pode retirar do negócio com segurança este mês.</td></tr>
+          <tr><td><strong>Resumo</strong></td><td>DRE simplificado: receita, despesas, lucro do mês. Compare com meses anteriores.</td></tr>
+        </tbody>
+      </table>
+      <div class="callout success"><span>✓</span><p><strong>Vendas do PDV entram automático</strong> Toda venda feita pelo Caixa de Vendas já entra no Financeiro como entrada. Você não precisa lançar manualmente.</p></div>
+    </div>
+    <div class="doc-section" id="pdv">
+      <h2>Caixa de Vendas (PDV)</h2>
+      <p>O Caixa de Vendas é onde você registra cada venda. Funciona no celular e no computador. Uma venda leva menos de 30 segundos.</p>
+      <h3>Fazendo uma venda</h3>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Abra o PDV no menu lateral</strong><p>Clique em PDV. A tela de venda abre pronta — sem precisar configurar nada.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Adicione os produtos</strong><p>Digite o nome, use o código de barras (leitor USB ou câmera do celular) ou toque no produto na grade.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Aplique desconto (se quiser)</strong><p>Toque no valor para editar. Desconto por item ou no total.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Escolha o pagamento</strong><p>Pix, dinheiro, cartão de débito ou crédito.</p></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Finalizar</strong><p>A venda é registrada, o estoque é baixado e o histórico do cliente é atualizado.</p></div></div>
+      </div>
+      <div class="callout warning"><span>⚠️</span><p><strong>Nota fiscal para clientes PJ</strong> Se o cliente é uma empresa, emita a NF-e. Acesse NF-e no menu → Nova nota e vincule à venda. Pode ser configurada para emissão automática.</p></div>
+    </div>
+    <div class="doc-section" id="estoque">
+      <h2>Estoque</h2>
+      <p>Controle o que você tem, quanto custa e o que está vendendo mais. O estoque é ligado ao Caixa de Vendas — cada venda baixa automaticamente.</p>
+      <h3>Cadastrar um produto</h3>
+      <ul>
+        <li>Estoque → Produtos → Novo produto</li>
+        <li>Preencha: nome, categoria, preço de venda, custo e quantidade inicial</li>
+        <li>Adicione código de barras — basta escanear ou digitar</li>
+        <li>Para produtos com variações (tamanho, cor), ative a opção Variantes</li>
+      </ul>
+      <div class="callout tip"><span>💡</span><p><strong>Curva ABC automática</strong> A Aura classifica seus produtos em A (mais vendidos), B (médio) e C (pouco vendidos). Use para decidir o que manter em estoque.</p></div>
+    </div>
+    <div class="doc-section" id="clientes">
+      <h2>Clientes</h2>
+      <p>Conheça quem compra de você. O CRM da Aura guarda o histórico completo de cada cliente e ajuda a manter o relacionamento aquecido.</p>
+      <div class="card-grid">
+        <div class="info-card"><h4>Histórico de compras</h4><p>Todas as compras com data, valor e produtos. Quanto ele gastou no total (LTV).</p></div>
+        <div class="info-card"><h4>Dados de contato</h4><p>Telefone, e-mail, Instagram e data de aniversário — para nunca esquecer.</p></div>
+        <div class="info-card green"><h4>Ranking de fidelidade</h4><p>Quem compra mais e com mais frequência aparece no topo do ranking automático.</p></div>
+        <div class="info-card green"><h4>Avaliações</h4><p>Link enviado após cada compra. Clientes satisfeitos são direcionados ao Google automaticamente.</p></div>
+      </div>
+    </div>
+    <div class="doc-section" id="fiscal">
+      <h2>Apoio Fiscal</h2>
+      <p>A Aura cuida das obrigações fiscais do seu negócio — calcula os valores, gera os documentos e avisa com antecedência sobre cada prazo.</p>
+      <h3>O que a Aura faz automaticamente</h3>
+      <ul>
+        <li>Calcula o valor do boleto mensal (DAS-MEI ou PGDAS-D estimado) e gera o QR Code Pix</li>
+        <li>Controla o limite de faturamento anual do MEI em tempo real</li>
+        <li>Emite nota fiscal automática em toda venda para pessoa jurídica</li>
+        <li>Monitora o Fator R para quem está no Simples Nacional</li>
+        <li>Envia alertas com 15, 7, 3 e 1 dia antes de cada prazo importante</li>
+      </ul>
+      <div class="callout warning"><span>⚠️</span><p><strong>Importante saber</strong> Os valores calculados pela Aura são estimativas de apoio. Para transmissões oficiais (PGDAS-D, DEFIS, eSocial), consulte o Guia de Envio Contábil ou fale com seu Assistente de Negócios.</p></div>
+    </div>
+    <div class="doc-section" id="presenca">
+      <h2>Presença Digital</h2>
+      <p>Tenha um mini-site profissional, loja online e apareça no Google — tudo gerenciado pela Aura, sem precisar de agência ou conhecimento técnico.</p>
+      <ul>
+        <li><strong>Mini-site:</strong> página com seus produtos, serviços, horário e localização</li>
+        <li><strong>Loja online:</strong> venda pela internet com link compartilhável no WhatsApp</li>
+        <li><strong>Google Meu Negócio:</strong> configure e atualize sua presença no Google pelo painel da Aura</li>
+      </ul>
+    </div>
+    <div class="doc-section" id="assistente">
+      <h2>Assistente de Negócios</h2>
+      <p>Todos os planos pagos incluem um Assistente de Negócios — uma pessoa real do nosso time que acompanha o seu negócio e responde suas dúvidas.</p>
+      <div class="card-grid">
+        <div class="info-card purple"><h4>O que o Assistente faz</h4><p>Avisa sobre prazos · Responde dúvidas sobre o sistema · Ajuda a interpretar os relatórios · Indica contadores parceiros quando necessário</p></div>
+        <div class="info-card"><h4>O que o Assistente não faz</h4><p>Não é contador (CRC) · Não assina declarações · Não transmite PGDAS-D, DEFIS ou eSocial em seu nome</p></div>
+      </div>
+      <div class="callout tip"><span>💡</span><p><strong>Como acionar</strong> Acesse Meu Analista no menu lateral. Você pode enviar uma mensagem diretamente ou agendar uma conversa pelo WhatsApp.</p></div>
+    </div>
+    <div class="doc-section" id="ajuda">
+      <h2>Preciso de ajuda</h2>
+      <table class="doc-table">
+        <thead><tr><th>Canal</th><th>Para que usar</th><th>Tempo de resposta</th></tr></thead>
+        <tbody>
+          <tr><td>Meu Analista (app)</td><td>Dúvidas sobre o sistema e sobre o negócio</td><td>Em horas úteis</td></tr>
+          <tr><td>E-mail</td><td>Questões detalhadas, solicitações de ajuste</td><td>Até 24h</td></tr>
+          <tr><td>WhatsApp</td><td>Urgências e dúvidas rápidas</td><td>Em horas úteis</td></tr>
+        </tbody>
+      </table>
+      <div class="callout success"><span>✓</span><p>Contato: <strong>contato@getaura.com.br</strong> &nbsp;·&nbsp; <strong>getaura.com.br</strong></p></div>
+    </div>
+  </main>
+</div>
+<footer><p>Aura. — Tecnologia para Negócios &nbsp;·&nbsp; <a href="/">getaura.com.br</a> &nbsp;·&nbsp; <a href="mailto:contato@getaura.com.br">contato@getaura.com.br</a></p></footer>
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  document.getElementById('pb').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  document.querySelectorAll('.doc-section').forEach(s=>{
+    const id=s.id;const a=document.querySelector('.sidebar-nav a[href="#'+id+'"]');
+    if(!a)return;const r=s.getBoundingClientRect();
+    r.top<150&&r.bottom>0?a.classList.add('active'):a.classList.remove('active');
+  });
+});
+</script>
+</body>
+</html>
