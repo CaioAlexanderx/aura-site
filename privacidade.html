@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacidade e Termos de Uso &#8212; Aura.</title>
+  <meta name="description" content="Politica de Privacidade e Termos de Uso da Aura. Saiba como seus dados sao protegidos e quais sao as regras de uso da plataforma.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--v600:#6d28d9;--v500:#7c3aed;--v400:#8b5cf6;--v300:#a78bfa;--v200:#c084fc;--v100:#ddd6fe;--white:#fff;--gray400:#9ca3af;--bg:#0a0618;--surface:#110a2e;--serif:'Instrument Serif',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--white);line-height:1.7;overflow-x:hidden}
+nav{position:sticky;top:0;z-index:100;padding:14px 0;background:rgba(10,6,24,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(167,139,250,.1)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:940px;margin:0 auto;padding:0 24px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-wordmark{font-family:var(--serif);font-size:20px;color:var(--v200);letter-spacing:-.5px}
+.nav-tag{font-size:11px;background:rgba(109,40,217,.2);color:var(--v300);padding:3px 10px;border-radius:99px;font-weight:600;border:1px solid rgba(167,139,250,.15)}
+.nav-back{color:var(--v300);font-size:13px;text-decoration:none;opacity:.7}
+.nav-back:hover{opacity:1}
+.tab-btn{padding:14px 20px;font-size:14px;font-weight:500;color:var(--gray400);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:var(--sans);transition:all .2s}
+.tab-btn:hover{color:var(--v200)}
+.tab-btn.active{color:var(--v200);border-bottom-color:var(--v500)}
+.doc-hero{padding:56px 0 40px;border-bottom:1px solid rgba(167,139,250,.08);position:relative;overflow:hidden}
+.doc-hero::before{content:'';position:absolute;top:-80px;right:-200px;width:500px;height:500px;background:var(--v600);border-radius:50%;filter:blur(120px);opacity:.07;pointer-events:none}
+.inner{max-width:940px;margin:0 auto;padding:0 24px}
+.doc-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(109,40,217,.15);border:1px solid rgba(167,139,250,.2);padding:5px 14px;border-radius:100px;margin-bottom:20px;font-size:11px;color:var(--v300);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.doc-eyebrow span{width:6px;height:6px;border-radius:50%;background:var(--v400);display:inline-block}
+h1{font-family:var(--serif);font-size:clamp(28px,5vw,46px);font-weight:400;line-height:1.1;letter-spacing:-.5px;margin-bottom:14px}
+h1 em{font-style:italic;color:var(--v200)}
+.doc-hero p{font-size:16px;color:var(--v100);opacity:.7;max-width:600px;line-height:1.7}
+.doc-meta{display:flex;gap:20px;margin-top:20px;flex-wrap:wrap}
+.doc-meta span{font-size:12px;color:var(--gray400);display:flex;align-items:center;gap:6px}
+.doc-meta span::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--v400);display:inline-block}
+.doc-layout{display:grid;grid-template-columns:200px 1fr;gap:48px;max-width:940px;margin:0 auto;padding:48px 24px 80px}
+.doc-sidebar{position:sticky;top:80px;align-self:start}
+.sidebar-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--v300);margin-bottom:12px}
+.sidebar-nav{list-style:none;display:flex;flex-direction:column;gap:1px}
+.sidebar-nav a{display:block;font-size:13px;color:var(--gray400);text-decoration:none;padding:6px 10px;border-radius:6px;border-left:2px solid transparent;transition:all .2s;line-height:1.4}
+.sidebar-nav a:hover,.sidebar-nav a.active{color:var(--v200);background:rgba(109,40,217,.08);border-left-color:var(--v500)}
+.doc-content{min-width:0;display:none}
+.doc-content.active{display:block}
+.doc-section{margin-bottom:48px;scroll-margin-top:90px}
+.doc-section h2{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--white);padding-bottom:12px;border-bottom:1px solid rgba(167,139,250,.1);margin-bottom:16px}
+.doc-section h3{font-size:15px;font-weight:500;color:var(--v200);margin:24px 0 8px}
+.doc-section p{font-size:15px;color:var(--v100);opacity:.85;margin-bottom:12px;line-height:1.8}
+.doc-section ul{margin:10px 0 14px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+.doc-section ul li{font-size:15px;color:var(--v100);opacity:.85;display:flex;gap:10px;align-items:flex-start;line-height:1.6}
+.doc-section ul li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--v400);flex-shrink:0;margin-top:9px}
+.callout{border-radius:10px;padding:14px 18px;margin:14px 0;display:flex;gap:12px;font-size:14px;line-height:1.7}
+.callout p{margin:0;opacity:1}
+.callout strong{display:block;margin-bottom:3px;font-size:13px;font-weight:600}
+.callout.tip{background:rgba(109,40,217,.1);border:1px solid rgba(109,40,217,.25);color:var(--v100)}
+.callout.warning{background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.25);color:#fed7aa}
+.callout.info{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);color:#bfdbfe}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.info-card{background:var(--surface);border:1px solid rgba(167,139,250,.12);border-radius:10px;padding:16px 18px}
+.info-card h4{font-size:13px;font-weight:500;color:var(--white);margin-bottom:5px}
+.info-card p{font-size:13px;color:var(--gray400);margin:0;line-height:1.5}
+.info-card.purple{border-color:rgba(109,40,217,.3);background:rgba(109,40,217,.07)}
+.info-card.green{border-color:rgba(34,197,94,.2);background:rgba(34,197,94,.04)}
+.info-card.green h4{color:#86efac}
+.rt{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+.rt th{background:rgba(109,40,217,.15);color:var(--v300);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;padding:9px 14px;text-align:left;border-bottom:1px solid rgba(167,139,250,.15)}
+.rt td{padding:11px 14px;border-bottom:1px solid rgba(167,139,250,.06);color:var(--v100);line-height:1.6;vertical-align:top}
+.rt tr:last-child td{border-bottom:none}
+.contact-box{background:var(--surface);border:1px solid rgba(167,139,250,.15);border-radius:12px;padding:20px 24px;margin-top:20px}
+.contact-box h4{font-size:15px;font-weight:500;color:var(--white);margin-bottom:12px}
+.cr{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--v100);opacity:.8;margin-bottom:8px}
+.cr:last-child{margin-bottom:0}
+.cr strong{color:var(--v300);min-width:90px;flex-shrink:0}
+.pb{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--v600),var(--v200));z-index:200;width:0;transition:width .1s}
+footer{background:var(--surface);border-top:1px solid rgba(167,139,250,.08);padding:28px 0;text-align:center}
+footer p{font-size:13px;color:var(--gray400)}
+footer a{color:var(--v300);text-decoration:none}
+@media(max-width:768px){.doc-layout{grid-template-columns:1fr}.doc-sidebar{display:none}.card-grid{grid-template-columns:1fr}.tab-btn{padding:12px 14px;font-size:13px}}
+  </style>
+</head>
+<body>
+<div class="pb" id="pb"></div>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg viewBox="0 0 200 200" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ng" cx="38%" cy="35%" r="70%"><stop offset="0%" stop-color="#2d1b69"/><stop offset="100%" stop-color="#110a2e"/></radialGradient><radialGradient id="nc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#a855f7"/></radialGradient><linearGradient id="na1" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#e9d5ff" stop-opacity="0"/></linearGradient><linearGradient id="na2" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#c084fc" stop-opacity=".85"/><stop offset="100%" stop-color="#c084fc" stop-opacity="0"/></linearGradient><linearGradient id="na3" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#a855f7" stop-opacity=".65"/><stop offset="100%" stop-color="#a855f7" stop-opacity="0"/></linearGradient><linearGradient id="na4" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#7c3aed" stop-opacity=".4"/><stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/></linearGradient><radialGradient id="nd" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#f5f3ff"/><stop offset="50%" stop-color="#c084fc"/><stop offset="100%" stop-color="#7c3aed"/></radialGradient></defs><rect width="200" height="200" rx="44" fill="url(#ng)"/><path d="M 95,29 A 76,76 0 1 1 20,108" fill="none" stroke="url(#na4)" stroke-width="1.6" stroke-linecap="round"/><path d="M 95,42 A 63,63 0 1 1 33,115" fill="none" stroke="url(#na3)" stroke-width="2.2" stroke-linecap="round"/><path d="M 95,56 A 49,49 0 1 1 47,122" fill="none" stroke="url(#na2)" stroke-width="2.8" stroke-linecap="round"/><path d="M 95,71 A 34,34 0 1 1 62,127" fill="none" stroke="url(#na1)" stroke-width="3.4" stroke-linecap="round"/><circle cx="95" cy="105" r="12" fill="url(#nc)"/><circle cx="95" cy="105" r="4.5" fill="#fff" opacity=".98"/><circle cx="146" cy="148" r="9" fill="url(#nd)"/><circle cx="143" cy="145" r="3" fill="#fff" opacity=".55"/></svg>
+      <span class="nav-wordmark">aura.</span>
+    </a>
+    <span class="nav-tag">Privacidade &amp; Termos</span>
+    <a href="/" class="nav-back">&#8592; Voltar ao site</a>
+  </div>
+</nav>
+<div style="background:var(--surface);border-bottom:1px solid rgba(167,139,250,.08)">
+  <div style="max-width:940px;margin:0 auto;padding:0 24px;display:flex">
+    <button class="tab-btn active" onclick="switchTab('privacidade',this)">Politica de Privacidade</button>
+    <button class="tab-btn" onclick="switchTab('termos',this)">Termos de Uso</button>
+  </div>
+</div>
+<div class="doc-hero">
+  <div class="inner">
+    <div class="doc-eyebrow"><span></span> Legal · Versao 1.0</div>
+    <h1>Privacidade &amp; <em>Termos de Uso</em></h1>
+    <p>Explicamos de forma clara como cuidamos das informacoes do seu negocio e quais sao as regras para usar a Aura. Sem juridiques.</p>
+    <div class="doc-meta">
+      <span>Vigencia: 24 de marco de 2026</span>
+      <span>Jacarel, SP</span>
+      <span>Lei 13.709/2018 (Lei Geral de Protecao de Dados)</span>
+    </div>
+  </div>
+</div>
+
+<!-- PRIVACIDADE -->
+<div id="tab-privacidade">
+<div class="doc-layout">
+  <aside class="doc-sidebar">
+    <div class="sidebar-title">Politica de Privacidade</div>
+    <ul class="sidebar-nav">
+      <li><a href="#priv-resumo">Resumo rapido</a></li>
+      <li><a href="#priv-quem">Quem somos</a></li>
+      <li><a href="#priv-dados">Dados que coletamos</a></li>
+      <li><a href="#priv-porque">Por que coletamos</a></li>
+      <li><a href="#priv-tempo">Quanto tempo guardamos</a></li>
+      <li><a href="#priv-compartilha">Com quem compartilhamos</a></li>
+      <li><a href="#priv-saude">Dados de saude</a></li>
+      <li><a href="#priv-cookies">Cookies</a></li>
+      <li><a href="#priv-direitos">Seus direitos</a></li>
+      <li><a href="#priv-contato">Fale conosco</a></li>
+    </ul>
+  </aside>
+  <main class="doc-content active" id="content-privacidade">
+
+    <div class="doc-section" id="priv-resumo">
+      <h2>Resumo rapido</h2>
+      <p>Se voce nao quiser ler tudo agora, aqui esta o essencial:</p>
+      <div class="card-grid">
+        <div class="info-card green"><h4>O que a Aura faz com seus dados</h4><p>Usa apenas para fazer o sistema funcionar para o seu negocio. Nao vende, nao usa para publicidade de terceiros.</p></div>
+        <div class="info-card green"><h4>Voce esta no controle</h4><p>Pode pedir para ver, corrigir ou apagar seus dados a qualquer momento. Basta entrar em contato.</p></div>
+        <div class="info-card purple"><h4>Seus dados ficam no Brasil</h4><p>Todos os dados sao armazenados em servidores com infraestrutura contratada no Brasil ou com protecao equivalente.</p></div>
+        <div class="info-card purple"><h4>Dados de saude - cuidado extra</h4><p>Se voce usa o modulo odontologico, dados de pacientes tem protecao reforcada e exigem autorizacao expressa de cada paciente.</p></div>
+      </div>
+    </div>
+
+    <div class="doc-section" id="priv-quem">
+      <h2>Quem somos</h2>
+      <p>A Aura. e uma plataforma de gestao para Microempreendedores Individuais (MEI) e Microempresas (ME), desenvolvida e operada por <strong>Aura Tecnologia para Negocios Ltda.</strong>, com sede em Jacarel, Sao Paulo, Brasil.</p>
+      <p>Para questoes sobre privacidade, voce pode falar diretamente com a nossa equipe pelos canais listados no final desta pagina.</p>
+    </div>
+
+    <div class="doc-section" id="priv-dados">
+      <h2>Dados que coletamos</h2>
+      <p>Coletamos apenas o que e necessario para que a Aura funcione para voce. Veja o que isso inclui:</p>
+      <h3>Dados que voce nos fornece</h3>
+      <ul>
+        <li><strong>Dados da empresa:</strong> nome do negocio, CNPJ (numero de registro da empresa), endereco, ramo de atividade e regime tributario.</li>
+        <li><strong>Dados pessoais do responsavel:</strong> nome completo, CPF, e-mail e numero de telefone -- usados para criar e proteger sua conta.</li>
+        <li><strong>Dados financeiros do negocio:</strong> vendas, receitas, despesas e movimentacoes que voce registra na Aura. Esses dados pertencem a voce e ao seu negocio.</li>
+        <li><strong>Dados dos seus clientes:</strong> nome, telefone, e-mail e outras informacoes de contato que voce cadastra no modulo de Clientes da Aura.</li>
+        <li><strong>Dados de estoque e produtos:</strong> informacoes sobre os produtos ou servicos que voce oferece.</li>
+      </ul>
+      <h3>Dados coletados automaticamente</h3>
+      <ul>
+        <li><strong>Dados de acesso:</strong> endereco de IP (identificacao do seu dispositivo na internet), tipo de navegador e horarios de acesso -- usados para seguranca e para detectar acessos nao autorizados.</li>
+        <li><strong>Dados de uso do sistema:</strong> quais funcionalidades voce usa e com que frequencia -- usados para melhorar o produto.</li>
+        <li><strong>Cookies:</strong> pequenos arquivos que ficam no seu navegador para manter voce conectado e lembrar suas preferencias. Explicamos mais no item Cookies abaixo.</li>
+      </ul>
+      <h3>O que nao coletamos</h3>
+      <ul>
+        <li>Dados de cartao de credito ou bancarios -- pagamentos sao processados diretamente por parceiros certificados (Asaas). A Aura nunca ve ou armazena esses dados.</li>
+        <li>Documentos pessoais como RG ou passaporte.</li>
+        <li>Localizacao em tempo real do seu dispositivo.</li>
+      </ul>
+    </div>
+
+    <div class="doc-section" id="priv-porque">
+      <h2>Por que coletamos esses dados</h2>
+      <p>Cada dado tem uma razao especifica. Aqui esta o que fazemos com eles:</p>
+      <table class="rt">
+        <thead><tr><th>Dado</th><th>Para que serve</th><th>Base legal (Lei Geral de Protecao de Dados)</th></tr></thead>
+        <tbody>
+          <tr><td>CNPJ e dados da empresa</td><td>Calcular obrigacoes fiscais, emitir Notas Fiscais, personalizar o calendario de prazos</td><td>Execucao do contrato de uso da Aura</td></tr>
+          <tr><td>Nome e e-mail do responsavel</td><td>Criar e proteger sua conta, enviar alertas de prazo e comunicados importantes</td><td>Execucao do contrato</td></tr>
+          <tr><td>Dados financeiros do negocio</td><td>Gerar relatorios, calcular estimativa do boleto mensal, exibir sua situacao financeira</td><td>Execucao do contrato</td></tr>
+          <tr><td>Dados dos seus clientes</td><td>Alimentar o modulo de Clientes -- gestao de relacionamento com quem compra de voce</td><td>Legitimo interesse do empresario</td></tr>
+          <tr><td>Dados de acesso e uso</td><td>Seguranca, prevencao de fraudes, melhoria do produto</td><td>Legitimo interesse da Aura</td></tr>
+        </tbody>
+      </table>
+      <div class="callout tip"><span>&#128161;</span><p><strong>A Aura nunca vende seus dados.</strong> Nao compartilhamos informacoes do seu negocio com anunciantes ou terceiros para fins publicitarios. Seu negocio e seu.</p></div>
+    </div>
+
+    <div class="doc-section" id="priv-tempo">
+      <h2>Quanto tempo guardamos seus dados</h2>
+      <ul>
+        <li><strong>Dados da conta ativa:</strong> enquanto voce for cliente da Aura.</li>
+        <li><strong>Dados financeiros e Notas Fiscais:</strong> 5 anos apos a emissao -- obrigatorio por lei fiscal brasileira. Mesmo cancelando a conta, os arquivos de Notas Fiscais ficam disponiveis para download por esse periodo.</li>
+        <li><strong>Dados dos seus clientes:</strong> enquanto voce mantiver o cadastro ativo. Se voce excluir um cliente, os dados sao removidos.</li>
+        <li><strong>Dados de acesso e seguranca:</strong> 6 meses, por exigencia do Marco Civil da Internet (Lei n 12.965/2014).</li>
+        <li><strong>Apos cancelamento da conta:</strong> excluimos seus dados em ate 90 dias, exceto os que precisamos guardar por lei.</li>
+      </ul>
+    </div>
+
+    <div class="doc-section" id="priv-compartilha">
+      <h2>Com quem compartilhamos seus dados</h2>
+      <p>Compartilhamos dados apenas quando necessario para o funcionamento da Aura, e sempre com parceiros que se comprometem a protege-los:</p>
+      <h3>Parceiros de infraestrutura tecnica</h3>
+      <ul>
+        <li><strong>Supabase</strong> -- armazenamento do banco de dados (servidores certificados)</li>
+        <li><strong>Railway</strong> -- processamento e execucao do sistema</li>
+        <li><strong>Cloudflare</strong> -- protecao, seguranca e armazenamento de arquivos como Notas Fiscais</li>
+      </ul>
+      <h3>Parceiros de pagamento</h3>
+      <ul>
+        <li><strong>Asaas</strong> -- processamento das assinaturas e cobranças da Aura. Eles recebem apenas o necessario para processar o pagamento. Dados de cartao nunca passam pela Aura.</li>
+      </ul>
+      <h3>Parceiros de comunicacao</h3>
+      <ul>
+        <li><strong>Meta (WhatsApp Business)</strong> -- envio de alertas e notificacoes pelo WhatsApp, quando voce habilita essa funcionalidade.</li>
+        <li><strong>NFE.io</strong> -- emissao de Notas Fiscais junto as prefeituras e ao governo federal.</li>
+      </ul>
+      <div class="callout warning"><span>&#9888;&#65039;</span><p>A Aura <strong>nunca</strong> compartilha seus dados com anunciantes, empresas de marketing ou plataformas de publicidade.</p></div>
+    </div>
+
+    <div class="doc-section" id="priv-saude">
+      <h2>Dados de saude -- Modulo Odontologico</h2>
+      <p>Se voce usa o modulo odontologico da Aura, o sistema armazena informacoes de saude dos seus pacientes -- como prontuarios, historico de tratamentos e odontograma (mapa dos dentes).</p>
+      <p>Esses dados sao chamados pela Lei Geral de Protecao de Dados de <strong>dados sensiveis</strong> e recebem protecao reforcada:</p>
+      <ul>
+        <li><strong>Consentimento expresso do paciente:</strong> antes de registrar qualquer dado de saude, o sistema exige que o paciente autorize expressamente. Cada tipo de dado tem autorizacao separada.</li>
+        <li><strong>Acesso restrito:</strong> apenas voce e os profissionais que voce autorizar na Aura tem acesso ao prontuario dos pacientes.</li>
+        <li><strong>Sigilo profissional:</strong> a Aura nao usa dados de saude para nenhuma outra finalidade.</li>
+        <li><strong>Exclusao sob demanda:</strong> se um paciente pedir para remover seus dados, a exclusao e feita em ate 15 dias.</li>
+      </ul>
+      <div class="callout info"><span>&#8505;&#65039;</span><p>Os dados de saude dos seus pacientes ficam armazenados em servidores isolados, separados dos dados do seu negocio. Isso garante uma camada extra de protecao.</p></div>
+    </div>
+
+    <div class="doc-section" id="priv-cookies">
+      <h2>Cookies</h2>
+      <p>Cookies sao pequenos arquivos que ficam salvos no seu navegador quando voce usa a Aura. Eles servem para manter voce conectado e lembrar suas preferencias.</p>
+      <table class="rt">
+        <thead><tr><th>Tipo</th><th>Para que serve</th><th>Voce pode recusar?</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Essenciais</strong></td><td>Manter voce conectado a sua conta e proteger contra acessos indevidos. Sem eles, o sistema nao funciona.</td><td>Nao -- sao obrigatorios para o funcionamento</td></tr>
+          <tr><td><strong>De preferencias</strong></td><td>Lembrar suas escolhas: tema claro ou escuro, configuracoes de exibicao.</td><td>Sim -- voce pode limpar a qualquer momento pelo navegador</td></tr>
+          <tr><td><strong>De desempenho</strong></td><td>Entender quais partes do sistema sao mais usadas para melhorar o produto. As informacoes sao anonimas.</td><td>Sim -- ao aceitar os cookies opcionais</td></tr>
+        </tbody>
+      </table>
+      <p>Nao usamos cookies de publicidade ou rastreamento para fins de marketing.</p>
+    </div>
+
+    <div class="doc-section" id="priv-direitos">
+      <h2>Seus direitos</h2>
+      <p>A Lei Geral de Protecao de Dados garante a voce o controle sobre as informacoes do seu negocio. Aqui estao seus direitos e como exercelos:</p>
+      <table class="rt">
+        <thead><tr><th>Direito</th><th>O que significa</th><th>Como pedir</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Acesso</strong></td><td>Ver quais dados a Aura tem sobre voce e seu negocio.</td><td>E-mail para privacidade@getaura.com.br</td></tr>
+          <tr><td><strong>Correcao</strong></td><td>Corrigir dados incorretos ou desatualizados.</td><td>Nas configuracoes da Aura ou por e-mail</td></tr>
+          <tr><td><strong>Exclusao</strong></td><td>Pedir para apagar seus dados. Alguns precisamos guardar por lei.</td><td>E-mail para privacidade@getaura.com.br</td></tr>
+          <tr><td><strong>Portabilidade</strong></td><td>Exportar seus dados em formato aberto para levar para outro sistema.</td><td>E-mail para privacidade@getaura.com.br</td></tr>
+          <tr><td><strong>Revogar consentimento</strong></td><td>Cancelar uma autorizacao que voce deu anteriormente.</td><td>Nas configuracoes da conta ou por e-mail</td></tr>
+          <tr><td><strong>Informacao</strong></td><td>Saber com quem compartilhamos seus dados e por que.</td><td>Esta Politica e por e-mail</td></tr>
+        </tbody>
+      </table>
+      <p>Respondemos a todas as solicitacoes em ate <strong>15 dias uteis.</strong></p>
+      <div class="callout tip"><span>&#128161;</span><p>Se achar que seus direitos foram desconsiderados, voce tambem pode registrar uma reclamacao na <strong>Autoridade Nacional de Protecao de Dados (ANPD)</strong> em gov.br/anpd.</p></div>
+    </div>
+
+    <div class="doc-section" id="priv-contato">
+      <h2>Fale conosco</h2>
+      <p>Para qualquer duvida sobre privacidade ou para exercer seus direitos, entre em contato:</p>
+      <div class="contact-box">
+        <h4>Canal de privacidade da Aura.</h4>
+        <div class="cr"><strong>E-mail</strong> privacidade@getaura.com.br</div>
+        <div class="cr"><strong>Assunto</strong> Coloque "Privacidade -- [seu nome]" para agilizar</div>
+        <div class="cr"><strong>Prazo</strong> Respondemos em ate 15 dias uteis</div>
+        <div class="cr"><strong>Endereco</strong> Jacarel, Sao Paulo, Brasil</div>
+      </div>
+      <p style="margin-top:16px;font-size:13px;color:var(--gray400)">Esta Politica de Privacidade pode ser atualizada periodicamente. Quando isso acontecer, avisamos por e-mail com pelo menos 10 dias de antecedencia.</p>
+    </div>
+
+  </main>
+</div>
+</div>
+
+<!-- TERMOS -->
+<div id="tab-termos" style="display:none">
+<div class="doc-layout">
+  <aside class="doc-sidebar">
+    <div class="sidebar-title">Termos de Uso</div>
+    <ul class="sidebar-nav">
+      <li><a href="#t-resumo">Resumo rapido</a></li>
+      <li><a href="#t-o-que-e">O que e a Aura</a></li>
+      <li><a href="#t-conta">Sua conta</a></li>
+      <li><a href="#t-planos">Planos e pagamentos</a></li>
+      <li><a href="#t-uso">Como usar a Aura</a></li>
+      <li><a href="#t-dados">Seus dados</a></li>
+      <li><a href="#t-aura-faz">O que a Aura faz</a></li>
+      <li><a href="#t-limites">Limites do servico</a></li>
+      <li><a href="#t-cancelamento">Cancelamento</a></li>
+      <li><a href="#t-contato">Contato</a></li>
+    </ul>
+  </aside>
+  <main class="doc-content" id="content-termos">
+
+    <div class="doc-section" id="t-resumo">
+      <h2>Resumo rapido</h2>
+      <div class="card-grid">
+        <div class="info-card green"><h4>Seus dados sao seus</h4><p>Tudo que voce registra na Aura -- clientes, vendas, financas -- pertence a voce. A Aura e so a ferramenta.</p></div>
+        <div class="info-card green"><h4>Sem fidelidade</h4><p>Cancele quando quiser, sem multa. Seus dados ficam disponiveis para download por 90 dias apos o cancelamento.</p></div>
+        <div class="info-card purple"><h4>A Aura e um software de apoio</h4><p>Os calculos e informacoes da Aura sao estimativas para te ajudar a organizar o negocio -- nao substituem obrigacoes legais oficiais.</p></div>
+        <div class="info-card purple"><h4>Responsabilidade pelo uso</h4><p>Voce e responsavel pelas informacoes que registra na Aura e por cumprir as obrigacoes do seu negocio.</p></div>
+      </div>
+    </div>
+
+    <div class="doc-section" id="t-o-que-e">
+      <h2>O que e a Aura</h2>
+      <p>A Aura e uma plataforma de software voltada para Microempreendedores Individuais (MEI) e Microempresas (ME) que oferece ferramentas para organizar financas, vendas, clientes, estoque e acompanhamento de prazos importantes do negocio.</p>
+      <p>A Aura e um servico de <strong>apoio a gestao</strong>. Os valores calculados -- como a estimativa do boleto mensal -- sao informativos. As obrigacoes legais precisam ser cumpridas pelos canais oficiais do governo.</p>
+    </div>
+
+    <div class="doc-section" id="t-conta">
+      <h2>Sua conta</h2>
+      <h3>Quem pode criar uma conta</h3>
+      <ul>
+        <li>Qualquer pessoa fisica maior de 18 anos ou empresa legalmente constituida no Brasil.</li>
+        <li>Uma conta por CNPJ -- se voce tem mais de um negocio com CNPJs diferentes, precisa de uma conta separada para cada.</li>
+        <li>Para usar recursos relacionados a funcionarios, sua empresa precisa estar regularizada.</li>
+      </ul>
+      <h3>Responsabilidades sobre a conta</h3>
+      <ul>
+        <li>Mantenha sua senha segura e nao compartilhe com terceiros.</li>
+        <li>Se perceber acesso nao autorizado, avise a Aura imediatamente pelo e-mail contato@getaura.com.br.</li>
+        <li>As informacoes cadastradas devem ser verdadeiras e atualizadas.</li>
+        <li>Voce e responsavel por todas as acoes feitas na sua conta.</li>
+      </ul>
+      <h3>Adicionar membros da equipe</h3>
+      <p>A partir do plano Negocio, voce pode adicionar funcionarios a sua conta com acessos diferentes -- por exemplo, quem pode ver as financas e quem pode usar so o Caixa de Vendas. Cada membro adicional tem um custo mensal.</p>
+    </div>
+
+    <div class="doc-section" id="t-planos">
+      <h2>Planos e pagamentos</h2>
+      <h3>Como funciona a cobranca</h3>
+      <ul>
+        <li>A assinatura e mensal e e cobrada automaticamente no cartao ou Pix cadastrado.</li>
+        <li>O valor e cobrado sempre no mesmo dia do mes em que voce assinou.</li>
+        <li>Nao ha fidelidade minima -- voce pode cancelar a qualquer momento.</li>
+      </ul>
+      <h3>O que acontece se o pagamento falhar</h3>
+      <ul>
+        <li>Tentamos novamente em ate 3 dias.</li>
+        <li>Se o pagamento nao for confirmado em 7 dias, o acesso e suspenso temporariamente.</li>
+        <li>Seus dados ficam preservados por 30 dias -- basta regularizar o pagamento para retomar o acesso normalmente.</li>
+      </ul>
+      <h3>Mudanca de plano</h3>
+      <ul>
+        <li><strong>Subir de plano:</strong> entra em vigor imediatamente e o valor e ajustado proporcionalmente no mes.</li>
+        <li><strong>Baixar de plano:</strong> entra em vigor no proximo ciclo de cobranca.</li>
+      </ul>
+      <h3>Reembolso</h3>
+      <p>A Aura nao oferece reembolso de mensalidades ja cobradas, exceto em caso de falha tecnica comprovada que tenha impedido completamente o uso do sistema.</p>
+    </div>
+
+    <div class="doc-section" id="t-uso">
+      <h2>Como usar a Aura</h2>
+      <h3>O que e permitido</h3>
+      <ul>
+        <li>Usar a Aura para gerenciar o seu negocio dentro do plano contratado.</li>
+        <li>Exportar seus dados a qualquer momento.</li>
+        <li>Indicar a Aura para outros empreendedores.</li>
+      </ul>
+      <h3>O que nao e permitido</h3>
+      <ul>
+        <li>Usar a Aura para atividades ilegais ou que prejudiquem terceiros.</li>
+        <li>Compartilhar o acesso a sua conta com outras pessoas fora do sistema de membros da equipe.</li>
+        <li>Tentar acessar dados de outros usuarios.</li>
+        <li>Usar ferramentas automaticas para extrair dados do sistema em massa sem autorizacao.</li>
+        <li>Registrar informacoes falsas.</li>
+      </ul>
+      <div class="callout warning"><span>&#9888;&#65039;</span><p>O uso indevido pode resultar na suspensao ou encerramento da conta, sem direito a reembolso.</p></div>
+    </div>
+
+    <div class="doc-section" id="t-dados">
+      <h2>Seus dados</h2>
+      <h3>Propriedade dos dados</h3>
+      <p>Tudo que voce registra na Aura -- historico de vendas, cadastro de clientes, lancamentos financeiros -- e seu. A Aura e apenas a plataforma que voce usa para organizar essas informacoes.</p>
+      <h3>Exportacao dos seus dados</h3>
+      <p>Voce pode exportar seus dados a qualquer momento em formatos abertos como Excel, CSV ou PDF. Acesse as configuracoes da conta ou entre em contato.</p>
+      <h3>O que acontece com seus dados se voce cancelar</h3>
+      <ul>
+        <li>Seus dados ficam disponiveis para download por 90 dias apos o cancelamento.</li>
+        <li>Apos esse prazo, os dados sao excluidos permanentemente -- exceto os arquivos de Notas Fiscais, que precisamos guardar por 5 anos por exigencia legal.</li>
+        <li>Voce recebe um e-mail de aviso 15 dias antes da exclusao definitiva.</li>
+      </ul>
+    </div>
+
+    <div class="doc-section" id="t-aura-faz">
+      <h2>O que a Aura faz por voce</h2>
+      <p>A Aura e clara sobre o que e automatico e o que ainda depende de uma acao sua:</p>
+      <h3>A Aura faz automaticamente</h3>
+      <ul>
+        <li>Calcula a estimativa do seu boleto mensal e gera o codigo de pagamento.</li>
+        <li>Emite Nota Fiscal para suas vendas para empresas, quando configurado.</li>
+        <li>Monitora seu faturamento e avisa se estiver proximo do limite do MEI.</li>
+        <li>Envia alertas de prazos importantes com antecedencia.</li>
+        <li>Organiza seu historico financeiro, de vendas e de clientes.</li>
+      </ul>
+      <h3>A Aura organiza -- voce confirma</h3>
+      <ul>
+        <li>A declaracao anual do Microempreendedor Individual (MEI): a Aura consolida todo o seu faturamento do ano -- voce entra no portal do governo e confirma os dados em menos de 10 minutos.</li>
+        <li>A declaracao mensal do Simples Nacional (para Microempresas): a Aura calcula os valores -- voce confirma e envia pelo portal do governo.</li>
+        <li>O registro de funcionarios no sistema do governo: a Aura orienta o processo passo a passo -- voce completa o registro.</li>
+      </ul>
+      <div class="callout info"><span>&#8505;&#65039;</span><p><strong>Por que voce ainda precisa confirmar?</strong> As declaracoes ao governo tem valor legal -- sao um compromisso formal com a Receita Federal. A lei exige que o proprio empresario faca a transmissao oficial. A Aura prepara tudo; voce confirma.</p></div>
+    </div>
+
+    <div class="doc-section" id="t-limites">
+      <h2>Limites do servico</h2>
+      <h3>O que a Aura nao garante</h3>
+      <ul>
+        <li>A Aura nao garante que os valores estimados sejam identicos aos valores gerados pelo governo. Sao estimativas de apoio -- o valor oficial e sempre o do portal governamental.</li>
+        <li>A Aura nao garante disponibilidade 100% do tempo. Buscamos disponibilidade acima de 99% e comunicamos manutencoes programadas com antecedencia.</li>
+        <li>A Aura nao e responsavel por decisoes de negocio tomadas com base nas informacoes do sistema.</li>
+      </ul>
+      <h3>Situacoes fora do controle da Aura</h3>
+      <ul>
+        <li>Indisponibilidade dos portais do governo -- esses sistemas sao administrados pela Receita Federal e podem ficar fora do ar, especialmente em datas de prazo.</li>
+        <li>Mudancas na legislacao tributaria que afetem os calculos.</li>
+        <li>Problemas causados por uso incorreto das funcionalidades.</li>
+      </ul>
+    </div>
+
+    <div class="doc-section" id="t-cancelamento">
+      <h2>Cancelamento</h2>
+      <h3>Como cancelar</h3>
+      <p>Cancele a qualquer momento diretamente nas configuracoes da conta, em Meu Plano. Nao precisa ligar, nao precisa justificar.</p>
+      <h3>O que acontece depois do cancelamento</h3>
+      <ul>
+        <li>O acesso ao sistema e mantido ate o fim do periodo ja pago.</li>
+        <li>Seus dados ficam disponiveis para exportacao por 90 dias.</li>
+        <li>Apos 90 dias, os dados sao excluidos permanentemente, exceto Notas Fiscais que ficam por 5 anos conforme exigencia legal.</li>
+      </ul>
+      <h3>Alteracoes nestes Termos</h3>
+      <p>Podemos atualizar os Termos de Uso periodicamente. Quando isso acontecer, avisamos por e-mail com pelo menos 10 dias de antecedencia.</p>
+    </div>
+
+    <div class="doc-section" id="t-contato">
+      <h2>Contato</h2>
+      <div class="contact-box">
+        <h4>Fale com a Aura.</h4>
+        <div class="cr"><strong>E-mail geral</strong> contato@getaura.com.br</div>
+        <div class="cr"><strong>Privacidade</strong> privacidade@getaura.com.br</div>
+        <div class="cr"><strong>Site</strong> getaura.com.br</div>
+        <div class="cr"><strong>Cidade</strong> Jacarel, Sao Paulo, Brasil</div>
+      </div>
+      <p style="margin-top:16px;font-size:14px;color:var(--v100);opacity:.7;line-height:1.7">Eventuais disputas serao resolvidas preferencialmente por mediacao. Caso seja necessario recorrer ao Poder Judiciario, fica eleito o foro da Comarca de Jacarel, Sao Paulo, salvo casos em que a legislacao determine foro diferente para o consumidor.</p>
+    </div>
+
+  </main>
+</div>
+</div>
+
+<footer>
+  <p>Aura. &#8212; Tecnologia para Negocios &nbsp;&#183;&nbsp; <a href="/">getaura.com.br</a> &nbsp;&#183;&nbsp; <a href="mailto:contato@getaura.com.br">contato@getaura.com.br</a> &nbsp;&#183;&nbsp; Versao 1.0 · Marco 2026</p>
+</footer>
+<script>
+function switchTab(name,btn){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-privacidade').style.display=name==='privacidade'?'':'none';
+  document.getElementById('tab-termos').style.display=name==='termos'?'':'none';
+  document.getElementById('content-privacidade').classList.toggle('active',name==='privacidade');
+  document.getElementById('content-termos').classList.toggle('active',name==='termos');
+}
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  document.getElementById('pb').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  document.querySelectorAll('.doc-section').forEach(s=>{
+    const a=document.querySelector('.sidebar-nav a[href="#'+s.id+'"]');
+    if(!a)return;const r=s.getBoundingClientRect();
+    r.top<150&&r.bottom>0?a.classList.add('active'):a.classList.remove('active');
+  });
+});
+</script>
+</body>
+</html>
