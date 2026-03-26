@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DPA — Acordo de Tratamento de Dados | Aura.</title>
+  <meta name="description" content="Acordo de Tratamento de Dados (DPA) da plataforma Aura. — regulamentação do tratamento de dados pessoais conforme a LGPD.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #05040e; --surface: #0e0c20; --surface2: #1a1835;
+      --v: #6d28d9; --v4: #8b5cf6; --v5: #a78bfa; --v6: #c4b5fd;
+      --t1: #edeaff; --t2: rgba(210,205,255,.82); --t3: rgba(175,160,240,.62);
+      --border: rgba(255,255,255,.06); --border2: rgba(100,80,220,.22);
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--t1); line-height: 1.7; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 14px 0; background: rgba(5,4,14,.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-wordmark { font-family: var(--serif); font-size: 21px; color: var(--v6); letter-spacing: -.3px; }
+    .nav-back { font-size: 13px; color: var(--t3); text-decoration: none; display: flex; align-items: center; gap: 5px; transition: color .15s; }
+    .nav-back:hover { color: var(--v5); }
+
+    /* LAYOUT */
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 108px 24px 80px; }
+
+    /* HEADER */
+    .doc-header { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--border2); }
+    .doc-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(91,33,182,.15); border: 1px solid var(--border2); padding: 5px 12px; border-radius: 99px; font-size: 11px; font-weight: 600; color: var(--v5); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 18px; }
+    .doc-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--v4); flex-shrink: 0; }
+    .doc-title { font-family: var(--serif); font-size: clamp(28px, 5vw, 42px); font-weight: 400; letter-spacing: -.02em; margin-bottom: 10px; line-height: 1.15; }
+    .doc-subtitle { font-size: 15px; color: var(--t3); margin-bottom: 20px; }
+    .doc-meta { display: flex; flex-wrap: wrap; gap: 18px; font-size: 12px; color: var(--t3); }
+    .doc-meta span { display: flex; align-items: center; gap: 5px; }
+    .doc-meta strong { color: var(--t2); }
+
+    /* PARTIES BOX */
+    .parties-box { background: var(--surface); border: 1px solid var(--border2); border-radius: 12px; padding: 20px 24px; margin-bottom: 40px; font-size: 14px; line-height: 1.75; }
+    .parties-box p { margin-bottom: 10px; }
+    .parties-box p:last-child { margin-bottom: 0; }
+
+    /* SECTIONS */
+    .section { margin-bottom: 40px; }
+    .section-num { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--v5); margin-bottom: 8px; }
+    .section h2 { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 14px; color: var(--t1); }
+    .section p { font-size: 14px; color: var(--t2); margin-bottom: 12px; line-height: 1.8; }
+    .section p:last-child { margin-bottom: 0; }
+
+    /* DEFINITION GRID */
+    .def-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    .def-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+    .def-term { font-size: 12px; font-weight: 600; color: var(--v5); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .06em; }
+    .def-desc { font-size: 13px; color: var(--t3); line-height: 1.65; }
+
+    /* ROLE CALLOUT */
+    .role-callout { display: flex; gap: 10px; margin: 16px 0; }
+    .role-item { flex: 1; background: var(--surface2); border: 1px solid var(--border2); border-radius: 10px; padding: 14px 16px; text-align: center; }
+    .role-label { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); margin-bottom: 4px; }
+    .role-name { font-size: 13.5px; font-weight: 500; color: var(--t1); margin-bottom: 2px; }
+    .role-tag { font-size: 11px; color: var(--v5); font-weight: 600; }
+
+    /* LISTS */
+    .doc-list { list-style: none; margin: 10px 0 14px; display: flex; flex-direction: column; gap: 7px; }
+    .doc-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--t2); line-height: 1.7; }
+    .doc-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--v4); flex-shrink: 0; margin-top: 8px; }
+    .doc-list.numbered { counter-reset: list-counter; }
+    .doc-list.numbered li { counter-increment: list-counter; }
+    .doc-list.numbered li::before { content: counter(list-counter) '.'; background: none; width: auto; height: auto; border-radius: 0; font-size: 12px; font-weight: 700; color: var(--v5); margin-top: 1px; min-width: 18px; }
+
+    /* SECURITY GRID */
+    .security-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0; }
+    .sec-item { background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: 12px 14px; font-size: 13px; color: var(--t2); display: flex; align-items: center; gap: 8px; }
+    .sec-item-icon { font-size: 14px; flex-shrink: 0; }
+
+    /* THREAT LIST */
+    .threat-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .threat-tag { background: rgba(248,113,113,.08); border: 1px solid rgba(248,113,113,.2); border-radius: 99px; padding: 3px 10px; font-size: 12px; color: #f87171; }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box { background: rgba(91,33,182,.1); border: 1px solid var(--border2); border-left: 3px solid var(--v); border-radius: 0 10px 10px 0; padding: 14px 18px; margin: 14px 0; font-size: 14px; color: var(--t2); line-height: 1.75; }
+    .highlight-box strong { color: var(--t1); }
+
+    /* DIVIDER */
+    .section-divider { height: 1px; background: var(--border); margin: 0 0 40px; }
+
+    /* FOOTER */
+    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; }
+    .footer-inner { max-width: 760px; margin: 0 auto; }
+    .footer-logo { font-family: var(--serif); font-size: 18px; color: var(--v6); margin-bottom: 10px; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 14px; }
+    .footer-links a { font-size: 13px; color: var(--t3); text-decoration: none; transition: color .15s; }
+    .footer-links a:hover { color: var(--v5); }
+    .footer-copy { font-size: 12px; color: var(--t3); opacity: .7; }
+
+    @media (max-width: 600px) {
+      .def-grid { grid-template-columns: 1fr; }
+      .security-grid { grid-template-columns: 1fr 1fr; }
+      .role-callout { flex-direction: column; }
+    }
+    @media (max-width: 400px) {
+      .security-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="ng" cx="38%" cy="35%" r="70%"><stop offset="0%" stop-color="#2d1b69"/><stop offset="100%" stop-color="#110a2e"/></radialGradient>
+          <radialGradient id="nc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#a855f7"/></radialGradient>
+          <linearGradient id="na1" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#e9d5ff" stop-opacity="0"/></linearGradient>
+          <linearGradient id="na2" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#c084fc" stop-opacity=".85"/><stop offset="100%" stop-color="#c084fc" stop-opacity="0"/></linearGradient>
+        </defs>
+        <rect width="200" height="200" rx="44" fill="url(#ng)"/>
+        <path d="M 95,56 A 49,49 0 1 1 47,122" fill="none" stroke="url(#na2)" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M 95,71 A 34,34 0 1 1 62,127" fill="none" stroke="url(#na1)" stroke-width="3.4" stroke-linecap="round"/>
+        <circle cx="95" cy="105" r="12" fill="url(#nc)"/>
+        <circle cx="95" cy="105" r="4.5" fill="#fff" opacity=".98"/>
+      </svg>
+      <span class="nav-wordmark">aura.</span>
+    </a>
+    <a href="/" class="nav-back">← Voltar ao site</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-badge">LGPD · Art. 39</div>
+    <h1 class="doc-title">Acordo de Tratamento<br>de Dados <em style="font-style:italic;color:var(--v5)">(DPA)</em></h1>
+    <p class="doc-subtitle">Data Processing Agreement — Aura Tecnologia Ltda.</p>
+    <div class="doc-meta">
+      <span><strong>Vigência:</strong> enquanto o Cliente utilizar a plataforma</span>
+      <span><strong>Atualizado em:</strong> março de 2026</span>
+      <span><strong>Legislação:</strong> Lei nº 13.709/2018 (LGPD)</span>
+    </div>
+  </div>
+
+  <!-- PARTES -->
+  <div class="parties-box">
+    <p>Este <strong>Acordo de Tratamento de Dados ("DPA")</strong> integra os Termos de Uso ou Contrato de Prestação de Serviços da plataforma <strong>Aura</strong>, celebrado entre:</p>
+    <p><strong>Aura Tecnologia Ltda.</strong>, pessoa jurídica de direito privado, doravante denominada <strong>OPERADORA</strong>, e <strong>Cliente da plataforma Aura</strong>, pessoa física ou jurídica que utiliza o sistema, doravante denominado <strong>CONTROLADOR</strong>.</p>
+    <p style="margin-bottom:0">Este DPA regula as condições de <strong>tratamento de dados pessoais</strong> realizadas no contexto da prestação dos serviços da plataforma Aura.</p>
+  </div>
+
+  <!-- 1. DEFINIÇÕES -->
+  <div class="section">
+    <div class="section-num">Cláusula 1</div>
+    <h2>Definições</h2>
+    <p>Para fins deste acordo, aplicam-se as definições da <strong>Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong>.</p>
+    <div class="def-grid">
+      <div class="def-card">
+        <div class="def-term">Dados Pessoais</div>
+        <div class="def-desc">Qualquer informação relacionada a pessoa natural identificada ou identificável.</div>
+      </div>
+      <div class="def-card">
+        <div class="def-term">Tratamento de Dados</div>
+        <div class="def-desc">Toda operação realizada com dados pessoais — coleta, armazenamento, acesso, processamento, compartilhamento ou exclusão.</div>
+      </div>
+      <div class="def-card">
+        <div class="def-term">Controlador</div>
+        <div class="def-desc">Pessoa ou empresa que determina as finalidades e meios do tratamento de dados pessoais.</div>
+      </div>
+      <div class="def-card">
+        <div class="def-term">Operador</div>
+        <div class="def-desc">Pessoa ou empresa que realiza o tratamento de dados pessoais em nome do controlador.</div>
+      </div>
+    </div>
+    <p>Para os fins deste contrato, as partes atuam nos seguintes papéis:</p>
+    <div class="role-callout">
+      <div class="role-item">
+        <div class="role-label">Você</div>
+        <div class="role-name">Cliente da Aura</div>
+        <div class="role-tag">CONTROLADOR</div>
+      </div>
+      <div class="role-item">
+        <div class="role-label">Nós</div>
+        <div class="role-name">Aura Tecnologia Ltda.</div>
+        <div class="role-tag">OPERADORA</div>
+      </div>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 2. OBJETO -->
+  <div class="section">
+    <div class="section-num">Cláusula 2</div>
+    <h2>Objeto do Acordo</h2>
+    <p>Este acordo tem por objeto regulamentar o tratamento de dados pessoais realizado pela <strong>Aura</strong>, exclusivamente para possibilitar a prestação dos serviços da plataforma.</p>
+    <p>O tratamento inclui atividades necessárias para:</p>
+    <ul class="doc-list">
+      <li>gestão financeira</li>
+      <li>gestão de clientes</li>
+      <li>emissão de documentos fiscais</li>
+      <li>controle de vendas</li>
+      <li>gestão de estoque</li>
+      <li>gestão de funcionários</li>
+      <li>relatórios e análises operacionais</li>
+    </ul>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 3. FINALIDADE -->
+  <div class="section">
+    <div class="section-num">Cláusula 3</div>
+    <h2>Natureza e Finalidade do Tratamento</h2>
+    <p>A Aura realizará o tratamento de dados pessoais <strong>exclusivamente para execução dos serviços contratados</strong>.</p>
+    <p>As finalidades incluem:</p>
+    <ul class="doc-list">
+      <li>armazenamento e processamento de dados empresariais</li>
+      <li>geração de relatórios financeiros</li>
+      <li>emissão de documentos fiscais</li>
+      <li>organização de dados operacionais do negócio</li>
+      <li>envio de notificações e alertas relacionados ao funcionamento do sistema</li>
+      <li>suporte técnico e manutenção da plataforma</li>
+    </ul>
+    <div class="highlight-box">
+      <strong>Compromisso:</strong> A Aura <strong>não utilizará os dados do Cliente para finalidades próprias ou comerciais</strong> sem autorização expressa.
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 4. CATEGORIAS -->
+  <div class="section">
+    <div class="section-num">Cláusula 4</div>
+    <h2>Categorias de Dados Tratados</h2>
+    <p>Dependendo das funcionalidades utilizadas pelo Cliente, poderão ser tratados os seguintes dados:</p>
+
+    <p style="font-size:12px;font-weight:600;color:var(--v5);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;margin-top:16px">Dados de clientes do usuário</p>
+    <ul class="doc-list">
+      <li>nome</li>
+      <li>telefone</li>
+      <li>e-mail</li>
+      <li>CPF ou CNPJ</li>
+      <li>histórico de compras</li>
+      <li>informações de agendamento</li>
+    </ul>
+
+    <p style="font-size:12px;font-weight:600;color:var(--v5);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;margin-top:16px">Dados financeiros</p>
+    <ul class="doc-list">
+      <li>registros de receitas e despesas</li>
+      <li>dados de transações</li>
+      <li>histórico de pagamentos</li>
+    </ul>
+
+    <p style="font-size:12px;font-weight:600;color:var(--v5);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;margin-top:16px">Dados de colaboradores</p>
+    <ul class="doc-list">
+      <li>nome, cargo e remuneração</li>
+      <li>comissões e histórico de pagamentos</li>
+    </ul>
+
+    <p style="font-size:12px;font-weight:600;color:var(--v5);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;margin-top:16px">Dados operacionais</p>
+    <ul class="doc-list">
+      <li>registros de estoque, vendas e pedidos</li>
+      <li>relatórios gerenciais</li>
+    </ul>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 5. OBRIGAÇÕES -->
+  <div class="section">
+    <div class="section-num">Cláusula 5</div>
+    <h2>Obrigações da Aura (Operadora)</h2>
+    <p>A Aura compromete-se a:</p>
+    <ul class="doc-list numbered">
+      <li>tratar os dados pessoais <strong>somente conforme instruções do Controlador</strong></li>
+      <li>adotar <strong>medidas técnicas e administrativas de segurança</strong></li>
+      <li>garantir <strong>confidencialidade das informações</strong></li>
+      <li>limitar o acesso aos dados a funcionários ou parceiros autorizados</li>
+      <li>notificar o Controlador em caso de <strong>incidente de segurança relevante</strong></li>
+      <li>auxiliar o Controlador no cumprimento de obrigações da LGPD</li>
+    </ul>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 6. SEGURANÇA -->
+  <div class="section">
+    <div class="section-num">Cláusula 6</div>
+    <h2>Segurança da Informação</h2>
+    <p>A Aura implementa medidas de segurança compatíveis com boas práticas de mercado, incluindo:</p>
+    <div class="security-grid">
+      <div class="sec-item"><span class="sec-item-icon">🔐</span>Criptografia em trânsito</div>
+      <div class="sec-item"><span class="sec-item-icon">🔑</span>Controle de acesso</div>
+      <div class="sec-item"><span class="sec-item-icon">👤</span>Autenticação de usuários</div>
+      <div class="sec-item"><span class="sec-item-icon">📡</span>Monitoramento de infraestrutura</div>
+      <div class="sec-item"><span class="sec-item-icon">💾</span>Backups periódicos</div>
+      <div class="sec-item"><span class="sec-item-icon">🏗️</span>Isolamento de ambientes</div>
+    </div>
+    <p>Essas medidas visam proteger os dados contra:</p>
+    <div class="threat-list">
+      <span class="threat-tag">acesso não autorizado</span>
+      <span class="threat-tag">destruição</span>
+      <span class="threat-tag">perda</span>
+      <span class="threat-tag">alteração</span>
+      <span class="threat-tag">divulgação indevida</span>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 7. SUBOPERADORES -->
+  <div class="section">
+    <div class="section-num">Cláusula 7</div>
+    <h2>Suboperadores</h2>
+    <p>A Aura poderá utilizar <strong>fornecedores terceirizados</strong> para operar partes da infraestrutura do sistema, tais como:</p>
+    <ul class="doc-list">
+      <li>provedores de cloud computing</li>
+      <li>serviços de envio de e-mail</li>
+      <li>serviços de notificações</li>
+      <li>serviços de infraestrutura de banco de dados</li>
+    </ul>
+    <p>Todos os suboperadores utilizados deverão adotar <strong>nível adequado de proteção de dados</strong>.</p>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 8. TRANSFERÊNCIA INTERNACIONAL -->
+  <div class="section">
+    <div class="section-num">Cláusula 8</div>
+    <h2>Transferência Internacional de Dados</h2>
+    <p>Caso dados sejam armazenados ou processados em servidores fora do Brasil, a Aura garantirá que a transferência ocorra em conformidade com a LGPD, incluindo:</p>
+    <ul class="doc-list">
+      <li>uso de provedores com nível adequado de proteção</li>
+      <li>cláusulas contratuais apropriadas</li>
+      <li>adoção de medidas de segurança compatíveis</li>
+    </ul>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 9. DIREITOS DOS TITULARES -->
+  <div class="section">
+    <div class="section-num">Cláusula 9</div>
+    <h2>Direitos dos Titulares</h2>
+    <p>A Aura auxiliará o Controlador a responder solicitações de titulares relacionadas a:</p>
+    <ul class="doc-list">
+      <li>confirmação de tratamento</li>
+      <li>acesso aos dados</li>
+      <li>correção de dados</li>
+      <li>exclusão</li>
+      <li>portabilidade</li>
+      <li>anonimização</li>
+    </ul>
+    <p>Sempre que aplicável, a solicitação será tratada pelo Controlador.</p>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 10. RETENÇÃO E EXCLUSÃO -->
+  <div class="section">
+    <div class="section-num">Cláusula 10</div>
+    <h2>Retenção e Exclusão de Dados</h2>
+    <p>Os dados pessoais serão mantidos apenas pelo tempo necessário para:</p>
+    <ul class="doc-list">
+      <li>execução dos serviços</li>
+      <li>cumprimento de obrigações legais</li>
+      <li>auditorias ou requisitos regulatórios</li>
+    </ul>
+    <p>Após o encerramento da relação contratual, os dados poderão ser devolvidos ao Cliente, anonimizados ou excluídos de forma segura.</p>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 11. INCIDENTES -->
+  <div class="section">
+    <div class="section-num">Cláusula 11</div>
+    <h2>Incidentes de Segurança</h2>
+    <p>Em caso de incidente de segurança que possa resultar em risco ou dano relevante aos titulares de dados, a Aura:</p>
+    <ul class="doc-list">
+      <li>notificará o Controlador sem demora indevida</li>
+      <li>fornecerá informações relevantes sobre o incidente</li>
+      <li>adotará medidas para mitigar impactos</li>
+    </ul>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 12. CONFIDENCIALIDADE -->
+  <div class="section">
+    <div class="section-num">Cláusula 12</div>
+    <h2>Confidencialidade</h2>
+    <p>Todas as informações tratadas no âmbito da plataforma Aura serão consideradas <strong>confidenciais</strong>.</p>
+    <p>Funcionários, prestadores e parceiros da Aura estão sujeitos a obrigações de confidencialidade.</p>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 13. RESPONSABILIDADES -->
+  <div class="section">
+    <div class="section-num">Cláusula 13</div>
+    <h2>Responsabilidades</h2>
+    <p>Cada parte será responsável pelo cumprimento das obrigações que lhe cabem conforme a LGPD.</p>
+    <p>O Cliente é responsável por:</p>
+    <ul class="doc-list">
+      <li>garantir a legitimidade da coleta dos dados inseridos na plataforma</li>
+      <li>informar titulares sobre o tratamento de dados</li>
+      <li>obter consentimentos quando necessários</li>
+    </ul>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 14. VIGÊNCIA -->
+  <div class="section">
+    <div class="section-num">Cláusula 14</div>
+    <h2>Vigência</h2>
+    <p>Este acordo permanecerá vigente enquanto:</p>
+    <ul class="doc-list">
+      <li>o Cliente utilizar a plataforma Aura</li>
+      <li>houver dados armazenados ou processados pela Aura em nome do Cliente</li>
+    </ul>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- 15. LEGISLAÇÃO -->
+  <div class="section">
+    <div class="section-num">Cláusula 15</div>
+    <h2>Legislação Aplicável</h2>
+    <p>Este acordo será regido pelas leis da <strong>República Federativa do Brasil</strong>, especialmente pela <strong>Lei nº 13.709/2018 (LGPD)</strong>.</p>
+    <p>Fica eleito o foro da comarca da sede da Aura Tecnologia Ltda., com renúncia de qualquer outro.</p>
+  </div>
+
+  <!-- DÚVIDAS -->
+  <div class="highlight-box" style="margin-top:40px">
+    <strong>Dúvidas sobre este DPA?</strong> Entre em contato com nosso encarregado de dados (DPO) pelo e-mail <a href="mailto:privacidade@getaura.com.br" style="color:var(--v5)">privacidade@getaura.com.br</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">aura.</div>
+    <div class="footer-links">
+      <a href="/">Início</a>
+      <a href="/privacidade.html">Política de Privacidade</a>
+      <a href="/dpa.html">DPA</a>
+      <a href="https://app.getaura.com.br">Entrar no app</a>
+    </div>
+    <p class="footer-copy">© 2026 Aura Tecnologia Ltda. — Jacareí, SP. LGPD — Lei nº 13.709/2018.</p>
+  </div>
+</footer>
+
+</body>
+</html>
