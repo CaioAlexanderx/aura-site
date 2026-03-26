@@ -1,0 +1,515 @@
+/*
+  AURA. — Design System Compartilhado
+  UI-01: Mobile-first + sidebar colapsável
+  UI-02: Automação visível
+  UI-05: Empty states
+  UI-06: Contraste + botões + micro-animações
+  UI-07: Feedback celebratório
+  Usado por: site (index.html) + app (v8.x)
+*/
+
+/* ═══════════════════════════════════════════════════
+   UI-06 — TOKENS COM CONTRASTE MELHORADO
+═══════════════════════════════════════════════════ */
+:root {
+  /* Texto — opacidades aumentadas para legibilidade */
+  --t1: #edeaff;
+  --t2: rgba(210,205,255,.82);   /* era .72 — +10pp */
+  --t3: rgba(175,160,240,.62);   /* era .50 — +12pp */
+  --t4: rgba(148,130,215,.45);   /* era .35 — +10pp */
+
+  /* Fundos — escala azul-preto */
+  --bg:  #05040e;
+  --bg2: #090817;
+  --bg3: #0e0c20;
+  --bg4: #141228;
+  --bg5: #1a1835;
+  --bg6: #211f40;
+
+  /* Violeta saturado */
+  --v:  #5b21b6;
+  --v2: #6d28d9;
+  --v3: #7c3aed;
+  --v4: #8b5cf6;
+  --v5: #a78bfa;
+  --v6: #c4b5fd;
+  --vd: rgba(91,33,182,.14);
+  --vm: rgba(109,40,217,.26);
+
+  /* Azul acento */
+  --bl3: #3b82f6;
+  --bl4: #60a5fa;
+  --bld: rgba(30,64,175,.14);
+
+  /* Semânticas */
+  --g: #34d399;  --gd: rgba(52,211,153,.1);  --gb: rgba(52,211,153,.22);
+  --re: #f87171; --rd: rgba(248,113,113,.1); --rb: rgba(248,113,113,.22);
+  --am: #fbbf24; --ad: rgba(251,191,36,.1);  --ab: rgba(251,191,36,.22);
+
+  /* Bordas */
+  --border:  rgba(255,255,255,.06);
+  --border2: rgba(100,80,220,.22);
+  --border3: rgba(120,100,240,.38);
+
+  /* Sombras */
+  --shadow-sm: 0 4px 16px rgba(0,0,0,.38);
+  --shadow:    0 16px 48px rgba(0,0,0,.55);
+
+  /* Touch target mínimo */
+  --touch-min: 44px;
+
+  /* Raios */
+  --r-sm: 6px;
+  --r-md: 9px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+}
+
+/* Light mode */
+[data-theme="light"] {
+  --bg:#f4f2ff; --bg2:#fff; --bg3:#efecff; --bg4:#e6e0ff; --bg5:#ddd6ff;
+  --t1:#0f0a20; --t2:#2d2050; --t3:#5a4e90; --t4:#8878b8;
+  --border:rgba(0,0,0,.07); --border2:rgba(91,33,182,.15);
+  --vd:rgba(91,33,182,.07); --vm:rgba(109,40,217,.13);
+  --shadow-sm:0 2px 8px rgba(0,0,0,.08); --shadow:0 12px 32px rgba(0,0,0,.1);
+}
+
+/* ═══════════════════════════════════════════════════
+   UI-06 — SISTEMA DE BOTÕES CONSISTENTE
+═══════════════════════════════════════════════════ */
+.au-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: none;
+  border-radius: var(--r-md);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform .15s, box-shadow .15s, background .15s, border-color .15s;
+  white-space: nowrap;
+  text-decoration: none;
+  min-height: var(--touch-min);
+  padding: 0 18px;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+.au-btn:active { transform: scale(.97); }
+
+.au-btn-p  { background: var(--v2); color: #fff; }
+.au-btn-p:hover  { background: var(--v3); box-shadow: 0 6px 20px rgba(109,40,217,.38); transform: translateY(-1px); }
+
+.au-btn-g  { background: var(--vd); color: var(--v5); border: 1px solid var(--border2); }
+.au-btn-g:hover  { background: var(--vm); }
+
+.au-btn-s  { background: var(--bg4); color: var(--t2); border: 1px solid var(--border); }
+.au-btn-s:hover  { background: var(--bg5); border-color: var(--border2); }
+
+.au-btn-ghost { background: transparent; color: var(--v5); border: 1px solid var(--border2); }
+.au-btn-ghost:hover { background: var(--vd); }
+
+.au-btn-danger { background: var(--rd); color: var(--re); border: 1px solid var(--rb); }
+.au-btn-danger:hover { background: rgba(248,113,113,.18); }
+
+.au-btn-sm { min-height: 32px; padding: 0 12px; font-size: 12px; border-radius: var(--r-sm); }
+.au-btn-lg { min-height: 52px; padding: 0 28px; font-size: 15px; border-radius: var(--r-lg); }
+
+/* Botão ícone (só ícone, quadrado) */
+.au-btn-icon {
+  width: var(--touch-min);
+  height: var(--touch-min);
+  padding: 0;
+  border-radius: var(--r-md);
+}
+
+/* ═══════════════════════════════════════════════════
+   UI-06 — MICRO-ANIMAÇÕES
+═══════════════════════════════════════════════════ */
+@keyframes au-fadein {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes au-scalein {
+  from { opacity: 0; transform: scale(.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes au-slideup {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes au-pulse {
+  0%,100% { opacity: 1; }
+  50%      { opacity: .55; }
+}
+@keyframes au-spin {
+  to { transform: rotate(360deg); }
+}
+
+.au-animate-in   { animation: au-fadein  .18s ease both; }
+.au-scale-in     { animation: au-scalein .22s ease both; }
+.au-slide-up     { animation: au-slideup .22s ease both; }
+
+/* Cards clicáveis — lift suave */
+.au-card-hover {
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  cursor: pointer;
+}
+.au-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--border2);
+}
+.au-card-hover:active { transform: translateY(0); }
+
+/* Focus visível acessível */
+:focus-visible {
+  outline: 2px solid var(--v4);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+/* ═══════════════════════════════════════════════════
+   UI-02 — AUTOMAÇÃO VISÍVEL
+═══════════════════════════════════════════════════ */
+.au-auto-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--v5);
+  background: var(--vd);
+  border: 1px solid var(--border2);
+  border-radius: 99px;
+  padding: 2px 8px;
+  cursor: default;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+.au-auto-badge::before {
+  content: '✦';
+  font-size: 8px;
+  opacity: .8;
+}
+
+/* Tooltip */
+.au-auto-badge[data-tip]:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 7px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-md);
+  padding: 7px 11px;
+  font-size: 11px;
+  color: var(--t2);
+  white-space: pre-line;
+  text-align: center;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+  pointer-events: none;
+  min-width: 160px;
+  max-width: 240px;
+  animation: au-fadein .12s ease;
+}
+/* Seta do tooltip */
+.au-auto-badge[data-tip]:hover::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--border2);
+  z-index: 101;
+}
+/* Quando o badge está DEPOIS de um valor — versão inline com ícone sujeitinho */
+.au-computed {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ═══════════════════════════════════════════════════
+   UI-05 — EMPTY STATES
+═══════════════════════════════════════════════════ */
+.au-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 24px;
+  animation: au-fadein .25s ease;
+}
+.au-empty-icon {
+  font-size: 36px;
+  margin-bottom: 14px;
+  opacity: .5;
+}
+.au-empty-icon-custom {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--r-xl);
+  background: var(--vd);
+  border: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin: 0 auto 16px;
+}
+.au-empty-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--t1);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.au-empty-sub {
+  font-size: 13px;
+  color: var(--t3);
+  max-width: 300px;
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+.au-empty-cta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+/* Variantes contextuais */
+.au-empty-sm   { padding: 28px 16px; }
+.au-empty-sm   .au-empty-icon { font-size: 24px; margin-bottom: 8px; }
+.au-empty-sm   .au-empty-title { font-size: 13px; }
+.au-empty-sm   .au-empty-sub   { font-size: 12px; margin-bottom: 14px; }
+
+/* ═══════════════════════════════════════════════════
+   UI-01 — MOBILE-FIRST / SIDEBAR COLAPSÁVEL
+═══════════════════════════════════════════════════ */
+
+/* Hamburger */
+.au-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: var(--touch-min);
+  height: var(--touch-min);
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--r-md);
+  transition: background .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.au-hamburger:hover { background: var(--vd); }
+.au-hamburger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--t2);
+  border-radius: 99px;
+  transition: transform .22s ease, opacity .22s ease;
+}
+.au-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.au-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.au-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Overlay mobile */
+.au-sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(5,4,14,.75);
+  backdrop-filter: blur(4px);
+  z-index: 39;
+  opacity: 0;
+  transition: opacity .22s;
+}
+.au-sidebar-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Sidebar drawer */
+.au-sidebar {
+  /* Desktop: padrão */
+  width: 212px;
+  flex-shrink: 0;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  transition: transform .25s cubic-bezier(.4,0,.2,1);
+}
+
+/* Inputs numéricos — previne zoom no iOS */
+input[type="number"],
+input[type="tel"],
+input.au-numeric {
+  font-size: 16px !important;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Touch targets */
+.au-touch {
+  min-height: var(--touch-min);
+  min-width: var(--touch-min);
+}
+
+/* ═══════════════════════════════════════════════════
+   UI-07 — TOAST SYSTEM
+═══════════════════════════════════════════════════ */
+#au-toast-wrap {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+  max-width: 340px;
+}
+.au-toast {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 14px;
+  border-radius: var(--r-lg);
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: var(--shadow);
+  animation: au-slideup .2s ease both;
+  border: 1px solid;
+  pointer-events: all;
+  max-width: 340px;
+  line-height: 1.4;
+}
+.au-toast-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.au-toast-close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: .55;
+  font-size: 14px;
+  padding: 2px;
+  line-height: 1;
+  pointer-events: all;
+}
+.au-toast-close:hover { opacity: 1; }
+.au-toast.hiding {
+  animation: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .18s, transform .18s;
+}
+.au-toast-s { background: var(--gd); color: var(--g); border-color: var(--gb); }
+.au-toast-s .au-toast-icon { background: rgba(52,211,153,.2); color: var(--g); }
+.au-toast-e { background: var(--rd); color: var(--re); border-color: var(--rb); }
+.au-toast-e .au-toast-icon { background: rgba(248,113,113,.2); color: var(--re); }
+.au-toast-w { background: var(--ad); color: var(--am); border-color: var(--ab); }
+.au-toast-w .au-toast-icon { background: rgba(251,191,36,.2);  color: var(--am); }
+.au-toast-i { background: var(--vd); color: var(--v5); border-color: var(--border2); }
+.au-toast-i .au-toast-icon { background: var(--vm); color: var(--v5); }
+
+/* ═══════════════════════════════════════════════════
+   UI-07 — CONFETTI CANVAS
+═══════════════════════════════════════════════════ */
+#au-confetti-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 8888;
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVO — Mobile
+═══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .au-hamburger { display: flex; }
+
+  .au-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 40;
+    transform: translateX(-100%);
+    box-shadow: var(--shadow);
+  }
+  .au-sidebar.open {
+    transform: none;
+  }
+  .au-sidebar-overlay {
+    display: block;
+  }
+
+  /* Touch-friendly: items maiores */
+  .ni, .sb-item {
+    min-height: var(--touch-min);
+    padding: 10px 12px;
+  }
+
+  .au-btn { min-height: 48px; }
+  .au-btn-sm { min-height: 40px; }
+
+  /* Topbar compacto */
+  .topbar, .au-topbar {
+    padding: 0 14px;
+    gap: 6px;
+  }
+
+  /* Conteúdo: padding menor */
+  .content, .au-content {
+    padding: 16px 16px 60px;
+  }
+
+  /* Grids colapsam */
+  .g2, .g3, .g4,
+  .grid2, .grid3, .grid4 {
+    grid-template-columns: 1fr !important;
+  }
+  .ms-4, .ms-3 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Toast: full width no mobile */
+  #au-toast-wrap {
+    right: 12px;
+    left: 12px;
+    max-width: none;
+  }
+  .au-toast { max-width: none; }
+}
+
+@media (max-width: 480px) {
+  .ms-4, .ms-3 {
+    grid-template-columns: 1fr !important;
+  }
+  .au-btn-lg {
+    width: 100%;
+    justify-content: center;
+  }
+}
