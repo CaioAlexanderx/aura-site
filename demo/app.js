@@ -381,4 +381,5 @@ function renderPage(page) {
 
 // ══ INIT ══════════════════════════════════════════════════════
 initTheme();
+Object.assign(pages, window.AuraPages || {});
 renderPage('dashboard');
