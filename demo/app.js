@@ -9,14 +9,66 @@ const state = {
   activeTab: {},
 };
 
-// ══ ICONS HELPER ══════════════════════════════════════════════
+// ══ CONSTANTS / ICONS ═════════════════════════════════════════
 const I = {
-  plus:`<svg style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`,
-  check:`<svg style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`,
-  alert:`<svg style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
-  arrow:`<svg style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`,
-  ext:`<svg style="width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 0 1 0h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`,
+  plus: `<svg style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`,
+  check: `<svg style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`,
+  alert: `<svg style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+  arrow: `<svg style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`,
+  ext: `<svg style="width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 0 1 0h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`,
 };
+
+const pageTitles = {
+  dashboard: ['Painel', 'Visão geral da empresa'],
+  financeiro: ['Financeiro', 'Lançamentos, DRE e Retirada'],
+  nfe: ['NF-e / NFS-e', 'Emissão e histórico de notas'],
+  contabil: ['Contabilidade', 'Obrigações e checkpoints fiscais'],
+  analista: ['Meu Analista', 'Canal direto com o CRC'],
+  documentos: ['Documentos', 'Arquivos e comprovantes'],
+  pdv: ['PDV', 'Ponto de Venda'],
+  estoque: ['Estoque', 'Produtos e movimentações'],
+  canal: ['Canal Digital', 'Site, Loja e Analytics'],
+  folha: ['Folha de Pagamento', 'Funcionários e holerites'],
+  clientes: ['Clientes', 'CRM e relacionamento'],
+  whatsapp: ['WhatsApp', 'Automações e campanhas'],
+  ia: ['Assistente IA', 'Posts, previsões e cobranças'],
+  planos: ['Meu Plano', 'Assinatura e recursos'],
+  empresa: ['Minha Empresa', 'Dados cadastrais'],
+  vertical: ['Módulo Vertical', 'Funcionalidades do segmento'],
+  onboarding: ['Onboarding', 'Configure sua empresa'],
+  'g-central': ['Central de Controle', 'Gestão Aura · Portfólio'],
+  'g-honorarios': ['Honorários', 'Gestão de recebíveis CRC'],
+  'g-atendimentos': ['Atendimentos', 'Histórico de suporte'],
+  'g-relatorios': ['Relatórios', 'Visão financeira consolidada'],
+};
+
+const weekData = [
+  { l: 'Seg', v: 1820 },
+  { l: 'Ter', v: 2340 },
+  { l: 'Qua', v: 1950 },
+  { l: 'Qui', v: 3100 },
+  { l: 'Sex', v: 2780 },
+  { l: 'Sáb', v: 3420 },
+  { l: 'Dom', v: 890 },
+];
+
+const monthData = [
+  { l: 'Jan', v: 18400 },
+  { l: 'Fev', v: 21200 },
+  { l: 'Mar', v: 19800 },
+  { l: 'Abr', v: 24600 },
+  { l: 'Mai', v: 22100 },
+  { l: 'Jun', v: 28900 },
+  { l: 'Jul', v: 25400 },
+  { l: 'Ago', v: 31200 },
+  { l: 'Set', v: 29800 },
+  { l: 'Out', v: 33500 },
+  { l: 'Nov', v: 30100 },
+  { l: 'Dez', v: 36800 },
+];
+
+// ══ PAGE REGISTRY ═════════════════════════════════════════════
+const pages = {};
 
 // ══ HELPERS ═══════════════════════════════════════════════════
 function chartBars(data, today = 6) {
