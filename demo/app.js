@@ -375,13 +375,9 @@ function renderPage(page) {
     ? pageRenderer()
     : `<div class="hero"><div class="hero-eyebrow">Em breve</div><h1>${page}</h1><p>Esta seção está em desenvolvimento.</p></div>`;
 }
-  const base = 10544;
-  const retirada = Math.round(base * v / 100);
-  const reserva = base - retirada;
-  document.getElementById('retirada-pct').textContent = v + '%';
-  document.getElementById('retirada-val').textContent = 'R$ ' + retirada.toLocaleString('pt-BR');
-  document.getElementById('retirada-res').textContent = 'R$ ' + reserva.toLocaleString('pt-BR');
-}
+
+// ══ EVENTS ════════════════════════════════════════════════════
+
 
 // ══ INIT ══════════════════════════════════════════════════════
 initTheme();
