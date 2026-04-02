@@ -1,6 +1,9 @@
 /* ============================================================
-   AURA. — Site Interactions v2
-   S-01: Navbar scroll, mobile nav, scroll animations, FAQ
+   AURA. — Site Interactions v3
+   S-01: Navbar, mobile nav, scroll animations, FAQ
+   S-30: Scroll reveal (IntersectionObserver)
+   S-31: Hover microinteractions (CSS-driven)
+   S-33: Cursor glow effect (hero, desktop only)
    ============================================================ */
 
 (function() {
@@ -9,15 +12,12 @@
   // ── Navbar scroll behavior ────────────────────────────────
   var nav = document.querySelector('.nav');
   if (nav) {
-    var lastScroll = 0;
     window.addEventListener('scroll', function() {
-      var y = window.scrollY;
-      if (y > 40) {
+      if (window.scrollY > 40) {
         nav.classList.add('scrolled');
       } else {
         nav.classList.remove('scrolled');
       }
-      lastScroll = y;
     }, { passive: true });
   }
 
@@ -37,26 +37,21 @@
       hamburger.classList.toggle('open', isOpen);
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
-
-    // Close on link click
     mobileNav.querySelectorAll('a').forEach(function(a) {
       a.addEventListener('click', closeMobileNav);
     });
-
-    // Close on outside click
     document.addEventListener('click', function(e) {
       if (!e.target.closest('.nav') && !e.target.closest('.nav-mobile')) {
         closeMobileNav();
       }
     });
   }
-
-  // Expose for inline onclick
   window.closeMobileNav = closeMobileNav;
 
-  // ── Scroll reveal (IntersectionObserver) ─────────────────
+  // ── S-30: Scroll reveal (IntersectionObserver) ───────────
+  var revealObserver;
   if ('IntersectionObserver' in window) {
-    var revealObserver = new IntersectionObserver(function(entries) {
+    revealObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
@@ -69,13 +64,12 @@
       revealObserver.observe(el);
     });
   } else {
-    // Fallback: show everything
     document.querySelectorAll('.reveal, .reveal-scale').forEach(function(el) {
       el.classList.add('visible');
     });
   }
 
-  // ── Smooth scroll for anchor links ──────────────────────
+  // ── Smooth scroll ────────────────────────────────────────
   document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     a.addEventListener('click', function(e) {
       var target = document.querySelector(a.getAttribute('href'));
@@ -117,20 +111,59 @@
     var target = parseFloat(el.getAttribute('data-count'));
     var suffix = el.getAttribute('data-suffix') || '';
     var prefix = el.getAttribute('data-prefix') || '';
-    var decimals = el.getAttribute('data-decimals') || 0;
+    var decimals = parseInt(el.getAttribute('data-decimals')) || 0;
     var duration = 1500;
-    var start = 0;
     var startTime = null;
 
     function step(timestamp) {
       if (!startTime) startTime = timestamp;
       var progress = Math.min((timestamp - startTime) / duration, 1);
-      var eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-      var current = start + (target - start) * eased;
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var current = target * eased;
       el.textContent = prefix + current.toFixed(decimals).replace('.', ',') + suffix;
       if (progress < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
+  }
+
+  // ── S-33: Cursor glow effect (hero, desktop only) ────────
+  var hero = document.querySelector('.hero');
+  if (hero && window.innerWidth > 768 && !('ontouchstart' in window)) {
+    var glow = document.createElement('div');
+    glow.style.cssText =
+      'position:absolute;width:400px;height:400px;border-radius:50%;' +
+      'background:radial-gradient(circle,rgba(124,58,237,0.08),transparent 70%);' +
+      'pointer-events:none;z-index:0;transition:transform 0.3s ease-out;' +
+      'transform:translate(-50%,-50%);will-change:transform;';
+    hero.style.position = 'relative';
+    hero.appendChild(glow);
+
+    hero.addEventListener('mousemove', function(e) {
+      var rect = hero.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      var y = e.clientY - rect.top;
+      glow.style.left = x + 'px';
+      glow.style.top = y + 'px';
+    });
+
+    hero.addEventListener('mouseleave', function() {
+      glow.style.opacity = '0';
+    });
+
+    hero.addEventListener('mouseenter', function() {
+      glow.style.opacity = '1';
+    });
+  }
+
+  // ── Parallax on scroll (subtle, hero mockup) ────────────
+  var heroMockup = document.querySelector('.hero-mockup');
+  if (heroMockup && window.innerWidth > 768) {
+    window.addEventListener('scroll', function() {
+      var y = window.scrollY;
+      if (y < 800) {
+        heroMockup.style.transform = 'translateY(' + (y * 0.08) + 'px)';
+      }
+    }, { passive: true });
   }
 
   // ── Form handling ──────────────────────────────────────
@@ -140,7 +173,6 @@
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
       var btn = form.querySelector('[type=submit]');
-      var originalText = btn.textContent;
       btn.textContent = 'Enviando...';
       btn.disabled = true;
       try {
@@ -164,9 +196,9 @@
     });
   };
 
-  // ── Re-observe reveals after dynamic content ────────────
+  // ── Re-observe reveals ──────────────────────────────────
   window.refreshReveals = function() {
-    if (!('IntersectionObserver' in window)) return;
+    if (!revealObserver) return;
     document.querySelectorAll('.reveal:not(.visible), .reveal-scale:not(.visible)').forEach(function(el) {
       revealObserver.observe(el);
     });
