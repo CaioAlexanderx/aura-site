@@ -1,308 +1,80 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aura. — Demo</title>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./styles.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura. — Tecnologia para Negócios</title>
+  <meta name="description" content="Plataforma completa de gestão para MEI e pequenos negócios. Financeiro, vendas, clientes, nota fiscal e assistente de negócios incluso. A partir de R$89/mês.">
+  <meta property="og:title" content="Aura. — Tecnologia para Negócios">
+  <meta property="og:description" content="Sua operação inteira em um só lugar. Gestão financeira, vendas, clientes e contabilidade.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://getaura.com.br">
+  <meta property="og:image" content="https://getaura.com.br/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Aura.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aura. — Tecnologia para Negócios">
+  <meta name="twitter:description" content="Gestão completa para MEI e pequenos negócios. A partir de R$89/mês.">
+  <meta name="twitter:image" content="https://getaura.com.br/og-image.png">
+  <meta name="theme-color" content="#050510">
+  <link rel="canonical" href="https://getaura.com.br">
+  <link rel="icon" href="/aura_icon.svg" type="image/svg+xml">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Aura.","alternateName":"Aura Tecnologia para Negócios","url":"https://getaura.com.br","logo":"https://getaura.com.br/aura_icon.svg","description":"Plataforma de gestão completa para MEI e pequenos negócios brasileiros.","address":{"@type":"PostalAddress","addressLocality":"Jacareí","addressRegion":"SP","addressCountry":"BR"},"contactPoint":{"@type":"ContactPoint","email":"contato@getaura.com.br","contactType":"sales"}},{"@type":"SoftwareApplication","name":"Aura.","applicationCategory":"BusinessApplication","operatingSystem":"Web, iOS, Android","offers":[{"@type":"Offer","name":"Essencial","price":"89.00","priceCurrency":"BRL","billingDuration":"P1M"},{"@type":"Offer","name":"Negócio","price":"199.00","priceCurrency":"BRL","billingDuration":"P1M"},{"@type":"Offer","name":"Expansão","price":"299.00","priceCurrency":"BRL","billingDuration":"P1M"}],"description":"Gestão financeira, vendas, clientes, nota fiscal e contabilidade em uma única plataforma.","url":"https://getaura.com.br"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O que é a Aura?","acceptedAnswer":{"@type":"Answer","text":"A Aura é uma plataforma de gestão completa para MEI e pequenos negócios — financeiro, caixa, estoque, clientes, nota fiscal e presença digital em um só lugar."}},{"@type":"Question","name":"Preciso de contador separado?","acceptedAnswer":{"@type":"Answer","text":"A Aura cuida do que é possível automaticamente. Para obrigações que exigem um contador registrado, indicamos parceiros."}},{"@type":"Question","name":"Funciona para MEI?","acceptedAnswer":{"@type":"Answer","text":"Sim. A Aura foi feita pensando no MEI — controla faturamento anual, calcula o boleto mensal, emite nota fiscal e lembra de todas as obrigações."}},{"@type":"Question","name":"Posso cancelar quando quiser?","acceptedAnswer":{"@type":"Answer","text":"Sim. Sem contrato de fidelidade e sem multa. Cancele a qualquer momento direto pelo aplicativo."}}]}]}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="/site.css" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <style>
+    .hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;position:relative;overflow:hidden}.hero::before{content:'';position:absolute;inset:0;background:var(--grad-hero);pointer-events:none}.hero-orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.1;pointer-events:none}.hero-orb-1{width:600px;height:600px;background:var(--violet);top:-200px;right:-100px}.hero-orb-2{width:400px;height:400px;background:#1e1b4b;bottom:-100px;left:-100px}.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1}.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--violet-glow);border:1px solid var(--border-2);padding:6px 16px;border-radius:var(--radius-pill);margin-bottom:1.5rem;font-size:.8125rem;color:var(--violet-3);font-weight:500;letter-spacing:.03em}.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--violet-2)}.hero-sub{font-size:1.125rem;margin-bottom:2.25rem;line-height:1.8;max-width:480px}.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:2.5rem}.hero-proof{display:inline-flex;align-items:center;gap:14px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px 20px}.hero-proof-label{font-size:.8125rem;color:var(--ink-3);line-height:1.4}.hero-proof-label strong{display:block;font-size:1.125rem;color:var(--ink-2)}.hero-proof-arrow{color:var(--violet-3);font-size:1.25rem}.hero-proof-value strong{display:block;font-size:1.5rem;font-weight:700;color:var(--violet-4);font-family:var(--font-display)}.hero-proof-value span{font-size:.75rem;color:var(--violet-3)}.hero-mockup{background:var(--bg-3);border:1px solid var(--border-2);border-radius:var(--radius-xl);padding:24px;min-height:400px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.hero-mockup::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--violet-deep),var(--violet-3))}.hero-mockup-inner{text-align:center;color:var(--ink-3);font-size:.875rem}.hero-mockup-inner span{display:block;font-size:3rem;margin-bottom:12px;opacity:.3}
+    .s-dor{background:var(--bg-2)}.dor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.dor-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;text-align:center;transition:all var(--dur) var(--ease)}.dor-card:hover{border-color:rgba(248,113,113,.3);transform:translateY(-2px)}.dor-icon{font-size:2rem;margin-bottom:12px}.dor-card h4{font-family:var(--font-display);font-size:1rem;font-weight:700;margin-bottom:4px}.dor-card p{font-size:.8125rem;color:var(--ink-3)}
+    .sol-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:32px;align-items:center}.sol-before{background:var(--bg-2);border:1px solid rgba(248,113,113,.15);border-radius:var(--radius-xl);padding:32px}.sol-before h3{color:var(--red);font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}.sol-before ul li{padding:8px 0;border-bottom:1px solid var(--border);font-size:.9375rem;color:var(--ink-2);display:flex;align-items:center;gap:8px}.sol-before ul li::before{content:'✕';color:var(--red);font-size:.75rem;font-weight:700}.sol-arrow{font-size:2rem;color:var(--violet-3);text-align:center}.sol-after{background:linear-gradient(135deg,rgba(124,58,237,.08),transparent);border:1px solid var(--border-3);border-radius:var(--radius-xl);padding:32px}.sol-after h3{color:var(--green);font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}.sol-after ul li{padding:8px 0;border-bottom:1px solid var(--border);font-size:.9375rem;color:var(--ink);display:flex;align-items:center;gap:8px}.sol-after ul li::before{content:'✓';color:var(--green);font-weight:700}.sol-after ul li:last-child,.sol-before ul li:last-child{border-bottom:none}.sol-footer{text-align:center;margin-top:2rem;font-size:1.0625rem;color:var(--ink-2)}
+    .s-plat{background:var(--bg-2)}.plat-mockup{background:var(--bg);border:1px solid var(--border-2);border-radius:24px;padding:40px;min-height:360px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.plat-mockup::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 30%,var(--violet-glow),transparent 60%);pointer-events:none}.plat-mockup-text{text-align:center;color:var(--ink-3);font-size:.875rem;position:relative;z-index:1}.plat-mockup-text span{display:block;font-size:4rem;margin-bottom:12px;opacity:.25}
+    .bento{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:minmax(180px,auto);gap:16px}.bento-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-xl);padding:28px;display:flex;flex-direction:column;justify-content:flex-end;transition:all var(--dur) var(--ease);position:relative;overflow:hidden}.bento-card:hover{border-color:var(--border-3);transform:translateY(-3px);box-shadow:var(--shadow-glow)}.bento-card.lg{grid-column:span 2}.bento-num{font-family:var(--font-mono);font-size:.6875rem;color:var(--violet-3);letter-spacing:.05em;margin-bottom:auto}.bento-title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:6px}.bento-desc{font-size:.8125rem;color:var(--ink-2);line-height:1.6}.bento-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+    .s-seg{background:var(--bg-2)}.seg-scroll{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px;scrollbar-width:thin;scrollbar-color:var(--violet) var(--bg-3)}.seg-card{flex:0 0 280px;scroll-snap-align:start;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-xl);padding:28px;transition:all var(--dur) var(--ease)}.seg-card:hover{border-color:var(--border-3);transform:translateY(-3px)}.seg-icon{font-size:2rem;margin-bottom:14px}.seg-card h4{font-family:var(--font-display);font-size:1.125rem;font-weight:700;margin-bottom:8px}.seg-card ul{margin-bottom:16px}.seg-card ul li{font-size:.8125rem;color:var(--ink-2);padding:4px 0;display:flex;align-items:center;gap:6px}.seg-card ul li::before{content:'✓';color:var(--green);font-size:.6875rem}
+    .diff-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.diff-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-xl);padding:32px;transition:all var(--dur) var(--ease)}.diff-card:hover{border-color:var(--border-3);transform:translateY(-3px);box-shadow:var(--shadow-glow)}.diff-icon{width:56px;height:56px;border-radius:var(--radius-lg);background:var(--violet-glow);display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:1.5rem}.diff-card h4{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:8px}.diff-card p{font-size:.9375rem;color:var(--ink-2);line-height:1.7}
+    .s-impacto{background:var(--bg-2)}.impacto-quote{font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.25rem);font-weight:700;line-height:1.4;text-align:center;max-width:700px;margin:0 auto 3rem;color:var(--ink)}.impacto-quote em{font-style:normal;color:var(--violet-3)}.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.stat-card{text-align:center;padding:24px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg)}.stat-num{font-family:var(--font-display);font-size:2.5rem;font-weight:900;color:var(--violet-4)}.stat-label{font-size:.8125rem;color:var(--ink-3);margin-top:4px}
+    .s-cta{background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(109,40,217,.05));border-top:1px solid var(--border-2);border-bottom:1px solid var(--border-2)}.cta-inner{text-align:center;max-width:600px;margin:0 auto}.cta-inner h2{margin-bottom:1rem}.cta-inner p{margin:0 auto 2rem}.cta-inner .btn{margin:0 6px 12px}.cta-demo-link{display:block;margin-top:.5rem;font-size:.875rem;color:var(--violet-3)}.cta-demo-link:hover{color:var(--violet-4)}
+    .planos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.plano{border:1px solid var(--border);border-radius:var(--radius-xl);padding:28px;background:var(--bg-card);position:relative;transition:all var(--dur) var(--ease)}.plano:hover{transform:translateY(-4px);box-shadow:var(--shadow-glow);border-color:var(--border-3)}.plano.featured{border-color:var(--violet);background:var(--bg-3)}.plano.featured:hover{box-shadow:var(--shadow-glow-lg)}.plano-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--grad-cta);color:#fff;font-size:.6875rem;font-weight:600;padding:4px 14px;border-radius:var(--radius-pill);white-space:nowrap}.plano-label{font-size:.6875rem;font-weight:600;color:var(--violet-3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}.plano-name{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:4px}.plano-tagline{font-size:.8125rem;color:var(--ink-3);margin-bottom:20px}.plano-price{font-family:var(--font-display);font-size:2.75rem;font-weight:900;line-height:1;margin-bottom:4px}.plano-price span{font-size:1rem;font-family:var(--font-body);font-weight:400}.plano-price-consult{font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--violet-3);margin-bottom:4px}.plano-period{font-size:.8125rem;color:var(--ink-3);margin-bottom:20px}.plano-div{height:1px;background:var(--border);margin-bottom:20px}.plano-features{margin-bottom:24px}.plano-features li{display:flex;align-items:flex-start;gap:8px;font-size:.8125rem;color:var(--ink-2);padding:5px 0}.plano-features li::before{content:'✓';color:var(--green);font-weight:600;flex-shrink:0}.plano-cta{display:block;width:100%;text-align:center;padding:12px;border-radius:var(--radius-md);font-size:.875rem;font-weight:500;transition:all var(--dur) var(--ease)}.cta-filled{background:var(--grad-cta);color:#fff;border:none}.cta-filled:hover{box-shadow:var(--shadow-glow)}.cta-outline{border:1px solid var(--border-3);color:var(--violet-4)}.cta-outline:hover{background:var(--violet-glow);border-color:var(--violet-3)}
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}.faq-item{border-bottom:1px solid var(--border)}.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-size:.9375rem;color:var(--ink);text-align:left;gap:16px;font-weight:500;transition:color var(--dur-fast)}.faq-q:hover{color:var(--violet-4)}.faq-icon{width:28px;height:28px;border-radius:50%;background:var(--violet-glow);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.875rem;color:var(--violet-3);transition:transform var(--dur)}.faq-item.open .faq-icon{transform:rotate(45deg)}.faq-a{font-size:.875rem;color:var(--ink-2);line-height:1.75;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s}.faq-item.open .faq-a{max-height:250px;padding-bottom:18px}
+    @media(max-width:900px){.planos-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:768px){.hero-grid,.sol-grid,.diff-grid,.faq-grid,.stats-grid{grid-template-columns:1fr}.dor-grid{grid-template-columns:repeat(2,1fr)}.bento{grid-template-columns:1fr 1fr}.bento-card.lg{grid-column:span 1}.hero-ctas{flex-direction:column}.hero-ctas .btn{width:100%;justify-content:center}.sol-arrow{transform:rotate(90deg);padding:8px 0}.planos-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}}
+    @media(max-width:480px){.dor-grid,.bento{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-<div class="app">
+<nav class="nav"><div class="nav-inner"><a href="/" class="nav-logo"><svg viewBox="0 0 200 200" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ng" cx="38%" cy="35%" r="70%"><stop offset="0%" stop-color="#2d1b69"/><stop offset="100%" stop-color="#110a2e"/></radialGradient><radialGradient id="nc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#a855f7"/></radialGradient><linearGradient id="na1" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#e9d5ff" stop-opacity="0"/></linearGradient><linearGradient id="na2" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#c084fc" stop-opacity=".85"/><stop offset="100%" stop-color="#c084fc" stop-opacity="0"/></linearGradient></defs><rect width="200" height="200" rx="44" fill="url(#ng)"/><path d="M 95,56 A 49,49 0 1 1 47,122" fill="none" stroke="url(#na2)" stroke-width="2.8" stroke-linecap="round"/><path d="M 95,71 A 34,34 0 1 1 62,127" fill="none" stroke="url(#na1)" stroke-width="3.4" stroke-linecap="round"/><circle cx="95" cy="105" r="12" fill="url(#nc)"/><circle cx="95" cy="105" r="4.5" fill="#fff" opacity=".98"/></svg><span class="nav-wordmark">aura.</span></a><div class="nav-links"><a href="/produto">Produto</a><a href="/segmentos">Segmentos</a><a href="/precos">Planos</a><a href="#faq">Dúvidas</a></div><div class="nav-ctas"><a href="https://app.getaura.com.br" class="btn btn-secondary btn-sm">Entrar</a><a href="#contato" class="btn btn-primary btn-sm">Solicitar demo</a></div><button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div><div class="nav-mobile" id="nav-mobile"><ul><li><a href="/produto">Produto</a></li><li><a href="/segmentos">Segmentos</a></li><li><a href="/precos">Planos</a></li><li><a href="#faq">Dúvidas</a></li></ul><div class="nav-mobile-ctas"><a href="#contato" class="btn btn-primary btn-lg">Solicitar demonstração</a><a href="https://app.getaura.com.br" class="btn btn-secondary btn-lg">Já sou cliente — Entrar</a></div></div></nav>
 
-<!-- ══ SIDEBAR ══════════════════════════════════════════════════ -->
-<aside class="sidebar">
-  <div class="sb-logo">
-    <span class="sb-wordmark">Aura.</span>
-    <span class="sb-plan" id="plan-badge">Negócio</span>
-  </div>
+<section class="hero"><div class="hero-orb hero-orb-1"></div><div class="hero-orb hero-orb-2"></div><div class="container"><div class="hero-grid"><div><div class="hero-eyebrow reveal stagger-1">Para MEI e pequenos negócios</div><h1 class="reveal stagger-2">Sua operação inteira.<br><span class="text-gradient">Em um só lugar.</span></h1><p class="hero-sub reveal stagger-3">Gestão financeira, vendas, clientes e contabilidade numa única plataforma. Com um assistente real do seu lado.</p><div class="hero-ctas reveal stagger-4"><a href="#contato" class="btn btn-primary btn-lg">Solicitar demonstração</a><a href="https://app.getaura.com.br" class="btn btn-secondary btn-lg">Ver plataforma →</a></div><div class="hero-proof reveal stagger-5"><div><div class="hero-proof-label">Mercado hoje<strong style="text-decoration:line-through;opacity:.5">R$ 860+/mês</strong></div></div><div class="hero-proof-arrow">→</div><div class="hero-proof-value"><strong>R$ 199/mês</strong><span>com tudo incluso</span></div></div></div><div class="hero-mockup reveal-scale stagger-3"><div class="hero-mockup-inner"><span>📊</span>Screenshot do dashboard real<br>será inserido aqui</div></div></div></div></section>
 
-  <!-- modo: cliente / gestão -->
-  <div style="padding:8px 10px;border-bottom:1px solid var(--border)">
-    <div class="tb-mode-select" style="width:100%">
-      <button class="tb-mode-btn on" onclick="setMode('client',this)">Cliente</button>
-      <button class="tb-mode-btn" onclick="setMode('gestao',this)">Gestão Aura</button>
-      <button class="tb-mode-btn" onclick="setMode('onboarding',this)">Onboarding</button>
-    </div>
-  </div>
+<section class="s-dor" id="dor"><div class="container"><div class="section-header centered"><span class="section-badge">O problema</span><h2 class="reveal">Pequenos negócios vivem<br>no caos operacional</h2><p class="reveal stagger-1">Gerenciar tudo assim consome tempo, gera erros e trava o crescimento.</p></div><div class="dor-grid"><div class="dor-card reveal stagger-1"><div class="dor-icon">📱</div><h4>WhatsApp</h4><p>Cobranças, pedidos e suporte — tudo misturado</p></div><div class="dor-card reveal stagger-2"><div class="dor-icon">📊</div><h4>Planilhas</h4><p>Financeiro no Excel que ninguém atualiza</p></div><div class="dor-card reveal stagger-3"><div class="dor-icon">📓</div><h4>Caderno</h4><p>Anotações que se perdem e dados que somem</p></div><div class="dor-card reveal stagger-4"><div class="dor-icon">💳</div><h4>Maquininha</h4><p>Vendas sem controle e sem histórico</p></div><div class="dor-card reveal stagger-5"><div class="dor-icon">📅</div><h4>Agenda avulsa</h4><p>Horários esquecidos e clientes perdidos</p></div><div class="dor-card reveal stagger-6"><div class="dor-icon">💰</div><h4>Cobrança manual</h4><p>Dinheiro que não entra e prazos que passam</p></div></div></div></section>
 
-  <!-- NAV CLIENTE -->
-  <div id="nav-client">
-    <div class="sb-sec">Principal</div>
-    <div class="sb-item on" onclick="nav('dashboard',this)">
-      <svg class="ic" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-      Painel
-    </div>
-    <div class="sb-item" onclick="nav('financeiro',this)">
-      <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>
-      Financeiro
-    </div>
-    <div class="sb-item" onclick="nav('nfe',this)">
-      <svg class="ic" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-      NF-e / NFS-e
-    </div>
+<section id="solucao"><div class="container"><div class="section-header centered"><span class="section-badge">A solução</span><h2 class="reveal">A Aura organiza tudo</h2></div><div class="sol-grid reveal"><div class="sol-before"><h3>Antes</h3><ul><li>WhatsApp para cobranças</li><li>Planilha para financeiro</li><li>Caderno para anotações</li><li>Maquininha sem relatório</li><li>Agenda separada</li><li>Contador caro e distante</li></ul></div><div class="sol-arrow">→</div><div class="sol-after"><h3>Depois — com a Aura</h3><ul><li>Tudo num só lugar</li><li>Financeiro automático</li><li>Dados organizados e seguros</li><li>Relatórios em tempo real</li><li>Agenda integrada com clientes</li><li>Apoio contábil incluso</li></ul></div></div><p class="sol-footer reveal">Menos controle manual. Mais clareza. Mais tempo pra crescer.</p></div></section>
 
-    <div class="sb-sec">Contábil</div>
-    <div class="sb-item" onclick="nav('contabil',this)">
-      <svg class="ic" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
-      Contabilidade
-      <span class="sb-badge">3</span>
-    </div>
-    <div class="sb-item" onclick="nav('analista',this)">
-      <svg class="ic" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
-      Meu Analista
-    </div>
-    <div class="sb-item" onclick="nav('documentos',this)">
-      <svg class="ic" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-      Documentos
-    </div>
+<section class="s-plat"><div class="container"><div class="section-header centered"><span class="section-badge">Plataforma</span><h2 class="reveal">Veja o que a Aura faz por você</h2><p class="reveal stagger-1">Uma plataforma completa pensada para quem toca um negócio no dia a dia.</p></div><div class="plat-mockup reveal-scale"><div class="plat-mockup-text"><span>🖥️</span>Mockup grande do app real<br>será inserido aqui</div></div></div></section>
 
-    <div class="sb-sec">Vendas</div>
-    <div class="sb-item" onclick="nav('pdv',this)">
-      <svg class="ic" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-      PDV
-    </div>
-    <div class="sb-item" onclick="nav('estoque',this)">
-      <svg class="ic" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-      Estoque
-    </div>
-    <div class="sb-item" onclick="nav('canal',this)">
-      <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      Canal Digital
-    </div>
+<section id="modulos"><div class="container"><div class="section-header"><span class="section-badge">O que a Aura faz</span><h2 class="reveal">Uma plataforma.<br>Seis áreas cobertas.</h2><p class="reveal stagger-1">Cada parte foi pensada para o dia a dia — direto, simples e sem complicação.</p></div><div class="bento"><div class="bento-card lg reveal stagger-1"><div class="bento-num">01</div><div class="bento-title">Financeiro</div><div class="bento-desc">Veja tudo que entra e sai, acompanhe os resultados e saiba quanto pode retirar do negócio.</div><div class="bento-tags"><span class="badge">Contas a receber</span><span class="badge">Resultados</span><span class="badge">NF-e</span></div></div><div class="bento-card reveal stagger-2"><div class="bento-num">02</div><div class="bento-title">Vendas & Caixa</div><div class="bento-desc">Caixa rápido no celular, estoque com código de barras e ranking de mais vendidos.</div><div class="bento-tags"><span class="badge">PDV</span><span class="badge">Estoque</span></div></div><div class="bento-card reveal stagger-3"><div class="bento-num">03</div><div class="bento-title">Clientes</div><div class="bento-desc">Ficha completa, ranking de fidelidade, lembretes de aniversário e avaliações automáticas.</div><div class="bento-tags"><span class="badge">CRM</span><span class="badge">Avaliações</span></div></div><div class="bento-card reveal stagger-1"><div class="bento-num">04</div><div class="bento-title">Presença Digital</div><div class="bento-desc">Mini-site profissional, loja online e presença no Google — sem precisar de agência.</div><div class="bento-tags"><span class="badge">Mini-site</span><span class="badge">Loja online</span></div></div><div class="bento-card reveal stagger-2"><div class="bento-num">05</div><div class="bento-title">Apoio Fiscal</div><div class="bento-desc">Calendário de obrigações, boleto mensal com Pix e alertas automáticos de prazo.</div><div class="bento-tags"><span class="badge">Alertas</span><span class="badge">Pix</span></div></div><div class="bento-card reveal stagger-3"><div class="bento-num">06</div><div class="bento-title">Assistente com IA</div><div class="bento-desc">Posts prontos, previsão de caixa e cobranças automáticas via WhatsApp.</div><div class="bento-tags"><span class="badge">Plano Expansão</span><span class="badge">IA</span></div></div></div></div></section>
 
-    <div class="sb-sec">Equipe</div>
-    <div class="sb-item" onclick="nav('folha',this)">
-      <svg class="ic" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      Folha de Pagamento
-    </div>
+<section class="s-seg" id="segmentos"><div class="container"><div class="section-header"><span class="section-badge">Segmentos</span><h2 class="reveal">Feito para o seu tipo de negócio</h2><p class="reveal stagger-1">A Aura se adapta ao que você faz. Escolha seu segmento e ative módulos específicos.</p></div><div class="seg-scroll"><div class="seg-card"><div class="seg-icon">✂️</div><h4>Barbearias e Salões</h4><ul><li>Agenda integrada com fila de espera</li><li>Comissão automática por profissional</li><li>Histórico de corte por cliente</li></ul><a href="#contato" class="btn btn-secondary btn-sm">Saber mais</a></div><div class="seg-card"><div class="seg-icon">🦷</div><h4>Odontologia</h4><ul><li>Odontograma interativo</li><li>Prontuário digital (LGPD)</li><li>Agenda com confirmação automática</li></ul><a href="#contato" class="btn btn-secondary btn-sm">Saber mais</a></div><div class="seg-card"><div class="seg-icon">🛍️</div><h4>Lojas e Varejo</h4><ul><li>Controle de estoque completo</li><li>Código de barras integrado</li><li>Curva ABC automática</li></ul><a href="#contato" class="btn btn-secondary btn-sm">Saber mais</a></div><div class="seg-card"><div class="seg-icon">🐾</div><h4>Pet Shops</h4><ul><li>Ficha do pet e do tutor</li><li>Agenda de banho e tosa</li><li>Controle de vacinas e retornos</li></ul><a href="#contato" class="btn btn-secondary btn-sm">Saber mais</a></div><div class="seg-card"><div class="seg-icon">🍽️</div><h4>Alimentação</h4><ul><li>Pedidos e delivery integrado</li><li>Cardápio digital</li><li>Controle de insumos e CMV</li></ul><a href="#contato" class="btn btn-secondary btn-sm">Saber mais</a></div><div class="seg-card"><div class="seg-icon">💆</div><h4>Estética</h4><ul><li>Ficha de anamnese digital</li><li>Protocolos de atendimento</li><li>Fotos antes e depois</li></ul><a href="#contato" class="btn btn-secondary btn-sm">Saber mais</a></div></div></div></section>
 
-    <div class="sb-sec">Clientes</div>
-    <div class="sb-item" onclick="nav('clientes',this)">
-      <svg class="ic" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      Clientes
-    </div>
-    <div class="sb-item" onclick="nav('whatsapp',this)">
-      <svg class="ic" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      WhatsApp
-    </div>
+<section><div class="container"><div class="section-header centered"><span class="section-badge">Diferenciais</span><h2 class="reveal">Por que escolher a Aura</h2></div><div class="diff-grid"><div class="diff-card reveal stagger-1"><div class="diff-icon">🎯</div><h4>Interface simples</h4><p>Sistema que qualquer pessoa entende. Sem manual, sem treinamento, sem complicação.</p></div><div class="diff-card reveal stagger-2"><div class="diff-icon">🔗</div><h4>Tudo integrado</h4><p>Sem precisar de 5 apps diferentes. Financeiro, vendas, clientes e contabilidade num só lugar.</p></div><div class="diff-card reveal stagger-3"><div class="diff-icon">⚡</div><h4>Pronto em minutos</h4><p>Configure e comece a usar hoje. Sem instalação, sem contrato, sem espera.</p></div><div class="diff-card reveal stagger-4"><div class="diff-icon">🇧🇷</div><h4>Feito pra você</h4><p>Pensado pro pequeno negócio brasileiro. Nota fiscal, DAS, eSocial — tudo no idioma que você entende.</p></div></div></div></section>
 
-    <div class="sb-sec">Crescimento</div>
-    <div class="sb-item" onclick="nav('ia',this)">
-      <svg class="ic" viewBox="0 0 24 24"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>
-      Assistente IA
-      <span class="sb-badge" style="background:linear-gradient(135deg,#7c3aed,#5b8cff)">PRO</span>
-    </div>
+<section class="s-impacto"><div class="container"><div class="impacto-quote reveal">"Pequenos negócios movem o Brasil.<br>Mas muitos ainda operam com ferramentas improvisadas.<br><em>A Aura existe pra mudar isso.</em>"</div><div class="stats-grid"><div class="stat-card reveal stagger-1"><div class="stat-num" data-count="15" data-suffix="M+">0</div><div class="stat-label">MEIs no Brasil</div></div><div class="stat-card reveal stagger-2"><div class="stat-num" data-count="76" data-suffix="%">0</div><div class="stat-label">usam ferramentas improvisadas</div></div><div class="stat-card reveal stagger-3"><div class="stat-num" data-count="8" data-suffix="h/sem">0</div><div class="stat-label">gastas com gestão manual</div></div></div></div></section>
 
-    <!-- Demo Vertical -->
-    <div class="sb-demo" id="demo-selector">
-      <span style="color:var(--ink4);flex:1">Demo vertical</span>
-      <button class="sb-demo-btn" onclick="setVertical('odonto',this)">🦷 Dentista</button>
-      <button class="sb-demo-btn" onclick="setVertical('salao',this)">✂️ Salão</button>
-      <button class="sb-demo-btn" onclick="setVertical(null,this)" id="demo-off" style="display:none">✕</button>
-    </div>
-    <!-- Vertical ativo (oculto por padrão) -->
-    <div class="sb-item hidden" id="sb-vertical" onclick="nav('vertical',this)">
-      <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-      <span id="sb-vertical-name">Vertical</span>
-    </div>
-  </div>
+<section id="planos"><div class="container"><div class="section-header centered"><span class="section-badge">Planos</span><h2 class="reveal">Escolha o que faz sentido<br>para você agora.</h2><p class="reveal stagger-1">Sem contrato de fidelidade — cancele quando quiser.</p></div><div class="planos-grid"><div class="plano reveal stagger-1"><div class="plano-label">Essencial</div><div class="plano-name">O essencial</div><div class="plano-tagline">Para quem está começando.</div><div class="plano-price"><span>R$</span>89</div><div class="plano-period">por mês</div><div class="plano-div"></div><ul class="plano-features"><li>Controle financeiro completo</li><li>Caixa de vendas (PDV) e estoque</li><li>Nota fiscal automática (até 50/mês)</li><li>Alertas de prazo fiscal</li><li>Suporte por chat</li><li>1 usuário</li></ul><a href="https://app.getaura.com.br/app/#/register?plano=essencial" class="plano-cta cta-outline">Começar agora</a></div><div class="plano featured reveal stagger-2"><div class="plano-badge">Mais escolhido</div><div class="plano-label">Negócio</div><div class="plano-name">O completo</div><div class="plano-tagline">Para quem quer crescer.</div><div class="plano-price"><span>R$</span>199</div><div class="plano-period">por mês</div><div class="plano-div"></div><ul class="plano-features"><li>Tudo do Essencial</li><li>CRM e gestão de clientes</li><li>WhatsApp integrado</li><li>Canal Digital (loja online)</li><li>Folha de pagamento</li><li>NF-e ilimitada · Até 3 usuários</li><li>Analista de negócios incluso</li></ul><a href="https://app.getaura.com.br/app/#/register?plano=negocio" class="plano-cta cta-filled">Começar agora</a></div><div class="plano reveal stagger-3"><div class="plano-label">Expansão</div><div class="plano-name">O máximo</div><div class="plano-tagline">Para quem quer escalar com IA.</div><div class="plano-price"><span>R$</span>299</div><div class="plano-period">por mês</div><div class="plano-div"></div><ul class="plano-features"><li>Tudo do Negócio</li><li>5 Agentes IA + chat contextual</li><li>Previsão de caixa automática</li><li>Cobranças via WhatsApp com IA</li><li>Analytics avançado</li><li>Multi-gateway · Usuários ilimitados</li><li>Suporte prioritário</li></ul><a href="https://app.getaura.com.br/app/#/register?plano=expansao" class="plano-cta cta-outline">Começar agora</a></div><div class="plano reveal stagger-4"><div class="plano-label">Personalizado</div><div class="plano-name">Sob medida</div><div class="plano-tagline">Consultoria e soluções sob demanda.</div><div class="plano-price-consult">Sob consulta</div><div class="plano-period">orçamento personalizado</div><div class="plano-div"></div><ul class="plano-features"><li>Tudo do Expansão</li><li>Automações WhatsApp customizadas</li><li>Integrações sob demanda</li><li>Treinamento da equipe</li><li>Setup dedicado pela equipe Aura</li><li>Consultoria estratégica</li></ul><a href="#contato" class="plano-cta cta-outline">Fale conosco</a></div></div></div></section>
 
-  <!-- NAV GESTÃO -->
-  <div id="nav-gestao" style="display:none">
-    <div class="sb-sec">Gestão Aura</div>
-    <div class="sb-item on" onclick="navG('g-central',this)">
-      <svg class="ic" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-      Central de Controle
-    </div>
-    <div class="sb-item" onclick="navG('g-honorarios',this)">
-      <svg class="ic" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg>
-      Honorários
-    </div>
-    <div class="sb-item" onclick="navG('g-atendimentos',this)">
-      <svg class="ic" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      Atendimentos
-    </div>
-    <div class="sb-item" onclick="navG('g-relatorios',this)">
-      <svg class="ic" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-      Relatórios
-    </div>
-  </div>
+<section id="faq"><div class="container"><div class="section-header"><span class="section-badge">Dúvidas</span><h2 class="reveal">Perguntas que todo mundo faz.</h2></div><div class="faq-grid"><div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">O que é a Aura?<span class="faq-icon">+</span></button><div class="faq-a">A Aura é uma plataforma de gestão completa para MEI e pequenos negócios — financeiro, caixa, estoque, clientes, nota fiscal e presença digital em um só lugar. O diferencial é o assistente de negócios incluso nos planos pagos.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Preciso de contador separado?<span class="faq-icon">+</span></button><div class="faq-a">A Aura cuida do que é possível automaticamente — gera o boleto mensal, emite notas fiscais e te alerta sobre prazos. Para obrigações que exigem um contador registrado, indicamos parceiros.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Funciona para MEI?<span class="faq-icon">+</span></button><div class="faq-a">Sim. A Aura foi feita pensando no MEI — controla faturamento anual, calcula o boleto mensal, emite nota fiscal e lembra de todas as obrigações do ano.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Posso cancelar quando quiser?<span class="faq-icon">+</span></button><div class="faq-a">Sim. Sem contrato de fidelidade e sem multa. Cancele a qualquer momento direto pelo aplicativo.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">O que é o plano Personalizado?<span class="faq-icon">+</span></button><div class="faq-a">É para negócios que precisam de soluções específicas — automações WhatsApp customizadas, integrações sob demanda, treinamento e consultoria. A equipe Aura monta um orçamento sob medida.</div></div></div><div class="card" id="contato" style="align-self:start;position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--violet-deep),var(--violet-3))"></div><h3 style="margin-bottom:6px">Fale com a equipe</h3><p style="font-size:.875rem;margin-bottom:1.25rem">Respondemos pelo WhatsApp em minutos.</p><form id="heroForm" action="https://formspree.io/f/xojkbrkz" method="POST"><div class="form-group"><label>Seu nome</label><input type="text" name="nome" placeholder="Como você se chama?" required autocomplete="name"></div><div class="form-group"><label>WhatsApp</label><input type="tel" name="whatsapp" placeholder="(12) 99999-9999" required autocomplete="tel" inputmode="tel"></div><div class="form-group"><label>Tipo de negócio</label><select name="tipo"><option value="">Selecione...</option><option>MEI</option><option>Microempresa</option><option>Ainda não tenho CNPJ</option></select></div><div class="form-group"><label>Sua dúvida (opcional)</label><textarea name="mensagem" rows="3" placeholder="O que você gostaria de saber?"></textarea></div><button type="submit" class="btn btn-primary" style="width:100%">Quero falar com um especialista →</button><p style="font-size:.6875rem;color:var(--ink-3);text-align:center;margin-top:10px">Seus dados não serão compartilhados.</p></form><div class="form-success" id="heroSuccess" style="display:none;text-align:center;padding:24px"><div style="font-size:2.5rem;margin-bottom:10px">🎉</div><strong>Mensagem enviada!</strong><br><span style="font-size:.875rem;color:var(--ink-2)">Entraremos em contato pelo WhatsApp.</span></div></div></div></div></section>
 
-  <!-- NAV ONBOARDING -->
-  <div id="nav-onboarding" style="display:none">
-    <div class="sb-sec">Configuração inicial</div>
-    <div class="sb-item on" onclick="navO('onboarding',this)">
-      <svg class="ic" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      Onboarding
-    </div>
-  </div>
+<section class="s-cta"><div class="container"><div class="cta-inner reveal"><h2>Organize seu negócio<br>com a Aura</h2><p>Veja como a plataforma pode simplificar sua operação.</p><a href="#contato" class="btn btn-primary btn-lg">Solicitar demonstração</a><a href="https://app.getaura.com.br" class="cta-demo-link">ou explore o modo demonstrativo →</a></div></div></section>
 
-  <div class="sb-bottom">
-    <div class="sb-avatar" onclick="toggleDropdown()">
-      <div class="sb-av-circle">JM</div>
-      <div>
-        <div class="sb-av-name">João Mendes</div>
-        <div class="sb-av-role">CRC ativo · Fundador</div>
-      </div>
-      <svg style="width:12px;height:12px;stroke:var(--ink3);fill:none;stroke-width:2;margin-left:auto" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      <div class="sb-dropdown" id="sb-dropdown">
-        <div class="sb-dd-item" onclick="nav('empresa')">
-          <svg class="ic" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          Minha Empresa
-        </div>
-        <div class="sb-dd-item" onclick="nav('planos')">
-          <svg class="ic" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-          Meu Plano
-        </div>
-        <div class="sb-dd-sep"></div>
-        <div class="sb-dd-item" onclick="toggleTheme()">
-          <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          <span id="theme-label">Modo claro</span>
-        </div>
-        <div class="sb-dd-sep"></div>
-        <div class="sb-dd-item" style="color:var(--re)">
-          <svg class="ic" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-          Sair
-        </div>
-      </div>
-    </div>
-  </div>
-</aside>
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="/" class="nav-logo" style="display:inline-flex;margin-bottom:4px"><svg viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="fg" cx="38%" cy="35%" r="70%"><stop offset="0%" stop-color="#2d1b69"/><stop offset="100%" stop-color="#110a2e"/></radialGradient><radialGradient id="fc2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#a855f7"/></radialGradient></defs><rect width="200" height="200" rx="44" fill="url(#fg)"/><circle cx="95" cy="105" r="12" fill="url(#fc2)"/><circle cx="95" cy="105" r="4.5" fill="#fff" opacity=".98"/></svg><span class="nav-wordmark" style="font-size:18px">aura.</span></a><p>Tecnologia para negócios que querem crescer sem complicação. Jacareí, SP.</p><div class="footer-disclaimer">A Aura é uma empresa de tecnologia. Funcionalidades fiscais são informativas — obrigações que exigem CRC são realizadas por contadores parceiros.</div></div><div class="footer-col"><h4>Produto</h4><ul><li><a href="/produto">O que faz</a></li><li><a href="/segmentos">Segmentos</a></li><li><a href="/precos">Planos</a></li><li><a href="#faq">Dúvidas</a></li></ul></div><div class="footer-col"><h4>Empresa</h4><ul><li><a href="/sobre">Sobre</a></li><li><a href="/privacidade">Privacidade</a></li><li><a href="/dpa">DPA</a></li><li><a href="mailto:contato@getaura.com.br">contato@getaura.com.br</a></li></ul></div><div class="footer-col"><h4>Acesso</h4><ul><li><a href="https://app.getaura.com.br">Entrar no app</a></li><li><a href="https://app.getaura.com.br/app/#/register">Criar conta</a></li><li><a href="#contato">Solicitar demo</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Aura. Tecnologia para Negócios. Jacareí, SP.</p><p style="font-size:.75rem">getaura.com.br</p></div></div></footer>
 
-<!-- ══ MAIN ══════════════════════════════════════════════════════ -->
-<div class="main">
-  <!-- TOPBAR -->
-  <div class="topbar">
-    <div>
-      <div class="tb-title" id="tb-title">Painel</div>
-      <div class="tb-sub" id="tb-sub">Bom dia, João · Jacareí/SP</div>
-    </div>
-    <div class="tb-sep"></div>
-    <div class="tb-right">
-      <div class="tb-btn tb-notif" title="Notificações">
-        <svg class="ic" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-        <div class="tb-dot"></div>
-      </div>
-      <div class="tb-btn" title="Buscar" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'flex':'none'">
-        <svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      </div>
-      <div style="display:none;align-items:center;gap:6px" id="search-expand">
-        <div class="search-bar" style="min-width:220px">
-          <svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input placeholder="Buscar..." autofocus>
-        </div>
-      </div>
-      <div class="tb-btn" title="Alternar tema" onclick="toggleTheme()">
-        <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
-      </div>
-    </div>
-  </div>
+<a href="https://app.getaura.com.br" class="float-btn"><span class="float-dot"></span> Já sou cliente — Entrar</a>
 
-  <!-- CONTENT AREA — páginas injetadas pelo JS -->
-  <div class="content" id="content"></div>
-</div>
-</div>
-
-<!-- ══ MODAIS ════════════════════════════════════════════════════ -->
-<div class="modal-bg" id="modal-lancamento">
-  <div class="modal">
-    <div class="modal-head">
-      <div class="modal-title">Novo Lançamento</div>
-      <div class="modal-close" onclick="closeModal('modal-lancamento')"><svg class="ic" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
-    </div>
-    <div class="modal-body">
-      <div class="grid-2 gap-12">
-        <div class="field"><div class="label">Tipo</div>
-          <select class="select"><option>Receita</option><option>Despesa</option></select></div>
-        <div class="field"><div class="label">Valor</div><input type="text" placeholder="R$ 0,00" class="input"></div>
-      </div>
-      <div class="field"><div class="label">Descrição</div><input type="text" placeholder="Ex: Venda de produto..." class="input"></div>
-      <div class="grid-2 gap-12">
-        <div class="field"><div class="label">Categoria</div>
-          <select class="select"><option>Vendas</option><option>Serviços</option><option>Despesas fixas</option><option>Despesas variáveis</option><option>Investimento</option></select></div>
-        <div class="field"><div class="label">Data</div><input type="date" class="input"></div>
-      </div>
-      <div class="field"><div class="label">Observação</div><textarea class="textarea" placeholder="Opcional..."></textarea></div>
-      <div class="alert alert-v">
-        <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        A categorização automática via IA está ativa no plano Expansão.
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-s" onclick="closeModal('modal-lancamento')">Cancelar</button>
-      <button class="btn btn-p">Salvar lançamento</button>
-    </div>
-  </div>
-</div>
-
-<div class="modal-bg" id="modal-pagamento">
-  <div class="modal">
-    <div class="modal-head">
-      <div class="modal-title">Cobrar cliente</div>
-      <div class="modal-close" onclick="closeModal('modal-pagamento')"><svg class="ic" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
-    </div>
-    <div class="modal-body">
-      <div class="tabs" style="margin-bottom:16px">
-  <div class="tab on" onclick="switchPaymentTab(this,'pix')">Pix</div>
-  <div class="tab" onclick="switchPaymentTab(this,'link')">Link</div>
-  <div class="tab" onclick="switchPaymentTab(this,'cartao')">Cartão</div>
-</div>
-
-<div id="payment-content">
-  <div style="background:var(--bg3);border-radius:var(--r-lg);padding:20px;text-align:center;margin-bottom:12px">
-    <div style="font-size:11px;color:var(--ink3);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">QR Code Pix</div>
-    <div style="width:120px;height:120px;background:var(--bg4);border-radius:var(--r-sm);margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--ink3)">QR Code</div>
-    <div style="font-size:20px;font-weight:800;margin:12px 0 4px;letter-spacing:-.03em">R$ 150,00</div>
-    <div class="badge badge-a" style="margin:0 auto">Aguardando</div>
-  </div>
-  <button class="btn btn-g" style="width:100%;justify-content:center">Copiar chave Pix</button>
-</div>
-  </div>
-</div>
-
-<div class="modal-bg" id="modal-funcionario">
-  <div class="modal">
-    <div class="modal-head">
-      <div class="modal-title">Novo Funcionário</div>
-      <div class="modal-close" onclick="closeModal('modal-funcionario')"><svg class="ic" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
-    </div>
-    <div class="modal-body">
-      <div class="field"><div class="label">Nome completo</div><input type="text" placeholder="Nome do funcionário" class="input"></div>
-      <div class="grid-2 gap-12">
-        <div class="field"><div class="label">CPF</div><input type="text" placeholder="000.000.000-00" class="input"></div>
-        <div class="field"><div class="label">Data de admissão</div><input type="date" class="input"></div>
-      </div>
-      <div class="grid-2 gap-12">
-        <div class="field"><div class="label">Salário base</div><input type="text" placeholder="R$ 0,00" class="input"></div>
-        <div class="field"><div class="label">Cargo</div><input type="text" placeholder="Ex: Atendente" class="input"></div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-s" onclick="closeModal('modal-funcionario')">Cancelar</button>
-      <button class="btn btn-p">Cadastrar</button>
-    </div>
-  </div>
-</div>
-
-<!-- SLIDE-OVER GESTÃO -->
-<div class="slide-over-bg" id="so-bg" onclick="closeSlideOver()"></div>
-<div class="slide-over" id="slide-over">
-  <div class="slide-over-head">
-    <div>
-      <div style="font-family:var(--serif);font-size:16px" id="so-title">Cliente</div>
-      <div style="font-size:11px;color:var(--ink3)" id="so-sub">Plano Negócio · MEI</div>
-    </div>
-    <div class="modal-close" onclick="closeSlideOver()"><svg class="ic" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
-  </div>
-  <div class="slide-over-body" id="so-body"></div>
-  <div class="slide-over-foot">
-    <button class="btn btn-s btn-sm">Mensagem</button>
-    <button class="btn btn-g btn-sm">Relatório</button>
-    <button class="btn btn-p btn-sm" style="margin-left:auto">Upgrade</button>
-  </div>
-</div>
-
-<script src="./js/pages/dashboard.js"></script>
-<script src="./app.js"></script>
+<script src="/site.js" defer></script>
+<script>setupForm('heroForm','heroSuccess');</script>
+</body>
+</html>
