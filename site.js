@@ -1,9 +1,6 @@
 /* ============================================================
-   AURA. — Site Interactions v3
-   S-01: Navbar, mobile nav, scroll animations, FAQ
-   S-30: Scroll reveal (IntersectionObserver)
-   S-31: Hover microinteractions (CSS-driven)
-   S-33: Cursor glow effect (hero, desktop only)
+   AURA. — Site Interactions v4
+   Cursor glow now global (subtle), parallax, scroll reveal
    ============================================================ */
 
 (function() {
@@ -48,7 +45,7 @@
   }
   window.closeMobileNav = closeMobileNav;
 
-  // ── S-30: Scroll reveal (IntersectionObserver) ───────────
+  // ── Scroll reveal (IntersectionObserver) ─────────────────
   var revealObserver;
   if ('IntersectionObserver' in window) {
     revealObserver = new IntersectionObserver(function(entries) {
@@ -126,32 +123,25 @@
     requestAnimationFrame(step);
   }
 
-  // ── S-33: Cursor glow effect (hero, desktop only) ────────
-  var hero = document.querySelector('.hero');
-  if (hero && window.innerWidth > 768 && !('ontouchstart' in window)) {
+  // ── Cursor glow — GLOBAL, subtle (desktop only) ──────────
+  if (window.innerWidth > 768 && !('ontouchstart' in window)) {
     var glow = document.createElement('div');
     glow.style.cssText =
-      'position:absolute;width:400px;height:400px;border-radius:50%;' +
-      'background:radial-gradient(circle,rgba(124,58,237,0.08),transparent 70%);' +
-      'pointer-events:none;z-index:0;transition:transform 0.3s ease-out;' +
-      'transform:translate(-50%,-50%);will-change:transform;';
-    hero.style.position = 'relative';
-    hero.appendChild(glow);
+      'position:fixed;width:500px;height:500px;border-radius:50%;' +
+      'background:radial-gradient(circle,rgba(124,58,237,0.05),transparent 70%);' +
+      'pointer-events:none;z-index:9999;' +
+      'transform:translate(-50%,-50%);will-change:transform;' +
+      'transition:opacity 0.4s ease;opacity:0;';
+    document.body.appendChild(glow);
 
-    hero.addEventListener('mousemove', function(e) {
-      var rect = hero.getBoundingClientRect();
-      var x = e.clientX - rect.left;
-      var y = e.clientY - rect.top;
-      glow.style.left = x + 'px';
-      glow.style.top = y + 'px';
-    });
-
-    hero.addEventListener('mouseleave', function() {
-      glow.style.opacity = '0';
-    });
-
-    hero.addEventListener('mouseenter', function() {
+    document.addEventListener('mousemove', function(e) {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
       glow.style.opacity = '1';
+    });
+
+    document.addEventListener('mouseleave', function() {
+      glow.style.opacity = '0';
     });
   }
 
