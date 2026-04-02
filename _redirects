@@ -1,6 +1,2 @@
-# INFRA-01: Routing rules for Cloudflare Pages
-# app.getaura.com.br serves the Expo app
-# getaura.com.br serves the institutional site
-
-# SPA fallback for Expo Router (hash routing)
-/app/*  /app/index.html  200
+# Expo uses hash routing (#/login, #/dashboard)
+# No SPA fallback needed — all routes resolve via hash fragment
