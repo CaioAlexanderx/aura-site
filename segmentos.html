@@ -4,27 +4,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Segmentos — Aura. Tecnologia para Negócios</title>
-  <meta name="description" content="A Aura se adapta ao seu tipo de negócio. Barbearias, salões, odonto, comércio, pet shop, alimentação e mais.">
-  <meta property="og:title" content="Segmentos — Aura.">
-  <meta property="og:description" content="Como a Aura funciona para seu tipo de negócio.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://getaura.com.br/segmentos">
+  <meta name="description" content="A Aura se adapta ao seu tipo de negócio. Barbearias, odonto, varejo, pet shop, alimentação, estética e mais.">
   <link rel="canonical" href="https://getaura.com.br/segmentos">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Satoshi:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/site.css">
+  <style>
+    .page-hero{padding:140px 0 60px;text-align:center}
+    .seg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:4rem}
+    .seg-full-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-xl);padding:32px;transition:all var(--dur) var(--ease)}
+    .seg-full-card:hover{border-color:var(--border-3);transform:translateY(-4px);box-shadow:var(--shadow-glow)}
+    .seg-full-card .icon{font-size:2.5rem;margin-bottom:16px}
+    .seg-full-card h3{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:8px}
+    .seg-full-card .desc{font-size:.9375rem;color:var(--ink-2);line-height:1.7;margin-bottom:16px}
+    .seg-full-card ul{margin-bottom:20px}
+    .seg-full-card ul li{display:flex;align-items:center;gap:8px;font-size:.8125rem;color:var(--ink-2);padding:5px 0}
+    .seg-full-card ul li::before{content:'✓';color:var(--green);font-weight:600}
+    .seg-full-card .plano-req{font-size:.6875rem;color:var(--violet-3);background:var(--violet-glow);padding:4px 10px;border-radius:var(--radius-pill);display:inline-block;margin-bottom:12px}
+    @media(max-width:768px){.seg-grid{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-  <main>
-    <section class="container" style="padding-top:120px;min-height:60vh;display:flex;align-items:center;justify-content:center">
-      <div class="text-center">
-        <span class="section-badge">Segmentos</span>
-        <h1>Em construção</h1>
-        <p style="margin:1rem auto">Os casos de uso por segmento estão sendo preparados.</p>
-        <a href="/" class="btn btn-secondary mt-3">← Voltar para a home</a>
-      </div>
-    </section>
-  </main>
-  <script src="/site.js"></script>
+<nav class="nav"><div class="nav-inner"><a href="/" class="nav-logo"><svg viewBox="0 0 200 200" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ng" cx="38%" cy="35%" r="70%"><stop offset="0%" stop-color="#2d1b69"/><stop offset="100%" stop-color="#110a2e"/></radialGradient><radialGradient id="nc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#a855f7"/></radialGradient></defs><rect width="200" height="200" rx="44" fill="url(#ng)"/><circle cx="95" cy="105" r="12" fill="url(#nc)"/><circle cx="95" cy="105" r="4.5" fill="#fff" opacity=".98"/></svg><span class="nav-wordmark">aura.</span></a><div class="nav-links"><a href="/produto">Produto</a><a href="/segmentos">Segmentos</a><a href="/precos">Planos</a><a href="/#faq">Dúvidas</a></div><div class="nav-ctas"><a href="https://app.getaura.com.br" class="btn btn-secondary btn-sm">Entrar</a><a href="/#contato" class="btn btn-primary btn-sm">Solicitar demo</a></div><button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div><div class="nav-mobile" id="nav-mobile"><ul><li><a href="/produto">Produto</a></li><li><a href="/segmentos">Segmentos</a></li><li><a href="/precos">Planos</a></li></ul><div class="nav-mobile-ctas"><a href="/#contato" class="btn btn-primary btn-lg">Solicitar demo</a></div></div></nav>
+
+<section class="page-hero"><div class="container"><span class="section-badge">Segmentos</span><h1 class="reveal">Feito para o seu<br>tipo de negócio.</h1><p class="reveal stagger-1" style="margin:0 auto">Módulos específicos que se adaptam ao que você faz. Ativados como add-on a partir do plano Negócio.</p></div></section>
+
+<section style="padding-top:0"><div class="container">
+<div class="seg-grid">
+  <div class="seg-full-card reveal stagger-1"><div class="icon">✂️</div><h3>Barbearias e Salões</h3><span class="plano-req">Negócio + Add-on R$69/mês</span><p class="desc">Agenda profissional, fila de espera digital, comissão automática e histórico de corte por cliente.</p><ul><li>Agenda com profissionais e serviços</li><li>Fila de espera em tempo real</li><li>Comissão automática por atendimento</li><li>Histórico de corte (máquina, técnica)</li><li>Salão parceiro — profissionais externos</li></ul><a href="/#contato" class="btn btn-secondary btn-sm">Quero saber mais</a></div>
+
+  <div class="seg-full-card reveal stagger-2"><div class="icon">🦷</div><h3>Odontologia</h3><span class="plano-req">Negócio + Add-on R$69/mês</span><p class="desc">Odontograma interativo, prontuário digital com consentimento LGPD e agenda com confirmação automática.</p><ul><li>Odontograma interativo por dente</li><li>Prontuário digital (LGPD Art.11)</li><li>Planos de tratamento por paciente</li><li>Agenda com confirmação WhatsApp</li><li>Fotos antes e depois</li></ul><a href="/#contato" class="btn btn-secondary btn-sm">Quero saber mais</a></div>
+
+  <div class="seg-full-card reveal stagger-3"><div class="icon">🛍️</div><h3>Lojas e Varejo</h3><span class="plano-req">Incluso no Essencial</span><p class="desc">Controle de estoque completo, código de barras, curva ABC automática e importação de planilhas.</p><ul><li>Estoque com código de barras/QR</li><li>Curva ABC automática</li><li>Alertas de estoque baixo</li><li>Importação CSV/Excel</li><li>Variantes (tamanho, cor)</li></ul><a href="/#contato" class="btn btn-secondary btn-sm">Quero saber mais</a></div>
+
+  <div class="seg-full-card reveal stagger-1"><div class="icon">🐾</div><h3>Pet Shops</h3><span class="plano-req">Negócio + Add-on R$69/mês</span><p class="desc">Ficha do pet e do tutor, agenda de banho e tosa, controle de vacinas e retornos automáticos.</p><ul><li>Ficha do pet (raça, porte, alergias)</li><li>Agenda banho, tosa e veterinário</li><li>Controle de vacinas com alertas</li><li>Lembrete de retorno automático</li><li>Galeria de fotos por pet</li></ul><a href="/#contato" class="btn btn-secondary btn-sm">Quero saber mais</a></div>
+
+  <div class="seg-full-card reveal stagger-2"><div class="icon">🍽️</div><h3>Alimentação</h3><span class="plano-req">Negócio + Add-on R$69/mês</span><p class="desc">Pedidos e delivery integrado, cardápio digital, controle de insumos e CMV automático.</p><ul><li>Pedidos mesa, balcão e delivery</li><li>Cardápio digital com QR Code</li><li>Controle de insumos e CMV</li><li>Integração iFood</li><li>Comanda digital por garçom</li></ul><a href="/#contato" class="btn btn-secondary btn-sm">Quero saber mais</a></div>
+
+  <div class="seg-full-card reveal stagger-3"><div class="icon">💆</div><h3>Estética</h3><span class="plano-req">Negócio + Add-on R$69/mês</span><p class="desc">Ficha de anamnese digital, protocolos de atendimento personalizados e fotos antes/depois.</p><ul><li>Anamnese digital por cliente</li><li>Protocolos de atendimento</li><li>Fotos antes e depois</li><li>Agenda com tempo por procedimento</li><li>Produtos utilizados por sessão</li></ul><a href="/#contato" class="btn btn-secondary btn-sm">Quero saber mais</a></div>
+</div>
+</div></section>
+
+<section style="background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(109,40,217,0.05));border-top:1px solid var(--border-2)"><div class="container" style="text-align:center;max-width:600px"><h2 class="reveal" style="margin-bottom:1rem">Não encontrou seu segmento?</h2><p class="reveal stagger-1" style="margin:0 auto 2rem;color:var(--ink-2)">Fale com a equipe — podemos adaptar a Aura para o seu tipo de negócio.</p><a href="/#contato" class="btn btn-primary btn-lg reveal stagger-2">Falar com a equipe</a></div></section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="/" class="nav-logo" style="display:inline-flex;margin-bottom:4px"><svg viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="fg" cx="38%" cy="35%" r="70%"><stop offset="0%" stop-color="#2d1b69"/><stop offset="100%" stop-color="#110a2e"/></radialGradient><radialGradient id="fc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#a855f7"/></radialGradient></defs><rect width="200" height="200" rx="44" fill="url(#fg)"/><circle cx="95" cy="105" r="12" fill="url(#fc)"/><circle cx="95" cy="105" r="4.5" fill="#fff" opacity=".98"/></svg><span class="nav-wordmark" style="font-size:18px">aura.</span></a><p>Tecnologia para negócios. Jacareí, SP.</p></div><div class="footer-col"><h4>Produto</h4><ul><li><a href="/produto">O que faz</a></li><li><a href="/precos">Planos</a></li></ul></div><div class="footer-col"><h4>Empresa</h4><ul><li><a href="/sobre">Sobre</a></li><li><a href="/privacidade">Privacidade</a></li></ul></div><div class="footer-col"><h4>Acesso</h4><ul><li><a href="https://app.getaura.com.br">Entrar</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Aura. Tecnologia para Negócios.</p></div></div></footer>
+<script src="/site.js"></script>
 </body>
 </html>

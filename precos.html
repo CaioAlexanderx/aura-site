@@ -4,27 +4,114 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Planos e Preços — Aura. Tecnologia para Negócios</title>
-  <meta name="description" content="Escolha o plano ideal para seu negócio. Essencial R$89, Negócio R$199, Expansão R$299 ou Personalizado sob consulta.">
+  <meta name="description" content="Escolha o plano ideal. Essencial R$89, Negócio R$199, Expansão R$299 ou Personalizado sob consulta. Sem contrato de fidelidade.">
   <meta property="og:title" content="Planos e Preços — Aura.">
   <meta property="og:description" content="A partir de R$89/mês. Tudo que seu negócio precisa.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://getaura.com.br/precos">
   <link rel="canonical" href="https://getaura.com.br/precos">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Satoshi:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/site.css">
+  <style>
+    .page-hero{padding:140px 0 60px;text-align:center}
+    .page-hero h1{margin-bottom:.75rem}
+    .page-hero p{margin:0 auto}
+    .planos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:4rem}
+    .plano{border:1px solid var(--border);border-radius:var(--radius-xl);padding:28px;background:var(--bg-card);position:relative;transition:all var(--dur) var(--ease)}
+    .plano:hover{transform:translateY(-4px);box-shadow:var(--shadow-glow);border-color:var(--border-3)}
+    .plano.featured{border-color:var(--violet);background:var(--bg-3)}
+    .plano.featured:hover{box-shadow:var(--shadow-glow-lg)}
+    .plano-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--grad-cta);color:#fff;font-size:.6875rem;font-weight:600;padding:4px 14px;border-radius:var(--radius-pill);white-space:nowrap}
+    .plano-label{font-size:.6875rem;font-weight:600;color:var(--violet-3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+    .plano-name{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:4px}
+    .plano-tagline{font-size:.8125rem;color:var(--ink-3);margin-bottom:20px}
+    .plano-price{font-family:var(--font-display);font-size:2.75rem;font-weight:900;line-height:1;margin-bottom:4px}
+    .plano-price span{font-size:1rem;font-family:var(--font-body);font-weight:400}
+    .plano-price-consult{font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--violet-3);margin-bottom:4px}
+    .plano-period{font-size:.8125rem;color:var(--ink-3);margin-bottom:20px}
+    .plano-div{height:1px;background:var(--border);margin-bottom:20px}
+    .plano-features{margin-bottom:24px}
+    .plano-features li{display:flex;align-items:flex-start;gap:8px;font-size:.8125rem;color:var(--ink-2);padding:5px 0}
+    .plano-features li::before{content:'✓';color:var(--green);font-weight:600;flex-shrink:0}
+    .plano-cta{display:block;width:100%;text-align:center;padding:12px;border-radius:var(--radius-md);font-size:.875rem;font-weight:500;transition:all var(--dur) var(--ease)}
+    .cta-filled{background:var(--grad-cta);color:#fff;border:none}.cta-filled:hover{box-shadow:var(--shadow-glow)}
+    .cta-outline{border:1px solid var(--border-3);color:var(--violet-4)}.cta-outline:hover{background:var(--violet-glow);border-color:var(--violet-3)}
+    .addons-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:4rem}
+    .addon{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;transition:all var(--dur) var(--ease)}
+    .addon:hover{border-color:var(--border-3);transform:translateY(-2px)}
+    .addon h4{font-family:var(--font-display);font-size:1.125rem;font-weight:700;margin-bottom:4px}
+    .addon .price{font-family:var(--font-display);font-size:1.5rem;font-weight:900;color:var(--violet-4);margin-bottom:6px}
+    .addon p{font-size:.8125rem;color:var(--ink-3);line-height:1.6}
+    .comp-section{margin-bottom:4rem}
+    .comp-table{width:100%;border-collapse:collapse;background:var(--bg-card);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border)}
+    .comp-table th{font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding:14px 16px;text-align:left;border-bottom:1px solid var(--border);background:var(--bg-2)}
+    .comp-table td{padding:14px 16px;font-size:.875rem;border-bottom:1px solid var(--border);color:var(--ink-2)}
+    .comp-table tr:last-child td{border-bottom:none}
+    .comp-table .price-old{color:var(--ink-3);text-decoration:line-through}
+    .comp-table .price-bad{color:var(--red);font-weight:600}
+    .comp-table .total td{font-weight:600;font-size:1rem;border-top:2px solid var(--border-2);background:var(--bg-2)}
+    .faq-list{max-width:700px;margin:0 auto}
+    .faq-item{border-bottom:1px solid var(--border)}
+    .faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-size:.9375rem;color:var(--ink);text-align:left;gap:16px;font-weight:500;transition:color var(--dur-fast)}
+    .faq-q:hover{color:var(--violet-4)}
+    .faq-icon{width:28px;height:28px;border-radius:50%;background:var(--violet-glow);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.875rem;color:var(--violet-3);transition:transform var(--dur)}
+    .faq-item.open .faq-icon{transform:rotate(45deg)}
+    .faq-a{font-size:.875rem;color:var(--ink-2);line-height:1.75;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s}
+    .faq-item.open .faq-a{max-height:250px;padding-bottom:18px}
+    @media(max-width:900px){.planos-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:768px){.planos-grid,.addons-grid{grid-template-columns:1fr;max-width:400px;margin-left:auto;margin-right:auto}}
+  </style>
 </head>
 <body>
-  <main>
-    <section class="container" style="padding-top:120px;min-height:60vh;display:flex;align-items:center;justify-content:center">
-      <div class="text-center">
-        <span class="section-badge">Planos</span>
-        <h1>Em construção</h1>
-        <p style="margin:1rem auto">A página de planos e preços está sendo preparada.</p>
-        <a href="/" class="btn btn-secondary mt-3">← Voltar para a home</a>
-      </div>
-    </section>
-  </main>
-  <script src="/site.js"></script>
+<nav class="nav"><div class="nav-inner"><a href="/" class="nav-logo"><svg viewBox="0 0 200 200" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ng" cx="38%" cy="35%" r="70%"><stop offset="0%" stop-color="#2d1b69"/><stop offset="100%" stop-color="#110a2e"/></radialGradient><radialGradient id="nc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#a855f7"/></radialGradient><linearGradient id="na1" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#e9d5ff" stop-opacity="0"/></linearGradient><linearGradient id="na2" x1="5%" y1="0%" x2="90%" y2="95%"><stop offset="0%" stop-color="#c084fc" stop-opacity=".85"/><stop offset="100%" stop-color="#c084fc" stop-opacity="0"/></linearGradient></defs><rect width="200" height="200" rx="44" fill="url(#ng)"/><path d="M 95,56 A 49,49 0 1 1 47,122" fill="none" stroke="url(#na2)" stroke-width="2.8" stroke-linecap="round"/><path d="M 95,71 A 34,34 0 1 1 62,127" fill="none" stroke="url(#na1)" stroke-width="3.4" stroke-linecap="round"/><circle cx="95" cy="105" r="12" fill="url(#nc)"/><circle cx="95" cy="105" r="4.5" fill="#fff" opacity=".98"/></svg><span class="nav-wordmark">aura.</span></a><div class="nav-links"><a href="/#modulos">Produto</a><a href="/#segmentos">Segmentos</a><a href="/precos">Planos</a><a href="/#faq">Dúvidas</a></div><div class="nav-ctas"><a href="https://app.getaura.com.br" class="btn btn-secondary btn-sm">Entrar</a><a href="/#contato" class="btn btn-primary btn-sm">Solicitar demo</a></div><button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div><div class="nav-mobile" id="nav-mobile"><ul><li><a href="/#modulos">Produto</a></li><li><a href="/#segmentos">Segmentos</a></li><li><a href="/precos">Planos</a></li><li><a href="/#faq">Dúvidas</a></li></ul><div class="nav-mobile-ctas"><a href="/#contato" class="btn btn-primary btn-lg">Solicitar demo</a><a href="https://app.getaura.com.br" class="btn btn-secondary btn-lg">Entrar</a></div></div></nav>
+
+<section class="page-hero"><div class="container"><span class="section-badge">Planos e preços</span><h1 class="reveal">Escolha o que faz sentido<br>para você agora.</h1><p class="reveal stagger-1">Sem contrato de fidelidade. Cancele quando quiser.</p></div></section>
+
+<section style="padding-top:0"><div class="container">
+<div class="planos-grid">
+  <div class="plano reveal stagger-1"><div class="plano-label">Essencial</div><div class="plano-name">O essencial</div><div class="plano-tagline">Para quem está começando.</div><div class="plano-price"><span>R$</span>89</div><div class="plano-period">por mês</div><div class="plano-div"></div><ul class="plano-features"><li>Controle financeiro completo</li><li>Caixa de vendas (PDV) e estoque</li><li>Nota fiscal automática (até 50/mês)</li><li>Alertas de prazo fiscal</li><li>Suporte por chat</li><li>1 usuário</li></ul><a href="https://app.getaura.com.br/app/#/register?plano=essencial" class="plano-cta cta-outline">Começar agora</a></div>
+  <div class="plano featured reveal stagger-2"><div class="plano-badge">Mais escolhido</div><div class="plano-label">Negócio</div><div class="plano-name">O completo</div><div class="plano-tagline">Para quem quer crescer.</div><div class="plano-price"><span>R$</span>199</div><div class="plano-period">por mês</div><div class="plano-div"></div><ul class="plano-features"><li>Tudo do Essencial</li><li>CRM e gestão de clientes</li><li>WhatsApp integrado</li><li>Canal Digital (loja online)</li><li>Folha de pagamento</li><li>NF-e ilimitada · Até 3 usuários</li><li>Analista de negócios incluso</li></ul><a href="https://app.getaura.com.br/app/#/register?plano=negocio" class="plano-cta cta-filled">Começar agora</a></div>
+  <div class="plano reveal stagger-3"><div class="plano-label">Expansão</div><div class="plano-name">O máximo</div><div class="plano-tagline">Para quem quer escalar com IA.</div><div class="plano-price"><span>R$</span>299</div><div class="plano-period">por mês</div><div class="plano-div"></div><ul class="plano-features"><li>Tudo do Negócio</li><li>5 Agentes IA + chat contextual</li><li>Previsão de caixa automática</li><li>Cobranças via WhatsApp com IA</li><li>Analytics avançado</li><li>Multi-gateway · Usuários ilimitados</li><li>Suporte prioritário</li></ul><a href="https://app.getaura.com.br/app/#/register?plano=expansao" class="plano-cta cta-outline">Começar agora</a></div>
+  <div class="plano reveal stagger-4"><div class="plano-label">Personalizado</div><div class="plano-name">Sob medida</div><div class="plano-tagline">Consultoria e soluções sob demanda.</div><div class="plano-price-consult">Sob consulta</div><div class="plano-period">orçamento personalizado</div><div class="plano-div"></div><ul class="plano-features"><li>Tudo do Expansão</li><li>Automações WhatsApp customizadas</li><li>Integrações sob demanda</li><li>Treinamento da equipe</li><li>Setup dedicado pela equipe Aura</li><li>Consultoria estratégica</li></ul><a href="/#contato" class="plano-cta cta-outline">Fale conosco</a></div>
+</div>
+
+<div class="section-header centered"><h2 class="reveal">Add-ons</h2><p class="reveal stagger-1">Expanda a plataforma conforme seu negócio cresce.</p></div>
+<div class="addons-grid">
+  <div class="addon reveal stagger-1"><h4>Módulo Vertical</h4><div class="price">R$ 69/mês</div><p>Odonto, Salão, Food, Pet, Estética e mais. Ativado pela equipe Aura. A partir do plano Negócio.</p></div>
+  <div class="addon reveal stagger-2"><h4>Usuário adicional</h4><div class="price">R$ 19/mês</div><p>Por usuário extra. Todos os planos. Cada usuário tem login e permissões próprias.</p></div>
+  <div class="addon reveal stagger-3"><h4>Consultoria on-demand</h4><div class="price">R$ 149/hora</div><p>Setup, automações WhatsApp, integrações, treinamento e leitura de dados. Mínimo 2 horas.</p></div>
+</div>
+
+<div class="comp-section">
+  <div class="section-header centered"><h2 class="reveal">Quanto você paga hoje sem a Aura?</h2></div>
+  <table class="comp-table reveal" style="max-width:700px;margin:0 auto">
+    <thead><tr><th>Item</th><th style="text-align:right">Custo mensal</th></tr></thead>
+    <tbody>
+      <tr><td>Software de gestão</td><td style="text-align:right" class="price-old">R$ 310</td></tr>
+      <tr><td>Contador</td><td style="text-align:right" class="price-old">R$ 400</td></tr>
+      <tr><td>Apps avulsos (cobrança, NF, agenda)</td><td style="text-align:right" class="price-old">R$ 150</td></tr>
+      <tr class="total"><td>Total mercado</td><td style="text-align:right" class="price-bad">R$ 860+/mês</td></tr>
+    </tbody>
+  </table>
+  <p class="reveal" style="text-align:center;margin:1.5rem auto;color:var(--violet-3);font-size:1.125rem;font-weight:600">Com a Aura: a partir de R$ 89/mês — economia de até R$ 770 todo mês</p>
+</div>
+
+<div class="section-header centered"><h2 class="reveal">Dúvidas sobre planos</h2></div>
+<div class="faq-list">
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Posso trocar de plano depois?<span class="faq-icon">+</span></button><div class="faq-a">Sim. Faça upgrade ou downgrade a qualquer momento direto pelo app. A mudança é imediata.</div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">O que acontece se eu cancelar?<span class="faq-icon">+</span></button><div class="faq-a">Seus dados ficam guardados por 90 dias. Você pode reativar quando quiser sem perder nada.</div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Tem período de teste?<span class="faq-icon">+</span></button><div class="faq-a">Sim. Todos os novos usuários ganham 7 dias de teste grátis no plano Negócio. Sem precisar de cartão.</div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Aceita quais formas de pagamento?<span class="faq-icon">+</span></button><div class="faq-a">Pix, boleto bancário e cartão de crédito. Pix tem aprovação instantânea.</div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">O plano Personalizado é pra quem?<span class="faq-icon">+</span></button><div class="faq-a">Para negócios que precisam de automações específicas, integrações customizadas ou treinamento presencial. A equipe Aura monta um orçamento sob medida para você.</div></div>
+</div>
+</div></section>
+
+<section style="background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(109,40,217,0.05));border-top:1px solid var(--border-2);border-bottom:1px solid var(--border-2)"><div class="container" style="text-align:center;max-width:600px"><h2 class="reveal" style="margin-bottom:1rem">Pronto para começar?</h2><p class="reveal stagger-1" style="margin:0 auto 2rem">Teste grátis por 7 dias. Sem cartão de crédito.</p><a href="https://app.getaura.com.br/app/#/register" class="btn btn-primary btn-lg reveal stagger-2">Criar conta grátis</a></div></section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="/" class="nav-logo" style="display:inline-flex;margin-bottom:4px"><svg viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="fg" cx="38%" cy="35%" r="70%"><stop offset="0%" stop-color="#2d1b69"/><stop offset="100%" stop-color="#110a2e"/></radialGradient><radialGradient id="fc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#a855f7"/></radialGradient></defs><rect width="200" height="200" rx="44" fill="url(#fg)"/><circle cx="95" cy="105" r="12" fill="url(#fc)"/><circle cx="95" cy="105" r="4.5" fill="#fff" opacity=".98"/></svg><span class="nav-wordmark" style="font-size:18px">aura.</span></a><p>Tecnologia para negócios. Jacareí, SP.</p></div><div class="footer-col"><h4>Produto</h4><ul><li><a href="/#modulos">O que faz</a></li><li><a href="/precos">Planos</a></li><li><a href="/#faq">Dúvidas</a></li></ul></div><div class="footer-col"><h4>Empresa</h4><ul><li><a href="/sobre">Sobre</a></li><li><a href="/privacidade">Privacidade</a></li><li><a href="mailto:contato@getaura.com.br">Contato</a></li></ul></div><div class="footer-col"><h4>Acesso</h4><ul><li><a href="https://app.getaura.com.br">Entrar</a></li><li><a href="https://app.getaura.com.br/app/#/register">Criar conta</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Aura. Tecnologia para Negócios.</p></div></div></footer>
+<script src="/site.js"></script>
 </body>
 </html>

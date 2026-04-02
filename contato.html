@@ -4,27 +4,72 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contato — Aura. Tecnologia para Negócios</title>
-  <meta name="description" content="Fale com a equipe Aura. Solicite uma demonstração ou tire suas dúvidas pelo WhatsApp.">
-  <meta property="og:title" content="Contato — Aura.">
-  <meta property="og:description" content="Solicite uma demonstração ou tire suas dúvidas.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://getaura.com.br/contato">
+  <meta name="description" content="Fale com a equipe Aura. Solicite uma demonstração ou tire dúvidas pelo WhatsApp.">
   <link rel="canonical" href="https://getaura.com.br/contato">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Satoshi:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/site.css">
+  <style>
+    .page-hero{padding:140px 0 40px;text-align:center}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+    .contact-info h3{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:1rem}
+    .contact-info p{font-size:.9375rem;color:var(--ink-2);line-height:1.75;margin-bottom:1.5rem}
+    .contact-channels{display:flex;flex-direction:column;gap:12px;margin-bottom:2rem}
+    .channel{display:flex;align-items:center;gap:12px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px;transition:all var(--dur) var(--ease)}
+    .channel:hover{border-color:var(--border-3);transform:translateY(-2px)}
+    .channel-icon{font-size:1.5rem}
+    .channel-text strong{display:block;font-size:.9375rem;color:var(--ink)}
+    .channel-text span{font-size:.8125rem;color:var(--ink-3)}
+    .form-card{background:var(--bg-card);border:1px solid var(--border-2);border-radius:var(--radius-xl);padding:32px;position:relative;overflow:hidden}
+    .form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--violet-deep),var(--violet-3))}
+    .form-card h3{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:6px}
+    .form-card>p{font-size:.875rem;color:var(--ink-3);margin-bottom:1.5rem}
+    .demo-link{display:flex;align-items:center;gap:12px;background:var(--violet-glow);border:1px solid var(--border-2);border-radius:var(--radius-lg);padding:20px;margin-top:2rem;transition:all var(--dur) var(--ease)}
+    .demo-link:hover{border-color:var(--violet-3);transform:translateY(-2px)}
+    .demo-link span{font-size:2rem}
+    .demo-link div strong{display:block;color:var(--ink);font-size:.9375rem}
+    .demo-link div p{font-size:.8125rem;color:var(--ink-3);margin:0}
+    @media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-  <main>
-    <section class="container" style="padding-top:120px;min-height:60vh;display:flex;align-items:center;justify-content:center">
-      <div class="text-center">
-        <span class="section-badge">Contato</span>
-        <h1>Em construção</h1>
-        <p style="margin:1rem auto">A página de contato está sendo preparada.</p>
-        <a href="/" class="btn btn-secondary mt-3">← Voltar para a home</a>
-      </div>
-    </section>
-  </main>
-  <script src="/site.js"></script>
+<nav class="nav"><div class="nav-inner"><a href="/" class="nav-logo"><svg viewBox="0 0 200 200" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ng" cx="38%" cy="35%" r="70%"><stop offset="0%" stop-color="#2d1b69"/><stop offset="100%" stop-color="#110a2e"/></radialGradient><radialGradient id="nc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#a855f7"/></radialGradient></defs><rect width="200" height="200" rx="44" fill="url(#ng)"/><circle cx="95" cy="105" r="12" fill="url(#nc)"/><circle cx="95" cy="105" r="4.5" fill="#fff" opacity=".98"/></svg><span class="nav-wordmark">aura.</span></a><div class="nav-links"><a href="/#modulos">Produto</a><a href="/precos">Planos</a><a href="/#faq">Dúvidas</a></div><div class="nav-ctas"><a href="https://app.getaura.com.br" class="btn btn-secondary btn-sm">Entrar</a></div><button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div><div class="nav-mobile" id="nav-mobile"><ul><li><a href="/#modulos">Produto</a></li><li><a href="/precos">Planos</a></li></ul><div class="nav-mobile-ctas"><a href="https://app.getaura.com.br" class="btn btn-secondary btn-lg">Entrar</a></div></div></nav>
+
+<section class="page-hero"><div class="container"><span class="section-badge">Contato</span><h1 class="reveal">Fale com a equipe Aura</h1><p class="reveal stagger-1" style="margin:0 auto">Tire suas dúvidas, solicite uma demonstração ou explore o app por conta própria.</p></div></section>
+
+<section style="padding-top:0"><div class="container">
+<div class="contact-grid">
+  <div class="contact-info reveal">
+    <h3>Como podemos ajudar?</h3>
+    <p>Queremos entender o seu negócio antes de oferecer qualquer plano. Mande uma mensagem e alguém da equipe responde em minutos.</p>
+    <div class="contact-channels">
+      <a href="mailto:contato@getaura.com.br" class="channel"><span class="channel-icon">✉️</span><div class="channel-text"><strong>E-mail</strong><span>contato@getaura.com.br</span></div></a>
+      <div class="channel"><span class="channel-icon">📍</span><div class="channel-text"><strong>Localização</strong><span>Jacareí, SP — Vale do Paraíba</span></div></div>
+    </div>
+    <a href="https://app.getaura.com.br" class="demo-link"><span>🖥️</span><div><strong>Explore o modo demonstrativo</strong><p>Veja como o app funciona sem criar conta.</p></div></a>
+  </div>
+  <div class="form-card reveal stagger-1">
+    <h3>Solicitar demonstração</h3>
+    <p>Respondemos pelo WhatsApp em minutos.</p>
+    <form id="contactForm" action="https://formspree.io/f/xojkbrkz" method="POST">
+      <div class="form-group"><label>Seu nome</label><input type="text" name="nome" placeholder="Como você se chama?" required autocomplete="name"></div>
+      <div class="form-group"><label>WhatsApp</label><input type="tel" name="whatsapp" placeholder="(12) 99999-9999" required autocomplete="tel" inputmode="tel"></div>
+      <div class="form-group"><label>Nome do negócio</label><input type="text" name="empresa" placeholder="Ex: Barbearia do Marcos" autocomplete="organization"></div>
+      <div class="form-group"><label>Tipo de negócio</label><select name="tipo"><option value="">Selecione...</option><option>MEI</option><option>Microempresa</option><option>Ainda não tenho CNPJ</option></select></div>
+      <div class="form-group"><label>Sua dúvida (opcional)</label><textarea name="mensagem" rows="3" placeholder="O que você gostaria de saber?"></textarea></div>
+      <input type="hidden" name="origem" value="contato">
+      <button type="submit" class="btn btn-primary" style="width:100%">Enviar mensagem →</button>
+      <p style="font-size:.6875rem;color:var(--ink-3);text-align:center;margin-top:10px">Seus dados não serão compartilhados.</p>
+    </form>
+    <div id="contactSuccess" style="display:none;text-align:center;padding:24px"><div style="font-size:2.5rem;margin-bottom:10px">🎉</div><strong>Mensagem enviada!</strong><br><span style="font-size:.875rem;color:var(--ink-2)">Entraremos em contato pelo WhatsApp.</span></div>
+  </div>
+</div>
+</div></section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="/" class="nav-logo" style="display:inline-flex;margin-bottom:4px"><svg viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="fg" cx="38%" cy="35%" r="70%"><stop offset="0%" stop-color="#2d1b69"/><stop offset="100%" stop-color="#110a2e"/></radialGradient><radialGradient id="fc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#a855f7"/></radialGradient></defs><rect width="200" height="200" rx="44" fill="url(#fg)"/><circle cx="95" cy="105" r="12" fill="url(#fc)"/><circle cx="95" cy="105" r="4.5" fill="#fff" opacity=".98"/></svg><span class="nav-wordmark" style="font-size:18px">aura.</span></a><p>Tecnologia para negócios. Jacareí, SP.</p></div><div class="footer-col"><h4>Produto</h4><ul><li><a href="/#modulos">O que faz</a></li><li><a href="/precos">Planos</a></li></ul></div><div class="footer-col"><h4>Empresa</h4><ul><li><a href="/sobre">Sobre</a></li><li><a href="/privacidade">Privacidade</a></li></ul></div><div class="footer-col"><h4>Acesso</h4><ul><li><a href="https://app.getaura.com.br">Entrar</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Aura. Tecnologia para Negócios.</p></div></div></footer>
+<script src="/site.js"></script>
+<script>setupForm('contactForm','contactSuccess');</script>
 </body>
 </html>
