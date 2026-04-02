@@ -1,2 +1,2 @@
-# Expo uses hash routing (#/login, #/dashboard)
-# No SPA fallback needed — all routes resolve via hash fragment
+# Redirect root to /app/ for app.getaura.com.br
+/ /app/ 302
