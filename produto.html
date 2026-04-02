@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Produto — Aura. Tecnologia para Negócios</title>
-  <meta name="description" content="Conheça todas as funcionalidades da Aura. Financeiro, caixa, estoque, clientes, nota fiscal e mais.">
+  <meta name="description" content="Descubra como a Aura simplifica a gestão do seu negócio. Menos tempo gerenciando, mais tempo crescendo.">
   <link rel="canonical" href="https://getaura.com.br/produto">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,62 +13,102 @@
   <link rel="stylesheet" href="/site.css">
   <style>
     .page-hero{padding:140px 0 60px;text-align:center}
-    .feature-section{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:5rem}
-    .feature-section.reverse{direction:rtl}.feature-section.reverse>*{direction:ltr}
-    .feature-text span{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--violet-3);margin-bottom:.75rem}
-    .feature-text span::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--violet)}
-    .feature-text h2{font-family:var(--font-display);font-size:1.75rem;font-weight:700;margin-bottom:.75rem}
-    .feature-text p{font-size:1rem;color:var(--ink-2);line-height:1.75;margin-bottom:1.25rem}
-    .feature-list{display:flex;flex-direction:column;gap:6px}
-    .feature-list li{display:flex;align-items:center;gap:8px;font-size:.9375rem;color:var(--ink-2)}
-    .feature-list li::before{content:'✓';color:var(--green);font-weight:600}
-    .feature-mockup{background:var(--bg-3);border:1px solid var(--border-2);border-radius:var(--radius-xl);min-height:300px;display:flex;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden}
-    .feature-mockup::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,var(--violet-glow),transparent 70%);pointer-events:none}
-    .feature-mockup-text{text-align:center;color:var(--ink-3);font-size:.875rem;position:relative;z-index:1}
-    .feature-mockup-text span{display:block;font-size:2.5rem;margin-bottom:8px;opacity:.3}
-    @media(max-width:768px){.feature-section,.feature-section.reverse{grid-template-columns:1fr;direction:ltr}}
+    .page-hero p{margin:0 auto}
+
+    /* Journey steps */
+    .journey{counter-reset:step}
+    .journey-step{display:grid;grid-template-columns:80px 1fr;gap:32px;margin-bottom:3rem;align-items:start}
+    .journey-num{width:64px;height:64px;border-radius:50%;background:var(--violet-glow);border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.5rem;font-weight:900;color:var(--violet-3);position:relative;flex-shrink:0}
+    .journey-num::after{content:'';position:absolute;top:64px;left:50%;width:1px;height:calc(100% + 16px);background:var(--border-2);transform:translateX(-50%)}
+    .journey-step:last-child .journey-num::after{display:none}
+    .journey-content h3{font-family:var(--font-display);font-size:1.5rem;font-weight:700;margin-bottom:.5rem}
+    .journey-content p{font-size:1rem;color:var(--ink-2);line-height:1.75;max-width:100%}
+
+    /* Benefit grid */
+    .benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .benefit-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-xl);padding:32px;text-align:center;transition:all var(--dur) var(--ease)}
+    .benefit-card:hover{border-color:var(--border-3);transform:translateY(-3px);box-shadow:var(--shadow-glow)}
+    .benefit-icon{font-size:2.5rem;margin-bottom:16px}
+    .benefit-card h4{font-family:var(--font-display);font-size:1.125rem;font-weight:700;margin-bottom:8px}
+    .benefit-card p{font-size:.875rem;color:var(--ink-2);line-height:1.65;max-width:100%}
+    .benefit-card .highlight-num{font-family:var(--font-display);font-size:2rem;font-weight:900;color:var(--violet-4);margin-bottom:4px}
+
+    /* Connected section */
+    .s-connected{background:var(--bg-2)}
+    .connected-visual{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:2rem}
+    .conn-node{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;text-align:center;transition:all var(--dur) var(--ease);position:relative}
+    .conn-node:hover{border-color:var(--violet-3);transform:scale(1.03)}
+    .conn-node::after{content:'→';position:absolute;right:-14px;top:50%;transform:translateY(-50%);color:var(--violet-3);font-size:1.25rem}
+    .conn-node:last-child::after{display:none}
+    .conn-icon{font-size:1.75rem;margin-bottom:8px}
+    .conn-label{font-size:.75rem;font-weight:600;color:var(--ink-2);text-transform:uppercase;letter-spacing:.06em}
+
+    /* Quote */
+    .product-quote{font-family:var(--font-display);font-size:clamp(1.25rem,2.5vw,1.75rem);font-weight:700;line-height:1.5;text-align:center;max-width:640px;margin:0 auto;color:var(--ink);padding:3rem 0}
+    .product-quote em{font-style:normal;color:var(--violet-3)}
+
+    @media(max-width:768px){
+      .journey-step{grid-template-columns:48px 1fr;gap:20px}
+      .journey-num{width:48px;height:48px;font-size:1.125rem}
+      .benefit-grid{grid-template-columns:1fr}
+      .connected-visual{grid-template-columns:repeat(2,1fr)}
+      .conn-node::after{display:none}
+    }
   </style>
 </head>
 <body>
-<nav class="nav"><div class="nav-inner"><a href="/" class="nav-logo"><svg viewBox="0 0 200 200" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ng" cx="38%" cy="35%" r="70%"><stop offset="0%" stop-color="#2d1b69"/><stop offset="100%" stop-color="#110a2e"/></radialGradient><radialGradient id="nc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#a855f7"/></radialGradient></defs><rect width="200" height="200" rx="44" fill="url(#ng)"/><circle cx="95" cy="105" r="12" fill="url(#nc)"/><circle cx="95" cy="105" r="4.5" fill="#fff" opacity=".98"/></svg><span class="nav-wordmark">aura.</span></a><div class="nav-links"><a href="/produto">Produto</a><a href="/#segmentos">Segmentos</a><a href="/precos">Planos</a><a href="/#faq">Dúvidas</a></div><div class="nav-ctas"><a href="https://app.getaura.com.br" class="btn btn-secondary btn-sm">Entrar</a><a href="/#contato" class="btn btn-primary btn-sm">Solicitar demo</a></div><button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div><div class="nav-mobile" id="nav-mobile"><ul><li><a href="/produto">Produto</a></li><li><a href="/precos">Planos</a></li><li><a href="/#faq">Dúvidas</a></li></ul><div class="nav-mobile-ctas"><a href="/#contato" class="btn btn-primary btn-lg">Solicitar demo</a></div></div></nav>
+<nav class="nav"><div class="nav-inner"><a href="/" class="nav-logo"><svg viewBox="0 0 200 200" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="44" fill="#110a2e"/><circle cx="100" cy="100" r="14" fill="#a855f7"/><circle cx="100" cy="100" r="5" fill="#fff" opacity=".95"/></svg><span class="nav-wordmark">aura.</span></a><div class="nav-links"><a href="/produto">Produto</a><a href="/segmentos">Segmentos</a><a href="/precos">Planos</a><a href="/#faq">Dúvidas</a></div><div class="nav-ctas"><a href="/#contato" class="btn btn-primary btn-sm">Solicitar demo</a></div><button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div><div class="nav-mobile" id="nav-mobile"><ul><li><a href="/produto">Produto</a></li><li><a href="/segmentos">Segmentos</a></li><li><a href="/precos">Planos</a></li></ul><div class="nav-mobile-ctas"><a href="/#contato" class="btn btn-primary btn-lg">Solicitar demo</a></div></div></nav>
 
-<section class="page-hero"><div class="container"><span class="section-badge">Produto</span><h1 class="reveal">Tudo que seu negócio<br>precisa. Nada que não precisa.</h1><p class="reveal stagger-1" style="margin:0 auto">Cada funcionalidade foi pensada para resolver um problema real do dia a dia.</p></div></section>
+<section class="page-hero"><div class="container"><span class="section-badge">Produto</span><h1 class="reveal">Menos tempo gerenciando.<br><span class="text-gradient">Mais tempo crescendo.</span></h1><p class="reveal stagger-1">A Aura cuida da operação pra você focar no que importa: seu negócio e seus clientes.</p></div></section>
 
+<!-- COMO FUNCIONA -->
 <section style="padding-top:0"><div class="container">
-  <div class="feature-section reveal">
-    <div class="feature-text"><span>Financeiro</span><h2>Veja pra onde vai cada real</h2><p>Controle completo do que entra e sai. Resultados do mês em tempo real. Saiba exatamente quanto pode retirar sem comprometer o negócio.</p><ul class="feature-list"><li>Lançamentos automáticos das vendas</li><li>Contas a receber com alertas</li><li>Demonstrativo de resultados (DRE)</li><li>Nota fiscal automática (NF-e)</li><li>Retirada sugerida com Fator R</li></ul></div>
-    <div class="feature-mockup"><div class="feature-mockup-text"><span>💰</span>Screenshot do financeiro</div></div>
-  </div>
-
-  <div class="feature-section reverse reveal">
-    <div class="feature-text"><span>Vendas & Caixa</span><h2>Venda rápido, sem perder nada</h2><p>Caixa de vendas direto no celular. Leia código de barras, registre a venda, escolha o pagamento. Tudo em menos de 10 segundos.</p><ul class="feature-list"><li>PDV mobile — funciona no celular</li><li>Leitor de código de barras</li><li>Estoque atualiza automático</li><li>Ranking de produtos mais vendidos</li><li>Cupom e comprovante digital</li></ul></div>
-    <div class="feature-mockup"><div class="feature-mockup-text"><span>🛒</span>Screenshot do PDV</div></div>
-  </div>
-
-  <div class="feature-section reveal">
-    <div class="feature-text"><span>Clientes</span><h2>Conheça quem compra de você</h2><p>Ficha completa de cada cliente. Saiba quem mais compra, quando é aniversário e colete avaliações pra crescer no Google.</p><ul class="feature-list"><li>Ficha com histórico de compras</li><li>Ranking por fidelidade e LTV</li><li>Lembretes de aniversário</li><li>Avaliações automáticas (Google)</li><li>Segmentação para campanhas</li></ul></div>
-    <div class="feature-mockup"><div class="feature-mockup-text"><span>👥</span>Screenshot do CRM</div></div>
-  </div>
-
-  <div class="feature-section reverse reveal">
-    <div class="feature-text"><span>Apoio Fiscal</span><h2>Nunca mais perca um prazo</h2><p>Calendário de obrigações do seu regime tributário. Boleto mensal estimado com QR Code Pix. Alertas automáticos 15, 7, 3 e 1 dia antes.</p><ul class="feature-list"><li>DAS estimado com QR Code Pix</li><li>Calendário fiscal personalizado</li><li>Alertas automáticos de prazo</li><li>Checkpoints gamificados</li><li>Linguagem simples (sem juridiquês)</li></ul></div>
-    <div class="feature-mockup"><div class="feature-mockup-text"><span>📋</span>Screenshot da contabilidade</div></div>
-  </div>
-
-  <div class="feature-section reveal">
-    <div class="feature-text"><span>Presença Digital</span><h2>Seu negócio no mundo online</h2><p>Mini-site profissional, loja online e presença no Google — tudo criado e gerenciado dentro da Aura. Sem agência, sem complicação.</p><ul class="feature-list"><li>Mini-site com sua marca</li><li>Loja online com catálogo</li><li>Google Meu Negócio integrado</li><li>Analytics de visitantes</li><li>Compartilhamento via WhatsApp</li></ul></div>
-    <div class="feature-mockup"><div class="feature-mockup-text"><span>🌐</span>Screenshot do Canal Digital</div></div>
-  </div>
-
-  <div class="feature-section reverse reveal">
-    <div class="feature-text"><span>Assistente com IA</span><h2>Inteligência artificial no seu time</h2><p>Posts prontos pra redes sociais, previsão de caixa e cobranças automáticas via WhatsApp. Disponível no plano Expansão.</p><ul class="feature-list"><li>5 agentes IA contextuais</li><li>Posts e legendas automáticas</li><li>Previsão de faturamento</li><li>Cobranças inteligentes via WhatsApp</li><li>Insights proativos no dashboard</li></ul></div>
-    <div class="feature-mockup"><div class="feature-mockup-text"><span>🤖</span>Screenshot do Assistente IA</div></div>
+  <div class="section-header"><span class="section-badge">Como funciona</span><h2 class="reveal">Três passos. Zero complicação.</h2></div>
+  <div class="journey">
+    <div class="journey-step reveal stagger-1"><div class="journey-num">1</div><div class="journey-content"><h3>Cadastre seu negócio</h3><p>Informe seu CNPJ e a Aura puxa automaticamente os dados da sua empresa. Em poucos minutos, tudo configurado — regime tributário, obrigações fiscais e módulos recomendados pro seu segmento.</p></div></div>
+    <div class="journey-step reveal stagger-2"><div class="journey-num">2</div><div class="journey-content"><h3>Conecte sua operação</h3><p>Vendas, estoque, clientes, financeiro e obrigações fiscais — tudo passa a funcionar junto. O que você registra em um lugar aparece automaticamente nos outros. Sem digitar duas vezes.</p></div></div>
+    <div class="journey-step reveal stagger-3"><div class="journey-num">3</div><div class="journey-content"><h3>Acompanhe e cresça</h3><p>Veja seus números em tempo real, receba alertas de prazos, identifique seus melhores clientes e tome decisões com clareza. A Aura trabalha enquanto você atende.</p></div></div>
   </div>
 </div></section>
 
-<section style="background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(109,40,217,0.05));border-top:1px solid var(--border-2)"><div class="container" style="text-align:center;max-width:600px"><h2 class="reveal" style="margin-bottom:1rem">Gostou do que viu?</h2><p class="reveal stagger-1" style="margin:0 auto 2rem;color:var(--ink-2)">Fale com a equipe e veja como a Aura funciona.</p><div class="gap-row reveal stagger-2" style="justify-content:center"><a href="/#contato" class="btn btn-primary btn-lg">Solicitar demonstração</a><a href="/precos" class="btn btn-secondary btn-lg">Ver planos →</a></div></div></section>
+<!-- TUDO CONECTADO -->
+<section class="s-connected"><div class="container">
+  <div class="section-header centered"><span class="section-badge">Integração</span><h2 class="reveal">Tudo conectado. Nada solto.</h2><p class="reveal stagger-1">Cada ação no seu negócio alimenta o sistema inteiro automaticamente.</p></div>
+  <div class="connected-visual reveal">
+    <div class="conn-node"><div class="conn-icon">🛒</div><div class="conn-label">Você vende</div></div>
+    <div class="conn-node"><div class="conn-icon">📦</div><div class="conn-label">Estoque atualiza</div></div>
+    <div class="conn-node"><div class="conn-icon">💰</div><div class="conn-label">Financeiro registra</div></div>
+    <div class="conn-node"><div class="conn-icon">📋</div><div class="conn-label">Fiscal organiza</div></div>
+  </div>
+  <div class="product-quote reveal">"Você faz a venda. <em>A Aura cuida do resto.</em>"</div>
+</div></section>
 
-<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="/" class="nav-logo" style="display:inline-flex;margin-bottom:4px"><svg viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="fg" cx="38%" cy="35%" r="70%"><stop offset="0%" stop-color="#2d1b69"/><stop offset="100%" stop-color="#110a2e"/></radialGradient><radialGradient id="fc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#e9d5ff"/><stop offset="100%" stop-color="#a855f7"/></radialGradient></defs><rect width="200" height="200" rx="44" fill="url(#fg)"/><circle cx="95" cy="105" r="12" fill="url(#fc)"/><circle cx="95" cy="105" r="4.5" fill="#fff" opacity=".98"/></svg><span class="nav-wordmark" style="font-size:18px">aura.</span></a><p>Tecnologia para negócios. Jacareí, SP.</p></div><div class="footer-col"><h4>Produto</h4><ul><li><a href="/produto">O que faz</a></li><li><a href="/precos">Planos</a></li></ul></div><div class="footer-col"><h4>Empresa</h4><ul><li><a href="/sobre">Sobre</a></li><li><a href="/privacidade">Privacidade</a></li></ul></div><div class="footer-col"><h4>Acesso</h4><ul></ul></div></div><div class="footer-bottom"><p>© 2026 Aura. Tecnologia para Negócios.</p></div></div></footer>
+<!-- BENEFÍCIOS -->
+<section><div class="container">
+  <div class="section-header centered"><span class="section-badge">O que muda pra você</span><h2 class="reveal">Resultados reais no dia a dia</h2></div>
+  <div class="benefit-grid">
+    <div class="benefit-card reveal stagger-1"><div class="benefit-icon">⏱️</div><div class="highlight-num">8h/semana</div><h4>Tempo economizado</h4><p>Menos tempo com planilhas, cadernos e WhatsApp. Mais tempo com clientes e crescimento.</p></div>
+    <div class="benefit-card reveal stagger-2"><div class="benefit-icon">📊</div><div class="highlight-num">100%</div><h4>Visibilidade</h4><p>Saiba exatamente quanto entrou, quanto saiu e quanto pode retirar. Em tempo real, não no final do mês.</p></div>
+    <div class="benefit-card reveal stagger-3"><div class="benefit-icon">🔔</div><div class="highlight-num">Zero</div><h4>Prazos perdidos</h4><p>Alertas automáticos para obrigações fiscais. Boleto mensal gerado e lembretes 15, 7 e 3 dias antes.</p></div>
+    <div class="benefit-card reveal stagger-1"><div class="benefit-icon">👥</div><div class="highlight-num">Ranking</div><h4>Clientes fiéis</h4><p>Saiba quem são seus melhores clientes, quando é o aniversário deles e quanto compram de você.</p></div>
+    <div class="benefit-card reveal stagger-2"><div class="benefit-icon">📱</div><div class="highlight-num">1 app</div><h4>Tudo num lugar</h4><p>Sem alternar entre 5 aplicativos. Financeiro, vendas, clientes, fiscal e equipe — um login só.</p></div>
+    <div class="benefit-card reveal stagger-3"><div class="benefit-icon">🧾</div><div class="highlight-num">Auto</div><h4>Folha simplificada</h4><p>Calcule salários, INSS, IRRF e FGTS automaticamente. Sem pagar caro por um serviço que a Aura faz por você.</p></div>
+  </div>
+</div></section>
+
+<!-- PARA QUEM -->
+<section class="s-connected"><div class="container">
+  <div class="section-header centered"><span class="section-badge">Para quem é</span><h2 class="reveal">Se você se reconhece aqui,<br>a Aura é pra você.</h2></div>
+  <div class="benefit-grid" style="grid-template-columns:repeat(2,1fr)">
+    <div class="benefit-card reveal stagger-1" style="text-align:left"><div class="benefit-icon" style="font-size:1.75rem">🏪</div><h4>Donos de negócio</h4><p>Que fazem tudo sozinhos e precisam de um sistema que acompanhe o ritmo — sem complicação e sem custo alto.</p></div>
+    <div class="benefit-card reveal stagger-2" style="text-align:left"><div class="benefit-icon" style="font-size:1.75rem">📈</div><h4>Negócios em crescimento</h4><p>Que já saíram do caderno mas ainda não encontraram uma ferramenta que junte tudo num lugar só.</p></div>
+  </div>
+</div></section>
+
+<!-- CTA -->
+<section style="background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(109,40,217,0.05));border-top:1px solid var(--border-2)"><div class="container" style="text-align:center;max-width:600px"><h2 class="reveal" style="margin-bottom:1rem">Quer ver como funciona?</h2><p class="reveal stagger-1" style="margin:0 auto 2rem;color:var(--ink-2)">Fale com a equipe e veja como a Aura funciona.</p><div class="gap-row reveal stagger-2" style="justify-content:center"><a href="/#contato" class="btn btn-primary btn-lg">Solicitar demonstração</a><a href="/precos" class="btn btn-secondary btn-lg">Ver planos →</a></div></div></section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="/" class="nav-logo" style="display:inline-flex;margin-bottom:4px"><svg viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="44" fill="#110a2e"/><circle cx="100" cy="100" r="14" fill="#a855f7"/><circle cx="100" cy="100" r="5" fill="#fff" opacity=".95"/></svg><span class="nav-wordmark" style="font-size:18px">aura.</span></a><p>Tecnologia para negócios. Jacareí, SP.</p></div><div class="footer-col"><h4>Produto</h4><ul><li><a href="/produto">O que faz</a></li><li><a href="/precos">Planos</a></li></ul></div><div class="footer-col"><h4>Empresa</h4><ul><li><a href="/sobre">Sobre</a></li><li><a href="/privacidade">Privacidade</a></li></ul></div><div class="footer-col"><h4>Acesso</h4><ul><li><a href="/#contato">Solicitar demo</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Aura. Tecnologia para Negócios.</p></div></div></footer>
 <script src="/site.js"></script>
 </body>
 </html>
