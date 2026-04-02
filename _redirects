@@ -1,2 +1,1 @@
-# Redirect root to /app/ for app.getaura.com.br
-/ /app/ 302
+# No file-level redirects — domain routing handled via Cloudflare Redirect Rules
