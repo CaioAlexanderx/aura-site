@@ -1,1 +1,5 @@
-# No file-level redirects — domain routing handled via Cloudflare Redirect Rules
+# app.getaura.com.br → serve from /app/ subfolder
+https://app.getaura.com.br/* /app/:splat 200
+
+# SPA fallback for app subdomain (any route not matching a file)
+https://app.getaura.com.br/* /app/index.html 200
