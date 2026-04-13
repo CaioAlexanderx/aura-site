@@ -1,1 +1,13 @@
-# No app redirects — app.getaura.com.br served by separate Pages project
+# Aura Site + App redirects
+# IMPORTANT: Do NOT use /* /app/index.html 200 (causes infinite loop)
+# Only specific deep link paths that need SPA routing
+
+# Expo app deep links — serve index.html for client-side routing
+/app/invite/*           /app/index.html  200
+/app/reset-password/*   /app/index.html  200
+/app/forgot-password/*  /app/index.html  200
+/app/verify-email/*     /app/index.html  200
+
+# App tabs — serve index.html for Expo Router paths (no file on disk)
+/app/(tabs)/*           /app/index.html  200
+/app/(auth)/*           /app/index.html  200
