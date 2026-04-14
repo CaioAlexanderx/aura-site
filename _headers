@@ -1,4 +1,4 @@
-# Security headers
+# Security headers — site institucional + app
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
@@ -6,7 +6,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
 
-# Cache static assets aggressively
+# Cache static assets
 /site.css
   Cache-Control: public, max-age=31536000, immutable
 
@@ -19,13 +19,13 @@
 /og-image.png
   Cache-Control: public, max-age=604800
 
-# HTML pages — revalidate
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
 
 /
   Cache-Control: public, max-age=0, must-revalidate
 
-# App assets
+# App — CSP + cache
 /app/*
   Cache-Control: public, max-age=86400
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://cdn.jsdelivr.net https://placehold.co https://r2.getaura.com.br https://api.qrserver.com; connect-src 'self' https://aura-backend-production-f805.up.railway.app https://api.anthropic.com; frame-ancestors 'none'
