@@ -6,6 +6,7 @@
   <title>Sobre — Aura. Tecnologia para Negócios</title>
   <meta name="description" content="Conheça a história da Aura. Tecnologia feita para pequenos negócios brasileiros, nascida no Vale do Paraíba.">
   <link rel="canonical" href="https://getaura.com.br/sobre">
+  <link rel="icon" href="/aura_icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,13 +15,14 @@
   <style>
     .page-hero{padding:140px 0 60px;text-align:center}
     .story{max-width:680px;margin:0 auto}
-    .story p{font-size:1.0625rem;color:var(--ink-2);line-height:1.85;margin-bottom:1.5rem}
+    .story p{font-size:1.0625rem;color:var(--ink-2);line-height:1.85;margin-bottom:1.5rem;max-width:100%}
     .story h2{font-family:var(--font-display);font-size:1.75rem;font-weight:700;margin:3rem 0 1rem}
-    .story .highlight{background:var(--violet-glow);border-left:3px solid var(--violet);padding:20px 24px;border-radius:0 var(--radius-md) var(--radius-md) 0;margin:2rem 0}
+    .story .highlight{background:var(--bg-glass);backdrop-filter:blur(12px);border-left:3px solid var(--violet);border:1px solid var(--border-2);border-left:3px solid var(--violet);padding:20px 24px;border-radius:0 var(--radius-md) var(--radius-md) 0;margin:2rem 0}
     .story .highlight p{color:var(--ink);font-weight:500;margin-bottom:0}
     .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:3rem 0}
-    .value-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;text-align:center;transition:all var(--dur) var(--ease)}
-    .value-card:hover{border-color:var(--border-3);transform:translateY(-3px)}
+    .value-card{background:var(--bg-glass);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;text-align:center;transition:all var(--dur) var(--ease);position:relative;overflow:hidden}
+    .value-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,0.3),transparent)}
+    .value-card:hover{border-color:var(--border-3);transform:translateY(-3px);box-shadow:var(--shadow-glow)}
     .value-card .icon{font-size:2rem;margin-bottom:12px}
     .value-card h4{font-family:var(--font-display);font-size:1.125rem;font-weight:700;margin-bottom:6px}
     .value-card p{font-size:.8125rem;color:var(--ink-3);max-width:100%}
@@ -28,7 +30,7 @@
   </style>
 </head>
 <body>
-<nav class="nav"><div class="nav-inner"><a href="/" class="nav-logo"><svg viewBox="0 0 200 200" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="44" fill="#110a2e"/><circle cx="100" cy="100" r="14" fill="#a855f7"/><circle cx="100" cy="100" r="5" fill="#fff" opacity=".95"/></svg><span class="nav-wordmark">aura.</span></a><div class="nav-links"><a href="/#modulos">Produto</a><a href="/#segmentos">Segmentos</a><a href="/precos">Planos</a><a href="/#faq">Dúvidas</a></div><div class="nav-ctas"><a href="https://app.getaura.com.br" class="btn btn-secondary btn-sm">Entrar</a><a href="/#contato" class="btn btn-primary btn-sm">Solicitar demo</a></div><button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div><div class="nav-mobile" id="nav-mobile"><ul><li><a href="/#modulos">Produto</a></li><li><a href="/precos">Planos</a></li><li><a href="/#faq">Dúvidas</a></li></ul><div class="nav-mobile-ctas"><a href="/#contato" class="btn btn-primary btn-lg">Solicitar demo</a></div></div></nav>
+<nav class="nav"><div class="nav-inner"><a href="/" class="nav-logo"><svg viewBox="0 0 200 200" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="44" fill="#110a2e"/><circle cx="100" cy="100" r="14" fill="#a855f7"/><circle cx="100" cy="100" r="5" fill="#fff" opacity=".95"/></svg><span class="nav-wordmark">aura.</span></a><div class="nav-links"><a href="/produto">Produto</a><a href="/#modulos">Módulos</a><a href="/#planos">Planos</a><a href="/#faq">Dúvidas</a></div><div class="nav-ctas"><a href="https://app.getaura.com.br" class="btn btn-secondary btn-sm">Entrar</a><a href="/#contato" class="btn btn-primary btn-sm">Começar agora</a></div><button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div><div class="nav-mobile" id="nav-mobile"><ul><li><a href="/produto">Produto</a></li><li><a href="/#modulos">Módulos</a></li><li><a href="/#planos">Planos</a></li><li><a href="/#faq">Dúvidas</a></li></ul><div class="nav-mobile-ctas"><a href="/#contato" class="btn btn-primary btn-lg">Começar agora</a><a href="https://app.getaura.com.br" class="btn btn-secondary btn-lg">Já sou cliente — Entrar</a></div></div></nav>
 
 <section class="page-hero"><div class="container"><span class="section-badge">Sobre a Aura</span><h1 class="reveal">Tecnologia para quem<br>faz o Brasil acontecer.</h1></div></section>
 
@@ -40,7 +42,7 @@
   <div class="highlight reveal"><p>A Aura existe para dar ao pequeno negócio brasileiro a mesma tecnologia que grandes empresas usam — mas de um jeito que qualquer pessoa entende.</p></div>
 
   <h2 class="reveal">Quem está por trás</h2>
-  <p class="reveal">A Aura foi fundada por Caio Pantoja, profissional de tecnologia e contabilidade baseado em Jacareí, SP. Com experiência nos dois mundos — o técnico e o fiscal — ele entende tanto o código quanto o boleto do DAS.</p>
+  <p class="reveal">A Aura foi fundada por Caio Pantoja, profissional de tecnologia baseado em Jacareí, SP. Com experiência tanto no mundo técnico quanto no operacional de pequenos negócios, ele entende as duas pontas — o código e o boleto.</p>
   <p class="reveal">A missão é simples: construir a plataforma que ele gostaria que existisse quando começou a ajudar pequenos negócios a se organizarem.</p>
 
   <h2 class="reveal">O que nos guia</h2>
@@ -55,9 +57,9 @@
 </div>
 </div></section>
 
-<section style="background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(109,40,217,0.05));border-top:1px solid var(--border-2)"><div class="container" style="text-align:center;max-width:600px"><h2 class="reveal" style="margin-bottom:1rem">Quer conhecer a Aura?</h2><p class="reveal stagger-1" style="margin:0 auto 2rem;color:var(--ink-2)">Fale com a equipe e conheça a plataforma.</p><div class="gap-row reveal stagger-2" style="justify-content:center"><a href="/#contato" class="btn btn-primary btn-lg">Falar com a equipe</a><a href="/precos" class="btn btn-secondary btn-lg">Ver planos →</a></div></div></section>
+<section style="background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(109,40,217,0.05));border-top:1px solid var(--border-2)"><div class="container" style="text-align:center;max-width:600px"><h2 class="reveal" style="margin-bottom:1rem">Quer conhecer a Aura?</h2><p class="reveal stagger-1" style="margin:0 auto 2rem;color:var(--ink-2)">Fale com a equipe e conheça a plataforma.</p><div class="gap-row reveal stagger-2" style="justify-content:center"><a href="/#contato" class="btn btn-primary btn-lg">Começar agora</a><a href="/#planos" class="btn btn-secondary btn-lg">Ver planos →</a></div></div></section>
 
-<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="/" class="nav-logo" style="display:inline-flex;margin-bottom:4px"><svg viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="44" fill="#110a2e"/><circle cx="100" cy="100" r="14" fill="#a855f7"/><circle cx="100" cy="100" r="5" fill="#fff" opacity=".95"/></svg><span class="nav-wordmark" style="font-size:18px">aura.</span></a><p>Tecnologia para negócios. Jacareí, SP.</p></div><div class="footer-col"><h4>Produto</h4><ul><li><a href="/#modulos">O que faz</a></li><li><a href="/precos">Planos</a></li></ul></div><div class="footer-col"><h4>Empresa</h4><ul><li><a href="/sobre">Sobre</a></li><li><a href="/privacidade">Privacidade</a></li></ul></div><div class="footer-col"><h4>Acesso</h4><ul><li><a href="https://app.getaura.com.br">Entrar</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Aura. Tecnologia para Negócios.</p></div></div></footer>
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="/" class="nav-logo" style="display:inline-flex;margin-bottom:4px"><svg viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="44" fill="#110a2e"/><circle cx="100" cy="100" r="14" fill="#a855f7"/><circle cx="100" cy="100" r="5" fill="#fff" opacity=".95"/></svg><span class="nav-wordmark" style="font-size:18px">aura.</span></a><p>Tecnologia para negócios que querem crescer sem complicação. Jacareí, SP.</p></div><div class="footer-col"><h4>Produto</h4><ul><li><a href="/produto">O que faz</a></li><li><a href="/#planos">Planos</a></li><li><a href="/#faq">Dúvidas</a></li></ul></div><div class="footer-col"><h4>Empresa</h4><ul><li><a href="/sobre">Sobre</a></li><li><a href="/privacidade">Privacidade</a></li><li><a href="/dpa">DPA</a></li><li><a href="mailto:contato@getaura.com.br">contato@getaura.com.br</a></li></ul></div><div class="footer-col"><h4>Acesso</h4><ul><li><a href="https://app.getaura.com.br">Entrar no app</a></li><li><a href="/#contato">Começar agora</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Aura. Tecnologia para Negócios. Jacareí, SP.</p><p style="font-size:.75rem">getaura.com.br</p></div></div></footer>
 <script src="/site.js"></script>
 </body>
 </html>
