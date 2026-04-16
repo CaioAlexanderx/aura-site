@@ -1,10 +1,7 @@
 # Redirect removed pages to home sections
-/precos /index.html#planos 301
-/precos.html /index.html#planos 301
-/segmentos /index.html#segmentos 301
-/segmentos.html /index.html#segmentos 301
-/contato /index.html#contato 301
-/contato.html /index.html#contato 301
-
-# App SPA fallback
-/app/* /app/index.html 200
+/precos /#planos 301
+/precos.html /#planos 301
+/segmentos /#segmentos 301
+/segmentos.html /#segmentos 301
+/contato /#contato 301
+/contato.html /#contato 301
