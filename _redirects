@@ -1,13 +1,10 @@
-# Aura Site + App redirects
-# IMPORTANT: Do NOT use /* /app/index.html 200 (causes infinite loop)
-# Only specific deep link paths that need SPA routing
+# Redirect removed pages to home sections
+/precos /index.html#planos 301
+/precos.html /index.html#planos 301
+/segmentos /index.html#segmentos 301
+/segmentos.html /index.html#segmentos 301
+/contato /index.html#contato 301
+/contato.html /index.html#contato 301
 
-# Expo app deep links — serve index.html for client-side routing
-/app/invite/*           /app/index.html  200
-/app/reset-password/*   /app/index.html  200
-/app/forgot-password/*  /app/index.html  200
-/app/verify-email/*     /app/index.html  200
-
-# App tabs — serve index.html for Expo Router paths (no file on disk)
-/app/(tabs)/*           /app/index.html  200
-/app/(auth)/*           /app/index.html  200
+# App SPA fallback
+/app/* /app/index.html 200
