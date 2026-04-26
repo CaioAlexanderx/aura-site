@@ -12,9 +12,7 @@ body {
   font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  cursor: none; /* custom halo cursor */
 }
-@media (max-width: 900px) { body { cursor: auto; } }
 
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
@@ -189,7 +187,7 @@ img, svg { display: block; max-width: 100%; }
 .site-nav .brand .glyph {
   width: 32px; height: 32px;
   border-radius: 50%;
-  background: url("../assets/aura-icon.png") center/cover no-repeat;
+  background: url("../assets/aura-icon.svg") center/cover no-repeat;
   box-shadow: 0 4px 14px rgba(124,58,237,0.45);
   position: relative;
   flex-shrink: 0;
@@ -377,31 +375,21 @@ img, svg { display: block; max-width: 100%; }
 }
 
 /* =========================================================
-   CURSOR HALO
+   CURSOR GLOW — soft radial background, desktop only
    ========================================================= */
-.cursor-dot, .cursor-halo {
+.cursor-glow {
   position: fixed;
   top: 0; left: 0;
   pointer-events: none;
   z-index: 9999;
+  width: 300px; height: 300px;
   border-radius: 50%;
-  transition: opacity 0.3s, transform 0.18s var(--ease);
-  mix-blend-mode: screen;
+  background: radial-gradient(circle, rgba(124,58,237,0.10) 0%, rgba(124,58,237,0.04) 40%, transparent 70%);
+  transform: translate(-150px, -150px);
   will-change: transform;
+  mix-blend-mode: screen;
 }
-.cursor-dot {
-  width: 6px; height: 6px;
-  background: #c4b5fd;
-  transform: translate(-50%, -50%);
-}
-.cursor-halo {
-  width: 36px; height: 36px;
-  border: 1.5px solid rgba(124,58,237,0.55);
-  background: radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-}
-.cursor-halo.hover { width: 64px; height: 64px; background: radial-gradient(circle, rgba(124,58,237,0.32) 0%, transparent 70%); border-color: rgba(167,139,250,0.7); }
-@media (max-width: 900px) { .cursor-dot, .cursor-halo { display: none; } }
+@media (max-width: 900px) { .cursor-glow { display: none; } }
 
 /* =========================================================
    AMBIENT — orbs and grain
@@ -679,3 +667,67 @@ img, svg { display: block; max-width: 100%; }
 .stack-xl { display: flex; flex-direction: column; gap: 40px; }
 .center { display: flex; align-items: center; justify-content: center; }
 .text-center { text-align: center; }
+
+/* =========================================================
+   MOBILE RESPONSIVE
+   ========================================================= */
+@media (max-width: 900px) {
+  /* Hero: stack vertically, hide phone cluster */
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .hero-phones { display: none !important; }
+
+  /* Section intro: stack */
+  .section-intro-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    margin-bottom: 40px !important;
+  }
+
+  /* Features: 2 cols */
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Plans preview: 1 col */
+  .plans-preview-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 440px !important;
+  }
+
+  /* Contact: stack */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  /* Reduce display heading */
+  .display { font-size: clamp(42px, 10vw, 72px); }
+}
+
+@media (max-width: 600px) {
+  /* Features: 1 col on very small */
+  .features-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Plans preview centered */
+  .plans-preview-grid {
+    max-width: 100% !important;
+  }
+
+  /* Footer: 2 col stays for mobile */
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+
+  /* Section padding reduction */
+  .section { padding: clamp(56px, 10vw, 100px) clamp(16px, 5vw, 40px); }
+
+  /* Marquee smaller text on mobile */
+  .marquee-track span { font-size: 36px !important; }
+
+  /* wa-float: hide number on mobile */
+  .wa-float .wa-num { display: none; }
+  .wa-float { padding: 14px; }
+}
