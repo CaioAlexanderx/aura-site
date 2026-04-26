@@ -1,35 +1,27 @@
 /* =========================================================
-   AURA SITE — Shared JS: cursor, reveal, type-in, nav, tilt
+   AURA SITE — Shared JS: cursor glow, reveal, type-in, nav, tilt
    ========================================================= */
 (function() {
   'use strict';
 
-  // ----- CURSOR HALO -----
-  const dot = document.createElement('div');
-  const halo = document.createElement('div');
-  dot.className = 'cursor-dot';
-  halo.className = 'cursor-halo';
-  document.body.appendChild(dot);
-  document.body.appendChild(halo);
+  // ----- CURSOR GLOW (soft radial, desktop only) -----
+  if (window.innerWidth > 900 && !('ontouchstart' in window)) {
+    var glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
 
-  let mx = -100, my = -100, hx = mx, hy = my;
-  document.addEventListener('mousemove', (e) => {
-    mx = e.clientX; my = e.clientY;
-    dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
-  });
-  function tickHalo() {
-    hx += (mx - hx) * 0.18;
-    hy += (my - hy) * 0.18;
-    halo.style.transform = `translate(${hx}px, ${hy}px) translate(-50%,-50%)`;
-    requestAnimationFrame(tickHalo);
+    var mx = -300, my = -300, gx = mx, gy = my;
+    document.addEventListener('mousemove', function(e) {
+      mx = e.clientX; my = e.clientY;
+    });
+    function tickGlow() {
+      gx += (mx - gx) * 0.08;
+      gy += (my - gy) * 0.08;
+      glow.style.transform = 'translate(' + gx + 'px, ' + gy + 'px) translate(-50%, -50%)';
+      requestAnimationFrame(tickGlow);
+    }
+    tickGlow();
   }
-  tickHalo();
-  document.addEventListener('mouseover', (e) => {
-    if (e.target.closest('a, button, .tilt, [data-cursor=hover]')) halo.classList.add('hover');
-  });
-  document.addEventListener('mouseout', (e) => {
-    if (e.target.closest('a, button, .tilt, [data-cursor=hover]')) halo.classList.remove('hover');
-  });
 
   // ----- NAV scroll state -----
   const nav = document.querySelector('.site-nav');

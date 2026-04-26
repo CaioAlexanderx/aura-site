@@ -59,7 +59,7 @@
     <div class="footer-grid">
       <div>
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-          <img src="assets/aura-icon.png" alt="Aura" style="width: 36px; height: 36px; border-radius: 9px; box-shadow: 0 6px 18px rgba(124,58,237,0.4);" />
+          <img src="assets/aura-icon.svg" alt="Aura" style="width: 36px; height: 36px; border-radius: 9px; box-shadow: 0 6px 18px rgba(124,58,237,0.4);" />
           <span style="font-family: var(--font-heading); font-size: 26px; color: white; letter-spacing: -0.02em;">Aura<span style="color: #a78bfa;">.</span></span>
         </div>
         <p style="font-size: 14px; line-height: 1.6; color: rgba(196,181,253,0.7); max-width: 280px;">Tecnologia para Negócios. Cinco verticais especialistas, uma plataforma única, feita no Brasil.</p>
@@ -94,7 +94,7 @@
       <div>
         <h5>Contato</h5>
         <a href="https://wa.me/5511956305269" target="_blank" rel="noopener">(11) 95630-5269</a>
-        <a href="index.html#contato">Formulário</a>
+        <a href="index.html#contato">Fale Conosco</a>
         <a href="https://instagram.com/aura_tecnologia" target="_blank" rel="noopener">@aura_tecnologia</a>
       </div>
     </div>
