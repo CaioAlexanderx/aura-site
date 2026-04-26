@@ -1,0 +1,7 @@
+{
+  "name": "aura-site",
+  "compatibility_date": "2026-04-26",
+  "assets": {
+    "directory": "./site"
+  }
+}
