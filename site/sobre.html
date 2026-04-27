@@ -4,12 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sobre · Aura — A tecnologia mora no detalhe.</title>
-<link rel="icon" type="image/svg+xml" href="assets/aura-icon.svg">
-<link rel="apple-touch-icon" href="assets/aura-icon.svg">
+<link rel="icon" type="image/png" href="assets/Icon.png">
+<link rel="apple-touch-icon" href="assets/Icon.png">
 <link rel="stylesheet" href="css/tokens.css?v=2">
 <link rel="stylesheet" href="css/site.css?v=2">
 <link rel="stylesheet" href="css/verticals.css?v=2">
 <style>
+  /* ---- Sobre page ---- */
   .sobre-hero {
     padding: 160px 0 100px;
     position: relative;
@@ -53,6 +54,7 @@
     position: sticky; top: 120px;
   }
 
+  /* Pillars — editorial list */
   .pillars-section {
     padding: 120px 0 140px;
     background: #0B0B0B;
@@ -116,6 +118,7 @@
     max-width: 620px;
   }
 
+  /* Numbers strip */
   .nums-section {
     padding: 80px 0;
     background: linear-gradient(180deg, #0B0B0B, #150a26);
@@ -145,6 +148,7 @@
     margin-top: 8px;
   }
 
+  /* Timeline */
   .tl-section { padding: 100px 0; background: #f4f1ec; }
   .tl-list { max-width: 760px; margin: 64px auto 0; position: relative; }
   .tl-list::before {
@@ -196,6 +200,7 @@
   }
   .tl-desc { font-size: 15px; line-height: 1.55; color: rgba(26,19,48,0.7); }
 
+  /* Founder */
   .founder-section {
     padding: 120px 0;
     background: linear-gradient(160deg, #5b21b6, #6d28d9 50%, #4c1d95);
@@ -257,6 +262,7 @@
     margin-top: 4px;
   }
 
+  /* Closing CTA */
   .closing-section {
     padding: 120px 0;
     background: #0B0B0B;
@@ -279,6 +285,7 @@
 <body data-screen-label="Sobre">
 <div data-mount="nav"></div>
 
+<!-- ============== HERO ============== -->
 <section class="section dark deep sobre-hero" data-screen-label="hero">
   <div class="orbs">
     <div class="orb violet" style="width: 700px; height: 700px; top: -100px; left: -200px;"></div>
@@ -296,6 +303,7 @@
   </div>
 </section>
 
+<!-- ============== MANIFESTO ============== -->
 <section class="sobre-manifest" data-screen-label="Manifesto">
   <div class="container">
     <div class="manifest-grid">
@@ -313,6 +321,7 @@
   </div>
 </section>
 
+<!-- ============== PILARES ============== -->
 <section class="pillars-section" data-screen-label="Pilares">
   <div class="orbs">
     <div class="orb violet" style="width: 600px; height: 600px; top: 80px; right: -150px; opacity: 0.25;"></div>
@@ -349,6 +358,7 @@
   </div>
 </section>
 
+<!-- ============== NUMBERS ============== -->
 <section class="nums-section" data-screen-label="Números">
   <div class="container">
     <div class="nums-grid">
@@ -365,13 +375,14 @@
         <div class="l">Fidelidade · multas</div>
       </div>
       <div class="num-cell" data-reveal data-reveal-delay="3">
-        <div class="n">7d</div>
-        <div class="l">Grátis · via WhatsApp</div>
+        <div class="n">14d</div>
+        <div class="l">Grátis · pelo WhatsApp</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ============== CLOSING ============== -->
 <section class="closing-section" data-screen-label="CTA Final">
   <div class="orbs">
     <div class="orb violet" style="width: 600px; height: 600px; top: -100px; left: 50%; transform: translateX(-50%);"></div>
@@ -379,7 +390,7 @@
   <div class="container">
     <div data-reveal>
       <h2>Bora <em>começar?</em></h2>
-      <p class="lead" style="max-width: 540px; margin: 0 auto 40px;">7 dias grátis. Falamos com você antes pra entender seu negócio. Sem fidelidade, sem letras miúdas.</p>
+      <p class="lead" style="max-width: 540px; margin: 0 auto 40px;">14 dias grátis. Falamos com você antes pra entender seu negócio. Sem fidelidade, sem letras miúdas.</p>
       <div class="row" style="justify-content: center;">
         <a href="https://wa.me/5511956305269?text=Quero%20conhecer%20a%20Aura" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">Falar no WhatsApp <span class="arrow">→</span></a>
         <a href="https://app.getaura.com.br/cadastro" target="_blank" rel="noopener" class="btn btn-outline btn-lg">Criar conta</a>

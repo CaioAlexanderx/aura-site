@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Planos · Aura — Escolha pelo seu tamanho.</title>
-<link rel="icon" type="image/svg+xml" href="assets/aura-icon.svg">
-<link rel="apple-touch-icon" href="assets/aura-icon.svg">
+<link rel="icon" type="image/png" href="assets/Icon.png">
+<link rel="apple-touch-icon" href="assets/Icon.png">
 <link rel="stylesheet" href="css/tokens.css?v=2">
 <link rel="stylesheet" href="css/site.css?v=2">
 <link rel="stylesheet" href="css/verticals.css?v=2">
@@ -14,7 +14,7 @@
   .plan-hero { padding: 140px 0 80px; position: relative; overflow: hidden; }
   .plan-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 16px;
     margin-top: 48px;
   }
@@ -160,6 +160,7 @@
     white-space: nowrap;
   }
 
+  /* Vertical picker for Negócio Vertical / Expansão Vertical */
   .v-picker {
     margin-top: 20px;
     padding: 14px;
@@ -202,6 +203,7 @@
     margin-left: 2px;
   }
 
+  /* Compare table */
   .compare-section { padding: 100px 0; background: #faf8f4; }
   .compare-table {
     width: 100%;
@@ -237,13 +239,13 @@
     background: #f5f0ea;
     font-weight: 400;
   }
-  .compare-table tbody td { color: #1a1330; }
   .compare-table td:first-child { color: #2a1f48; font-weight: 500; }
   .compare-table td.feat-yes::before { content: "●"; color: #7c3aed; font-size: 14px; }
   .compare-table td.feat-no::before  { content: "—"; color: #c4baee; font-weight: 700; }
   .compare-table td { text-align: center; }
   .compare-table td:first-child { text-align: left; }
 
+  /* FAQ */
   .faq-section { padding: 100px 0; background: #0B0B0B; color: white; position: relative; overflow: hidden; }
   .faq-list { max-width: 760px; margin: 48px auto 0; }
   .faq-item {
@@ -293,23 +295,11 @@
     <div class="text-center stack-md" style="max-width: 760px; margin: 0 auto 32px;" data-reveal>
       <div class="eyebrow center">Planos · transparente</div>
       <h1 class="display" data-typein>Pague pelo que <em>usa.</em><br>Cresça quando <em>quiser.</em></h1>
-      <p class="lead" style="margin: 0 auto;">Três planos. A camada vertical do seu setor — Odonto, Beauty, Food ou Pet — já está incluída no Negócio e no Expansão. Sem fidelidade. Sem letras miúdas.</p>
+      <p class="lead" style="margin: 0 auto;">Cinco planos. Os <strong>Verticais</strong> ativam a camada do seu setor — Odonto, Beauty, Food ou Pet. Sem fidelidade. Sem letras miúdas.</p>
     </div>
 
-    <div style="display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 32px;" data-reveal>
-      <span id="lbl-monthly" style="font-size: 15px; color: #fff; font-weight: 600; transition: color 0.2s;">Mensal</span>
-      <button id="billing-toggle" onclick="toggleBilling()" aria-pressed="false"
-        style="position: relative; width: 52px; height: 28px; border-radius: 999px; background: rgba(124,58,237,0.3); border: 1px solid rgba(124,58,237,0.5); cursor: pointer; transition: background 0.25s; flex-shrink: 0;">
-        <span id="toggle-thumb"
-          style="position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: white; transition: transform 0.25s; box-shadow: 0 2px 6px rgba(0,0,0,0.3); display: block;"></span>
-      </button>
-      <span id="lbl-annual" style="font-size: 15px; color: rgba(220,215,255,0.6); font-weight: 600; transition: color 0.2s; display: flex; align-items: center; gap: 6px;">
-        Anual
-        <span style="display: inline-flex; align-items: center; padding: 2px 8px; background: rgba(251,191,36,0.18); color: #fbbf24; border: 1px solid rgba(251,191,36,0.35); border-radius: 999px; font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 0.08em;">−20%</span>
-      </span>
-    </div>
-
-    <div class="plan-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="plan-grid">
+      <!-- Essencial -->
       <div class="plan-card" id="essencial" data-reveal>
         <div class="plan-name">Essencial</div>
         <div class="plan-price"><span class="amt">R$ 89</span><span class="per">/mês</span></div>
@@ -322,20 +312,14 @@
           <li>1 usuário</li>
           <li>Suporte por chat</li>
         </ul>
-        <a href="https://app.getaura.com.br/cadastro" target="_blank" rel="noopener" class="plan-cta">Criar conta grátis</a>
+        <a href="https://wa.me/5511956305269?text=Quero%20conhecer%20o%20plano%20Essencial%20da%20Aura" target="_blank" rel="noopener" class="plan-cta">Falar no WhatsApp</a>
       </div>
 
-      <div class="plan-card featured" id="negocio" data-reveal data-reveal-delay="1">
-        <div class="plan-popular">Mais escolhido</div>
-        <div class="plan-vertical-dots">
-          <span style="background:#06B6D4; color:#06B6D4;"></span>
-          <span style="background:#F472B6; color:#F472B6;"></span>
-          <span style="background:#F97316; color:#F97316;"></span>
-          <span style="background:#10B981; color:#10B981;"></span>
-        </div>
+      <!-- Negócio -->
+      <div class="plan-card" id="negocio" data-reveal data-reveal-delay="1">
         <div class="plan-name">Negócio</div>
         <div class="plan-price"><span class="amt">R$ 169</span><span class="per">/mês</span></div>
-        <div class="plan-tagline">Operação completa + camada do seu setor.</div>
+        <div class="plan-tagline">Operação completa, sem mais & menos.</div>
         <ul class="plan-feat-list">
           <li>Tudo do Essencial</li>
           <li>Financeiro completo (DRE, fluxo)</li>
@@ -344,7 +328,29 @@
           <li>Boletos, Pix e cartão (gateway)</li>
           <li>Até 3 usuários</li>
           <li>Seu Analista (IA) — básico</li>
-          <li>Camada vertical do seu setor inclusa</li>
+        </ul>
+        <a href="https://wa.me/5511956305269?text=Quero%20conhecer%20o%20plano%20Neg%C3%B3cio%20da%20Aura" target="_blank" rel="noopener" class="plan-cta">Falar no WhatsApp</a>
+      </div>
+
+      <!-- Negócio Vertical — featured -->
+      <div class="plan-card featured" id="negocio-vertical" data-reveal data-reveal-delay="2">
+        <div class="plan-popular">Mais escolhido</div>
+        <div class="plan-vertical-dots">
+          <span style="background:#06B6D4; color:#06B6D4;"></span>
+          <span style="background:#F472B6; color:#F472B6;"></span>
+          <span style="background:#F97316; color:#F97316;"></span>
+          <span style="background:#10B981; color:#10B981;"></span>
+        </div>
+        <div class="plan-name">Negócio · Vertical</div>
+        <div class="plan-price"><span class="amt">R$ 169</span><span class="per">/mês</span></div>
+        <div class="plan-tagline">Tudo do Negócio + camada do seu setor.</div>
+        <ul class="plan-feat-list">
+          <li>Tudo do plano Negócio</li>
+          <li>Camada vertical especialista</li>
+          <li>Fluxos, telas e relatórios do setor</li>
+          <li>Tom de voz e identidade próprios</li>
+          <li>IA com contexto do seu nicho</li>
+          <li>Até 3 usuários</li>
         </ul>
         <div class="v-picker">
           <div class="v-picker-title">Escolha sua vertical</div>
@@ -355,40 +361,56 @@
             <button onclick="window.location='pet.html'"><span class="vd" style="background:#10B981;"></span>Pet <span class="em-breve">EM BREVE</span></button>
           </div>
         </div>
-        <a href="https://app.getaura.com.br/cadastro" target="_blank" rel="noopener" class="plan-cta">Criar conta grátis</a>
+        <a href="https://wa.me/5511956305269?text=Quero%20assinar%20Aura%20Neg%C3%B3cio%20Vertical" target="_blank" rel="noopener" class="plan-cta">Falar no WhatsApp</a>
       </div>
 
-      <div class="plan-card" id="expansao" data-reveal data-reveal-delay="2">
+      <!-- Expansão -->
+      <div class="plan-card" id="expansao" data-reveal data-reveal-delay="3">
+        <div class="plan-name">Expansão</div>
+        <div class="plan-price"><span class="amt">R$ 269</span><span class="per">/mês</span></div>
+        <div class="plan-tagline">Multi-loja, IA avançada, integrações.</div>
+        <ul class="plan-feat-list">
+          <li>Tudo do Negócio</li>
+          <li>Multi-loja (até 5 unidades)</li>
+          <li>Centro de custos e DRE consolidado</li>
+          <li>API + integrações ilimitadas</li>
+          <li>IA avançada com automações</li>
+          <li>Usuários ilimitados</li>
+          <li>Suporte prioritário</li>
+        </ul>
+        <a href="https://wa.me/5511956305269?text=Quero%20conhecer%20o%20plano%20Expans%C3%A3o%20da%20Aura" target="_blank" rel="noopener" class="plan-cta">Falar no WhatsApp</a>
+      </div>
+
+      <!-- Expansão Vertical -->
+      <div class="plan-card" id="expansao-vertical" data-reveal data-reveal-delay="4">
         <div class="plan-vertical-dots">
           <span style="background:#06B6D4; color:#06B6D4;"></span>
           <span style="background:#F472B6; color:#F472B6;"></span>
           <span style="background:#F97316; color:#F97316;"></span>
           <span style="background:#10B981; color:#10B981;"></span>
         </div>
-        <div class="plan-name">Expansão</div>
+        <div class="plan-name">Expansão · Vertical</div>
         <div class="plan-price"><span class="amt">R$ 269</span><span class="per">/mês</span></div>
-        <div class="plan-tagline">Hub social, automações e agentes de IA + vertical completa.</div>
+        <div class="plan-tagline">Tudo do Expansão + camada vertical completa.</div>
         <ul class="plan-feat-list">
-          <li>Tudo do Negócio</li>
-          <li>Hub de redes sociais integrado</li>
-          <li>Automações de marketing e atendimento</li>
-          <li>Agentes de IA dedicados ao seu negócio</li>
-          <li>Multi-loja (até 5 unidades)</li>
-          <li>Centro de custos e DRE consolidado</li>
-          <li>API + integrações ilimitadas</li>
-          <li>Usuários ilimitados · Suporte prioritário</li>
-          <li>Camada vertical completa inclusa</li>
+          <li>Tudo do plano Expansão</li>
+          <li>Camada vertical completa</li>
+          <li>Multi-loja com fluxos verticais</li>
+          <li>BI e dashboards do setor</li>
+          <li>Treinamento dedicado</li>
+          <li>Customer Success próprio</li>
         </ul>
-        <a href="https://app.getaura.com.br/cadastro" target="_blank" rel="noopener" class="plan-cta">Criar conta grátis</a>
+        <a href="https://wa.me/5511956305269?text=Quero%20conhecer%20o%20plano%20Expans%C3%A3o%20Vertical%20da%20Aura" target="_blank" rel="noopener" class="plan-cta">Falar no WhatsApp</a>
       </div>
     </div>
 
     <div class="text-center" style="margin-top: 40px; font-size: 13px; color: rgba(220,215,255,0.55);" data-reveal>
-      Todos os planos: <a href="https://wa.me/5511956305269?text=Quero%20come%C3%A7ar%20o%20per%C3%ADodo%20gr%C3%A1tis%20na%20Aura" target="_blank" rel="noopener" style="color: #a78bfa; font-weight: 600;">7 dias grátis via WhatsApp</a> · onboarding humano · cancele quando quiser.
+      Todos os planos: 14 dias grátis · onboarding humano · cancele quando quiser.
     </div>
   </div>
 </section>
 
+<!-- ============== COMPARE ============== -->
 <section class="compare-section" data-screen-label="Comparar">
   <div class="container">
     <div class="text-center stack-md" style="max-width: 720px; margin: 0 auto 32px;" data-reveal>
@@ -402,37 +424,40 @@
           <tr>
             <th>Recurso</th>
             <th>Essencial</th>
-            <th class="featured">Negócio</th>
+            <th>Negócio</th>
+            <th class="featured">Negócio · Vertical</th>
             <th>Expansão</th>
+            <th>Expansão · Vertical</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="cat"><td colspan="6">PDV &amp; vendas</td></tr>
-          <tr><td>Frente de caixa (PDV)</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Boletos · Pix · cartão</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>NF-e · NFC-e · SAT</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr class="cat"><td colspan="6">PDV & vendas</td></tr>
+          <tr><td>Frente de caixa (PDV)</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>Boletos · Pix · cartão</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>NF-e · NFC-e · SAT</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
 
-          <tr class="cat"><td colspan="4">Financeiro</td></tr>
-          <tr><td>Caixa diário</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Fluxo de caixa · DRE</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Centro de custos</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
+          <tr class="cat"><td colspan="6">Financeiro</td></tr>
+          <tr><td>Caixa diário</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>Fluxo de caixa · DRE</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>Centro de custos</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
 
-          <tr class="cat"><td colspan="4">Camada vertical</td></tr>
-          <tr><td>Camada vertical do setor</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Hub social + automações</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
-          <tr><td>Agentes de IA</td><td class="feat-no"></td><td>Básico</td><td>Avançado</td></tr>
+          <tr class="cat"><td colspan="6">Camada vertical</td></tr>
+          <tr><td>Telas e fluxos do setor</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
+          <tr><td>Relatórios verticais (BI)</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
+          <tr><td>IA com contexto do nicho</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
 
-          <tr class="cat"><td colspan="4">Escala</td></tr>
-          <tr><td>Usuários</td><td>1</td><td>3</td><td>Ilimitado</td></tr>
-          <tr><td>Multi-loja</td><td class="feat-no"></td><td class="feat-no"></td><td>5 lojas</td></tr>
-          <tr><td>API · integrações</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
-          <tr><td>Customer Success</td><td class="feat-no"></td><td class="feat-no"></td><td>Prioritário</td></tr>
+          <tr class="cat"><td colspan="6">Escala</td></tr>
+          <tr><td>Usuários</td><td>1</td><td>3</td><td>3</td><td>Ilimitado</td><td>Ilimitado</td></tr>
+          <tr><td>Multi-loja</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-no"></td><td>5 lojas</td><td>5 lojas</td></tr>
+          <tr><td>API · integrações</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>Customer Success</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-no"></td><td>Compartilhado</td><td>Dedicado</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 </section>
 
+<!-- ============== FAQ ============== -->
 <section class="faq-section" data-screen-label="FAQ">
   <div class="orbs">
     <div class="orb violet" style="width: 500px; height: 500px; top: 0; left: -150px; opacity: 0.3;"></div>
@@ -453,8 +478,8 @@
         <div class="faq-a">Não. A Aura é mensal, sem fidelidade. Cancela quando quiser, levando seus dados em export padrão.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q">O que muda entre Negócio e Expansão?<span class="ic">+</span></div>
-        <div class="faq-a">Ambos incluem a camada vertical do seu setor. O Expansão acrescenta hub de redes sociais, automações de marketing, agentes de IA avançados, multi-loja e API ilimitada — ideal pra quem quer escalar.</div>
+        <div class="faq-q">O que muda entre Negócio e Negócio · Vertical?<span class="ic">+</span></div>
+        <div class="faq-a">O preço é o mesmo. Negócio é a operação base — multipropósito. Negócio · Vertical liga a camada especialista do seu setor (Odonto, Beauty, Food ou Pet) — telas, fluxos, relatórios e IA com contexto do nicho.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Quando ficam prontos os planos Beauty e Pet?<span class="ic">+</span></div>
@@ -462,7 +487,7 @@
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Como funciona o teste grátis?<span class="ic">+</span></div>
-        <div class="faq-a">7 dias com acesso completo. A gente faz uma conversa rápida pelo WhatsApp pra entender seu negócio antes de liberar o teste — assim, configuramos do jeito certo desde o primeiro dia. Se não te servir, é só não assinar.</div>
+        <div class="faq-a">14 dias com acesso completo. A gente faz uma conversa rápida pelo WhatsApp pra entender seu negócio antes de liberar o teste — assim, configuramos do jeito certo desde o primeiro dia. Se não te servir, é só não assinar.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Atendem em todo o Brasil?<span class="ic">+</span></div>
@@ -488,33 +513,5 @@
 <div data-mount="wa"></div>
 <script src="js/chrome.js"></script>
 <script src="js/site.js"></script>
-<script>
-var billingMode = 'monthly';
-var PRICES = {
-  essencial: { monthly: 'R$ 89', annual: 'R$ 71' },
-  negocio:   { monthly: 'R$ 169', annual: 'R$ 135' },
-  expansao:  { monthly: 'R$ 269', annual: 'R$ 215' }
-};
-function toggleBilling() {
-  billingMode = (billingMode === 'monthly') ? 'annual' : 'monthly';
-  var isAnnual = billingMode === 'annual';
-  var thumb = document.getElementById('toggle-thumb');
-  var btn   = document.getElementById('billing-toggle');
-  var lblM  = document.getElementById('lbl-monthly');
-  var lblA  = document.getElementById('lbl-annual');
-  if (thumb) thumb.style.transform = isAnnual ? 'translateX(24px)' : 'translateX(0)';
-  if (btn)   { btn.setAttribute('aria-pressed', isAnnual); btn.style.background = isAnnual ? 'rgba(124,58,237,0.65)' : 'rgba(124,58,237,0.3)'; }
-  if (lblM)  lblM.style.color = isAnnual ? 'rgba(220,215,255,0.5)' : '#fff';
-  if (lblA)  lblA.style.color = isAnnual ? '#fff' : 'rgba(220,215,255,0.5)';
-  Object.keys(PRICES).forEach(function(plan) {
-    var card = document.getElementById(plan);
-    if (!card) return;
-    var amtEl = card.querySelector('.amt');
-    var perEl = card.querySelector('.per');
-    if (amtEl) amtEl.textContent = PRICES[plan][billingMode];
-    if (perEl) perEl.textContent = isAnnual ? '/mês (cobrado anualmente)' : '/mês';
-  });
-}
-</script>
 </body>
 </html>
