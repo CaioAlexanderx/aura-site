@@ -90,11 +90,11 @@ p { color: var(--ink-2); font-size: 1.0625rem; max-width: 560px; }
 .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-hamburger.open span:nth-child(2) { opacity: 0; }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.nav-mobile { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(5,5,16,0.97); backdrop-filter: blur(20px); z-index: 99; padding: 80px 24px 24px; animation: fadeIn var(--dur) var(--ease); }
+.nav-mobile { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(5,5,16,0.97); backdrop-filter: blur(20px); z-index: 99; padding: 80px 24px 24px; animation: fadeIn var(--dur) var(--ease); overflow-y: auto; }
 .nav-mobile.open { display: flex; flex-direction: column; }
 .nav-mobile ul { display: flex; flex-direction: column; margin-bottom: 24px; }
 .nav-mobile ul li a { display: flex; align-items: center; padding: 18px 0; font-size: 1.125rem; font-weight: 500; color: var(--ink-2); border-bottom: 1px solid var(--border); min-height: 56px; }
-.nav-mobile-ctas { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+.nav-mobile-ctas { display: flex; flex-direction: column; gap: 10px; margin-top: auto; padding-bottom: max(24px, env(safe-area-inset-bottom, 24px)); }
 .nav-mobile-ctas .btn { width: 100%; justify-content: center; min-height: 52px; }
 
 .footer { background: var(--bg-2); border-top: 1px solid var(--border); padding: 64px 0 32px; }
@@ -136,38 +136,98 @@ p { color: var(--ink-2); font-size: 1.0625rem; max-width: 560px; }
 .text-center { text-align: center; }
 .gap-row { display: flex; gap: 12px; flex-wrap: wrap; }
 
+/* ============================================================
+   MOBILE — < 768px (mobile + tablet retrato)
+   Reforco abrangente em 06/05/2026:
+   - Tipografia menor pra caber em 375px
+   - Sections padding reduzido
+   - Cards padding reduzido (1.25rem em vez de 2rem)
+   - CTA stacks vertical 100%
+   ============================================================ */
 @media (max-width: 768px) {
-  h1 { font-size: clamp(1.875rem, 8vw, 2.5rem); }
-  h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
-  section { padding: 56px 0; }
+  h1 { font-size: clamp(1.875rem, 8vw, 2.5rem); line-height: 1.1; }
+  h2 { font-size: clamp(1.5rem, 6vw, 2rem); line-height: 1.2; }
+  h3 { font-size: 1.25rem; }
+  p { font-size: 1rem; line-height: 1.6; }
+
+  section { padding: 48px 0; }
   .section-header { margin-bottom: 2rem; }
+
+  .container { padding: 0 20px; }
+
+  /* Cards: menos padding pra dar mais espaco ao conteudo */
+  .glass-card, .card { padding: 1.25rem; border-radius: var(--radius-lg); }
+
+  /* CTAs em linha viram coluna full-width */
   .gap-row { flex-direction: column; }
   .gap-row .btn { width: 100%; justify-content: center; }
-}
-@media (hover: none) and (pointer: coarse) {
-  .glass-card:hover, .card:hover, .bento-card:hover, .plano:hover { transform: none; box-shadow: none; }
-  .cursor-glow { display: none; }
-}
-@media (max-width: 768px) {
+
+  /* Tap targets confortaveis */
   a, button { min-height: 44px; }
   .btn { min-height: 48px; }
-  .float-btn { bottom: 16px; right: 16px; left: 16px; justify-content: center; min-height: 48px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+  .btn-lg { min-height: 52px; padding: 14px 24px; }
+
+  /* Float btn full-width */
+  .float-btn { bottom: calc(16px + env(safe-area-inset-bottom, 0px)); right: 16px; left: 16px; justify-content: center; min-height: 48px; }
+
+  /* Footer: tap targets + padding */
+  .footer { padding: 48px 0 24px; }
+  .footer-grid { gap: 32px; margin-bottom: 32px; }
   .footer-col ul li a { min-height: 44px; padding: 6px 0; }
-  .form-group input, .form-group select, .form-group textarea { font-size: 16px; }
+  .footer-bottom { gap: 12px; padding-top: 20px; text-align: center; }
+
+  /* Forms: input maior pra evitar zoom no iOS (16px previne autozoom) */
+  .form-group input, .form-group select, .form-group textarea { font-size: 16px; min-height: 50px; }
+  .form-group label { font-size: 0.875rem; margin-bottom: 8px; }
 }
-@media (max-width: 380px) {
+
+/* ============================================================
+   SMALL MOBILE — < 480px (375/360/320)
+   ============================================================ */
+@media (max-width: 480px) {
   .container { padding: 0 16px; }
-  section { padding: 44px 0; }
-  h1 { font-size: 1.75rem; }
-  .nav-inner { padding: 12px 16px; }
+  section { padding: 40px 0; }
+  .section-header { margin-bottom: 1.5rem; }
+  .glass-card, .card { padding: 1rem; }
+  .btn { font-size: 0.875rem; }
+  .btn-lg { font-size: 0.9375rem; }
+  .nav-inner { padding: 12px 16px; gap: 12px; }
+  .nav-wordmark { font-size: 1.25rem; }
+  h1 { font-size: 1.875rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.125rem; }
 }
+
+/* ============================================================
+   ULTRA NARROW — < 360px (iphone SE 1a gen, etc)
+   ============================================================ */
+@media (max-width: 360px) {
+  .container { padding: 0 14px; }
+  section { padding: 32px 0; }
+  h1 { font-size: 1.75rem; }
+  .nav-wordmark { font-size: 1.125rem; }
+  .glass-card, .card { padding: 0.875rem; }
+}
+
+/* Touch devices — desliga hover pra evitar sticky states */
+@media (hover: none) and (pointer: coarse) {
+  .glass-card:hover, .card:hover, .bento-card:hover, .plano:hover,
+  .seg-card:hover, .dor-card:hover, .diff-card:hover, .stat-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .cursor-glow { display: none; }
+}
+
 @supports (padding: env(safe-area-inset-bottom)) {
   .footer { padding-bottom: calc(32px + env(safe-area-inset-bottom)); }
 }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   .reveal, .reveal-scale { opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
   .cursor-glow { display: none; }
 }
+
 @media print { .nav, .float-btn, .nav-mobile { display: none !important; } body { background: #fff; color: #111; } }
