@@ -1,7 +1,17 @@
-# Redirect removed pages to home sections
-/precos /#planos 301
-/precos.html /#planos 301
-/segmentos /#segmentos 301
-/segmentos.html /#segmentos 301
-/contato /#contato 301
-/contato.html /#contato 301
+# 12/05/2026: reativando paginas dedicadas. Antes os redirects matavam
+# /precos, /segmentos, /contato jogando pra #ancoras do index. Mas o
+# sitemap.xml ja apontava pra essas URLs limpas e a UX ficava confusa
+# (clica no link da nav → vai pra ancora, mas link direto do Google
+# tambem caia em ancora). Agora as paginas dedicadas voltam ao ar.
+#
+# Cloudflare Pages serve precos.html quando GET /precos. Mantemos
+# apenas o redirect .html → URL limpa pra canonical/SEO.
+
+# Forcar URL limpa (sem .html)
+/precos.html /precos 301
+/segmentos.html /segmentos 301
+/contato.html /contato 301
+/produto.html /produto 301
+/sobre.html /sobre 301
+/privacidade.html /privacidade 301
+/dpa.html /dpa 301
