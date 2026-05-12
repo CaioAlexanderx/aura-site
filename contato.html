@@ -6,6 +6,7 @@
   <title>Contato — Aura. Tecnologia para Negócios</title>
   <meta name="description" content="Fale com a equipe Aura. Solicite uma demonstração ou tire dúvidas pelo WhatsApp.">
   <link rel="canonical" href="https://getaura.com.br/contato">
+  <link rel="icon" href="/Icon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -31,11 +32,11 @@
     .demo-link span{font-size:2rem}
     .demo-link div strong{display:block;color:var(--ink);font-size:.9375rem}
     .demo-link div p{font-size:.8125rem;color:var(--ink-3);margin:0}
-    @media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+    @media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:24px}.page-hero{padding:100px 0 24px}.form-card{padding:24px}}
   </style>
 </head>
 <body>
-<nav class="nav"><div class="nav-inner"><a href="/" class="nav-logo"><svg viewBox="0 0 200 200" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="44" fill="#110a2e"/><circle cx="100" cy="100" r="14" fill="#a855f7"/><circle cx="100" cy="100" r="5" fill="#fff" opacity=".95"/></svg><span class="nav-wordmark">Aura.</span></a><div class="nav-links"><a href="/#modulos">Produto</a><a href="/precos">Planos</a><a href="/#faq">Dúvidas</a></div><div class="nav-ctas"><a href="https://app.getaura.com.br" class="btn btn-secondary btn-sm">Entrar</a></div><button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div><div class="nav-mobile" id="nav-mobile"><ul><li><a href="/#modulos">Produto</a></li><li><a href="/precos">Planos</a></li></ul><div class="nav-mobile-ctas"><a href="https://app.getaura.com.br" class="btn btn-secondary btn-lg">Entrar</a></div></div></nav>
+<nav class="nav"><div class="nav-inner"><a href="/" class="nav-logo"><img src="/Icon.png" width="32" height="32" alt="Aura" style="border-radius:8px"><span class="nav-wordmark">Aura.</span></a><div class="nav-links"><a href="/produto">Produto</a><a href="/segmentos">Segmentos</a><a href="/precos">Planos</a><a href="/#faq">Dúvidas</a></div><div class="nav-ctas"><a href="https://app.getaura.com.br" class="btn btn-secondary btn-sm">Entrar</a></div><button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div><div class="nav-mobile" id="nav-mobile"><ul><li><a href="/produto">Produto</a></li><li><a href="/segmentos">Segmentos</a></li><li><a href="/precos">Planos</a></li></ul><div class="nav-mobile-ctas"><a href="https://app.getaura.com.br" class="btn btn-secondary btn-lg">Entrar</a></div></div></nav>
 
 <section class="page-hero"><div class="container"><span class="section-badge">Contato</span><h1 class="reveal">Fale com a equipe Aura</h1><p class="reveal stagger-1" style="margin:0 auto">Tire suas dúvidas, solicite uma demonstração ou explore o app por conta própria.</p></div></section>
 
@@ -46,9 +47,31 @@
     <p>Queremos entender o seu negócio antes de oferecer qualquer plano. Mande uma mensagem e alguém da equipe responde em minutos.</p>
     <div class="contact-channels">
       <a href="mailto:contato@getaura.com.br" class="channel"><span class="channel-icon">✉️</span><div class="channel-text"><strong>E-mail</strong><span>contato@getaura.com.br</span></div></a>
+      <a href="https://wa.me/5512991234567" target="_blank" rel="noopener" class="channel"><span class="channel-icon">💬</span><div class="channel-text"><strong>WhatsApp</strong><span>Resposta em minutos</span></div></a>
       <div class="channel"><span class="channel-icon">📍</span><div class="channel-text"><strong>Localização</strong><span>Jacareí, SP — Vale do Paraíba</span></div></div>
     </div>
+    <a href="https://app.getaura.com.br" class="demo-link"><span>🚀</span><div><strong>Já tem conta?</strong><p>Entre direto no app e gerencie seu negócio.</p></div></a>
+  </div>
+
+  <div class="form-card reveal stagger-2">
+    <h3>Solicite uma demonstração</h3>
+    <p>Deixe seu contato e a gente te liga pelo WhatsApp em minutos.</p>
+    <form id="contactForm" action="/api/contact" method="POST">
+      <div class="form-group"><label>Seu nome</label><input type="text" name="nome" placeholder="Como você se chama?" required autocomplete="name"></div>
+      <div class="form-group"><label>WhatsApp</label><input type="tel" name="whatsapp" placeholder="(12) 99999-9999" required autocomplete="tel" inputmode="tel"></div>
+      <div class="form-group"><label>Tipo de negócio</label><select name="tipo"><option value="">Selecione...</option><option>MEI</option><option>Microempresa</option><option>Ainda nao tenho CNPJ</option></select></div>
+      <div class="form-group"><label>Sua dúvida (opcional)</label><textarea name="mensagem" rows="4" placeholder="O que você gostaria de saber?"></textarea></div>
+      <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true"><label>Empresa (deixe em branco)<input type="text" name="_empresa" tabindex="-1" autocomplete="off"></label></div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Quero saber mais →</button>
+      <p style="font-size:.6875rem;color:var(--ink-3);text-align:center;margin-top:10px">Seus dados não serão compartilhados.</p>
+    </form>
+    <div class="form-success" id="contactSuccess" style="display:none;text-align:center;padding:32px 0"><div style="font-size:2.5rem;margin-bottom:10px">🎉</div><strong>Mensagem enviada!</strong><br><span style="font-size:.875rem;color:var(--ink-2)">Entraremos em contato pelo WhatsApp em minutos.</span></div>
+  </div>
+</div>
+</div></section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="/" class="nav-logo" style="display:inline-flex;margin-bottom:4px"><img src="/Icon.png" width="28" height="28" alt="Aura" style="border-radius:6px"><span class="nav-wordmark" style="font-size:18px">Aura.</span></a><p>Tecnologia para negócios. Jacareí, SP.</p></div><div class="footer-col"><h4>Produto</h4><ul><li><a href="/produto">O que faz</a></li><li><a href="/precos">Planos</a></li><li><a href="/segmentos">Segmentos</a></li></ul></div><div class="footer-col"><h4>Empresa</h4><ul><li><a href="/sobre">Sobre</a></li><li><a href="/privacidade">Privacidade</a></li><li><a href="/dpa">DPA</a></li></ul></div><div class="footer-col"><h4>Acesso</h4><ul><li><a href="https://app.getaura.com.br">Entrar</a></li><li><a href="mailto:contato@getaura.com.br">contato@getaura.com.br</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Aura. Tecnologia para Negócios.</p></div></div></footer>
 <script src="/site.js"></script>
-<script>setupForm('contactForm','contactSuccess');</script>
+<script>document.addEventListener('DOMContentLoaded',function(){setupForm('contactForm','contactSuccess');});</script>
 </body>
 </html>

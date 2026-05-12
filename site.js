@@ -1,5 +1,5 @@
 /* ============================================================
-   AURA. — Site JS v4 — Glassmorphism + WOW
+   AURA. — Site JS v5 — Glassmorphism + WOW + Form async (12/05)
    ============================================================ */
 
 /* ── Navbar scroll ───────────────────────────────────────── */
@@ -122,15 +122,59 @@ function toggleFaq(btn){
 }
 
 /* ── Form submit ─────────────────────────────────────────── */
+// 12/05/2026: trata response JSON do Cloudflare Pages Function /api/contact.
+// Mostra mensagem de erro amigavel se backend devolver 4xx/5xx. Desabilita
+// botao durante submit pra evitar duplo envio. Compativel com forms legados
+// que ainda apontam pra Formspree (so checa response.ok).
 function setupForm(formId, successId){
   var form = document.getElementById(formId);
   var success = document.getElementById(successId);
   if(!form) return;
+
+  // Cria/encontra elemento de erro inline (apos o botao submit)
+  var errorEl = form.querySelector('.form-error-inline');
+  if(!errorEl){
+    errorEl = document.createElement('div');
+    errorEl.className = 'form-error-inline';
+    errorEl.style.cssText = 'display:none;margin-top:10px;padding:10px 12px;border-radius:8px;background:rgba(248,113,113,0.12);border:1px solid rgba(248,113,113,0.3);color:#f87171;font-size:.8125rem;text-align:center';
+    form.appendChild(errorEl);
+  }
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    var originalText = btn ? btn.innerHTML : '';
+    if(btn){ btn.disabled = true; btn.innerHTML = 'Enviando...'; }
+    errorEl.style.display = 'none';
+
     var data = new FormData(form);
-    fetch(form.action, {method:'POST', body:data, headers:{'Accept':'application/json'}})
-    .then(function(r){ if(r.ok){ form.style.display='none'; if(success) success.style.display='block'; }})
-    .catch(function(){});
+    var action = form.action || '/api/contact';
+
+    fetch(action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(r){
+      return r.json().catch(function(){ return { ok: r.ok }; }).then(function(j){
+        return { status: r.status, ok: r.ok, body: j };
+      });
+    })
+    .then(function(result){
+      if(result.ok || result.body.ok){
+        form.style.display = 'none';
+        if(success) success.style.display = 'block';
+      } else {
+        var msg = (result.body && result.body.error) || 'Nao foi possivel enviar agora. Tente novamente ou nos chame no WhatsApp.';
+        errorEl.textContent = msg;
+        errorEl.style.display = 'block';
+        if(btn){ btn.disabled = false; btn.innerHTML = originalText; }
+      }
+    })
+    .catch(function(err){
+      errorEl.textContent = 'Sem conexao com o servidor. Tente novamente ou nos chame no WhatsApp.';
+      errorEl.style.display = 'block';
+      if(btn){ btn.disabled = false; btn.innerHTML = originalText; }
+    });
   });
 }
