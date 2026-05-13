@@ -3,3 +3,8 @@ node_modules
 .wrangler
 wrangler.jsonc
 *.log
+site
+docs
+scripts
+app
+README.md
