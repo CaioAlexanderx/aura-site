@@ -1,17 +1,28 @@
 # 12/05/2026: reativando paginas dedicadas. Antes os redirects matavam
 # /precos, /segmentos, /contato jogando pra #ancoras do index. Mas o
 # sitemap.xml ja apontava pra essas URLs limpas e a UX ficava confusa
-# (clica no link da nav → vai pra ancora, mas link direto do Google
+# (clica no link da nav -> vai pra ancora, mas link direto do Google
 # tambem caia em ancora). Agora as paginas dedicadas voltam ao ar.
 #
 # Cloudflare Pages serve precos.html quando GET /precos. Mantemos
-# apenas o redirect .html → URL limpa pra canonical/SEO.
+# apenas o redirect .html -> URL limpa pra canonical/SEO.
+#
+# 13/05/2026: design system completo restaurado. /planos eh o novo
+# canonical (mantemos /precos como alias 301). Adicionadas paginas
+# dedicadas por vertical: /negocio, /odonto, /food, /beauty, /pet.
 
 # Forcar URL limpa (sem .html)
-/precos.html /precos 301
+/precos.html /planos 301
+/precos /planos 301
+/planos.html /planos 301
 /segmentos.html /segmentos 301
 /contato.html /contato 301
 /produto.html /produto 301
 /sobre.html /sobre 301
 /privacidade.html /privacidade 301
 /dpa.html /dpa 301
+/negocio.html /negocio 301
+/odonto.html /odonto 301
+/food.html /food 301
+/beauty.html /beauty 301
+/pet.html /pet 301
