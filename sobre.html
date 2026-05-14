@@ -1,67 +1,290 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre — Aura. Tecnologia para Negócios</title>
-  <meta name="description" content="Conheça a história da Aura. Tecnologia feita para pequenos negócios brasileiros.">
-  <link rel="canonical" href="https://getaura.com.br/sobre">
-  <link rel="icon" href="/Icon.png" type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/site.css">
-  <style>
-    .page-hero{padding:140px 0 60px;text-align:center}
-    .story{max-width:680px;margin:0 auto}
-    .story p{font-size:1.0625rem;color:var(--ink-2);line-height:1.85;margin-bottom:1.5rem;max-width:100%}
-    .story h2{font-family:var(--font-display);font-size:1.75rem;font-weight:700;margin:3rem 0 1rem}
-    .story .highlight{background:var(--bg-glass);backdrop-filter:blur(12px);border:1px solid var(--border-2);border-left:3px solid var(--violet);padding:20px 24px;border-radius:0 var(--radius-md) var(--radius-md) 0;margin:2rem 0}
-    .story .highlight p{color:var(--ink);font-weight:500;margin-bottom:0}
-    .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:3rem 0}
-    .value-card{background:var(--bg-glass);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;text-align:center;transition:all var(--dur) var(--ease);position:relative;overflow:hidden}
-    .value-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,0.3),transparent)}
-    .value-card:hover{border-color:var(--border-3);transform:translateY(-3px);box-shadow:var(--shadow-glow)}
-    .value-card .icon{font-size:2rem;margin-bottom:12px}
-    .value-card h4{font-family:var(--font-display);font-size:1.125rem;font-weight:700;margin-bottom:6px}
-    .value-card p{font-size:.8125rem;color:var(--ink-3);max-width:100%}
-    .nav-icon{width:32px;height:32px;border-radius:8px}
-    .nav-icon-sm{width:28px;height:28px;border-radius:6px}
-    @media(max-width:768px){.values-grid{grid-template-columns:1fr}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre · Aura — A tecnologia mora no detalhe.</title>
+<meta name="description" content="A Aura nasceu de uma convicção: software empresarial não precisa ser feio, lento e genérico. Cinco verticais especialistas, uma plataforma única.">
+<link rel="icon" type="image/png" href="/Icon.png">
+<link rel="apple-touch-icon" href="/Icon.png">
+<link rel="stylesheet" href="/css/tokens.css?v=2">
+<link rel="stylesheet" href="/css/site.css?v=2">
+<link rel="stylesheet" href="/css/verticals.css?v=2">
+<style>
+  .sobre-hero {
+    padding: 160px 0 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .sobre-hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(56px, 9vw, 140px);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+    color: white;
+    margin: 0;
+  }
+  .sobre-hero h1 em { font-style: italic; color: #a78bfa; }
+
+  .sobre-manifest {
+    padding: 100px 0;
+    background: #f4f1ec;
+    position: relative;
+  }
+  .manifest-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 900px) { .manifest-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .manifest-text p {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    color: #1a1330;
+    font-weight: 400;
+    margin-bottom: 32px;
+  }
+  .manifest-text p em { color: #7c3aed; font-style: italic; }
+  .manifest-text p:last-child { margin-bottom: 0; }
+  .manifest-eyebrow {
+    position: sticky; top: 120px;
+  }
+
+  .pillars-section {
+    padding: 120px 0 140px;
+    background: #0B0B0B;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .pillars-list {
+    max-width: 1080px;
+    margin: 80px auto 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .pillar-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    align-items: start;
+    padding: 56px 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+  }
+  .pillar-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
+  @media (max-width: 768px) {
+    .pillar-row { grid-template-columns: 1fr; gap: 16px; padding: 40px 0; }
+  }
+  .pillar-num {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: clamp(80px, 10vw, 140px);
+    line-height: 0.85;
+    color: #a78bfa;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+    transition: transform 0.6s var(--ease), color 0.4s ease;
+  }
+  .pillar-row:hover .pillar-num {
+    transform: translateX(8px);
+    color: #c4b5fd;
+  }
+  .pillar-body { padding-top: 12px; }
+  .pillar-body h3 {
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 0 0 20px;
+    color: white;
+    max-width: 600px;
+  }
+  .pillar-body h3 em {
+    font-style: italic;
+    color: #c4b5fd;
+  }
+  .pillar-body p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: rgba(230,225,255,0.82);
+    margin: 0;
+    max-width: 620px;
+  }
+
+  .nums-section {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #0B0B0B, #150a26);
+    color: white;
+  }
+  .nums-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+  @media (max-width: 768px) { .nums-grid { grid-template-columns: repeat(2, 1fr); } }
+  .num-cell .n {
+    font-family: var(--font-heading);
+    font-size: clamp(56px, 8vw, 96px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: #a78bfa;
+    font-weight: 400;
+  }
+  .num-cell .l {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(220,215,255,0.6);
+    margin-top: 8px;
+  }
+
+  .closing-section {
+    padding: 120px 0;
+    background: #0B0B0B;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing-section h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(56px, 8vw, 120px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+    margin: 0 0 24px;
+  }
+  .closing-section h2 em { font-style: italic; color: #a78bfa; }
+</style>
 </head>
-<body>
-<nav class="nav"><div class="nav-inner"><a href="/" class="nav-logo"><img src="/Icon.png" class="nav-icon" alt="Aura"><span class="nav-wordmark">Aura.</span></a><div class="nav-links"><a href="/produto">Produto</a><a href="/#modulos">Módulos</a><a href="/#planos">Planos</a><a href="/#faq">Dúvidas</a></div><div class="nav-ctas"><a href="https://app.getaura.com.br" class="btn btn-secondary btn-sm">Entrar</a><a href="/#contato" class="btn btn-primary btn-sm">Começar agora</a></div><button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div><div class="nav-mobile" id="nav-mobile"><ul><li><a href="/produto">Produto</a></li><li><a href="/#modulos">Módulos</a></li><li><a href="/#planos">Planos</a></li><li><a href="/#faq">Dúvidas</a></li></ul><div class="nav-mobile-ctas"><a href="/#contato" class="btn btn-primary btn-lg">Começar agora</a><a href="https://app.getaura.com.br" class="btn btn-secondary btn-lg">Já sou cliente — Entrar</a></div></div></nav>
+<body data-screen-label="Sobre">
+<div data-mount="nav"></div>
 
-<section class="page-hero"><div class="container"><span class="section-badge">Sobre a Aura</span><h1 class="reveal">Tecnologia para quem<br>faz o Brasil acontecer.</h1></div></section>
-
-<section style="padding-top:0"><div class="container">
-<div class="story">
-  <p class="reveal">A Aura nasceu de uma frustração real. Acompanhando de perto a rotina de barbearias, salões, clínicas e pequenos comércios, ficou claro: essas pessoas trabalham demais e gerenciam de menos.</p>
-  <p class="reveal">Não por falta de vontade. Mas porque as ferramentas disponíveis ou são caras demais, ou complexas demais, ou simplesmente não foram pensadas para quem toca um negócio no dia a dia.</p>
-
-  <div class="highlight reveal"><p>A Aura existe para dar ao pequeno negócio brasileiro a mesma tecnologia que grandes empresas usam — mas de um jeito que qualquer pessoa entende.</p></div>
-
-  <h2 class="reveal">Nossa missão</h2>
-  <p class="reveal">A Aura foi criada por uma equipe de tecnologia que entende tanto o código quanto o boleto. Com experiência no mundo técnico e no operacional de pequenos negócios, sabemos que o problema não é falta de ferramentas — é falta de ferramentas que funcionam pra quem realmente precisa.</p>
-  <p class="reveal">A missão é simples: construir a plataforma que gostaríamos que existisse quando começamos a ajudar pequenos negócios a se organizarem.</p>
-
-  <h2 class="reveal">O que nos guia</h2>
-  <div class="values-grid">
-    <div class="value-card reveal stagger-1"><div class="icon">🎯</div><h4>Simplicidade</h4><p>Se precisa de manual, está errado. Cada tela é pensada para ser óbvia.</p></div>
-    <div class="value-card reveal stagger-2"><div class="icon">🤝</div><h4>Proximidade</h4><p>Não somos um software distante. Somos parte da equipe do cliente.</p></div>
-    <div class="value-card reveal stagger-3"><div class="icon">🔒</div><h4>Confiança</h4><p>Dados seguros, linguagem honesta, sem promessas que não cumprimos.</p></div>
+<!-- HERO -->
+<section class="section dark deep sobre-hero" data-screen-label="hero">
+  <div class="orbs">
+    <div class="orb violet" style="width: 700px; height: 700px; top: -100px; left: -200px;"></div>
+    <div class="orb indigo" style="width: 500px; height: 500px; top: 50%; right: -150px; opacity: 0.4;"></div>
   </div>
+  <div class="grain"></div>
+  <div class="container">
+    <div style="max-width: 920px;" data-reveal>
+      <div class="eyebrow" style="margin-bottom: 32px;">Sobre · Aura</div>
+      <h1 data-typein>A tecnologia mora <em>no detalhe.</em></h1>
+      <p class="lead" style="margin-top: 32px; max-width: 680px;" data-reveal data-reveal-delay="2">
+        A Aura nasceu de uma convicção simples: software empresarial não precisa ser feio, lento e genérico. Cada negócio tem seu jeito — e a tecnologia tem que ter alma pra isso.
+      </p>
+    </div>
+  </div>
+</section>
 
-  <h2 class="reveal">Feito no Brasil, para o Brasil</h2>
-  <p class="reveal">A Aura nasceu no interior de São Paulo, mas foi pensada para todo empreendedor brasileiro. Conhecemos de perto as dores, os sonhos e a realidade de quem empreende neste país. E é por isso que a Aura funciona: porque foi feita por quem vive isso.</p>
-</div>
-</div></section>
+<!-- MANIFESTO -->
+<section class="sobre-manifest" data-screen-label="Manifesto">
+  <div class="container">
+    <div class="manifest-grid">
+      <div class="manifest-eyebrow" data-reveal>
+        <div class="eyebrow" style="color: #7c3aed; margin-bottom: 16px;">Manifesto</div>
+        <h2 class="h2" style="color: #1a1330; margin: 0;">O que move<br>a Aura.</h2>
+      </div>
+      <div class="manifest-text" data-reveal data-reveal-delay="1">
+        <p>A gente acredita que <em>operar um negócio não pode ser uma tortura.</em> Que planilha não substitui sistema. Que ERP de 2008 não cabe em 2026.</p>
+        <p>A gente acredita que <em>cada setor merece um produto pensado pra ele</em> — não um genérico maquiado. O dentista quer odontograma. O restaurante quer KDS. O salão quer ficha de cliente. Cada um, do seu jeito.</p>
+        <p>A gente acredita que <em>tecnologia bonita é tecnologia que respeita.</em> Respeita o tempo de quem usa. Respeita o dinheiro que custa. Respeita a inteligência de quem confia.</p>
+        <p>Por isso a Aura é cinco. Mas é uma só.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section style="background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(109,40,217,0.05));border-top:1px solid var(--border-2)"><div class="container" style="text-align:center;max-width:600px"><h2 class="reveal" style="margin-bottom:1rem">Quer conhecer a Aura?</h2><p class="reveal stagger-1" style="margin:0 auto 2rem;color:var(--ink-2)">Fale com a equipe e conheça a plataforma.</p><div class="gap-row reveal stagger-2" style="justify-content:center"><a href="/#contato" class="btn btn-primary btn-lg">Começar agora</a><a href="/#planos" class="btn btn-secondary btn-lg">Ver planos →</a></div></div></section>
+<!-- PILARES -->
+<section class="pillars-section" data-screen-label="Pilares">
+  <div class="orbs">
+    <div class="orb violet" style="width: 600px; height: 600px; top: 80px; right: -150px; opacity: 0.25;"></div>
+    <div class="orb violet" style="width: 400px; height: 400px; bottom: 100px; left: -120px; opacity: 0.18;"></div>
+  </div>
+  <div class="container">
+    <div class="text-center stack-md" style="max-width: 720px; margin: 0 auto;" data-reveal>
+      <div class="eyebrow center">Pilares</div>
+      <h2 class="h1">Três coisas que <em style="color:#a78bfa;">não negociamos</em>.</h2>
+    </div>
+    <div class="pillars-list">
+      <div class="pillar-row" data-reveal>
+        <div class="pillar-num">01</div>
+        <div class="pillar-body">
+          <h3>Especialização <em>real</em>.</h3>
+          <p>Cada vertical é construída com pessoas do setor. Dentista, garçom, gerente de salão, técnico veterinário — eles desenham, a gente programa. Nada de feature genérica empurrada pra todo mundo.</p>
+        </div>
+      </div>
+      <div class="pillar-row" data-reveal data-reveal-delay="1">
+        <div class="pillar-num">02</div>
+        <div class="pillar-body">
+          <h3>Identidade <em>sentida</em>.</h3>
+          <p>Cada Aura tem paleta, tom de voz, mood, micro-interações próprias. Não é skin trocada — é produto inteiro pensado pra quem usa, pra que a ferramenta encaixe na rotina sem atrito.</p>
+        </div>
+      </div>
+      <div class="pillar-row" data-reveal data-reveal-delay="2">
+        <div class="pillar-num">03</div>
+        <div class="pillar-body">
+          <h3>Plataforma <em>única</em>.</h3>
+          <p>Atrás dos cinco produtos, uma única plataforma: financeiro, fiscal, IA, infraestrutura compartilhada. Você cresce, troca, escala — sem migrar de sistema, sem perder histórico, sem retreinar time.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="/" class="nav-logo" style="display:inline-flex;margin-bottom:4px"><img src="/Icon.png" class="nav-icon-sm" alt="Aura"><span class="nav-wordmark" style="font-size:18px">Aura.</span></a><p>Tecnologia para negócios que querem crescer sem complicação.</p></div><div class="footer-col"><h4>Produto</h4><ul><li><a href="/produto">O que faz</a></li><li><a href="/#planos">Planos</a></li><li><a href="/#faq">Dúvidas</a></li></ul></div><div class="footer-col"><h4>Empresa</h4><ul><li><a href="/sobre">Sobre</a></li><li><a href="/privacidade">Privacidade</a></li><li><a href="/dpa">DPA</a></li><li><a href="mailto:contato@getaura.com.br">contato@getaura.com.br</a></li></ul></div><div class="footer-col"><h4>Acesso</h4><ul><li><a href="https://app.getaura.com.br">Entrar no app</a></li><li><a href="/#contato">Começar agora</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Aura. Tecnologia para Negócios.</p><p style="font-size:.75rem">getaura.com.br</p></div></div></footer>
-<script src="/site.js"></script>
+<!-- NUMBERS -->
+<section class="nums-section" data-screen-label="Números">
+  <div class="container">
+    <div class="nums-grid">
+      <div class="num-cell" data-reveal>
+        <div class="n">5</div>
+        <div class="l">Verticais especialistas</div>
+      </div>
+      <div class="num-cell" data-reveal data-reveal-delay="1">
+        <div class="n">100%</div>
+        <div class="l">Em português · Brasil</div>
+      </div>
+      <div class="num-cell" data-reveal data-reveal-delay="2">
+        <div class="n">0</div>
+        <div class="l">Fidelidade · multas</div>
+      </div>
+      <div class="num-cell" data-reveal data-reveal-delay="3">
+        <div class="n">SP</div>
+        <div class="l">Feita em Jacareí</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing-section" data-screen-label="CTA Final">
+  <div class="orbs">
+    <div class="orb violet" style="width: 600px; height: 600px; top: -100px; left: 50%; transform: translateX(-50%);"></div>
+  </div>
+  <div class="container">
+    <div data-reveal>
+      <h2>Bora <em>começar?</em></h2>
+      <p class="lead" style="max-width: 540px; margin: 0 auto 40px;">Sem fidelidade, sem letras miúdas. Falamos com você pra entender seu negócio antes de qualquer coisa.</p>
+      <div class="row" style="justify-content: center;">
+        <a href="https://wa.me/5511956305269?text=Quero%20conhecer%20a%20Aura" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">Falar no WhatsApp <span class="arrow">→</span></a>
+        <a href="https://app.getaura.com.br/cadastro" target="_blank" rel="noopener" class="btn btn-outline btn-lg">Criar conta</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div data-mount="footer"></div>
+<div data-mount="wa"></div>
+<script src="/js/chrome.js"></script>
+<script src="/js/site.js"></script>
 </body>
 </html>
