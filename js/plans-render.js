@@ -1,9 +1,12 @@
 /* =========================================================
    AURA — Renderiza cards de planos em qualquer container.
    Uso:
-     <div data-plans-render="full"></div>     => 5 cards completos (planos.html)
-     <div data-plans-render="preview"></div>  => 5 cards compactos (landing)
-   Le de window.AURA_PLANS e window.AURA_ADDONS.
+     <div data-plans-render="full"></div>     => 3 cards completos (planos.html)
+     <div data-plans-render="preview"></div>  => 3 cards compactos (landing)
+
+   14/05/2026 (revisão): 5 planos -> 3 planos. As 4 bolinhas
+   coloridas agora indicam "modulo vertical disponivel" em
+   planos com hasVerticalAddon (Negocio + Expansao).
    ========================================================= */
 (function() {
   if (!window.AURA_PLANS) return;
@@ -34,39 +37,37 @@
     '</ul>';
   }
 
-  function vDotsHTML() {
-    return '<div class="plan-vertical-dots">' +
-      '<span style="background:#06B6D4; color:#06B6D4;"></span>' +
-      '<span style="background:#F472B6; color:#F472B6;"></span>' +
-      '<span style="background:#F97316; color:#F97316;"></span>' +
-      '<span style="background:#10B981; color:#10B981;"></span>' +
+  function verticalAddonHTML() {
+    return '<div class="plan-vertical-addon" title="Camada vertical disponível como módulo (+R$ 39/mês)">' +
+      '<div class="plan-vertical-dots">' +
+        '<span style="background:#06B6D4;" title="Odonto"></span>' +
+        '<span style="background:#F472B6;" title="Beauty"></span>' +
+        '<span style="background:#F97316;" title="Food"></span>' +
+        '<span style="background:#10B981;" title="Pet"></span>' +
+      '</div>' +
+      '<div class="plan-vertical-addon-label">+ módulo vertical disponível</div>' +
     '</div>';
   }
 
   function cardHTML(key, plan, opts) {
     opts = opts || {};
-    var isVertical = key.includes('Vertical');
     var classes = ['plan-card'];
     if (plan.featured) classes.push('featured');
-    classes.push('reveal-' + (opts.idx || 0));
 
-    var idAttr = ' id="' + (
-      key === 'negocioVertical' ? 'negocio-vertical' :
-      key === 'expansaoVertical' ? 'expansao-vertical' :
-      key
-    ) + '"';
+    var idAttr = ' id="' + key + '"';
 
     var html = '<div class="' + classes.join(' ') + '"' + idAttr + ' data-reveal data-reveal-delay="' + (opts.idx || 0) + '">';
     if (plan.badge) html += '<div class="plan-popular">' + plan.badge + '</div>';
-    if (isVertical) html += vDotsHTML();
     html += '<div class="plan-name">' + plan.label + '</div>';
     html += '<div class="plan-price">' + priceHTML(plan) + '</div>';
     html += '<div class="plan-tagline">' + plan.tagline + '</div>';
-    if (!opts.compact) html += featuresHTML(plan.features);
-    else {
-      var preview = plan.features.slice(0, 4);
+    if (plan.hasVerticalAddon) html += verticalAddonHTML();
+    if (!opts.compact) {
+      html += featuresHTML(plan.features);
+    } else {
+      var preview = plan.features.slice(0, 5);
       html += featuresHTML(preview);
-      html += '<a href="/planos#' + (key === 'negocioVertical' ? 'negocio-vertical' : key === 'expansaoVertical' ? 'expansao-vertical' : key) + '" class="plan-see-more">Ver tudo →</a>';
+      html += '<a href="/planos#' + key + '" class="plan-see-more">Ver tudo →</a>';
     }
     html += '<a href="' + waLink(plan) + '" target="_blank" rel="noopener" class="plan-cta">Falar no WhatsApp</a>';
     html += '</div>';
@@ -76,7 +77,7 @@
   function render(container) {
     var mode = container.getAttribute('data-plans-render');
     var compact = mode === 'preview';
-    var order = ['essencial', 'negocio', 'negocioVertical', 'expansao', 'expansaoVertical'];
+    var order = ['essencial', 'negocio', 'expansao'];
     var html = '<div class="plan-grid">';
     order.forEach(function(key, i) {
       var plan = window.AURA_PLANS[key];
