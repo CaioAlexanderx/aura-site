@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Planos · Aura — Escolha pelo seu tamanho.</title>
-<meta name="description" content="Cinco planos da Aura. Pague pelo que usa, cresça quando quiser. Verticais ativam a camada do seu setor — Odonto, Beauty, Food ou Pet.">
+<meta name="description" content="Três planos da Aura. Pague pelo que usa, cresça quando quiser. A camada vertical do seu setor (Odonto, Beauty, Food ou Pet) é um módulo opcional a partir do Negócio.">
 <link rel="icon" type="image/png" href="/Icon.png">
 <link rel="apple-touch-icon" href="/Icon.png">
 <link rel="stylesheet" href="/css/tokens.css?v=2">
@@ -14,12 +14,14 @@
   .plan-hero { padding: 140px 0 80px; position: relative; overflow: hidden; }
   .plan-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
     margin-top: 48px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  @media (max-width: 1100px) { .plan-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px)  { .plan-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 880px) { .plan-grid { grid-template-columns: 1fr; max-width: 480px; } }
 
   .plan-card {
     background: white;
@@ -86,20 +88,40 @@
   .plan-card.featured .plan-price { color: white; }
   .plan-card.featured .plan-price .per { color: rgba(255,255,255,0.7); }
 
+  /* Indicador "modulo vertical disponivel" — substitui antiga coluna dedicada */
+  .plan-vertical-addon {
+    margin: 16px 0 8px;
+    padding: 10px 12px;
+    background: rgba(124,58,237,0.05);
+    border: 1px dashed rgba(124,58,237,0.25);
+    border-radius: 10px;
+  }
   .plan-vertical-dots {
-    display: flex; gap: 6px; margin-bottom: 16px;
+    display: flex; gap: 6px; margin-bottom: 6px;
   }
   .plan-vertical-dots span {
     width: 9px; height: 9px; border-radius: 50%;
-    box-shadow: 0 0 8px currentColor;
+    box-shadow: 0 0 6px currentColor;
   }
+  .plan-vertical-addon-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #7c3aed;
+  }
+  .plan-card.featured .plan-vertical-addon {
+    background: rgba(255,255,255,0.10);
+    border-color: rgba(255,255,255,0.30);
+  }
+  .plan-card.featured .plan-vertical-addon-label { color: rgba(255,255,255,0.95); }
 
   .plan-feat-list {
     list-style: none;
     padding: 0;
-    margin: 28px 0 0;
+    margin: 24px 0 0;
     display: grid;
-    gap: 12px;
+    gap: 10px;
   }
   .plan-feat-list li {
     display: flex;
@@ -108,6 +130,22 @@
     font-size: 13px;
     line-height: 1.45;
     color: #2a1f48;
+  }
+  .plan-feat-list li.plan-feat-heading {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #7c3aed;
+    margin: 8px 0 4px;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(124,58,237,0.20);
+  }
+  .plan-feat-list li.plan-feat-heading::before { display: none; }
+  .plan-card.featured .plan-feat-list li.plan-feat-heading {
+    color: rgba(255,255,255,0.85);
+    border-top-color: rgba(255,255,255,0.25);
   }
   .plan-feat-list li::before {
     content: "";
@@ -160,6 +198,50 @@
     white-space: nowrap;
   }
 
+  /* Addons strip */
+  .addons-section { padding: 60px 0 40px; }
+  .addons-strip {
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 760px) { .addons-strip { grid-template-columns: 1fr; } }
+  .addon-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(124,58,237,0.18);
+    border-radius: 14px;
+    padding: 18px 20px;
+    color: rgba(220,215,255,0.85);
+  }
+  .addon-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .addon-card-name {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    color: white;
+    letter-spacing: -0.01em;
+  }
+  .addon-card-price {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: #a78bfa;
+    font-weight: 600;
+  }
+  .addon-card-desc { font-size: 13px; line-height: 1.5; }
+  .addon-dots-row {
+    display: flex; gap: 5px; margin-top: 8px;
+  }
+  .addon-dots-row span {
+    width: 8px; height: 8px; border-radius: 50%;
+    box-shadow: 0 0 6px currentColor;
+  }
+
   .compare-section { padding: 100px 0; background: #faf8f4; }
   .compare-table {
     width: 100%;
@@ -200,6 +282,15 @@
   .compare-table td.feat-no::before  { content: "—"; color: #c4baee; font-weight: 700; }
   .compare-table td { text-align: center; }
   .compare-table td:first-child { text-align: left; }
+  /* Bolinhas inline na tabela (linha "Camada vertical") */
+  .compare-dots {
+    display: inline-flex; gap: 4px; vertical-align: middle;
+  }
+  .compare-dots span {
+    width: 8px; height: 8px; border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 5px currentColor;
+  }
 
   .faq-section { padding: 100px 0; background: #0B0B0B; color: white; position: relative; overflow: hidden; }
   .faq-list { max-width: 760px; margin: 48px auto 0; }
@@ -250,13 +341,52 @@
     <div class="text-center stack-md" style="max-width: 760px; margin: 0 auto 32px;" data-reveal>
       <div class="eyebrow center">Planos · transparente</div>
       <h1 class="display" data-typein>Pague pelo que <em>usa.</em><br>Cresça quando <em>quiser.</em></h1>
-      <p class="lead" style="margin: 0 auto;">Cinco planos. Os <strong>Verticais</strong> ativam a camada do seu setor — Odonto, Beauty, Food ou Pet. Sem fidelidade. Sem letras miúdas.</p>
+      <p class="lead" style="margin: 0 auto;">Três planos. A camada do seu setor — Odonto, Beauty, Food ou Pet — é um <strong>módulo opcional</strong> a partir do Negócio, por R$ 39/mês. Sem fidelidade. Sem letras miúdas.</p>
     </div>
 
     <div data-plans-render="full"></div>
 
     <div class="text-center" style="margin-top: 40px; font-size: 13px; color: rgba(220,215,255,0.55);" data-reveal>
       Todos os planos: onboarding humano · cancele quando quiser · 15% off no cartão anual, 20% off PIX anual.
+    </div>
+  </div>
+</section>
+
+<!-- ADDONS -->
+<section class="section dark addons-section" data-screen-label="Addons">
+  <div class="container">
+    <div class="text-center stack-md" style="max-width: 700px; margin: 0 auto 32px;" data-reveal>
+      <div class="eyebrow center">Adicionais opcionais</div>
+      <h2 class="h2" style="color: white;">Plugue só o que <em style="color:#a78bfa;">faz sentido.</em></h2>
+    </div>
+    <div class="addons-strip" data-reveal data-reveal-delay="1">
+      <div class="addon-card">
+        <div class="addon-card-head">
+          <span class="addon-card-name">Módulo vertical</span>
+          <span class="addon-card-price">R$ 39/mês</span>
+        </div>
+        <div class="addon-card-desc">Camada especialista do seu setor: Odonto, Beauty, Food ou Pet. Disponível a partir do Negócio.</div>
+        <div class="addon-dots-row" title="Verticais disponíveis">
+          <span style="background:#06B6D4;" title="Odonto"></span>
+          <span style="background:#F472B6;" title="Beauty"></span>
+          <span style="background:#F97316;" title="Food"></span>
+          <span style="background:#10B981;" title="Pet"></span>
+        </div>
+      </div>
+      <div class="addon-card">
+        <div class="addon-card-head">
+          <span class="addon-card-name">Usuário adicional</span>
+          <span class="addon-card-price">R$ 19/mês</span>
+        </div>
+        <div class="addon-card-desc">Para cada pessoa a mais com login no app, por mês.</div>
+      </div>
+      <div class="addon-card">
+        <div class="addon-card-head">
+          <span class="addon-card-name">Consultoria sob medida</span>
+          <span class="addon-card-price">Sob consulta</span>
+        </div>
+        <div class="addon-card-desc">Configuração, treinamento, automações e integrações personalizadas pro seu negócio.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -275,61 +405,79 @@
           <tr>
             <th>Recurso</th>
             <th>Essencial</th>
-            <th>Negócio</th>
-            <th class="featured">Negócio · Vertical</th>
+            <th class="featured">Negócio</th>
             <th>Expansão</th>
-            <th>Expansão · Vertical</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="cat"><td colspan="6">PDV & vendas</td></tr>
-          <tr><td>Frente de caixa (PDV)</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>NF-e · NFC-e</td><td>até 50/mês</td><td>Ilimitado</td><td>Ilimitado</td><td>Ilimitado</td><td>Ilimitado</td></tr>
-          <tr><td>NFS-e (serviços)</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Recebimento por Pix QR</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Multi-gateway (Asaas, Stone, etc.)</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr class="cat"><td colspan="4">PDV & vendas</td></tr>
+          <tr><td>Frente de caixa (PDV)</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>NF-e · NFC-e</td><td>até 50/mês</td><td>Ilimitado</td><td>Ilimitado</td></tr>
+          <tr><td>NFS-e (serviços)</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>Recebimento por Pix QR</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>Multi-gateway (Asaas, Stone, etc.)</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
 
-          <tr class="cat"><td colspan="6">Estoque</td></tr>
-          <tr><td>Estoque + leitor de código</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Variantes (cor, tamanho, voltagem)</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Importação via CSV</td><td>até 1.000</td><td>Ilimitado</td><td>Ilimitado</td><td>Ilimitado</td><td>Ilimitado</td></tr>
+          <tr class="cat"><td colspan="4">Estoque</td></tr>
+          <tr><td>Estoque + leitor de código</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>Variantes (cor, tamanho, voltagem)</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>Importação via CSV</td><td>até 1.000</td><td>Ilimitado</td><td>Ilimitado</td></tr>
 
-          <tr class="cat"><td colspan="6">Clientes & CRM</td></tr>
-          <tr><td>Cadastro de clientes</td><td>até 1.000</td><td>até 5.000</td><td>até 5.000</td><td>Ilimitado</td><td>Ilimitado</td></tr>
-          <tr><td>CRM com ranking LTV</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Retenção (clientes em risco)</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Crediário (fiado)</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr class="cat"><td colspan="4">Clientes & CRM</td></tr>
+          <tr><td>Cadastro de clientes</td><td>até 1.000</td><td>até 5.000</td><td>Ilimitado</td></tr>
+          <tr><td>CRM com ranking LTV</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>Retenção (clientes em risco)</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>Crediário (fiado)</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
 
-          <tr class="cat"><td colspan="6">Equipe & folha</td></tr>
-          <tr><td>Cadastro de equipe</td><td>até 3</td><td>até 50</td><td>até 50</td><td>Ilimitado</td><td>Ilimitado</td></tr>
-          <tr><td>Folha de pagamento</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Comissão automática</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Ranking de vendedores</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr class="cat"><td colspan="4">Equipe & folha</td></tr>
+          <tr><td>Cadastro de equipe</td><td>até 3</td><td>até 50</td><td>Ilimitado</td></tr>
+          <tr><td>Folha de pagamento</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>Comissão automática</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>Ranking de vendedores</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
 
-          <tr class="cat"><td colspan="6">Financeiro</td></tr>
-          <tr><td>Contas a pagar/receber</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Conciliação bancária (OFX)</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>DRE básica</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Fluxo de caixa projetado</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Projeção com cenários</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr class="cat"><td colspan="4">Financeiro</td></tr>
+          <tr><td>Contas a pagar/receber</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>Conciliação bancária (OFX)</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>DRE básica</td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>Fluxo de caixa projetado</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>Projeção com cenários</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
 
-          <tr class="cat"><td colspan="6">Canais digitais</td></tr>
-          <tr><td>Canal Digital (loja online)</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>WhatsApp Business</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>HUB Social (Instagram + WA)</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr class="cat"><td colspan="4">Canais digitais</td></tr>
+          <tr><td>Canal Digital (loja online)</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>WhatsApp Business</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>HUB Social (Instagram + WA)</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
 
-          <tr class="cat"><td colspan="6">Camada vertical</td></tr>
-          <tr><td>Telas e fluxos do setor</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
-          <tr><td>BI / dashboards verticais</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
-          <tr><td>IA com contexto do nicho</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
+          <tr class="cat"><td colspan="4">IA & escala</td></tr>
+          <tr><td>Categorização por IA</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
+          <tr><td>5 agentes de IA</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
+          <tr><td>Multi-CNPJ consolidado</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
+          <tr><td>Usuários com login</td><td>1</td><td>até 3</td><td>Ilimitado</td></tr>
+          <tr><td>API completa</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
+          <tr><td>Customer Success</td><td>Chat</td><td>Prioritário</td><td>Dedicado</td></tr>
 
-          <tr class="cat"><td colspan="6">IA & escala</td></tr>
-          <tr><td>Categorização por IA</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>5 agentes de IA</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Multi-CNPJ consolidado</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Usuários com login</td><td>1</td><td>até 3</td><td>até 3</td><td>Ilimitado</td><td>Ilimitado</td></tr>
-          <tr><td>API completa</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>Customer Success</td><td>Chat</td><td>Prioritário</td><td>Prioritário</td><td>Dedicado</td><td>Dedicado vertical</td></tr>
+          <tr class="cat"><td colspan="4">Módulos opcionais</td></tr>
+          <tr>
+            <td>Camada vertical (Odonto/Beauty/Food/Pet)</td>
+            <td class="feat-no"></td>
+            <td>
+              <span class="compare-dots">
+                <span style="background:#06B6D4;" title="Odonto"></span>
+                <span style="background:#F472B6;" title="Beauty"></span>
+                <span style="background:#F97316;" title="Food"></span>
+                <span style="background:#10B981;" title="Pet"></span>
+              </span>
+              <div style="font-size:11px; color:#7c3aed; margin-top:4px;">+R$ 39/mês</div>
+            </td>
+            <td>
+              <span class="compare-dots">
+                <span style="background:#06B6D4;" title="Odonto"></span>
+                <span style="background:#F472B6;" title="Beauty"></span>
+                <span style="background:#F97316;" title="Food"></span>
+                <span style="background:#10B981;" title="Pet"></span>
+              </span>
+              <div style="font-size:11px; color:#7c3aed; margin-top:4px;">+R$ 39/mês</div>
+            </td>
+          </tr>
+          <tr><td>Usuário adicional</td><td class="feat-no"></td><td>+R$ 19/mês</td><td>+R$ 19/mês</td></tr>
         </tbody>
       </table>
     </div>
@@ -409,8 +557,8 @@
         <div class="faq-a">Não. A Aura é mensal, sem fidelidade. Cancela quando quiser, levando seus dados em export padrão.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q">O que muda entre Negócio e Negócio · Vertical?<span class="ic">+</span></div>
-        <div class="faq-a">Negócio é a operação base — multipropósito, R$ 169,90. Negócio · Vertical é o mesmo Negócio + um módulo vertical especialista do seu setor (Odonto, Beauty, Food ou Pet) por mais R$ 39 — telas, fluxos, relatórios e IA com contexto do nicho.</div>
+        <div class="faq-q">Posso adicionar a camada do meu setor (Odonto, Beauty, Food ou Pet)?<span class="ic">+</span></div>
+        <div class="faq-a">Sim. A camada vertical é um módulo opcional de R$ 39/mês disponível a partir do plano Negócio. Ela liga telas, fluxos, relatórios e a IA com contexto do seu setor — sem precisar migrar pra outro plano. No checkout você escolhe qual vertical ativar.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Quando ficam prontas as verticais Beauty e Pet?<span class="ic">+</span></div>
@@ -426,7 +574,7 @@
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Quero algo personalizado pro meu setor. Como funciona?<span class="ic">+</span></div>
-        <div class="faq-a">Temos o plano Personalizado (sob consulta) e o pacote de Consultoria sob medida (R$ 149/hora, mínimo 2h). A equipe da Aura analisa o que você precisa e desenha o setup junto com você.</div>
+        <div class="faq-a">Temos o pacote de Consultoria sob medida (R$ 149/hora, mínimo 2h) e o plano Personalizado (sob consulta). A equipe da Aura analisa o que você precisa e desenha o setup junto com você.</div>
       </div>
     </div>
 
