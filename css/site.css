@@ -12,9 +12,7 @@ body {
   font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  cursor: none; /* custom halo cursor */
 }
-@media (max-width: 900px) { body { cursor: auto; } }
 
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
@@ -376,31 +374,32 @@ img, svg { display: block; max-width: 100%; }
 }
 
 /* =========================================================
-   CURSOR HALO
+   CURSOR HALO — soft background glow only.
+   Dot e border removidos. Sem reacao a hover.
    ========================================================= */
-.cursor-dot, .cursor-halo {
+.cursor-dot { display: none !important; }
+.cursor-halo {
   position: fixed;
   top: 0; left: 0;
   pointer-events: none;
   z-index: 9999;
+  width: 320px; height: 320px;
   border-radius: 50%;
-  transition: opacity 0.3s, transform 0.18s var(--ease);
+  border: none;
+  background: radial-gradient(circle, rgba(124,58,237,0.16) 0%, rgba(124,58,237,0.08) 30%, transparent 65%);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
   mix-blend-mode: screen;
   will-change: transform;
+  filter: blur(8px);
 }
-.cursor-dot {
-  width: 6px; height: 6px;
-  background: #c4b5fd;
-  transform: translate(-50%, -50%);
+.cursor-halo.hover {
+  /* Sem mudanca no hover — glow constante */
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(124,58,237,0.16) 0%, rgba(124,58,237,0.08) 30%, transparent 65%);
+  border: none;
 }
-.cursor-halo {
-  width: 36px; height: 36px;
-  border: 1.5px solid rgba(124,58,237,0.55);
-  background: radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-}
-.cursor-halo.hover { width: 64px; height: 64px; background: radial-gradient(circle, rgba(124,58,237,0.32) 0%, transparent 70%); border-color: rgba(167,139,250,0.7); }
-@media (max-width: 900px) { .cursor-dot, .cursor-halo { display: none; } }
+@media (max-width: 900px) { .cursor-dot, .cursor-halo { display: none !important; } }
 
 /* =========================================================
    AMBIENT — orbs and grain
@@ -680,6 +679,208 @@ img, svg { display: block; max-width: 100%; }
 .text-center { text-align: center; }
 
 /* =========================================================
+   PLAN CARDS — shared across planos.html and index.html
+   (14/05/2026: extraido do inline do planos.html)
+   ========================================================= */
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 880px) { .plan-grid { grid-template-columns: 1fr; max-width: 480px; } }
+
+.plan-card {
+  background: white;
+  border: 1px solid rgba(109,40,217,0.10);
+  border-radius: 24px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  color: #1a1330;
+}
+.plan-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(124,58,237,0.12);
+  border-color: rgba(109,40,217,0.25);
+}
+.plan-card.featured {
+  background: linear-gradient(160deg, #7c3aed, #6d28d9);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 32px 60px rgba(124,58,237,0.35);
+}
+.plan-card.featured::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: radial-gradient(circle at 100% 0%, rgba(255,255,255,0.18), transparent 50%);
+  pointer-events: none;
+}
+.plan-card.featured .plan-feat-list li::before { background: rgba(255,255,255,0.85); }
+.plan-card.featured .plan-feat-list li { color: rgba(255,255,255,0.92); }
+
+.plan-name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #756a93;
+  margin-bottom: 16px;
+}
+.plan-card.featured .plan-name { color: rgba(255,255,255,0.7); }
+.plan-tagline {
+  font-size: 14px;
+  color: #756a93;
+  line-height: 1.4;
+  margin-bottom: 24px;
+  min-height: 40px;
+}
+.plan-card.featured .plan-tagline { color: rgba(255,255,255,0.85); }
+
+.plan-price {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  color: #1a1330;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+.plan-price .amt { font-size: 56px; }
+.plan-price .cents { font-size: 22px; opacity: 0.6; }
+.plan-price .per { font-size: 14px; color: #756a93; margin-left: 4px; }
+.plan-card.featured .plan-price { color: white; }
+.plan-card.featured .plan-price .per { color: rgba(255,255,255,0.7); }
+
+/* Indicador "modulo vertical disponivel" — substitui antiga coluna dedicada */
+.plan-vertical-addon {
+  margin: 16px 0 8px;
+  padding: 10px 12px;
+  background: rgba(124,58,237,0.05);
+  border: 1px dashed rgba(124,58,237,0.25);
+  border-radius: 10px;
+}
+.plan-vertical-dots {
+  display: flex; gap: 6px; margin-bottom: 6px;
+}
+.plan-vertical-dots span {
+  width: 9px; height: 9px; border-radius: 50%;
+  box-shadow: 0 0 6px currentColor;
+}
+.plan-vertical-addon-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #7c3aed;
+}
+.plan-card.featured .plan-vertical-addon {
+  background: rgba(255,255,255,0.10);
+  border-color: rgba(255,255,255,0.30);
+}
+.plan-card.featured .plan-vertical-addon-label { color: rgba(255,255,255,0.95); }
+
+.plan-feat-list {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  display: grid;
+  gap: 10px;
+}
+.plan-feat-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #2a1f48;
+}
+.plan-feat-list li.plan-feat-heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7c3aed;
+  margin: 8px 0 4px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(124,58,237,0.20);
+  display: block;
+}
+.plan-feat-list li.plan-feat-heading::before { display: none !important; content: none !important; background: none !important; }
+.plan-card.featured .plan-feat-list li.plan-feat-heading {
+  color: rgba(255,255,255,0.85);
+  border-top-color: rgba(255,255,255,0.25);
+}
+.plan-feat-list li::before {
+  content: "";
+  width: 14px; height: 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none' stroke='%237c3aed' stroke-width='2'%3E%3Cpath d='M3 7l3 3 5-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.plan-card.featured .plan-feat-list li::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M3 7l3 3 5-6'/%3E%3C/svg%3E");
+}
+
+.plan-cta {
+  margin-top: auto;
+  padding: 14px 20px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid #7c3aed;
+  color: #7c3aed;
+  background: transparent;
+}
+.plan-cta:hover { background: #7c3aed; color: white; }
+.plan-card .plan-cta { margin-top: 32px; }
+.plan-card.featured .plan-cta {
+  background: white;
+  color: #7c3aed;
+  border-color: white;
+}
+.plan-card.featured .plan-cta:hover { background: rgba(255,255,255,0.9); }
+
+.plan-popular {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fbbf24;
+  color: #1a1330;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 6px 12px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.plan-see-more {
+  display: inline-block;
+  margin: 16px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--violet);
+}
+.plan-card.featured .plan-see-more { color: #fff; }
+
+/* =========================================================
    ADDITIONS — 13/05/2026
    Mobile-first reinforcement + form states + nav mobile panel.
    ========================================================= */
@@ -745,7 +946,6 @@ img, svg { display: block; max-width: 100%; }
 }
 
 @media (hover: none) and (pointer: coarse) {
-  body { cursor: auto; }
   .cursor-dot, .cursor-halo { display: none !important; }
   .plan-card:hover, .vertical-card:hover, .nav-dropdown-item:hover {
     transform: none;
@@ -808,35 +1008,6 @@ img, svg { display: block; max-width: 100%; }
   display: none;
 }
 .form-error.show { display: block; }
-
-/* =========================================================
-   PLAN FEATURES — heading "Tudo do X, e mais:" e see-more
-   ========================================================= */
-.plan-feat-heading {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--violet);
-  padding: 8px 0 6px;
-  margin-top: 6px;
-  border-top: 1px dashed rgba(109,40,217,0.18);
-  list-style: none;
-}
-.plan-feat-list .plan-feat-heading { display: block; }
-.plan-feat-list .plan-feat-heading::before { display: none !important; content: none !important; background: none !important; }
-.plan-card.featured .plan-feat-heading {
-  color: rgba(255,255,255,0.78);
-  border-top-color: rgba(255,255,255,0.20);
-}
-.plan-see-more {
-  display: inline-block;
-  margin-top: 16px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--violet);
-}
-.plan-card.featured .plan-see-more { color: #fff; }
 
 /* =========================================================
    MOBILE NAV PANEL
