@@ -10,6 +10,8 @@
 # 13/05/2026: design system completo restaurado. /planos eh o novo
 # canonical (mantemos /precos como alias 301). Adicionadas paginas
 # dedicadas por vertical: /negocio, /odonto, /food, /beauty, /pet.
+#
+# 21/05/2026: publicados Termos de Uso v2.
 
 # Forcar URL limpa (sem .html)
 /precos.html /planos 301
@@ -26,3 +28,4 @@
 /food.html /food 301
 /beauty.html /beauty 301
 /pet.html /pet 301
+/termos.html /termos 301
