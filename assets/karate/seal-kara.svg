@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Aura Karatê — selo 空">
+  <defs>
+    <linearGradient id="seal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c0503f"></stop>
+      <stop offset="1" stop-color="#983429"></stop>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="124" height="124" rx="29" fill="url(#seal)" stroke="#7d271d" stroke-width="2"></rect>
+  <rect x="7" y="7" width="114" height="114" rx="24" fill="none" stroke="#fbeee4" stroke-opacity="0.28" stroke-width="2.5"></rect>
+  <text x="64" y="64" text-anchor="middle" dominant-baseline="central" font-family="&#39;Shippori Mincho&#39;,&#39;Times New Roman&#39;,serif" font-size="78" fill="#fbeee4">空</text>
+</svg>

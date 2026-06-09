@@ -24,8 +24,16 @@
 /privacidade.html /privacidade 301
 /dpa.html /dpa 301
 /negocio.html /negocio 301
-/odonto.html /odonto 301
 /food.html /food 301
-/beauty.html /beauty 301
-/pet.html /pet 301
+/studio.html /studio 301
+/dojo.html /dojo 301
 /termos.html /termos 301
+
+# 08/06/2026: verticais Odonto/Beauty/Pet descontinuadas no site; novas
+# verticais Studio e Dojo (Aura Karate / FPKT). URLs antigas -> hub /segmentos.
+/odonto.html /segmentos 301
+/odonto /segmentos 301
+/beauty.html /segmentos 301
+/beauty /segmentos 301
+/pet.html /segmentos 301
+/pet /segmentos 301

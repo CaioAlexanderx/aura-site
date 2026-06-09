@@ -2,10 +2,12 @@
    AURA — Dados centralizados dos planos.
    Single source of truth pro app, planos.html e index.html.
 
-   13/05/2026 (revisão): 5 planos -> 3 planos. As verticais
-   (Odonto, Beauty, Food, Pet) viram modulo adicional de R$ 39
-   disponivel em Negocio e Expansao, indicado pelas 4 bolinhas
-   coloridas no card. Lista de features proporcional:
+   13/05/2026 (revisão): 5 planos -> 3 planos.
+   08/06/2026: precos cheios sem centavos (89/169/269);
+   verticais atualizadas (Food/Studio/Dojo); IA removida do site.
+   09/06/2026: as verticais sao INCLUIDAS nos planos Negocio e
+   Expansao (NAO sao add-on de R$39). Essencial = base/varejo.
+   As bolinhas coloridas indicam "verticais incluidas".
      Essencial (16) < Negocio (22) < Expansao (25)
    ========================================================= */
 window.AURA_PLANS = {
@@ -36,7 +38,7 @@ window.AURA_PLANS = {
   negocio: {
     label: 'Negócio',
     name: 'Operação completa',
-    price: 169, priceCents: 90,
+    price: 169, priceCents: null,
     tagline: 'Pra quem quer crescer sem improviso.',
     featured: true,
     badge: 'Mais escolhido',
@@ -62,15 +64,15 @@ window.AURA_PLANS = {
       'WhatsApp Business com templates',
       'Até 3 usuários com login e permissões',
       'Fluxo de caixa projetado',
-      'Categorização de despesas por IA',
+      'Categorização automática de despesas',
       'Suporte prioritário com Analista de Negócios',
     ],
   },
   expansao: {
     label: 'Expansão',
-    name: 'Pra escalar com IA',
-    price: 269, priceCents: 90,
-    tagline: 'Multi-CNPJ, IA prescritiva, integrações ilimitadas.',
+    name: 'Pra escalar',
+    price: 269, priceCents: null,
+    tagline: 'Multi-CNPJ, BI sob medida, integrações ilimitadas.',
     hasVerticalAddon: true,
     features: [
       'Tudo do Negócio, e mais:',
@@ -80,9 +82,7 @@ window.AURA_PLANS = {
       'Multi-CNPJ: gerencie vários negócios em um login',
       'Visão consolidada de todas as suas empresas',
       'Lista única de clientes entre os CNPJs',
-      '5 agentes de IA (vendas, estoque, fiscal, marketing, financeiro)',
-      'Insights prescritivos por IA',
-      'Smart alerts (anomalias de despesa)',
+      'Alertas de anomalias de despesa',
       'Projeção de fluxo de caixa com cenários',
       'DRE Simples pronta para o contador',
       'Metas de vendas por vendedor com acompanhamento',
@@ -103,7 +103,6 @@ window.AURA_PLANS = {
 };
 
 window.AURA_ADDONS = [
-  { name: 'Módulo vertical', price: 'R$ 39/mês', desc: 'Camada especialista do seu setor: Odonto, Beauty, Food ou Pet. Disponível a partir do Negócio.', dots: true },
   { name: 'Usuário adicional', price: 'R$ 19/mês', desc: 'Para cada pessoa a mais com login no app, por mês.' },
   { name: 'Consultoria sob medida', price: 'Sob consulta', desc: 'Configuração, treinamento, automações e integrações personalizadas pro seu negócio.', cta: true },
 ];
