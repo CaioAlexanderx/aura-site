@@ -836,3 +836,12 @@ img, svg { display: block; max-width: 100%; }
   /* wa-float: even more compact */
   .wa-float { bottom: 16px; right: 16px; }
 }
+
+/* =========================================================
+   Form states — usado por setupContactForms() em js/site.js
+   (sucesso/erro do formulário de contato; data-form="contact")
+   ========================================================= */
+.form-success { display: none; }
+.form-success.show { display: block; text-align: center; padding: 32px 0; color: #fff; }
+.form-error { display: none; margin-top: 12px; font-size: 13px; line-height: 1.5; color: #fca5a5; }
+.form-error.show { display: block; }
