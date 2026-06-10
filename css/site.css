@@ -779,6 +779,8 @@ img, svg { display: block; max-width: 100%; }
   .features-grid {
     grid-template-columns: 1fr !important;
   }
+  /* Card destaque (cunha) ocupa 1 col quando o grid colapsa */
+  .feat-wide { grid-column: auto !important; }
 
   /* Plans preview centered */
   .plans-preview-grid {
