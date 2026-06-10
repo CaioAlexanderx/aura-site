@@ -7,67 +7,181 @@
 <meta name="description" content="Camada vertical para federações e academias de Karatê: praticantes, graduações e faixas, eventos e exames, certificados e anuidades com PIX. Aura Karate é parceira oficial da FPKT.">
 <link rel="icon" type="image/png" href="/Icon.png">
 <link rel="apple-touch-icon" href="/Icon.png">
-<link rel="canonical" href="https://getaura.com.br/dojo">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://www.getaura.com.br/dojo">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aura">
+<meta property="og:title" content="Aura Dojô — Gestão para federações e academias de artes marciais.">
+<meta property="og:description" content="Praticantes, graduações e faixas, eventos e exames, certificados e anuidades com PIX. Aura Karate é parceira oficial da FPKT.">
+<meta property="og:url" content="https://www.getaura.com.br/dojo">
+<meta property="og:image" content="https://www.getaura.com.br/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/tokens.css?v=2">
 <link rel="stylesheet" href="/css/site.css?v=2">
 <link rel="stylesheet" href="/css/verticals.css?v=2">
 <link rel="stylesheet" href="/css/vertical-pages.css?v=2">
 <style>
-  /* ── Aura Karate · seção Shoji/Kinari (papel + tinta + carimbo) ── */
+  /* ─────────────────────────────────────────────────────────────
+     Aura · Dojô — tema da vertical
+     Roxo é a cor principal (ambiente Aura). O vermelhão de carimbo
+     do Karatê fica reservado a ~5% da tela: selo, ponto final dos
+     títulos e marcadores de exame. Shippori Mincho só nos momentos
+     cerimoniais. Mantém UMA faixa clara (parceria FPKT) como
+     contraste editorial — reestilizada com tokens Aura.
+     ───────────────────────────────────────────────────────────── */
+  [data-vertical="dojo"]{
+    --v-accent:   #7c3aed;
+    --v-accent-2: #a78bfa;
+    --v-glow:     rgba(124,58,237,0.32);
+    --v-bg-deep:  #0a0714;
+    --v-bg-soft:  #f4f0ff;
+    /* carimbo cerimonial (raro) */
+    --kara:       #b8463a;
+    --kara-2:     #d98b80;
+    --kara-wash:  rgba(184,70,58,0.10);
+    --kara-line:  rgba(184,70,58,0.42);
+  }
+
+  /* selo 空 — única assinatura visual do Karatê */
+  .kara-seal{ display:block; border-radius:17px; }
+
+  /* ── Entrada por CSS, independente do reveal por JS/scroll do site.css
+     (instável dentro de iframe de preview). Auto-executa no load e trava
+     o estado final visível — o conteúdo sempre aparece. ── */
+  [data-reveal]{ opacity:1; animation:dojoRise 0.6s var(--ease) both; }
+  [data-reveal][data-reveal-delay="1"]{ animation-delay:0.08s }
+  [data-reveal][data-reveal-delay="2"]{ animation-delay:0.16s }
+  [data-reveal][data-reveal-delay="3"]{ animation-delay:0.24s }
+  @keyframes dojoRise{ from{ transform:translateY(18px) } to{ transform:none } }
+  @media (prefers-reduced-motion: reduce){ [data-reveal]{ animation:none } }
+
+  /* ── Cards de recursos — construídos do zero, sem o transform 3D do
+     .tilt do site (que rasterizava e borrava o texto). Render nítido,
+     tipografia limpa em DM Sans, lift sutil no hover. ── */
+  .feat-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:880px){ .feat-grid{ grid-template-columns:1fr; } }
+  .feat{
+    background:#ffffff;
+    border:1px solid rgba(109,40,217,0.12);
+    border-radius:20px;
+    padding:30px 28px;
+    transition:transform .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  .feat:hover{
+    transform:translateY(-4px);
+    border-color:rgba(124,58,237,0.42);
+    box-shadow:0 18px 40px rgba(124,58,237,0.16);
+  }
+  .feat-ic{
+    width:46px; height:46px; border-radius:13px;
+    background:linear-gradient(135deg,#7c3aed,#6d28d9);
+    display:grid; place-items:center; color:#fff;
+    box-shadow:0 8px 20px rgba(124,58,237,0.28);
+    margin-bottom:18px;
+  }
+  .feat-ic svg{ width:22px; height:22px; }
+  .feat h3{
+    font-family:var(--font-body);
+    font-size:17px; font-weight:700; letter-spacing:-0.01em;
+    line-height:1.3; color:#1a1330; margin:0 0 7px;
+  }
+  .feat p{
+    font-family:var(--font-body);
+    font-size:14px; line-height:1.6; color:#4a3f6b; margin:0;
+    text-wrap:pretty;
+  }
+  .feat.is-accent{
+    background:linear-gradient(160deg, rgba(124,58,237,0.07), rgba(124,58,237,0.015));
+    border-color:rgba(124,58,237,0.26);
+  }
+  .feat.is-accent .feat-ic{ box-shadow:0 8px 20px rgba(124,58,237,0.4); }
+
+  /* ── Faixa clara FPKT (antiga "Shoji"): agora violeta-clara ── */
   .shoji{
-    --paper:#f0ebe0; --paper-2:#ece5d8; --ink:#2b2620; --ink-2:#6a6154; --ink-3:#9b9180;
-    --red:#b8463a; --red-wash:rgba(184,70,58,0.07); --red-line:rgba(184,70,58,0.42); --line:rgba(43,38,32,0.12);
-    background:var(--paper); color:var(--ink);
-    font-family:'Zen Kaku Gothic New','Inter',system-ui,sans-serif;
+    --ink:#1a1330; --ink-2:#4a3f6b; --ink-3:#756a93;
+    --red:#b8463a; --red-wash:rgba(184,70,58,0.08); --red-line:rgba(184,70,58,0.40);
+    --line:rgba(109,40,217,0.13);
+    background:#f4f0ff; color:var(--ink);
+    font-family:var(--font-body);
     position:relative; overflow:hidden;
   }
   .shoji::before{
     content:""; position:absolute; inset:0; pointer-events:none;
     background:
-      radial-gradient(60% 50% at 15% 0%, rgba(184,70,58,0.06), transparent 70%),
-      radial-gradient(50% 50% at 90% 100%, rgba(196,150,80,0.07), transparent 70%);
+      radial-gradient(58% 55% at 10% 0%, rgba(124,58,237,0.10), transparent 70%),
+      radial-gradient(52% 50% at 92% 100%, rgba(167,139,250,0.16), transparent 72%);
   }
   .shoji .container{position:relative; z-index:1}
-  .shoji .sj-eyebrow{font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--red); margin-bottom:14px}
-  .shoji h2{font-family:'Shippori Mincho',serif; font-weight:500; font-size:clamp(28px,4vw,44px); line-height:1.15; letter-spacing:-0.01em; color:var(--ink); margin:0 0 6px}
+  .shoji .sj-eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--red); margin-bottom:16px}
+  .shoji h2{font-family:'Shippori Mincho',serif; font-weight:500; font-size:clamp(30px,4vw,46px); line-height:1.12; letter-spacing:-0.01em; color:var(--ink); margin:0}
   .shoji h2 .dot{color:var(--red)}
-  .shoji .sj-lead{font-size:16px; line-height:1.7; color:var(--ink-2); max-width:560px}
+  .shoji .sj-lead{font-size:16px; line-height:1.7; color:var(--ink-2); max-width:540px}
   .shoji-grid{display:grid; grid-template-columns:1.05fr 1fr; gap:56px; align-items:center}
   @media (max-width:880px){.shoji-grid{grid-template-columns:1fr; gap:36px}}
   .sj-partner-card{
-    background:rgba(250,247,240,0.74);
-    border:1px solid var(--line);
+    background:rgba(255,255,255,0.72);
+    border:1px solid rgba(109,40,217,0.14);
     border-radius:18px; padding:34px 32px;
-    box-shadow:0 18px 40px rgba(43,38,32,0.10);
+    box-shadow:0 18px 44px rgba(76,29,149,0.12);
+    backdrop-filter:blur(8px);
   }
-  .sj-seal{width:72px; height:72px; border-radius:17px; display:block; box-shadow:0 10px 26px rgba(184,70,58,0.35)}
+  .sj-seal{width:72px; height:72px; box-shadow:0 10px 26px rgba(184,70,58,0.30)}
   .sj-lockup{display:flex; align-items:center; gap:16px; margin-bottom:22px}
   .sj-wordmark{font-family:'Shippori Mincho',serif; font-size:30px; line-height:1; color:var(--ink)}
   .sj-wordmark .dot{color:var(--red)}
-  .sj-wordmark small{display:block; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.22em; color:var(--ink-3); margin-top:7px}
+  .sj-wordmark small{display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:0.22em; color:var(--ink-3); margin-top:7px}
   .sj-partners{display:flex; flex-direction:column; gap:14px}
-  .sj-partner{
+  /* selo oficial FPKT — destaque comercial discreto (carimbo cerimonial) */
+  .fpkt-official{
     display:flex; align-items:center; gap:16px;
-    padding:16px 18px; border-radius:14px; background:#fff;
-    border:1px solid var(--line);
+    padding:18px 20px; border-radius:14px;
+    background:linear-gradient(180deg,#ffffff,#faf7ff);
+    border:1px solid var(--red-line);
+    box-shadow:0 10px 26px rgba(184,70,58,0.10);
   }
-  .sj-partner .badge-fpkt{
-    width:54px; height:54px; flex-shrink:0; border-radius:10px;
-    background:linear-gradient(180deg,#ffffff,#f3efe6);
-    border:1px solid var(--line);
-    display:grid; place-items:center;
-    font-family:'DM Mono',monospace; font-weight:600; font-size:14px; color:var(--red); letter-spacing:0.04em;
+  .fpkt-logo{width:58px; height:58px; object-fit:contain; flex-shrink:0}
+  .fpkt-copy{flex:1}
+  .fpkt-role{display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--red); margin-bottom:5px}
+  .fpkt-role svg{width:13px; height:13px; flex-shrink:0}
+  .fpkt-name{font-family:'Shippori Mincho',serif; font-size:16px; color:var(--ink); line-height:1.3}
+  .sj-note{font-family:var(--font-mono); font-size:11px; color:var(--ink-3); margin-top:18px; line-height:1.6}
+
+  /* ── Floating phone: preview do app Aura Karatê (identidade Shoji/Kinari:
+     papel, tinta sumi, carimbo, selo 空). Contraste deliberado dentro do
+     hero violeta — uma janela para o sub-segmento. ── */
+  .phone-screen.kara{
+    --kp-paper:#efe9dd; --kp-paper2:#e7dfd0; --kp-card:#fbf8f1;
+    --kp-ink:#2b2620; --kp-ink2:#6a6154; --kp-ink3:#9b9180;
+    --kp-red:#b8463a; --kp-green:#4a7a48; --kp-line:rgba(43,38,32,0.13);
+    background:var(--kp-paper); color:var(--kp-ink);
+    font-family:'Zen Kaku Gothic New', var(--font-body);
   }
-  .sj-partner .p-name{font-family:'Shippori Mincho',serif; font-size:16px; color:var(--ink); line-height:1.25}
-  .sj-partner .p-role{font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); margin-top:4px}
-  .sj-pill{display:inline-flex; align-items:center; gap:7px; padding:5px 12px; border-radius:999px; font-family:'DM Mono',monospace; font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase}
-  .sj-pill.official{background:var(--red-wash); border:1px solid var(--red-line); color:var(--red)}
-  .sj-pill.soon{background:rgba(43,38,32,0.05); border:1px solid var(--line); color:var(--ink-3)}
-  .sj-filete{width:34px; height:3px; background:var(--red); border-radius:2px; margin:0 0 18px}
-  .sj-note{font-family:'DM Mono',monospace; font-size:11px; color:var(--ink-3); margin-top:18px; line-height:1.6}
+  .kp-pad{ position:relative; height:100%; padding:30px 14px 14px; display:flex; flex-direction:column; gap:9px; }
+  .kp-wash{ position:absolute; inset:0; pointer-events:none; background:
+      radial-gradient(72% 38% at 10% 0%, rgba(184,70,58,0.07), transparent 70%),
+      radial-gradient(64% 46% at 96% 100%, rgba(196,150,80,0.12), transparent 72%); }
+  .kp-head{ display:flex; align-items:center; justify-content:space-between; position:relative; z-index:1; }
+  .kp-brand{ display:flex; align-items:center; gap:8px; }
+  .kp-seal{ width:22px; height:22px; border-radius:6px; box-shadow:0 3px 9px rgba(184,70,58,0.32); }
+  .kp-word{ font-family:'Shippori Mincho',serif; font-size:14.5px; line-height:1; color:var(--kp-ink); }
+  .kp-word .d{ color:var(--kp-red); }
+  .kp-menu{ width:22px; height:22px; border-radius:7px; border:1px solid var(--kp-line); display:grid; place-items:center; color:var(--kp-ink2); }
+  .kp-menu svg{ width:12px; height:12px; }
+  .kp-rule{ height:2px; width:26px; background:var(--kp-red); border-radius:2px; position:relative; z-index:1; margin-top:1px; }
+  .kp-eyebrow{ font-family:var(--font-mono); font-size:8.5px; letter-spacing:0.11em; text-transform:uppercase; color:var(--kp-red); display:flex; align-items:center; gap:6px; position:relative; z-index:1; }
+  .kp-eyebrow::before{ content:""; width:5px; height:5px; border-radius:50%; background:var(--kp-red); }
+  .kp-card{ background:var(--kp-card); border:1px solid var(--kp-line); border-radius:11px; padding:10px 11px; position:relative; z-index:1; box-shadow:0 2px 7px rgba(43,38,32,0.06); }
+  .kp-row{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .kp-name{ font-family:var(--font-body); font-weight:700; font-size:12px; color:var(--kp-ink); line-height:1.15; }
+  .kp-sub{ font-family:var(--font-mono); font-size:8.5px; color:var(--kp-ink3); margin-top:3px; }
+  .kp-belt{ display:inline-flex; align-items:center; gap:7px; }
+  .kp-belt .dot{ width:11px; height:11px; border-radius:50%; border:1px solid rgba(43,38,32,0.2); }
+  .kp-badge{ font-family:var(--font-mono); font-size:8px; letter-spacing:0.05em; text-transform:uppercase; padding:3px 8px; border-radius:999px; white-space:nowrap; }
+  .kp-badge.ok{ background:rgba(74,122,72,0.14); color:var(--kp-green); border:1px solid rgba(74,122,72,0.32); }
+  .kp-banca{ display:flex; flex-direction:column; align-items:flex-start; gap:3px; padding:9px 11px; background:var(--kp-paper2); border:1px solid var(--kp-line); border-radius:11px; position:relative; z-index:1; }
+  .kp-banca .l{ font-family:var(--font-mono); font-size:8px; letter-spacing:0.09em; text-transform:uppercase; color:var(--kp-ink3); }
+  .kp-banca .v{ font-size:9.5px; font-weight:700; color:var(--kp-ink); white-space:nowrap; }
+  .kp-cta{ margin-top:auto; background:var(--kp-ink); color:#f3ece0; text-align:center; padding:11px; border-radius:10px; font-family:var(--font-body); font-weight:700; font-size:12px; position:relative; z-index:1; box-shadow:0 7px 16px rgba(43,38,32,0.30); }
 </style>
 </head>
 <body data-vertical="dojo" data-screen-label="Dojô">
@@ -77,7 +191,7 @@
   <div class="v-hero-grid">
     <div class="stack-lg">
       <div class="v-hero-eyebrow" data-reveal><span class="v-mark-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-5 9 5M5 10v6M19 10v6M3 16h18"/></svg></span>Aura · Dojô</div>
-      <h1 data-typein>A tradição organizada, <em>do kyu ao dan.</em></h1>
+      <h1>A tradição organizada, <em>do kyu ao dan.</em></h1>
       <p class="lead" data-reveal data-reveal-delay="2">Federações e academias de Karatê: praticantes e graduações, eventos e exames de faixa, certificados e anuidades com PIX. A gestão da arte marcial com o respeito que ela pede.</p>
       <div class="row" data-reveal data-reveal-delay="3">
         <a href="https://wa.me/5511956305269?text=Quero%20conhecer%20a%20Aura%20Doj%C3%B4" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">Falar no WhatsApp <span class="arrow">→</span></a>
@@ -87,35 +201,41 @@
     <div class="v-hero-phones" data-reveal data-reveal-delay="2">
       <div style="position: absolute; right: 0; top: 30px; z-index: 3;">
         <div class="phone levitate" style="--pw: 280px;">
-          <div class="phone-screen">
-            <div class="ps-pad">
-              <div class="ps-orb" style="width: 200px; height: 200px; background: #b8463a; opacity: 0.5; top: -60px; left: -50px;"></div>
-              <div class="ps-orb" style="width: 220px; height: 220px; background: #a44c3e; opacity: 0.35; bottom: -70px; right: -60px;"></div>
-              <div class="ps-header"><div class="ps-brand"><span class="dot-mark" style="background:#b8463a;"></span>Aura <span class="acc" style="color:#d98b80;">Karate</span></div><div class="ps-bell">空</div></div>
-              <div class="ps-h" style="font-size: 11px; opacity: 0.6;">EXAME DE FAIXA · Temporada 2026</div>
-              <div class="ps-card" style="border-color: rgba(184,70,58,0.3);">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div class="phone-screen kara">
+            <div class="kp-pad">
+              <div class="kp-wash"></div>
+              <div class="kp-head">
+                <div class="kp-brand">
+                  <img src="/assets/karate/seal-kara.svg" alt="" class="kp-seal">
+                  <span class="kp-word">Aura Karatê<span class="d">.</span></span>
+                </div>
+                <span class="kp-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+              </div>
+              <div class="kp-rule"></div>
+              <div class="kp-eyebrow">Exame de faixa · Temporada 2026</div>
+              <div class="kp-card">
+                <div class="kp-row">
                   <div>
-                    <div style="font-size: 12px; font-weight: 600;">Hana Onishi</div>
-                    <div style="font-size: 9px; opacity: 0.55; margin-top: 2px;">5º kyu → 4º kyu · apto</div>
+                    <div class="kp-name">Hana Onishi</div>
+                    <div class="kp-sub">5º kyu → 4º kyu</div>
                   </div>
-                  <span style="width:26px;height:14px;border-radius:3px;background:#56804c;display:inline-block;"></span>
+                  <span class="kp-belt"><span class="dot" style="background:#6b6f86;"></span><span class="kp-badge ok">Apto</span></span>
                 </div>
               </div>
-              <div class="ps-card" style="border-color: rgba(184,70,58,0.3);">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div class="kp-card">
+                <div class="kp-row">
                   <div>
-                    <div style="font-size: 12px; font-weight: 600;">Anuidade 2026</div>
-                    <div style="font-size: 9px; opacity: 0.55; margin-top: 2px;">PIX · vence 24 mai</div>
+                    <div class="kp-name">Anuidade 2026</div>
+                    <div class="kp-sub">PIX · vence 24 mai</div>
                   </div>
-                  <span class="ps-pill-accent" style="background:#b8463a;color:#fff;">EM DIA</span>
+                  <span class="kp-badge ok">Em dia</span>
                 </div>
               </div>
-              <div style="display:flex; justify-content:space-between; padding: 12px; background: rgba(184,70,58,0.10); border-radius: 12px; border: 1px dashed rgba(184,70,58,0.4);">
-                <div style="font-size: 10px; opacity: 0.7;">Banca</div>
-                <div style="font-size: 11px; font-weight: 700;">Sensei Onishi · 8º Dan</div>
+              <div class="kp-banca">
+                <span class="l">Banca examinadora</span>
+                <span class="v">Sensei Onishi · 8º Dan</span>
               </div>
-              <div class="ps-cta" style="background: linear-gradient(135deg, #b8463a, #843027);">Lançar resultados</div>
+              <div class="kp-cta">Lançar resultados</div>
             </div>
           </div>
         </div>
@@ -124,41 +244,32 @@
   </div>
 </section>
 
-<!-- ── Aura Karate · parceria FPKT (identidade Shoji) ── -->
-<section class="shoji" id="karate" style="padding:96px 0">
+<!-- ── Aura Karate · parceria FPKT — faixa clara editorial (tokens Aura) ── -->
+<section class="shoji" id="karate" style="padding:104px 0">
   <div class="container">
     <div class="shoji-grid">
       <div>
-        <div class="sj-eyebrow">障子 Shoji · Sub-segmento</div>
-        <div class="sj-filete"></div>
+        <div class="sj-eyebrow">障子 · Sub-segmento</div>
         <h2>Aura Karate<span class="dot">.</span></h2>
-        <p class="sj-lead" style="margin-top:14px">A linha do Aura Dojô dedicada ao Karatê Tradicional. Terminologia correta — <em>kyu, dan, kata, kumite, aka, shiro</em> —, graduações Shotokan e a sobriedade de uma federação. Desenvolvida com quem vive o tatame.</p>
+        <div class="sj-filete" style="width:34px; height:3px; background:var(--red); border-radius:2px; margin:18px 0;"></div>
+        <p class="sj-lead">A linha do Aura Dojô dedicada ao Karatê Tradicional. Terminologia correta — <em>kyu, dan, kata, kumite, aka, shiro</em> —, graduações Shotokan e a sobriedade de uma federação. Desenvolvida com quem vive o tatame.</p>
         <p class="sj-note">空 — <em>kara</em>, "vazio": o primeiro ideograma de 空手 (karatê) e a base filosófica do treino tradicional.</p>
       </div>
       <div class="sj-partner-card">
         <div class="sj-lockup">
-          <img src="/assets/karate/seal-kara.svg" alt="Aura Karate — selo 空" class="sj-seal" width="72" height="72">
+          <img src="/assets/karate/seal-kara.svg" alt="Aura Karate — selo 空" class="sj-seal kara-seal" width="72" height="72">
           <div class="sj-wordmark">Aura<span class="dot">.</span><small>KARATÊ</small></div>
         </div>
         <div class="sj-partners">
-          <div class="sj-partner">
-            <div class="badge-fpkt">FPKT</div>
-            <div style="flex:1">
-              <div class="p-name">Federação Paulista de Karatê Tradicional</div>
-              <div class="p-role">Parceria oficial</div>
+          <div class="fpkt-official">
+            <img src="/assets/karate/logo-fpkt.png" alt="FPKT — Federação Paulista de Karatê Tradicional" class="fpkt-logo">
+            <div class="fpkt-copy">
+              <div class="fpkt-role"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Plataforma oficial de gestão</div>
+              <div class="fpkt-name">Federação Paulista de Karatê Tradicional</div>
             </div>
-            <span class="sj-pill official">● Oficial</span>
-          </div>
-          <div class="sj-partner">
-            <div class="badge-fpkt" style="color:var(--ink-3)">JKA</div>
-            <div style="flex:1">
-              <div class="p-name">Japan Karate Association</div>
-              <div class="p-role">Parceria em formalização</div>
-            </div>
-            <span class="sj-pill soon">Em breve</span>
           </div>
         </div>
-        <p class="sj-note">Plataforma oficial de gestão da FPKT. Integração com a JKA em formalização.</p>
+        <p class="sj-note">Aura Karate é a plataforma oficial de gestão da FPKT.</p>
       </div>
     </div>
   </div>
@@ -168,26 +279,50 @@
   <div class="container">
     <div class="text-center stack-md" style="margin: 0 auto 64px; max-width: 720px;" data-reveal>
       <div class="eyebrow center">Recursos · Aura Dojô</div>
-      <h2 class="h1">Do <em style="color:#b8463a;">tatame</em> à secretaria.</h2>
+      <h2 class="h1">Do <em style="color:#7c3aed;">tatame</em> à gestão.</h2>
     </div>
-    <div class="v-features-grid">
-      <div class="v-feature tilt" data-reveal><div class="tilt-inner"><div class="v-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></div><h3>Praticantes e graduações</h3><p>Ficha do atleta, histórico de faixas do branco ao preto (kyu/dan) e elegibilidade para exame.</p></div></div>
-      <div class="v-feature tilt" data-reveal data-reveal-delay="1"><div class="tilt-inner"><div class="v-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></div><h3>Eventos e exames</h3><p>Campeonatos, exames de faixa e bancas examinadoras. Inscrição, critérios e agenda da temporada.</p></div></div>
-      <div class="v-feature tilt" data-reveal data-reveal-delay="2"><div class="tilt-inner"><div class="v-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="6"/><path d="M9 14l-2 7 5-3 5 3-2-7"/></svg></div><h3>Certificados digitais</h3><p>Resultado lançado, certificado de graduação emitido. Registro oficial por praticante.</p></div></div>
-      <div class="v-feature tilt" data-reveal><div class="tilt-inner"><div class="v-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20M6 14h4"/></svg></div><h3>Anuidades com PIX</h3><p>Cobrança de anuidade e mensalidade por QR PIX, por dojô e por CPF. Recebimento sem maquininha.</p></div></div>
-      <div class="v-feature tilt" data-reveal data-reveal-delay="1"><div class="tilt-inner"><div class="v-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 2 5-6"/></svg></div><h3>Inadimplência e financeiro</h3><p>Quem está em dia, quem atrasou, entradas e saídas da federação. O caixa sob controle.</p></div></div>
-      <div class="v-feature tilt" data-reveal data-reveal-delay="2" style="background: linear-gradient(135deg, rgba(184,70,58,0.10), rgba(184,70,58,0.02)); border-color: rgba(184,70,58,0.3);"><div class="tilt-inner"><div class="v-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M3 9v6l9 5 9-5V9"/></svg></div><h3>Dojôs filiados</h3><p>Federação enxerga seus dojôs; cada dojô enxerga seus praticantes. Hierarquia respeitada.</p></div></div>
+    <div class="feat-grid">
+      <div class="feat" data-reveal>
+        <div class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></div>
+        <h3>Praticantes e graduações</h3>
+        <p>Ficha do atleta, histórico de faixas do branco ao preto (kyu/dan) e elegibilidade para exame.</p>
+      </div>
+      <div class="feat" data-reveal data-reveal-delay="1">
+        <div class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></div>
+        <h3>Eventos e exames</h3>
+        <p>Campeonatos, exames de faixa e bancas examinadoras. Inscrição, critérios e agenda da temporada.</p>
+      </div>
+      <div class="feat" data-reveal data-reveal-delay="2">
+        <div class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="6"/><path d="M9 14l-2 7 5-3 5 3-2-7"/></svg></div>
+        <h3>Certificados digitais</h3>
+        <p>Resultado lançado, certificado de graduação emitido. Registro oficial por praticante.</p>
+      </div>
+      <div class="feat" data-reveal>
+        <div class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20M6 14h4"/></svg></div>
+        <h3>Anuidades com PIX</h3>
+        <p>Cobrança de anuidade e mensalidade por QR PIX, por dojô e por CPF. Recebimento sem maquininha.</p>
+      </div>
+      <div class="feat" data-reveal data-reveal-delay="1">
+        <div class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 2 5-6"/></svg></div>
+        <h3>Inadimplência e financeiro</h3>
+        <p>Quem está em dia, quem atrasou, entradas e saídas da federação. O caixa sob controle.</p>
+      </div>
+      <div class="feat is-accent" data-reveal data-reveal-delay="2">
+        <div class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M3 9v6l9 5 9-5V9"/></svg></div>
+        <h3>Dojôs filiados</h3>
+        <p>Federação enxerga seus dojôs; cada dojô enxerga seus praticantes. Hierarquia respeitada.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="section dark">
   <div class="container container-narrow">
-    <div data-reveal style="background: linear-gradient(160deg, rgba(184,70,58,0.18), rgba(184,70,58,0.04)); border: 1px solid rgba(184,70,58,0.3); border-radius: 24px; padding: 48px;">
+    <div data-reveal style="background: linear-gradient(160deg, rgba(124,58,237,0.18), rgba(124,58,237,0.04)); border: 1px solid rgba(124,58,237,0.3); border-radius: 24px; padding: 48px;">
       <div class="row" style="justify-content: space-between; gap: 32px;">
         <div>
-          <div class="eyebrow" style="margin-bottom: 12px; color: #d98b80;">Plano recomendado · vertical</div>
-          <h3 class="h2" style="margin-bottom: 8px;">Negócio · <span style="color:#b8463a;">R$ 169</span><span style="font-size: 18px; opacity: 0.6;">/mês</span></h3>
+          <div class="eyebrow" style="margin-bottom: 12px; color: #a78bfa;">Plano recomendado · vertical</div>
+          <h3 class="h2" style="margin-bottom: 8px;">Negócio · <span style="color:#a78bfa;">R$ 169</span><span style="font-size: 18px; opacity: 0.6;">/mês</span></h3>
           <p class="body" style="max-width: 480px;">A camada Dojô já vem <strong>incluída</strong> nos planos Negócio (R$ 169) e Expansão (R$ 269): praticantes, graduações, eventos, exames, certificados e anuidades com PIX. Sem custo de módulo à parte.</p>
         </div>
         <div class="stack-sm">
@@ -207,8 +342,8 @@
     </div>
     <div class="v-others" style="justify-content: center;" data-reveal data-reveal-delay="1">
       <a href="/negocio" class="v-other" style="--ov-accent:#7c3aed; --ov-glow:rgba(124,58,237,0.3)"><span class="vm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4l8 16H4z"/></svg></span><span>Negócio</span></a>
-      <a href="/food" class="v-other" style="--ov-accent:#F97316; --ov-glow:rgba(249,115,22,0.3)"><span class="vm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c-2.5 3-4 5-4 9 0 3 1.5 5 4 7 2.5-2 4-4 4-7 0-4-1.5-6-4-9z"/></svg></span><span>Food</span></a>
-      <a href="/studio" class="v-other" style="--ov-accent:#E11D74; --ov-glow:rgba(225,29,116,0.3)"><span class="vm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21l6-6M14 4l6 6M14 4l-9 9 5 5 9-9z"/></svg></span><span>Studio</span></a>
+      <a href="odonto.html" class="v-other" style="--ov-accent:#06B6D4; --ov-glow:rgba(6,182,212,0.3)"><span class="vm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4c-3 0-5 1.5-7 1.5C4 5.5 4 7 4 8c0 5 1.5 11 3 12 .8 1 1.5 0 2-1.5l.5-3c.2-.7.7-1 1.5-1h2c.8 0 1.3.3 1.5 1l.5 3c.5 1.5 1.2 2.5 2 1.5 1.5-1 3-7 3-12 0-1 0-2.5-1-2.5-2 0-4-1.5-7-1.5z"/></svg></span><span>Odonto</span></a>
+      <a href="beauty.html" class="v-other" data-coming-soon style="--ov-accent:#F472B6; --ov-glow:rgba(244,114,182,0.3)"><span class="vm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c-1.5 4.5-6 6-6 10.5 0 3.8 2.7 7.5 6 7.5s6-3.7 6-7.5C18 9 13.5 7.5 12 3z"/></svg></span><span>Beauty</span></a>
     </div>
   </div>
 </section>

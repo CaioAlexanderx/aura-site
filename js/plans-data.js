@@ -4,7 +4,7 @@
 
    13/05/2026 (revisão): 5 planos -> 3 planos.
    08/06/2026: precos cheios sem centavos (89/169/269);
-   verticais atualizadas (Food/Studio/Dojo); IA removida do site.
+   verticais atualizadas (Studio/Dojo; Food removida 09/06 v3.1); IA removida do site.
    09/06/2026: as verticais sao INCLUIDAS nos planos Negocio e
    Expansao (NAO sao add-on de R$39). Essencial = base/varejo.
    As bolinhas coloridas indicam "verticais incluidas".

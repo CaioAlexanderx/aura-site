@@ -9,13 +9,6 @@
   --v-bg-deep: #0a0612;
   --v-bg-soft: #f5f1ff;
 }
-[data-vertical="food"] {
-  --v-accent: #F97316;
-  --v-accent-2: #EF4444;
-  --v-glow: rgba(249,115,22,0.32);
-  --v-bg-deep: #120804;
-  --v-bg-soft: #fff7ed;
-}
 [data-vertical="studio"] {
   --v-accent: #E11D74;
   --v-accent-2: #F472B6;
@@ -35,14 +28,14 @@
 /* =========================================================
    VERTICAIS GRID — clean rebuild
    ========================================================= */
+/* v3.1: 2 verticais (Studio + Dojô) na row 1; Negócio featured ocupa a row 2 inteira */
 .verticais-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   max-width: 1180px;
   margin: 0 auto;
 }
-@media (max-width: 960px) { .verticais-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 720px) { .verticais-grid { grid-template-columns: 1fr; } }
 
 .vertical-card {

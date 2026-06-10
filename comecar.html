@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Comecar" subtitle="Checkout trial · wizard de 2 passos (CNPJ → Conta)" -->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Começar grátis · Aura — 7 dias do Negócio, sem cartão.</title>
+<meta name="description" content="Crie sua conta Aura e teste o plano Negócio completo por 7 dias. Sem cartão, sem compromisso.">
+<link rel="canonical" href="https://www.getaura.com.br/comecar">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aura">
+<meta property="og:title" content="Começar grátis · Aura — 7 dias do plano Negócio">
+<meta property="og:description" content="Crie sua conta Aura e teste o plano Negócio completo por 7 dias. Sem cartão, sem compromisso.">
+<meta property="og:url" content="https://www.getaura.com.br/comecar">
+<meta property="og:image" content="https://www.getaura.com.br/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/Icon.png">
+<link rel="apple-touch-icon" href="/Icon.png">
+<link rel="stylesheet" href="/css/tokens.css?v=2">
+<link rel="stylesheet" href="/css/site.css?v=2">
+<link rel="stylesheet" href="/css/verticals.css?v=2">
+<style>
+  /* =========================================================
+     /comecar — Checkout trial wizard
+     Mobile-first. Um passo por tela. Tokens do site.
+     ========================================================= */
+  .cmc-stage {
+    min-height: 100vh;
+    padding: clamp(104px, 14vh, 150px) clamp(18px, 5vw, 40px) clamp(48px, 8vh, 88px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .cmc-shell {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* ---- Header: eyebrow + fixed trial tagline ---- */
+  .cmc-head { text-align: center; margin-bottom: 28px; }
+  .cmc-head .eyebrow { justify-content: center; margin-bottom: 18px; }
+
+  .trial-tagline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 18px 11px 14px;
+    border-radius: var(--r-pill);
+    background: rgba(124,58,237,0.12);
+    border: 1px solid rgba(124,58,237,0.28);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-2);
+    line-height: 1.3;
+    text-wrap: balance;
+    box-shadow: 0 8px 28px rgba(124,58,237,0.16);
+  }
+  .trial-tagline strong { color: var(--violet-3); font-weight: 700; }
+  .trial-dot {
+    width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+    background: var(--green);
+    box-shadow: 0 0 0 0 rgba(52,211,153,0.55);
+    animation: trialPulse 2.2s var(--ease) infinite;
+  }
+  @keyframes trialPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0.5); }
+    50%      { box-shadow: 0 0 0 7px rgba(52,211,153,0); }
+  }
+  @media (max-width: 460px) { .trial-tagline { font-size: 13px; padding: 10px 14px; } }
+
+  /* ---- Progress: 2 steps ---- */
+  .wiz-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 26px;
+  }
+  .wiz-step { display: flex; align-items: center; gap: 10px; }
+  .wiz-step .dot {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-3);
+    background: var(--bg-4);
+    border: 1px solid var(--border-2);
+    transition: all 0.3s var(--ease);
+    position: relative;
+  }
+  .wiz-step .lbl {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    transition: color 0.3s var(--ease);
+  }
+  .wiz-step.active .dot {
+    color: #fff;
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    border-color: transparent;
+    box-shadow: 0 6px 16px rgba(124,58,237,0.45);
+  }
+  .wiz-step.active .lbl { color: var(--ink); }
+  .wiz-step.done .dot {
+    color: #fff;
+    background: rgba(124,58,237,0.18);
+    border-color: rgba(124,58,237,0.45);
+  }
+  .wiz-step.done .dot .num { display: none; }
+  .wiz-step.done .dot .chk { display: block; }
+  .wiz-step .dot .chk { display: none; width: 14px; height: 14px; }
+  .wiz-connector {
+    width: 44px; height: 2px; border-radius: 2px;
+    background: var(--border-2);
+    overflow: hidden;
+    position: relative;
+  }
+  .wiz-connector::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, #7c3aed, #8b5cf6);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.45s var(--ease);
+  }
+  .wiz-connector.fill::after { transform: scaleX(1); }
+
+  /* ---- Card ---- */
+  .wiz-card {
+    position: relative;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 24px;
+    padding: clamp(24px, 4.5vw, 40px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+    overflow: hidden;
+  }
+  .wiz-card::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    border-radius: 24px;
+    background: radial-gradient(circle at 100% 0%, rgba(124,58,237,0.12), transparent 55%);
+  }
+
+  /* step transition — transform-only so content is never invisible if the
+     animation clock is frozen (background tab / export / reduced-motion). */
+  [data-step] { position: relative; z-index: 1; }
+  [data-step][hidden] { display: none; }
+  [data-step].entering { animation: stepIn 0.4s var(--ease) both; }
+  @keyframes stepIn {
+    from { transform: translateY(12px); }
+    to   { transform: none; }
+  }
+
+  .step-title {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: clamp(26px, 4.5vw, 32px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .step-title em { font-style: italic; color: var(--violet-3); }
+  .step-sub {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin-bottom: 26px;
+    text-wrap: pretty;
+  }
+
+  /* ---- Fields (≥16px to avoid iOS zoom) ---- */
+  .cmc-field { margin-bottom: 16px; }
+  .cmc-field label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 8px;
+  }
+  .cmc-field input {
+    width: 100%;
+    padding: 15px 16px;
+    background: rgba(0,0,0,0.22);
+    border: 1px solid var(--border-2);
+    border-radius: var(--r-xl);
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: #f3f1ff;
+    -webkit-text-fill-color: #f3f1ff;
+    caret-color: var(--violet-3);
+    transition: all 0.2s var(--ease);
+  }
+  .cmc-field input::placeholder { color: rgba(170,160,235,0.4); -webkit-text-fill-color: rgba(170,160,235,0.4); }
+  /* keep autofilled text light on the dark field */
+  .cmc-field input:-webkit-autofill,
+  .cmc-field input:-webkit-autofill:hover,
+  .cmc-field input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #f3f1ff;
+    caret-color: var(--violet-3);
+    transition: background-color 9999s ease-out 0s;
+  }
+  .cmc-field input:focus {
+    outline: none;
+    border-color: var(--violet);
+    box-shadow: 0 0 0 4px rgba(124,58,237,0.16);
+    background: rgba(124,58,237,0.05);
+  }
+  #cnpj { font-family: var(--font-mono); letter-spacing: 0.02em; font-size: 17px; }
+  .cmc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 480px) { .cmc-row { grid-template-columns: 1fr; gap: 0; } }
+  .field-hint { font-size: 12px; color: var(--ink-3); margin-top: 7px; }
+
+  /* ---- Buttons ---- */
+  .cmc-btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 8px;
+    padding: 16px 22px;
+    font-size: 16px;
+  }
+  .cmc-btn[disabled] { opacity: 0.55; cursor: not-allowed; transform: none !important; box-shadow: 0 8px 24px rgba(124,58,237,0.2), inset 0 1px 0 rgba(255,255,255,0.18); }
+  .cmc-btn .spinner {
+    width: 17px; height: 17px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    display: none;
+    animation: spin 0.7s linear infinite;
+  }
+  .cmc-btn.loading .label { display: none; }
+  .cmc-btn.loading .spinner { display: block; }
+  .cmc-btn.loading .arrow { display: none; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .skip-link {
+    display: block;
+    text-align: center;
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--ink-3);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(170,160,235,0.35);
+    transition: color 0.2s var(--ease);
+  }
+  .skip-link:hover { color: var(--violet-3); }
+
+  /* ---- Form error ---- */
+  .form-error {
+    display: none;
+    align-items: flex-start;
+    gap: 9px;
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: var(--r-xl);
+    background: var(--red-wash);
+    border: 1px solid rgba(248,113,113,0.3);
+    color: #fca5a5;
+    font-size: 13.5px;
+    line-height: 1.4;
+  }
+  .form-error.show { display: flex; animation: stepIn 0.25s var(--ease) both; }
+  .form-error svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  /* ---- CNPJ result card ---- */
+  [data-cnpj-result] {
+    margin-top: 18px;
+    padding: 18px;
+    border-radius: var(--r-2xl);
+    background: rgba(124,58,237,0.10);
+    border: 1px solid rgba(124,58,237,0.32);
+    animation: stepIn 0.35s var(--ease) both;
+  }
+  [data-cnpj-result][hidden] { display: none; }
+  .result-head {
+    display: flex; align-items: center; gap: 9px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 14px;
+  }
+  .result-head svg { width: 15px; height: 15px; }
+  .result-rows { display: grid; gap: 11px; margin-bottom: 18px; }
+  .result-rows .r { display: flex; flex-direction: column; gap: 2px; }
+  .result-rows .r .k {
+    font-family: var(--font-mono);
+    font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .result-rows .r .v { font-size: 15px; color: var(--ink); font-weight: 500; }
+  .result-correct {
+    display: block; text-align: center; margin-top: 14px;
+    font-size: 12.5px; color: var(--ink-3);
+    text-decoration: underline; text-underline-offset: 3px;
+    text-decoration-color: rgba(170,160,235,0.3);
+  }
+  .result-correct:hover { color: var(--violet-3); }
+
+  /* ---- Terms checkbox ---- */
+  .terms {
+    display: flex; align-items: flex-start; gap: 11px;
+    margin: 6px 0 4px;
+    font-size: 13.5px; line-height: 1.45;
+    color: var(--ink-2);
+    cursor: pointer;
+  }
+  .terms input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .terms .box {
+    width: 22px; height: 22px; flex-shrink: 0;
+    border-radius: 7px;
+    border: 1.5px solid var(--border-2);
+    background: rgba(0,0,0,0.22);
+    display: grid; place-items: center;
+    transition: all 0.18s var(--ease);
+    margin-top: 1px;
+  }
+  .terms .box svg { width: 13px; height: 13px; opacity: 0; transform: scale(0.6); transition: all 0.18s var(--ease); color: #fff; }
+  .terms input:checked + .box {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    border-color: transparent;
+  }
+  .terms input:checked + .box svg { opacity: 1; transform: scale(1); }
+  .terms input:focus-visible + .box { box-shadow: 0 0 0 4px rgba(124,58,237,0.18); }
+  .terms a { color: var(--violet-3); text-decoration: underline; text-underline-offset: 2px; }
+
+  /* ---- Step nav (back) ---- */
+  .step-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; color: var(--ink-3);
+    margin-bottom: 18px;
+    transition: color 0.2s var(--ease);
+  }
+  .step-back:hover { color: var(--violet-3); }
+  .step-back svg { width: 15px; height: 15px; }
+
+  /* ---- Footer line under card ---- */
+  .wiz-foot {
+    margin-top: 22px;
+    text-align: center;
+    font-size: 13.5px;
+    color: var(--ink-3);
+  }
+  .wiz-foot a { color: var(--violet-3); font-weight: 600; }
+  .wiz-secure {
+    display: inline-flex; align-items: center; gap: 7px;
+    margin-top: 14px;
+    font-size: 12px; color: var(--ink-3);
+  }
+  .wiz-secure svg { width: 13px; height: 13px; opacity: 0.7; }
+
+  /* ---- Success ---- */
+  .success { text-align: center; padding: 8px 0 4px; }
+  .success-glyph {
+    width: 84px; height: 84px;
+    margin: 0 auto 24px;
+    position: relative;
+    display: grid; place-items: center;
+  }
+  .success-glyph .ring {
+    position: absolute; inset: 0;
+    border: 1.5px solid rgba(124,58,237,0.6);
+    border-radius: 50%;
+    animation: radarPulse 2.4s var(--ease) infinite;
+  }
+  .success-glyph .ring:nth-child(2) { animation-delay: 0.8s; }
+  .success-glyph .core {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    display: grid; place-items: center;
+    box-shadow: 0 10px 30px rgba(124,58,237,0.5);
+    animation: successPop 0.6s var(--ease) both;
+  }
+  .success-glyph .core svg { width: 30px; height: 30px; color: #fff; }
+  @keyframes successPop {
+    0% { transform: scale(0.4); opacity: 0; }
+    60% { transform: scale(1.12); }
+    80% { transform: scale(0.96); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .success-redirect {
+    display: inline-flex; align-items: center; gap: 9px;
+    margin-top: 22px;
+    font-size: 13.5px; color: var(--ink-3);
+  }
+  .success-redirect .spinner {
+    width: 15px; height: 15px;
+    border: 2px solid rgba(167,139,250,0.3);
+    border-top-color: var(--violet-3);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  /* keep the marketing footer subtle distance */
+  .site-footer { margin-top: 0; }
+
+  /* Self-contained entrance — transform-only (opacity stays 1) so the wizard
+     is always visible, even if the animation clock is frozen. */
+  .cmc-rise { animation: cmcRise 0.6s var(--ease) both; }
+  .cmc-rise.d1 { animation-delay: 0.08s; }
+  .cmc-rise.d2 { animation-delay: 0.16s; }
+  @keyframes cmcRise { from { transform: translateY(16px); } to { transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .cmc-rise, [data-step].entering { animation: none; }
+  }
+</style>
+</head>
+<body data-screen-label="Comecar">
+<div data-mount="nav"></div>
+
+<main class="section dark deep cmc-stage" data-screen-label="Comecar wizard">
+  <div class="orbs">
+    <div class="orb violet" style="width: 560px; height: 560px; top: -120px; right: -160px; opacity: 0.45;"></div>
+    <div class="orb indigo" style="width: 420px; height: 420px; bottom: -140px; left: -120px; opacity: 0.35;"></div>
+  </div>
+  <div class="grain"></div>
+
+  <div class="cmc-shell">
+    <!-- HEADER + fixed trial tagline (sempre visível) -->
+    <div class="cmc-head cmc-rise">
+      <div class="eyebrow center">Comece grátis</div>
+      <div class="trial-tagline">
+        <span class="trial-dot"></span>
+        <span>7 dias do plano <strong>Negócio</strong> completo. Grátis, sem cartão.</span>
+      </div>
+    </div>
+
+    <!-- PROGRESS · 2 passos -->
+    <div class="wiz-progress cmc-rise d1" data-progress>
+      <div class="wiz-step active" data-progress-for="cnpj">
+        <span class="dot"><span class="num">1</span><svg class="chk" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg></span>
+        <span class="lbl">CNPJ</span>
+      </div>
+      <div class="wiz-connector" data-connector></div>
+      <div class="wiz-step" data-progress-for="conta">
+        <span class="dot"><span class="num">2</span><svg class="chk" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg></span>
+        <span class="lbl">Conta</span>
+      </div>
+    </div>
+
+    <!-- WIZARD CARD -->
+    <div class="wiz-card cmc-rise d2">
+
+      <!-- ============ PASSO 1 · CNPJ ============ -->
+      <section data-step="cnpj">
+        <h1 class="step-title">Vamos começar pelo seu <em>CNPJ</em></h1>
+        <p class="step-sub">A gente puxa os dados da Receita pra adiantar seu cadastro. Leva 2 segundos.</p>
+
+        <div class="cmc-field">
+          <label for="cnpj">CNPJ</label>
+          <input name="cnpj" id="cnpj" type="text" inputmode="numeric" autocomplete="off" placeholder="00.000.000/0000-00" maxlength="18">
+        </div>
+
+        <div class="form-error" data-error="cnpj">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="8" r="6.5"/><path d="M8 5v3.5M8 11h.01"/></svg>
+          <span data-error-msg></span>
+        </div>
+
+        <button class="btn btn-primary cmc-btn" data-action="cnpj-lookup">
+          <span class="label">Continuar</span>
+          <span class="arrow">→</span>
+          <span class="spinner"></span>
+        </button>
+
+        <a class="skip-link" data-action="skip-cnpj" href="#">Ainda não tenho CNPJ / sou autônomo</a>
+
+        <!-- card de confirmação (dados da Receita — preenchidos pela API) -->
+        <div data-cnpj-result hidden>
+          <div class="result-head">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg>
+            Encontramos seu negócio
+          </div>
+          <div class="result-rows">
+            <div class="r"><span class="k">Razão social</span><span class="v" data-field="legal_name">—</span></div>
+            <div class="r"><span class="k">Nome fantasia</span><span class="v" data-field="trade_name">—</span></div>
+            <div class="r"><span class="k">Cidade / UF</span><span class="v" data-field="city_uf">—</span></div>
+          </div>
+          <button class="btn btn-primary cmc-btn" data-action="cnpj-confirm">
+            <span class="label">Confirmar e continuar</span>
+            <span class="arrow">→</span>
+            <span class="spinner"></span>
+          </button>
+          <a class="result-correct" data-action="cnpj-reset" href="#">Não é essa empresa? Corrigir CNPJ</a>
+        </div>
+      </section>
+
+      <!-- ============ PASSO 2 · CONTA ============ -->
+      <section data-step="conta" hidden>
+        <a class="step-back" data-action="back-cnpj" href="#">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5L5.5 8l4.5 4.5"/></svg>
+          Voltar
+        </a>
+        <h1 class="step-title">Falta pouco. Crie seu <em>acesso.</em></h1>
+        <p class="step-sub">Seu teste de 7 dias no plano Negócio começa agora.</p>
+
+        <div class="cmc-field">
+          <label for="acc-name">Nome completo</label>
+          <input name="name" id="acc-name" type="text" autocomplete="name" placeholder="Seu nome">
+        </div>
+
+        <div class="cmc-row">
+          <div class="cmc-field">
+            <label for="acc-email">E-mail</label>
+            <input name="email" id="acc-email" type="email" autocomplete="email" placeholder="voce@empresa.com.br">
+          </div>
+          <div class="cmc-field">
+            <label for="acc-phone">WhatsApp</label>
+            <input name="phone" id="acc-phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(11) 90000-0000" maxlength="16">
+          </div>
+        </div>
+
+        <div class="cmc-field">
+          <label for="acc-pass">Senha</label>
+          <input name="password" id="acc-pass" type="password" autocomplete="new-password" placeholder="Mínimo 8 caracteres">
+          <div class="field-hint">Use ao menos 8 caracteres.</div>
+        </div>
+
+        <label class="terms">
+          <input name="terms_accepted" type="checkbox">
+          <span class="box"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg></span>
+          <span>Li e aceito os <a href="/termos" target="_blank" rel="noopener">Termos de Uso</a> e a <a href="/privacidade" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
+        </label>
+
+        <div class="form-error" data-error="register">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="8" r="6.5"/><path d="M8 5v3.5M8 11h.01"/></svg>
+          <span data-error-msg></span>
+        </div>
+
+        <button class="btn btn-primary cmc-btn" data-action="register">
+          <span class="label">Criar conta e começar</span>
+          <span class="arrow">→</span>
+          <span class="spinner"></span>
+        </button>
+
+        <div class="wiz-foot" style="margin-top: 18px;">
+          Já tem conta? <a href="https://app.getaura.com.br" target="_blank" rel="noopener">Entrar</a>
+        </div>
+      </section>
+
+      <!-- ============ SUCESSO ============ -->
+      <section data-step="sucesso" hidden>
+        <div class="success">
+          <div class="success-glyph">
+            <span class="ring"></span>
+            <span class="ring"></span>
+            <span class="core">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-11"/></svg>
+            </span>
+          </div>
+          <h1 class="step-title" style="margin-bottom: 12px;">Conta criada!</h1>
+          <p class="step-sub" style="margin-bottom: 0;">Seu teste do <strong style="color:var(--violet-3);font-weight:700;">Negócio</strong> está rodando. Redirecionando pro Aura…</p>
+          <div class="success-redirect">
+            <span class="spinner"></span>
+            <span>Levando você pro app</span>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /wiz-card -->
+
+    <div class="wiz-secure-wrap" style="text-align:center;">
+      <span class="wiz-secure">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 015 0v2"/></svg>
+        Seus dados são protegidos · LGPD
+      </span>
+    </div>
+  </div>
+</main>
+
+<div data-mount="footer"></div>
+<div data-mount="wa"></div>
+
+<script src="/js/chrome.js"></script>
+<script src="/js/comecar.js"></script>
+<script src="/js/site.js"></script>
+</body>
+</html>

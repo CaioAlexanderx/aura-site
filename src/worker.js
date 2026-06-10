@@ -230,6 +230,13 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
+    // SEO: host canonico = www. Apex (getaura.com.br) responde 301 limpo
+    // pro mesmo path/query em www (audit 06/2026: apex voltava vazio).
+    if (url.hostname === 'getaura.com.br') {
+      url.hostname = 'www.getaura.com.br';
+      return Response.redirect(url.toString(), 301);
+    }
+
     if (url.pathname === '/api/contact') {
       return handleContact(request, env);
     }

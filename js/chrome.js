@@ -15,7 +15,6 @@
       <button>Verticais ▾</button>
       <div class="nav-dropdown-panel">
         <a class="nav-dropdown-item" href="/negocio" style="--v-accent:#7c3aed; --v-glow:rgba(124,58,237,0.4)"><span class="v-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4l8 16H4z"/><circle cx="12" cy="14" r="1.5" fill="currentColor"/></svg></span><span><div class="v-name">Aura Negócio</div><div class="v-tag">Carro-chefe · varejo geral</div></span></a>
-        <a class="nav-dropdown-item" href="/food" style="--v-accent:#F97316; --v-glow:rgba(249,115,22,0.4)"><span class="v-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c-2.5 3-4 5-4 9 0 3 1.5 5 4 7 2.5-2 4-4 4-7 0-4-1.5-6-4-9z"/></svg></span><span><div class="v-name">Aura Food</div><div class="v-tag">Restaurantes, bares, deliveries</div></span></a>
         <a class="nav-dropdown-item" href="/studio" style="--v-accent:#E11D74; --v-glow:rgba(225,29,116,0.4)"><span class="v-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21l6-6M14 4l6 6M14 4l-9 9 5 5 9-9zM14 4l2-2 4 4-2 2"/></svg></span><span><div class="v-name">Aura Studio</div><div class="v-tag">Customização, impressão, ateliês</div></span></a>
         <a class="nav-dropdown-item" href="/dojo" style="--v-accent:#b8463a; --v-glow:rgba(184,70,58,0.4)"><span class="v-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-5 9 5M5 10v6M19 10v6M3 16h18M3 9h18"/></svg></span><span><div class="v-name">Aura Dojô</div><div class="v-tag">Federações e academias · Karatê</div></span></a>
       </div>
@@ -25,7 +24,7 @@
     <a href="/#contato">Contato</a>
     <span class="nav-cta-row">
       <a href="https://app.getaura.com.br" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Entrar</a>
-      <a href="https://app.getaura.com.br/cadastro" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Criar conta</a>
+      <a href="/comecar" class="btn btn-primary btn-sm">Começar grátis</a>
     </span>
   </div>
   <button class="nav-mobile-toggle" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h14M3 10h14M3 14h14"/></svg></button>
@@ -33,7 +32,6 @@
     <a href="/">Início</a>
     <div class="nav-mobile-section">Verticais</div>
     <a href="/negocio" class="nav-mobile-vert"><span class="vdot" style="background:#7c3aed"></span>Aura Negócio</a>
-    <a href="/food" class="nav-mobile-vert"><span class="vdot" style="background:#F97316"></span>Aura Food</a>
     <a href="/studio" class="nav-mobile-vert"><span class="vdot" style="background:#E11D74"></span>Aura Studio</a>
     <a href="/dojo" class="nav-mobile-vert"><span class="vdot" style="background:#b8463a"></span>Aura Dojô</a>
     <a href="/planos">Planos</a>
@@ -41,7 +39,7 @@
     <a href="/#contato">Contato</a>
     <div class="nav-mobile-ctas">
       <a href="https://app.getaura.com.br" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">Entrar</a>
-      <a href="https://app.getaura.com.br/cadastro" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Criar conta</a>
+      <a href="/comecar" class="btn btn-primary btn-lg">Começar grátis</a>
     </div>
   </div>
 </nav>`;
@@ -55,7 +53,7 @@
           <img src="/Icon.png" alt="Aura" style="width: 38px; height: 38px; border-radius: 9px; box-shadow: 0 6px 18px rgba(124,58,237,0.5);" />
           <span style="font-family: var(--font-heading); font-size: 26px; color: white; letter-spacing: -0.02em;">Aura<span style="color: #a78bfa;">.</span></span>
         </div>
-        <p style="font-size: 14px; line-height: 1.6; color: rgba(196,181,253,0.7); max-width: 280px;">Tecnologia para Negócios. Quatro verticais especialistas, uma plataforma única, feita no Brasil.</p>
+        <p style="font-size: 14px; line-height: 1.6; color: rgba(196,181,253,0.7); max-width: 280px;">Tecnologia para Negócios. Três produtos especialistas, uma plataforma única, feita no Brasil.</p>
         <p style="font-family: var(--font-heading); font-style: italic; font-size: 17px; line-height: 1.4; color: #fff; max-width: 300px; margin-top: 20px; letter-spacing: -0.01em;">"Aura, a plataforma do empreendedor brasileiro."</p>
         <div style="margin-top: 24px; display: flex; gap: 10px;">
           <a href="https://instagram.com/aura_tecnologia" target="_blank" rel="noopener" aria-label="Instagram" style="width: 36px; height: 36px; padding: 0; border-radius: 10px; background: rgba(124,58,237,0.18); display: grid; place-items: center; color: #c4b5fd;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg></a>
@@ -65,7 +63,7 @@
       </div>
       <div>
         <h5>Verticais</h5>
-        <a href="/negocio">Aura Negócio</a><a href="/food">Aura Food</a><a href="/studio">Aura Studio</a><a href="/dojo">Aura Dojô</a>
+        <a href="/negocio">Aura Negócio</a><a href="/studio">Aura Studio</a><a href="/dojo">Aura Dojô</a>
       </div>
       <div>
         <h5>Produto</h5>

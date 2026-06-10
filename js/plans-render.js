@@ -40,7 +40,6 @@
   function verticalAddonHTML() {
     return '<div class="plan-vertical-addon" title="Vertical do seu setor já incluída no plano">' +
       '<div class="plan-vertical-dots">' +
-        '<span style="background:#F97316;" title="Food"></span>' +
         '<span style="background:#E11D74;" title="Studio"></span>' +
         '<span style="background:#b8463a;" title="Dojô"></span>' +
       '</div>' +
