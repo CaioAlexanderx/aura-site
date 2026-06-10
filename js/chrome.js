@@ -16,7 +16,7 @@
       <div class="nav-dropdown-panel">
         <a class="nav-dropdown-item" href="/negocio" style="--v-accent:#7c3aed; --v-glow:rgba(124,58,237,0.4)"><span class="v-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4l8 16H4z"/><circle cx="12" cy="14" r="1.5" fill="currentColor"/></svg></span><span><div class="v-name">Aura Negócio</div><div class="v-tag">Carro-chefe · varejo geral</div></span></a>
         <a class="nav-dropdown-item" href="/studio" style="--v-accent:#E11D74; --v-glow:rgba(225,29,116,0.4)"><span class="v-mark"><svg viewBox="0 0 100 100" fill="none"><path d="M50 5 C54.5 31 69 45.5 95 50 C69 54.5 54.5 69 50 95 C45.5 69 31 54.5 5 50 C31 45.5 45.5 31 50 5 Z" fill="currentColor"/><path d="M82 14 C83.4 21.6 86.4 24.6 94 26 C86.4 27.4 83.4 30.4 82 38 C80.6 30.4 77.6 27.4 70 26 C77.6 24.6 80.6 21.6 82 14 Z" fill="currentColor" opacity="0.8"/></svg></span><span><div class="v-name">Aura Studio</div><div class="v-tag">Customização, impressão, ateliês</div></span></a>
-        <a class="nav-dropdown-item" href="/dojo" style="--v-accent:#b8463a; --v-glow:rgba(184,70,58,0.4)"><span class="v-mark"><img src="/assets/karate/seal-kara.svg" alt="Aura Karate" style="width:100%;height:100%;border-radius:inherit;object-fit:cover"></span><span><div class="v-name">Aura Dojô</div><div class="v-tag">Federações e academias · Karatê</div></span></a>
+        <a class="nav-dropdown-item" href="/dojo" style="--v-accent:#b8463a; --v-glow:rgba(184,70,58,0.4)"><span class="v-mark" style="background:#f0ebe0;"><img src="/assets/karate/seal-kara.svg" alt="Aura Karate" style="width:78%;height:78%;object-fit:contain"></span><span><div class="v-name">Aura Dojô</div><div class="v-tag">Federações e academias · Karatê</div></span></a>
       </div>
     </div>
     <a href="/planos">Planos</a>
@@ -50,7 +50,7 @@
     <div class="footer-grid">
       <div>
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-          <img src="/aura_icon.svg" alt="Aura" style="width: 38px; height: 38px; border-radius: 50%; box-shadow: 0 6px 18px rgba(124,58,237,0.5);" />
+          <img src="/Icon.png" alt="Aura" style="width: 38px; height: 38px; border-radius: 50%; box-shadow: 0 6px 18px rgba(124,58,237,0.5);" />
           <span style="font-family: var(--font-heading); font-size: 26px; color: white; letter-spacing: -0.02em;">Aura<span style="color: #a78bfa;">.</span></span>
         </div>
         <p style="font-size: 14px; line-height: 1.6; color: rgba(196,181,253,0.7); max-width: 280px;">Tecnologia para Negócios. Três produtos especialistas, uma plataforma única, feita no Brasil.</p>
