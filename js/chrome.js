@@ -67,7 +67,7 @@
       </div>
       <div>
         <h5>Produto</h5>
-        <a href="/planos">Planos</a><a href="https://app.getaura.com.br" target="_blank" rel="noopener">Entrar</a><a href="https://app.getaura.com.br/cadastro" target="_blank" rel="noopener">Criar conta</a><a href="/sobre">Sobre a Aura</a>
+        <a href="/planos">Planos</a><a href="/comparativo">Comparativo</a><a href="https://app.getaura.com.br" target="_blank" rel="noopener">Entrar</a><a href="https://app.getaura.com.br/cadastro" target="_blank" rel="noopener">Criar conta</a><a href="/sobre">Sobre a Aura</a>
       </div>
       <div>
         <h5>Contato</h5>

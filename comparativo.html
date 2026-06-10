@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aura vs Bling, Kyte e Nex — comparativo sem enrolação</title>
+<meta name="description" content="Compare a Aura com Bling, Kyte e Nex usando dados públicos das páginas de preço: fiado com cobrança, grade de tamanhos, nota fiscal inclusa e preço fixo que não sobe com as vendas.">
+<link rel="canonical" href="https://www.getaura.com.br/comparativo">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aura">
+<meta property="og:title" content="Aura vs Bling, Kyte e Nex — comparativo sem enrolação">
+<meta property="og:description" content="Fiado com cobrança PIX, grade completa, nota fiscal desde R$89 e preço fixo. Compare com dados públicos — e depois compare na prática, grátis.">
+<meta property="og:url" content="https://www.getaura.com.br/comparativo">
+<meta property="og:image" content="https://www.getaura.com.br/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/Icon.png">
+<link rel="apple-touch-icon" href="/Icon.png">
+<link rel="stylesheet" href="/css/tokens.css?v=2">
+<link rel="stylesheet" href="/css/site.css?v=2">
+<link rel="stylesheet" href="/css/verticals.css?v=2">
+<style>
+  .cmp-hero { padding: 150px 0 60px; position: relative; overflow: hidden; }
+  .cmp-duel { max-width: 980px; margin: 0 auto 64px; }
+  .cmp-duel-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #a78bfa; margin-bottom: 16px; }
+  .cmp-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 760px) { .cmp-pair { grid-template-columns: 1fr; } }
+  .cmp-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 18px; padding: 26px 28px; }
+  .cmp-card .who { font-size: 13px; color: rgba(220,215,255,0.55); margin-bottom: 8px; }
+  .cmp-card .big { font-family: var(--font-heading); font-size: 30px; color: #f5f1ff; letter-spacing: -0.02em; }
+  .cmp-card .big small { font-size: 14px; color: rgba(220,215,255,0.5); letter-spacing: 0; }
+  .cmp-card p.note { font-size: 14px; line-height: 1.6; color: rgba(220,215,255,0.75); margin-top: 12px; }
+  .cmp-card.aura { background: linear-gradient(160deg, rgba(124,58,237,0.26), rgba(124,58,237,0.08)); border-color: rgba(167,139,250,0.42); }
+  .cmp-card.aura .who { color: #c4b5fd; }
+  .cmp-card.aura p.note { color: rgba(232,224,255,0.88); }
+  .cmp-card .bad { color: #f0997b; }
+  .cmp-card ul { list-style: none; padding: 0; margin: 10px 0 0; }
+  .cmp-card ul li { font-size: 14px; line-height: 1.9; color: rgba(220,215,255,0.78); }
+  .cmp-card.aura ul li { color: rgba(232,224,255,0.9); }
+  .cmp-card ul li.no { color: rgba(220,215,255,0.42); }
+  .cmp-table { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; overflow: hidden; }
+  .cmp-row { display: grid; grid-template-columns: 1.2fr 1fr 1.1fr; gap: 8px; padding: 15px 22px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14.5px; align-items: center; }
+  .cmp-row:last-child { border-bottom: none; }
+  .cmp-row.head { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(220,215,255,0.5); }
+  .cmp-row.head .aura-col { color: #c4b5fd; }
+  .cmp-row .feat { color: #e6e0fa; }
+  .cmp-row .them { color: #f0997b; }
+  .cmp-row .us { color: #6ee7a8; }
+  @media (max-width: 640px) {
+    .cmp-row { grid-template-columns: 1fr; gap: 2px; padding: 13px 18px; }
+    .cmp-row.head { display: none; }
+    .cmp-row .them::before { content: "Kyte: "; color: rgba(220,215,255,0.5); }
+    .cmp-row .us::before { content: "Aura: "; color: rgba(196,181,253,0.7); }
+  }
+  .cmp-aside { font-size: 13px; color: rgba(220,215,255,0.5); margin-top: 12px; }
+  .cmp-sources { font-size: 12px; line-height: 1.7; color: rgba(220,215,255,0.45); max-width: 640px; margin: 0 auto; }
+  .cmp-sources a { color: rgba(196,181,253,0.7); text-decoration: underline; }
+</style>
+</head>
+<body data-screen-label="Comparativo">
+<div data-mount="nav"></div>
+
+<!-- HERO -->
+<section class="section dark deep cmp-hero" data-screen-label="hero">
+  <div class="orbs">
+    <div class="orb violet" style="width: 560px; height: 560px; top: -120px; right: -140px; opacity: 0.45;"></div>
+    <div class="orb indigo" style="width: 420px; height: 420px; bottom: -140px; left: -120px; opacity: 0.35;"></div>
+  </div>
+  <div class="grain"></div>
+  <div class="container text-center" style="position: relative; max-width: 760px;">
+    <div class="eyebrow center" style="margin-bottom: 16px;" data-reveal>Comparativo · sem enrolação</div>
+    <h1 class="display" data-typein>Compare a Aura com quem você está <em>pensando em assinar.</em></h1>
+    <p class="lead" style="margin: 16px auto 0;" data-reveal data-reveal-delay="2">Tudo o que está aqui saiu das páginas de preço deles, conferido em junho de 2026. Mudou alguma coisa? Avisa que a gente corrige no mesmo dia.</p>
+  </div>
+</section>
+
+<!-- DUELOS -->
+<section class="section dark" data-screen-label="duelos">
+  <div class="container">
+
+    <div class="cmp-duel" data-reveal>
+      <div class="cmp-duel-label">01 · Aura × Bling — quanto custa crescer?</div>
+      <div class="cmp-pair">
+        <div class="cmp-card">
+          <div class="who">Bling</div>
+          <div class="big">R$ 55 → R$ 650<small>/mês</small></div>
+          <p class="note">Quanto mais pedidos chegam do Mercado Livre e da Shopee, mais caro fica o plano — e o aumento é <strong class="bad">automático</strong>: o sistema olha sua média dos últimos 3 meses e sobe o preço sozinho. Seu melhor mês vira a sua nova mensalidade.</p>
+        </div>
+        <div class="cmp-card aura">
+          <div class="who">Aura Negócio</div>
+          <div class="big">R$ 169 <small>fixo, e ponto</small></div>
+          <p class="note">Escolha o plano pelo tamanho da sua loja — e pronto. Vendeu muito esse mês? Parabéns. O preço nem ficou sabendo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmp-duel" data-reveal>
+      <div class="cmp-duel-label">02 · Aura × Kyte — o que a sua loja precisa e ele não tem</div>
+      <div class="cmp-table">
+        <div class="cmp-row head"><span></span><span>Kyte</span><span class="aura-col">Aura</span></div>
+        <div class="cmp-row"><span class="feat">Nota fiscal (NFC-e)</span><span class="them">não emite</span><span class="us">desde o plano de R$ 89</span></div>
+        <div class="cmp-row"><span class="feat">Grade de tamanho e cor</span><span class="them">só 2 variações por produto</span><span class="us">grade inteira: tamanho, cor e modelo, cada um com seu estoque</span></div>
+        <div class="cmp-row"><span class="feat">Fiado</span><span class="them">anota a dívida e fica nisso</span><span class="us">fiado de verdade: carnê, limite por cliente e cobrança com PIX</span></div>
+        <div class="cmp-row"><span class="feat">Troca no caixa</span><span class="them">—</span><span class="us">nativa, com saldo automático</span></div>
+        <div class="cmp-row"><span class="feat">Financeiro</span><span class="them">entrou e saiu, e só</span><span class="us">relatório pro contador (DRE) e extrato do banco conferido sozinho</span></div>
+      </div>
+      <p class="cmp-aside">O Kyte é ótimo pra começar a vender pelo celular — sério, é. O problema é que a sua loja cresce e ele fica.</p>
+    </div>
+
+    <div class="cmp-duel" data-reveal>
+      <div class="cmp-duel-label">03 · Aura × Nex — os mesmos R$ 169, lado a lado</div>
+      <div class="cmp-pair">
+        <div class="cmp-card">
+          <div class="who">Nex · plano Fiscal · R$ 169/mês</div>
+          <ul>
+            <li>✓ Notas fiscais (NF-e e NFC-e)</li>
+            <li>✓ PDV, estoque e pedidos</li>
+            <li>✓ Comissões e fidelidade</li>
+            <li class="no">✗ Fiado com cobrança</li>
+            <li class="no">✗ Relatório pro contador (DRE)</li>
+            <li class="no">✗ Folha de pagamento</li>
+            <li class="no">✗ Aviso de cliente sumido</li>
+            <li class="no">✗ Várias lojas num painel só</li>
+            <li class="no">✗ Loja online inclusa</li>
+          </ul>
+        </div>
+        <div class="cmp-card aura">
+          <div class="who">Aura Negócio · R$ 169/mês</div>
+          <ul>
+            <li>✓ Notas fiscais sem limite (NF-e, NFC-e e NFS-e)</li>
+            <li>✓ PDV, estoque e grade inteira</li>
+            <li>✓ Fiado com carnê, limite e cobrança PIX</li>
+            <li>✓ Relatório pro contador e banco conferido sozinho</li>
+            <li>✓ Folha de pagamento com holerite</li>
+            <li>✓ Cliente sumiu? A Aura te conta — e ajuda a trazer de volta</li>
+            <li>✓ Loja online inclusa</li>
+            <li>✓ Studio ou Dojô de brinde, sem pagar a mais</li>
+          </ul>
+        </div>
+      </div>
+      <p class="cmp-aside">No Nex, R$ 169 compram a nota fiscal. Na Aura, compram a loja inteira funcionando — com a nota dentro.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section dark deep" data-screen-label="cta">
+  <div class="orbs"><div class="orb violet" style="width: 500px; height: 500px; top: -100px; left: 30%;"></div></div>
+  <div class="container text-center" style="max-width: 640px; position: relative;">
+    <h2 class="h1" data-reveal>Não acredita em tabela?<br><em style="color:#a78bfa;">A gente também não.</em></h2>
+    <p class="lead" style="margin: 16px auto 28px;" data-reveal data-reveal-delay="1">Teste o plano Negócio completo por 7 dias, grátis e sem cartão — e compare na prática.</p>
+    <div class="row" style="justify-content: center;" data-reveal data-reveal-delay="2">
+      <a href="/comecar" class="btn btn-primary btn-lg">Começar grátis <span class="arrow">→</span></a>
+      <a href="https://wa.me/5511956305269?text=Vim%20pelo%20comparativo%20da%20Aura" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">Chamar no WhatsApp</a>
+    </div>
+    <p class="cmp-sources" style="margin-top: 40px;" data-reveal data-reveal-delay="3">Tudo daqui saiu das páginas públicas de planos de <a href="https://www.bling.com.br/planos-e-precos" target="_blank" rel="noopener nofollow">Bling</a>, <a href="https://www.kyte.com.br/planos" target="_blank" rel="noopener nofollow">Kyte</a> e <a href="https://www.nextar.com.br/precos" target="_blank" rel="noopener nofollow">Nex</a>, em 09/06/2026. As marcas citadas são dos seus donos e não têm relação com a Aura. Achou algo velho aqui? <a href="https://wa.me/5511956305269?text=Achei%20algo%20desatualizado%20no%20comparativo">Avisa a gente</a> que corrigimos.</p>
+  </div>
+</section>
+
+<div data-mount="footer"></div>
+<div data-mount="wa"></div>
+<script src="/js/chrome.js"></script>
+<script src="/js/site.js"></script>
+</body>
+</html>

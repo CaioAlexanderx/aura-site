@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.getaura.com.br/</loc><lastmod>2026-06-09</lastmod><priority>1.0</priority><changefreq>weekly</changefreq></url>
   <url><loc>https://www.getaura.com.br/comecar</loc><lastmod>2026-06-09</lastmod><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.getaura.com.br/comparativo</loc><lastmod>2026-06-10</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.getaura.com.br/produto</loc><lastmod>2026-06-09</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.getaura.com.br/segmentos</loc><lastmod>2026-06-09</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.getaura.com.br/planos</loc><lastmod>2026-06-09</lastmod><priority>0.9</priority><changefreq>monthly</changefreq></url>
