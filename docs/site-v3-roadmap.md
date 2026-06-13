@@ -87,8 +87,8 @@ Aplicar a decisão "apenas 2 verticais (Studio + Dojô)". Tarefas:
 - ⬜ **[Opus]** Na **Fase 5** (features marketing), retirar **Food KDS** do escopo de divulgação.
 - ⬜ **[Usuário]** Confirmar que nenhuma campanha/anúncio ativo aponta pra `/food`.
 
-### 1.3 Narrativa do beachhead na home (merge v3.1) — copy
-A home hoje lista verticais; precisa **liderar com o fiado do Negócio**. Split de trabalho: Claude escreve a copy/brief, usuário aplica o visual.
+### 1.3 ✅ FEITO — Narrativa do beachhead na home — copy
+Hero da home já lidera com fiado (*"Do fiado ao crediário profissional — com a cobrança pronta no WhatsApp."*) e a seção `recursos` já está nas **3 camadas** (cunha/profundidade/expansão), com Studio/Dojô abaixo da dobra. `produto.html` mantém estrutura própria (journey + resultados) por decisão — não força 3 camadas. Claim de cobrança corrigido (`produto.html`: selo "Auto"→"1 toque", commit `507c90e`). *(Histórico do brief abaixo.)*
 - ⬜ **[Claude/Copy]** Brief de hero da home com o ângulo de fiado (rascunho aprovado): H1 *"O sistema da loja que vende fiado — e cobra sozinho pelo WhatsApp."* + sub que cita troca no caixa e grade (o que Kyte/Bling deixam na mão) + suporte humano + preço fixo. CTAs: primário `Começar grátis` (→ `/comecar`), secundário `Chamar no WhatsApp`.
 - ⬜ **[Claude/Copy]** Reorganizar a seção de features (`produto.html`/home) nas **3 camadas** (cunha/profundidade/expansão) em vez da grade plana de pilares — Studio/Dojô abaixo da dobra.
 - ⬜ **[Usuário]** Aplicar o visual do hero e das 3 camadas.
