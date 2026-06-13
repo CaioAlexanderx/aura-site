@@ -212,7 +212,8 @@ async function forwardLeadToCrm(env, f) {
       body: JSON.stringify({
         nome: f.nome, whatsapp: f.whatsapp, email: f.email,
         empresa: f.empresa, cargo: f.cargo, tipo: f.tipo,
-        vertical: f.vertical, mensagem: f.mensagem, source: 'site',
+        vertical: f.vertical, mensagem: f.mensagem,
+        partial: !!f.partial, source: f.partial ? 'site_partial' : 'site',
       }),
       signal: ctrl.signal,
     });
@@ -226,6 +227,48 @@ async function forwardLeadToCrm(env, f) {
   }
 }
 
+// ── Captura PARCIAL (form progressivo passo 1 / exit-intent) ──
+// Pessoa deixou o contato mas ainda NAO enviou o formulario completo.
+// Vai pro CRM como lead parcial (source='site_partial'); SEM e-mail.
+async function handlePartial(request, env) {
+  if (request.method !== 'POST') {
+    return jsonResp({ ok: false, error: 'Metodo nao suportado' }, 405);
+  }
+  let whatsapp = '', email = '', vertical = '', nome = '', honeypot = '';
+  try {
+    const contentType = request.headers.get('content-type') || '';
+    let body;
+    if (contentType.includes('application/json')) {
+      body = await request.json();
+    } else {
+      const form = await request.formData();
+      body = {};
+      for (const [k, v] of form.entries()) body[k] = v;
+    }
+    whatsapp = (body.whatsapp || body.telefone || body.phone || '').toString().trim();
+    email    = (body.email || body['e-mail'] || '').toString().trim();
+    vertical = (body.vertical || '').toString().trim();
+    nome     = (body.nome || body.name || '').toString().trim();
+    honeypot = (body._empresa || body.honeypot || '').toString().trim();
+  } catch (err) {
+    return jsonResp({ ok: false, error: 'Formato invalido' }, 400);
+  }
+
+  // Honeypot — responde 200 sem capturar
+  if (honeypot) return jsonResp({ ok: true });
+
+  // Parcial precisa de telefone OU e-mail
+  const phoneDigits = whatsapp.replace(/\D/g, '');
+  if (phoneDigits.length < 8 && !email) {
+    return jsonResp({ ok: false, error: 'Informe um WhatsApp ou e-mail valido.' }, 400);
+  }
+
+  const ok = await forwardLeadToCrm(env, { nome, whatsapp, email, vertical, partial: true });
+  return ok
+    ? jsonResp({ ok: true, message: 'Recebido! A gente te chama no WhatsApp.' })
+    : jsonResp({ ok: false, error: 'Nao foi possivel agora. Tenta de novo ou chama no WhatsApp.' }, 502);
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -235,6 +278,10 @@ export default {
     if (url.hostname === 'getaura.com.br') {
       url.hostname = 'www.getaura.com.br';
       return Response.redirect(url.toString(), 301);
+    }
+
+    if (url.pathname === '/api/lead-partial') {
+      return handlePartial(request, env);
     }
 
     if (url.pathname === '/api/contact') {

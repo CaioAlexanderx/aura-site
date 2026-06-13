@@ -529,27 +529,41 @@
       </div>
 
       <form class="form-card" id="homeContactForm" data-form="contact" action="/api/contact" method="POST" data-reveal data-reveal-delay="1">
-        <div class="form-grid">
-          <div class="field"><label>Nome</label><input type="text" name="nome" placeholder="Caio Alexander" required></div>
-          <div class="field"><label>Cargo</label><input type="text" name="cargo" placeholder="Sócio fundador"></div>
-          <div class="field full"><label>Empresa</label><input type="text" name="empresa" placeholder="Nome do seu negócio"></div>
-          <div class="field full">
-            <label>Vertical de interesse</label>
-            <select name="vertical">
-              <option>Aura Negócio — varejo geral</option>
-              <option>Aura Studio — customização, impressão, ateliês</option>
-              <option>Aura Dojô — federações e academias de Karatê</option>
-              <option>Ainda não sei</option>
-            </select>
-          </div>
-          <div class="field"><label>WhatsApp</label><input type="tel" name="whatsapp" placeholder="(11) 99999-9999" required></div>
-          <div class="field"><label>E-mail</label><input type="email" name="email" placeholder="voce@empresa.com.br" required></div>
-          <div class="field full"><label>Mensagem</label><textarea name="mensagem" placeholder="Conta um pouco do seu negócio: quantas lojas, quantos profissionais, o que você usa hoje..."></textarea></div>
+        <!-- Passo 1 — WhatsApp sempre visível -->
+        <div class="field full"><label>WhatsApp</label><input type="tel" name="whatsapp" placeholder="(11) 99999-9999" required></div>
+
+        <!-- CTA do passo 1: aparece só com JS (progressive enhancement) -->
+        <div data-lc-step1-cta hidden>
+          <button type="button" class="btn btn-primary btn-lg" data-action="lead-step1" style="width: 100%; margin-top: 16px; justify-content: center;">Quero que me chamem <span class="arrow">→</span></button>
+          <div class="lc-micro">Sem spam. É só pra te ajudar a começar — a gente te chama no WhatsApp.</div>
+          <div class="lc-err" data-lc-error="step1" role="alert"></div>
         </div>
+
+        <!-- Passo 2 — resto do form. Sem JS fica visível (form completo funciona normal) -->
+        <div data-lc-step2>
+          <div class="lc-step2-intro" data-lc-intro hidden>Pronto, já anotamos seu contato 🎉<br>Quer adiantar? Conta um pouco do seu negócio:</div>
+          <div class="form-grid">
+            <div class="field"><label>Nome</label><input type="text" name="nome" placeholder="Caio Alexander" required></div>
+            <div class="field"><label>Cargo</label><input type="text" name="cargo" placeholder="Sócio fundador"></div>
+            <div class="field full"><label>Empresa</label><input type="text" name="empresa" placeholder="Nome do seu negócio"></div>
+            <div class="field full">
+              <label>Vertical de interesse</label>
+              <select name="vertical">
+                <option>Aura Negócio — varejo geral</option>
+                <option>Aura Studio — customização, impressão, ateliês</option>
+                <option>Aura Dojô — federações e academias de Karatê</option>
+                <option>Ainda não sei</option>
+              </select>
+            </div>
+            <div class="field full"><label>E-mail</label><input type="email" name="email" placeholder="voce@empresa.com.br"></div>
+            <div class="field full"><label>Mensagem</label><textarea name="mensagem" placeholder="Conta um pouco do seu negócio: quantas lojas, quantos profissionais, o que você usa hoje..."></textarea></div>
+          </div>
+          <div class="form-error" role="alert"></div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 20px; justify-content: center;">Enviar mensagem <span class="arrow">→</span></button>
+        </div>
+
         <!-- honeypot anti-spam: humanos não preenchem -->
         <input type="text" name="_empresa" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-        <div class="form-error" role="alert"></div>
-        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 20px; justify-content: center;">Enviar mensagem <span class="arrow">→</span></button>
         <a href="https://wa.me/5511956305269?text=Vim%20pelo%20site%20da%20Aura%20e%20quero%20falar%20com%20a%20equipe" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg" style="width: 100%; margin-top: 10px; justify-content: center;">Prefiro o WhatsApp</a>
         <div style="font-size: 11px; color: rgba(220,215,255,0.45); margin-top: 12px; text-align: center; font-style: italic;">A gente nunca compartilha seus dados.</div>
       </form>
@@ -621,7 +635,25 @@
   <span class="wa-num">(11) 95630-5269</span>
 </a>
 
+<!-- Exit-intent: captura WhatsApp de quem está saindo (lead parcial) -->
+<div class="lc-modal" id="exitIntentModal" hidden>
+  <div class="lc-modal-backdrop" data-action="exit-close"></div>
+  <div class="lc-modal-card" role="dialog" aria-modal="true" aria-labelledby="exitIntentTitle">
+    <button type="button" class="lc-modal-x" data-action="exit-close" aria-label="Fechar">&times;</button>
+    <div class="lc-modal-emoji">👋</div>
+    <h3 id="exitIntentTitle" class="h3" data-lc-keep>Ó, antes de ir…</h3>
+    <p class="body" data-lc-keep>Deixa seu WhatsApp e a gente te mostra a Aura funcionando no seu negócio — leva 2 minutos, sem compromisso.</p>
+    <input type="tel" id="exitWhats" placeholder="(11) 99999-9999" inputmode="numeric" data-lc-keep>
+    <input type="text" data-exit-hp tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+    <div class="lc-err" data-lc-error="exit" role="alert"></div>
+    <button type="button" class="btn btn-primary btn-lg" data-action="exit-submit" data-lc-keep style="width:100%;justify-content:center;margin-top:6px;">Pode me chamar <span class="arrow">→</span></button>
+    <button type="button" class="lc-modal-later" data-action="exit-close" data-lc-keep>Agora não</button>
+    <div class="lc-modal-success" hidden>🎉 Boa! Te chamamos no WhatsApp em breve.</div>
+  </div>
+</div>
+
 <script src="js/site.js"></script>
+<script src="/js/lead-capture.js"></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25ce08563247490b918793727e3c1eb1"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
