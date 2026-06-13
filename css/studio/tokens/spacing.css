@@ -1,0 +1,76 @@
+/* ============================================================
+   AURA STUDIO · Spacing, Radii, Shadows, Motion
+   4-pt grid · organic bubble radii · navy/magenta-tinted shadows.
+   Identity note: cards & icon tiles use ASYMMETRIC organic radii
+   and gentle floating — "balões soltos" (loose balloons).
+   ============================================================ */
+:root {
+  /* ── Spacing — 4pt grid ───────────────────────────────── */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-7:  28px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  --container: 1200px;
+  --gutter: 24px;
+
+  /* ── Radii — numbered scale ───────────────────────────── */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-xl:  18px;
+  --radius-2xl: 22px;
+  --radius-3xl: 28px;
+  --radius-pill: 999px;
+
+  /* ── Organic radii — asymmetric, the Studio signature ─── */
+  --radius-organic-1: 32px 22px 28px 30px;
+  --radius-organic-2: 26px 36px 22px 30px;
+  --radius-organic-3: 30px 24px 32px 24px;
+  --radius-organic-4: 24px 28px 28px 38px;
+  /* Bubble radii — for icon tiles / blobs */
+  --radius-bubble-1: 50% 50% 42% 58%;
+  --radius-bubble-2: 46% 54% 50% 50%;
+  --radius-bubble-3: 58% 42% 50% 50%;
+  --radius-bubble-4: 42% 58% 50% 50%;
+  --radius-squircle: 27%;   /* app icon */
+
+  /* ── Shadows — TONAL: tinted by the brand, never pure gray ─────
+     --shadow-rgb (neutral tint) and --shadow-brand-rgb come from
+     colors.css and flip per theme (warm-brand in light, black in dark). */
+  --shadow-sm:    0 1px 2px rgba(var(--shadow-rgb,15,23,42),0.10);
+  --shadow-md:    0 6px 16px -6px rgba(var(--shadow-rgb,15,23,42),0.18), 0 2px 6px -2px rgba(var(--shadow-rgb,15,23,42),0.10);
+  --shadow-lg:    0 18px 40px -14px rgba(var(--shadow-rgb,15,23,42),0.26), 0 6px 14px -6px rgba(var(--shadow-rgb,15,23,42),0.12);
+  --shadow-brand: 0 12px 30px -10px rgba(var(--shadow-brand-rgb,30,58,138),0.42);
+  --shadow-navy:  0 10px 26px -8px rgba(var(--shadow-brand-rgb,30,58,138),0.42);
+  --shadow-accent:0 8px 24px -6px rgba(236,72,153,0.35);
+  --shadow-glass: 0 24px 50px -16px rgba(var(--shadow-rgb,15,23,42),0.30);
+
+  /* ── Motion ───────────────────────────────────────────── */
+  --dur-fast:    150ms; /* @kind other */
+  --dur-base:    250ms; /* @kind other */
+  --dur-slow:    400ms; /* @kind other */
+  --dur-ambient: 5000ms;   /* @kind other */
+  --ease-standard: cubic-bezier(0.4, 0.0, 0.2, 1); /* @kind other */
+  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1); /* @kind other */
+  --ease-sine:     cubic-bezier(0.45, 0.05, 0.55, 0.95); /* @kind other */
+}
+
+/* Gentle float — the loose-balloon ambient motion (opt-in via class) */
+@keyframes studio-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-4px) rotate(1.5deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .studio-float { animation: none !important; }
+}

@@ -1,72 +1,257 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aura Studio — Do pedido personalizado à entrega, sem retrabalho.</title>
-<meta name="description" content="Camada vertical para ateliês de customização, gráficas e personalização: configurador de produto, aprovação de arte, KDS de produção e integração com Mercado Livre e Shopee.">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aura Studio — o sistema completo pra quem vive de personalizar</title>
+<meta name="description" content="Loja digital com mockup 3D, seletor de personalização pro cliente, estoque em 3D, Kanban de produção e WhatsApp integrado. O produto mais completo para personalizados." />
 <link rel="canonical" href="https://www.getaura.com.br/studio">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Aura">
-<meta property="og:title" content="Aura Studio — Do pedido personalizado à entrega, sem retrabalho.">
-<meta property="og:description" content="Camada vertical para ateliês de customização, gráficas e personalização: configurador de produto, aprovação de arte, KDS de produção e integração com Mercado Livre e Shopee.">
+<meta property="og:title" content="Aura Studio — o sistema completo pra quem vive de personalizar">
+<meta property="og:description" content="Loja digital com mockup 3D, seletor de personalização pro cliente, estoque em 3D, Kanban de produção e WhatsApp integrado. O produto mais completo para personalizados.">
 <meta property="og:url" content="https://www.getaura.com.br/studio">
 <meta property="og:image" content="https://www.getaura.com.br/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-
-<link rel="icon" type="image/png" href="/Icon.png">
-<link rel="apple-touch-icon" href="/Icon.png">
-<link rel="stylesheet" href="/css/tokens.css?v=2">
-<link rel="stylesheet" href="/css/site.css?v=2">
-<link rel="stylesheet" href="/css/verticals.css?v=2">
-<link rel="stylesheet" href="/css/vertical-pages.css?v=2">
+<link rel="stylesheet" href="/css/studio/styles.css" />
+<link rel="stylesheet" href="/css/studio/landing.css" />
+<link rel="icon" href="/assets/studio/app-icon.svg" />
 </head>
-<body data-vertical="studio" data-screen-label="Studio">
-<div data-mount="nav"></div>
+<body>
 
-<section class="v-hero">
-  <div class="v-hero-grid">
-    <div class="stack-lg">
-      <div class="v-hero-eyebrow" data-reveal><span class="v-mark-sm"><svg viewBox="0 0 100 100" fill="none"><path d="M50 5 C54.5 31 69 45.5 95 50 C69 54.5 54.5 69 50 95 C45.5 69 31 54.5 5 50 C31 45.5 45.5 31 50 5 Z" fill="currentColor"/><path d="M82 14 C83.4 21.6 86.4 24.6 94 26 C86.4 27.4 83.4 30.4 82 38 C80.6 30.4 77.6 27.4 70 26 C77.6 24.6 80.6 21.6 82 14 Z" fill="currentColor" opacity="0.8"/></svg></span>Aura · Studio</div>
-      <h1 data-typein>Do pedido personalizado <em>à entrega.</em></h1>
-      <p class="lead" data-reveal data-reveal-delay="2">Configurador de produto, aprovação de arte, KDS de produção e marketplaces no mesmo fluxo. O pedido entra customizado, a produção anda sozinha, o cliente aprova sem ruído.</p>
-      <div class="row" data-reveal data-reveal-delay="3">
-        <a href="https://wa.me/5511956305269?text=Quero%20conhecer%20a%20Aura%20Studio" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">Falar no WhatsApp <span class="arrow">→</span></a>
-        <a href="/comecar?vertical=studio" class="btn btn-ghost btn-lg">Testar grátis</a>
+<!-- ░░ ICON SPRITE ░░ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-kanban" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="10" rx="1.5"/><rect x="17" y="4" width="4" height="13" rx="1.5"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 4.5 4h15L21 9M4 9v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"/><path d="M3 9h18M9 20v-5h6v5"/></symbol>
+    <symbol id="i-wand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4V2M15 10V8M19 6h2M11 6h2M17.5 8.5 19 10M11 2l2 2"/><path d="m3 21 12-12 1.5 1.5L4.5 22.5z"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-3a8.4 8.4 0 1 1 16.9-6.5z"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.886 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.359.101 11.945c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.582 0 11.945-5.359 11.948-11.945a11.821 11.821 0 00-3.421-8.4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5 11-11"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-shirt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3 4 6l2 4 2-1v11h8V9l2 1 2-4-5-3a3 3 0 0 1-6 0z"/></symbol>
+    <symbol id="i-mug" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h11v9a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M16 7h2.5a2.5 2.5 0 0 1 0 5H16M5 21h11"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M4 12v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8"/><path d="M12 8S10.5 3 8 4s.5 4 4 4zM12 8s1.5-5 4-4-.5 4-4 4z"/></symbol>
+    <symbol id="i-printer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-1"/><rect x="6" y="14" width="12" height="7" rx="1"/></symbol>
+    <symbol id="i-party" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21 8 9l7 7zM14 4l.5 1.5M19 9l1.5.5M16.5 6.5 18 5M12.5 7a4 4 0 0 1 4 4"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 12h18"/></symbol>
+    <symbol id="i-laser" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 8l-4 4 4 4 4-4zM6 18h12M4 22h16"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19 7 21l2-5 8.5-8.5a2.1 2.1 0 0 1 3 3z"/><path d="M16 7l1 1"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.6-7-9.3A3.7 3.7 0 0 1 12 8a3.7 3.7 0 0 1 7 2.7C19 15.4 12 20 12 20z"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2 15 22l-4-9-9-4z"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></symbol>
+    <symbol id="i-cube" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></symbol>
+    <symbol id="i-rotate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 4v4h-4M21 12a9 9 0 0 1-15 6.7L3 16M3 20v-4h4"/></symbol>
+    <symbol id="i-finance" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 14l3-3 3 3 5-6"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></symbol>
+  </defs>
+</svg>
+
+<!-- ░░ NAV ░░ -->
+<header class="nav" id="nav">
+  <div class="wrap nav__row">
+    <a class="brand" href="#top">
+      <img src="/assets/studio/sparkle-gradient.svg" alt="" />
+      <span class="brand__name"><b>Aura</b> <i>Studio</i></span>
+    </a>
+    <nav class="nav__links">
+      <a href="#personalizar">Personalização</a>
+      <a href="#estoque">Mockup 3D</a>
+      <a href="#loja">Loja digital</a>
+      <a href="#producao">Produção</a>
+      <a href="#ramos">Pra quem é</a>
+      <a href="/">Família Aura</a>
+    </nav>
+    <div class="nav__cta">
+      <a href="https://app.getaura.com.br/login" class="btn btn--ghost btn--sm">Entrar</a>
+      <a href="/comecar" class="btn btn--primary btn--sm">Começar agora<svg><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ░░ HERO ░░ -->
+<section class="hero">
+  <div class="hero__glow hero__glow--a"></div>
+  <div class="hero__glow hero__glow--b"></div>
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <span class="eyebrow reveal"><span class="dot"></span>Aura Studio · personalizados</span>
+      <h1 class="display reveal reveal-d1">Do clique do cliente à <em>entrega na mão.</em> Num sistema só.</h1>
+      <p class="lead reveal reveal-d2">A Aura Studio é a plataforma mais completa pra quem vive de personalizar. Loja digital com mockup 3D, personalização feita pelo próprio cliente, estoque visual, esteira de produção e WhatsApp integrado — para aposentar as suas planilhas.</p>
+      <div class="hero__cta reveal reveal-d3">
+        <a href="/comecar" class="btn btn--primary btn--lg">Criar minha loja<svg><use href="#i-arrow"/></svg></a>
+        <a href="https://wa.me/5511956305269?text=Quero%20conhecer%20a%20Aura%20Studio" target="_blank" rel="noopener" class="btn btn--wa btn--lg"><svg><use href="#i-whatsapp"/></svg>Falar no WhatsApp</a>
+      </div>
+      <div class="hero__trust reveal reveal-d4">
+        <span><b>5</b> ferramentas, <b>1</b> sistema</span>
+        <span>·</span>
+        <span><b>0</b> planilhas</span>
+        <span>·</span>
+        <span><b>100%</b> em português</span>
       </div>
     </div>
-    <div class="v-hero-phones" data-reveal data-reveal-delay="2">
-      <div style="position: absolute; right: 0; top: 30px; z-index: 3;">
-        <div class="phone levitate" style="--pw: 280px;">
-          <div class="phone-screen">
-            <div class="ps-pad">
-              <div class="ps-orb" style="width: 200px; height: 200px; background: #E11D74; opacity: 0.5; top: -60px; left: -50px;"></div>
-              <div class="ps-orb" style="width: 220px; height: 220px; background: #9333EA; opacity: 0.3; bottom: -70px; right: -60px;"></div>
-              <div class="ps-header"><div class="ps-brand"><span class="dot-mark" style="background:#E11D74;"></span>Aura <span class="acc" style="color:#F472B6;">Studio</span></div><div class="ps-bell">⏵</div></div>
-              <div class="ps-h" style="font-size: 11px; opacity: 0.6;">PEDIDO #482 · Camiseta personalizada</div>
-              <div class="ps-card" style="border-color: rgba(225,29,116,0.3);">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <div>
-                    <div style="font-size: 12px; font-weight: 600;">Arte enviada</div>
-                    <div style="font-size: 9px; opacity: 0.55; margin-top: 2px;">aguardando aprovação do cliente</div>
+
+    <div class="hero__stage">
+      <div class="scene" data-tilt data-tilt-max="14">
+        <div class="tilt">
+          <div class="mug-stage">
+            <div class="mug" style="--mug-color:#1E3A8A; transform:scale(1.02) rotateX(8deg) rotateY(-18deg);">
+              <div class="mug__rim"></div>
+              <div class="mug__handle"></div>
+              <div class="mug__body"></div>
+              <div class="mug__print">
+                <span class="pp-mark"><img src="/assets/studio/sparkle-white.svg" alt="" /></span>
+                <span class="mug__name">Marina</span>
+                <span class="mug__tag">Estúdio Aurora</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="float-badge float-a" style="top:3%; left:-3%;">
+        <span class="fb-ico" style="background:var(--accent-soft);color:var(--accent-ink)"><svg style="width:15px;height:15px"><use href="#i-rotate"/></svg></span>
+        Mockup 3D<small>gira 360°</small>
+      </div>
+      <div class="float-badge float-c" style="top:3%; right:-3%;">
+        <span class="fb-ico" style="background:#0c3a26;color:#34D399"><svg style="width:15px;height:15px"><use href="#i-whatsapp"/></svg></span>
+        WhatsApp<small>pronto pra enviar</small>
+      </div>
+      <div class="float-badge float-b" style="bottom:9%; left:50%; margin-left:-150px;">
+        <span class="fb-ico" style="background:var(--brand-soft);color:var(--brand-ink)"><svg style="width:15px;height:15px"><use href="#i-store"/></svg></span>
+        Loja no ar<small>loja.getaura.com.br/sua-loja</small>
+      </div>
+      <span class="spin-ring">arraste pra girar</span>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ PILLARS ░░ -->
+<section class="section section--soft" id="produto">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Tudo num lugar só</span>
+      <h2 class="h2">Cinco ferramentas que <em>conversam entre si</em></h2>
+      <p class="lead">O cliente personaliza, o pedido cai na produção, a peça sai do estoque e a atualização vai pro WhatsApp. A jornada inteira, sem trocar de aba.</p>
+    </div>
+    <div class="pillars">
+      <a class="pillar reveal" href="#producao">
+        <div class="pillar__ico"><svg><use href="#i-kanban"/></svg></div>
+        <span class="pillar__n">01</span>
+        <h4>Kanban de produção</h4>
+        <p>Da arte à entrega num quadro só. Cada pedido no seu lugar.</p>
+      </a>
+      <a class="pillar reveal reveal-d1" href="#estoque">
+        <div class="pillar__ico"><svg><use href="#i-box"/></svg></div>
+        <span class="pillar__n">02</span>
+        <h4>Estoque em 3D</h4>
+        <p>Todo item com mockup 3D. Você vê o produto, não uma linha de planilha.</p>
+      </a>
+      <a class="pillar reveal reveal-d2" href="#loja">
+        <div class="pillar__ico"><svg><use href="#i-store"/></svg></div>
+        <span class="pillar__n">03</span>
+        <h4>Loja digital</h4>
+        <p>Sua vitrine online com mock 3D — a visão de quem compra.</p>
+      </a>
+      <a class="pillar reveal reveal-d3" href="#personalizar">
+        <div class="pillar__ico"><svg><use href="#i-wand"/></svg></div>
+        <span class="pillar__n">04</span>
+        <h4>Personalização</h4>
+        <p>O cliente escolhe cor, arte e nome — e vê o resultado na hora.</p>
+      </a>
+      <a class="pillar reveal reveal-d4" href="#wa">
+        <div class="pillar__ico"><svg><use href="#i-whatsapp"/></svg></div>
+        <span class="pillar__n">05</span>
+        <h4>WhatsApp integrado</h4>
+        <p>Atualização completa — mas no seu tempo. Você aprova cada envio.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ FEATURE 04 · CUSTOMIZER ░░ -->
+<section class="section" id="personalizar">
+  <div class="wrap">
+    <div class="feature">
+      <div class="feature__copy reveal">
+        <span class="eyebrow eyebrow--accent"><span class="dot"></span>O cliente personaliza · ao vivo</span>
+        <h2 class="h2">A arte fica pronta <em>antes</em> de você produzir</h2>
+        <p class="lead">O seletor de personalização vive dentro da sua loja. O cliente escolhe o produto, a cor, escreve o nome e sobe a logo — e vê o mockup 3D girar em tempo real. Quando o pedido chega pra você, a arte já está conferida e aprovada.</p>
+        <ul class="feature__list">
+          <li><span class="ck"><svg><use href="#i-check"/></svg></span><span><b>Cor, texto, arte e foto</b> — o cliente monta a peça do jeito dele.</span></li>
+          <li><span class="ck"><svg><use href="#i-check"/></svg></span><span><b>Pré-visualização 3D</b> instantânea: o que ele vê é o que você produz.</span></li>
+          <li><span class="ck"><svg><use href="#i-check"/></svg></span><span><b>Menos retrabalho:</b> a arte chega aprovada, sem vai-e-volta.</span></li>
+        </ul>
+      </div>
+
+      <div class="feature__media reveal reveal-d1">
+        <div class="customizer">
+          <div class="customizer__preview">
+            <div class="scene" data-tilt data-tilt-max="10">
+              <div class="tilt" id="cz-stage">
+                <!-- mug -->
+                <div class="mug-stage" data-obj="caneca">
+                  <div class="mug" id="cz-mug" style="--mug-color:#1E3A8A; transform:scale(1.08) rotateX(8deg) rotateY(-16deg);">
+                    <div class="mug__rim"></div>
+                    <div class="mug__handle"></div>
+                    <div class="mug__body"></div>
+                    <div class="mug__print">
+                      <span class="pp-mark"><img src="/assets/studio/sparkle-white.svg" alt="" /></span>
+                      <span class="mug__name" id="cz-name-mug">Ana</span>
+                    </div>
                   </div>
-                  <span class="ps-pill-accent">REVISÃO</span>
+                </div>
+                <!-- shirt -->
+                <div class="mug-stage" data-obj="camiseta" hidden>
+                  <div class="obj-shirt" id="cz-shirt" style="--o:#1E3A8A; transform:scale(1.7) rotateY(-12deg);">
+                    <span class="obj-print" id="cz-name-shirt" style="top:42%;left:50%;transform:translateX(-50%);">Ana</span>
+                  </div>
+                </div>
+                <!-- bag -->
+                <div class="mug-stage" data-obj="ecobag" hidden>
+                  <div class="obj-shirt" id="cz-bag" style="--o:#1E3A8A; transform:scale(1.6) rotateY(-12deg); clip-path:polygon(20% 8%,80% 8%,80% 100%,20% 100%); width:110px;height:130px;">
+                    <span class="obj-print" style="top:6px;left:28%;width:6px;height:26px;border:2px solid currentColor;border-bottom:0;border-radius:8px 8px 0 0;color:rgba(255,255,255,.6);"></span>
+                    <span class="obj-print" style="top:6px;right:28%;width:6px;height:26px;border:2px solid currentColor;border-bottom:0;border-radius:8px 8px 0 0;color:rgba(255,255,255,.6);"></span>
+                    <span class="obj-print" id="cz-name-bag" style="top:48%;left:50%;transform:translateX(-50%);">Ana</span>
+                  </div>
                 </div>
               </div>
-              <div class="ps-card" style="border-color: rgba(225,29,116,0.3);">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <div>
-                    <div style="font-size: 12px; font-weight: 600;">Estampa frente · DTF</div>
-                    <div style="font-size: 9px; opacity: 0.55; margin-top: 2px;">tam. M · cor preta · 2 un.</div>
-                  </div>
-                  <div style="font-size: 13px; font-weight: 700; color: #F472B6;">2x</div>
-                </div>
+            </div>
+            <span class="spin-ring">pré-visualização 3D</span>
+          </div>
+
+          <div class="customizer__panel">
+            <div class="cz-group">
+              <span class="cz-label">Produto</span>
+              <div class="cz-prods" id="cz-products">
+                <button class="cz-prod on" data-product="caneca" data-price="39">Caneca</button>
+                <button class="cz-prod" data-product="camiseta" data-price="59">Camiseta</button>
+                <button class="cz-prod" data-product="ecobag" data-price="45">Ecobag</button>
               </div>
-              <div style="display:flex; justify-content:space-between; padding: 12px; background: rgba(225,29,116,0.08); border-radius: 12px; border: 1px dashed rgba(225,29,116,0.4);">
-                <div style="font-size: 10px; opacity: 0.7;">Produção</div>
-                <div style="font-size: 11px; font-weight: 700;">Aguardando arte → Aprovado</div>
+            </div>
+            <div class="cz-group">
+              <span class="cz-label">Cor base</span>
+              <div class="cz-swatches" id="cz-colors">
+                <button class="cz-sw on" style="background:#1E3A8A" data-color="#1E3A8A"></button>
+                <button class="cz-sw" style="background:#DB2777" data-color="#DB2777"></button>
+                <button class="cz-sw" style="background:#0D9488" data-color="#0D9488"></button>
+                <button class="cz-sw" style="background:#1A1714" data-color="#1A1714"></button>
+                <button class="cz-sw" style="background:#B45309" data-color="#B45309"></button>
+                <button class="cz-sw" style="background:#F5F0E8;box-shadow:0 0 0 1px var(--border)" data-color="#EDE7DC" data-ink="#1A1714"></button>
               </div>
-              <div class="ps-cta" style="background: linear-gradient(135deg, #E11D74, #9333EA);">Enviar arte ao cliente</div>
+            </div>
+            <div class="cz-group">
+              <span class="cz-label">Texto da peça</span>
+              <input class="cz-input" id="cz-input" type="text" maxlength="14" value="Ana" placeholder="Escreva um nome..." />
+            </div>
+            <div class="cz-note">
+              <div>
+                <small>A partir de</small>
+                <span class="pr" id="cz-price">R$ 39,00</span>
+              </div>
+              <button class="btn btn--accent btn--sm"><svg><use href="#i-check"/></svg>Aprovar arte</button>
             </div>
           </div>
         </div>
@@ -75,58 +260,439 @@
   </div>
 </section>
 
-<section class="section light">
-  <div class="container">
-    <div class="text-center stack-md" style="margin: 0 auto 64px; max-width: 720px;" data-reveal>
-      <div class="eyebrow center">Recursos · Aura Studio</div>
-      <h2 class="h1">Da <em style="color:#E11D74;">arte</em> à produção.</h2>
+<hr class="divider" />
+
+<!-- ░░ FEATURE 02 · INVENTORY 3D ░░ -->
+<section class="section" id="estoque">
+  <div class="wrap">
+    <div class="sec-head sec-head--left reveal">
+      <span class="eyebrow"><span class="dot"></span>Estoque · mockup 3D em todo item</span>
+      <h2 class="h2">Seu estoque <em>como ele realmente é:</em> visual</h2>
+      <p class="lead">Cada item do catálogo carrega seu próprio mockup 3D — passe o mouse e gire. Variações de cor, preço e disponibilidade num cartão que parece a prateleira, não uma planilha.</p>
     </div>
-    <div class="v-features-grid">
-      <div class="v-feature tilt" data-reveal><div class="tilt-inner"><div class="v-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div><h3>Configurador de produto</h3><p>Texto, cor, tamanho, imagem. O cliente monta o pedido e o preço fecha sozinho.</p></div></div>
-      <div class="v-feature tilt" data-reveal data-reveal-delay="1"><div class="tilt-inner"><div class="v-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H4z"/><path d="M8 20h8M12 16v4"/><path d="m9 10 2 2 4-4"/></svg></div><h3>Aprovação de arte</h3><p>Preview da arte sobre o mockup, aprovação por WhatsApp. Sem produzir errado.</p></div></div>
-      <div class="v-feature tilt" data-reveal data-reveal-delay="2"><div class="tilt-inner"><div class="v-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="9.5" y="4" width="5" height="16" rx="1"/><rect x="16" y="4" width="5" height="16" rx="1"/></svg></div><h3>KDS · produção em kanban</h3><p>Aguardando arte → aprovado → em produção → pronto → entregue. Cada pedido no seu estágio.</p></div></div>
-      <div class="v-feature tilt" data-reveal><div class="tilt-inner"><div class="v-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h2l2 13h11l2-8H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg></div><h3>Mercado Livre e Shopee</h3><p>Pedidos dos marketplaces caem direto no KDS. Um fluxo de produção só.</p></div></div>
-      <div class="v-feature tilt" data-reveal data-reveal-delay="1"><div class="tilt-inner"><div class="v-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg></div><h3>Orçamentos e insumos</h3><p>Orçamento aprovado vira pedido. Insumos e custo por peça sob controle.</p></div></div>
-      <div class="v-feature tilt" data-reveal data-reveal-delay="2" style="background: linear-gradient(135deg, rgba(225,29,116,0.10), rgba(225,29,116,0.02)); border-color: rgba(225,29,116,0.3);"><div class="tilt-inner"><div class="v-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8"/></svg></div><h3>Loja digital</h3><p>Catálogo público com configurador e checkout. A vitrine do ateliê, sem depender de marketplace.</p></div></div>
+
+    <div class="invgrid">
+      <article class="invcard reveal">
+        <div class="invcard__media">
+          <span class="invcard__badge"><img class="spark" src="/assets/studio/sparkle-white.svg" alt=""/>Mock 3D</span>
+          <span class="invcard__stock" style="background:var(--st-approved-soft);color:var(--st-approved-ink)">48 em estoque</span>
+          <div class="invcard__obj"><div class="obj-mug" style="--o:#1E3A8A;transform:scale(1.05)"><div class="r"></div><div class="h"></div><div class="b"></div><span class="obj-print" style="left:18px;top:46px">Aura</span></div></div>
+        </div>
+        <div class="invcard__body">
+          <span class="cat">Canecas</span>
+          <h5>Caneca cerâmica 325ml</h5>
+          <div class="invcard__foot">
+            <span class="invcard__price">R$ 39,90</span>
+            <span class="invcard__var"><i style="background:#1E3A8A"></i><i style="background:#DB2777"></i><i style="background:#0D9488"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="invcard reveal reveal-d1">
+        <div class="invcard__media">
+          <span class="invcard__badge"><img class="spark" src="/assets/studio/sparkle-white.svg" alt=""/>Mock 3D</span>
+          <span class="invcard__stock" style="background:var(--st-waiting-soft);color:var(--st-waiting-ink)">7 em estoque</span>
+          <div class="invcard__obj"><div class="obj-shirt" style="--o:#DB2777;transform:scale(.92)"><span class="obj-print" style="top:42%;left:50%;transform:translateX(-50%)">Festa</span></div></div>
+        </div>
+        <div class="invcard__body">
+          <span class="cat">Camisetas</span>
+          <h5>Camiseta DTF premium</h5>
+          <div class="invcard__foot">
+            <span class="invcard__price">R$ 59,90</span>
+            <span class="invcard__var"><i style="background:#1A1714"></i><i style="background:#EDE7DC"></i><i style="background:#DB2777"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="invcard reveal reveal-d2">
+        <div class="invcard__media">
+          <span class="invcard__badge"><img class="spark" src="/assets/studio/sparkle-white.svg" alt=""/>Mock 3D</span>
+          <span class="invcard__stock" style="background:var(--st-approved-soft);color:var(--st-approved-ink)">120 em estoque</span>
+          <div class="invcard__obj"><div class="obj-shirt" style="--o:#0D9488;transform:scale(.78);clip-path:polygon(20% 8%,80% 8%,80% 100%,20% 100%)"><span class="obj-print" style="top:46%;left:50%;transform:translateX(-50%)">eco</span></div></div>
+        </div>
+        <div class="invcard__body">
+          <span class="cat">Brindes</span>
+          <h5>Ecobag algodão cru</h5>
+          <div class="invcard__foot">
+            <span class="invcard__price">R$ 45,00</span>
+            <span class="invcard__var"><i style="background:#EDE7DC"></i><i style="background:#1E3A8A"></i><i style="background:#0D9488"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="invcard reveal">
+        <div class="invcard__media">
+          <span class="invcard__badge"><img class="spark" src="/assets/studio/sparkle-white.svg" alt=""/>Mock 3D</span>
+          <span class="invcard__stock" style="background:var(--st-danger-soft);color:var(--st-danger-ink)">Sob encomenda</span>
+          <div class="invcard__obj"><div class="ph" style="width:118px;height:96px;border-radius:14px"><svg><use href="#i-image"/></svg><small>foto do produto</small></div></div>
+        </div>
+        <div class="invcard__body">
+          <span class="cat">Decoração</span>
+          <h5>Quadro decorativo A2</h5>
+          <div class="invcard__foot">
+            <span class="invcard__price">R$ 89,00</span>
+            <span class="invcard__var"><i style="background:#1A1714"></i><i style="background:#B45309"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="invcard reveal reveal-d1">
+        <div class="invcard__media">
+          <span class="invcard__badge"><img class="spark" src="/assets/studio/sparkle-white.svg" alt=""/>Mock 3D</span>
+          <span class="invcard__stock" style="background:var(--st-approved-soft);color:var(--st-approved-ink)">36 em estoque</span>
+          <div class="invcard__obj"><div class="obj-mug" style="--o:#B45309;transform:scale(1.05)"><div class="r"></div><div class="h"></div><div class="b"></div><span class="obj-print" style="left:16px;top:44px">Pai</span></div></div>
+        </div>
+        <div class="invcard__body">
+          <span class="cat">Canecas</span>
+          <h5>Caneca mágica térmica</h5>
+          <div class="invcard__foot">
+            <span class="invcard__price">R$ 54,90</span>
+            <span class="invcard__var"><i style="background:#1A1714"></i><i style="background:#1E3A8A"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="invcard reveal reveal-d2">
+        <div class="invcard__media">
+          <span class="invcard__badge"><img class="spark" src="/assets/studio/sparkle-white.svg" alt=""/>Mock 3D</span>
+          <span class="invcard__stock" style="background:var(--st-waiting-soft);color:var(--st-waiting-ink)">12 em estoque</span>
+          <div class="invcard__obj"><div class="obj-shirt" style="--o:#1A1714;transform:scale(.92)"><span class="obj-print" style="top:42%;left:50%;transform:translateX(-50%);color:#F472B6">15 anos</span></div></div>
+        </div>
+        <div class="invcard__body">
+          <span class="cat">Festas</span>
+          <h5>Kit camiseta evento</h5>
+          <div class="invcard__foot">
+            <span class="invcard__price">R$ 49,90</span>
+            <span class="invcard__var"><i style="background:#1A1714"></i><i style="background:#DB2777"></i><i style="background:#1E3A8A"></i></span>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="section dark">
-  <div class="container container-narrow">
-    <div data-reveal style="background: linear-gradient(160deg, rgba(225,29,116,0.18), rgba(225,29,116,0.04)); border: 1px solid rgba(225,29,116,0.3); border-radius: 24px; padding: 48px;">
-      <div class="row" style="justify-content: space-between; gap: 32px;">
-        <div>
-          <div class="eyebrow" style="margin-bottom: 12px; color: #F9A8D4;">Plano recomendado · vertical</div>
-          <h3 class="h2" style="margin-bottom: 8px;">Negócio · <span style="color:#E11D74;">R$ 169</span><span style="font-size: 18px; opacity: 0.6;">/mês</span></h3>
-          <p class="body" style="max-width: 480px;">A camada Studio já vem <strong>incluída</strong> nos planos Negócio (R$ 169) e Expansão (R$ 269): configurador, aprovação de arte, KDS de produção, marketplaces e loja digital. Sem custo de módulo à parte.</p>
+<!-- ░░ FEATURE 03 · LOJA DIGITAL (light paper) ░░ -->
+<section class="section section--soft" id="loja" data-theme="light">
+  <div class="wrap">
+    <div class="feature feature--flip">
+      <div class="feature__media reveal">
+        <div class="phoneframe float-a" style="margin-inline:auto">
+          <div class="phoneframe__notch"></div>
+          <div class="phoneframe__screen">
+            <div class="store-vitrine">
+              <div class="ph" style="height:120px;border-radius:14px"><svg><use href="#i-image"/></svg><small>capa da loja</small></div>
+              <div class="store-head">
+                <span class="store-logo">A</span>
+                <div>
+                  <h5>Ateliê <em>Aurora</em></h5>
+                  <div class="meta">★ 4.9 · Belo Horizonte · MG · loja verificada</div>
+                </div>
+              </div>
+              <div class="store-chips">
+                <span class="store-chip on">Tudo</span>
+                <span class="store-chip">Canecas</span>
+                <span class="store-chip">Camisetas</span>
+                <span class="store-chip">Brindes</span>
+              </div>
+              <div class="store-prods">
+                <article class="store-prod">
+                  <div class="store-prod__img">
+                    <span class="store-prod__tag">Mais vendido</span>
+                    <span class="store-prod__heart"><svg><use href="#i-heart"/></svg></span>
+                    <div class="invcard__obj" style="position:absolute;inset:0"><div class="obj-mug" style="--o:#1E3A8A;transform:scale(.62)"><div class="r"></div><div class="h"></div><div class="b"></div></div></div>
+                  </div>
+                  <div class="store-prod__b">
+                    <h6>Caneca personalizada</h6>
+                    <span class="pr">R$ 39,90</span> · <span class="rt">★ 4.9</span>
+                  </div>
+                </article>
+                <article class="store-prod">
+                  <div class="store-prod__img">
+                    <span class="store-prod__heart"><svg><use href="#i-heart"/></svg></span>
+                    <div class="invcard__obj" style="position:absolute;inset:0"><div class="obj-shirt" style="--o:#DB2777;transform:scale(.5)"></div></div>
+                  </div>
+                  <div class="store-prod__b">
+                    <h6>Camiseta sob medida</h6>
+                    <span class="pr">R$ 59,90</span> · <span class="rt">★ 5.0</span>
+                  </div>
+                </article>
+              </div>
+              <a href="#final" class="btn btn--primary" style="width:100%">Personalizar e pedir<svg><use href="#i-arrow"/></svg></a>
+            </div>
+          </div>
         </div>
-        <div class="stack-sm">
-          <a href="/planos#negocio" class="btn btn-primary btn-lg">Ver detalhes <span class="arrow">→</span></a>
-          <a href="https://wa.me/5511956305269?text=Quero%20o%20teste%20gr%C3%A1tis%20da%20Aura%20Studio" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="justify-content: center;">Falar no WhatsApp</a>
+      </div>
+
+      <div class="feature__copy reveal reveal-d1">
+        <span class="eyebrow"><span class="dot"></span>Loja digital · a visão do cliente</span>
+        <h2 class="h2">A sua vitrine, do jeito que <em>o cliente vê</em></h2>
+        <p class="lead">Uma loja online pronta, com a sua cara e a sua cor. Cada produto abre com mock 3D, o cliente personaliza e finaliza o pedido — que cai direto na sua produção. Sem marketplace no meio, sem comissão escondida.</p>
+        <ul class="feature__list">
+          <li><span class="ck"><svg><use href="#i-check"/></svg></span><span><b>Link próprio</b> (aura.studio/sualoja) — compartilhe no story, na bio, no grupo.</span></li>
+          <li><span class="ck"><svg><use href="#i-check"/></svg></span><span><b>Mock 3D em cada produto</b> e personalização na própria página.</span></li>
+          <li><span class="ck"><svg><use href="#i-check"/></svg></span><span><b>Cores da sua marca</b> — a loja se veste com a sua identidade.</span></li>
+        </ul>
+        <div class="feature__cta">
+          <a href="/comecar" class="btn btn--primary">Montar minha loja<svg><use href="#i-arrow"/></svg></a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section cream">
-  <div class="container">
-    <div class="text-center" style="margin-bottom: 32px;" data-reveal>
-      <div class="eyebrow center" style="margin-bottom: 12px;">Outras verticais</div>
-      <h2 class="h2">Conheça a família Aura.</h2>
+<!-- ░░ FEATURE 01 · KANBAN ░░ -->
+<section class="section" id="producao">
+  <div class="wrap">
+    <div class="sec-head sec-head--left reveal">
+      <span class="eyebrow"><span class="dot"></span>Produção · KDS</span>
+      <h2 class="h2">Da arte à entrega, <em>num quadro só</em></h2>
+      <p class="lead">O esteira de produção mostra cada pedido na coluna certa — aguardando, arte, aprovado, em produção, pronto, entregue. Arraste, atualize e nunca mais perca um prazo numa conversa solta.</p>
     </div>
-    <div class="v-others" style="justify-content: center;" data-reveal data-reveal-delay="1">
-      <a href="/negocio" class="v-other" style="--ov-accent:#7c3aed; --ov-glow:rgba(124,58,237,0.3)"><span class="vm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4l8 16H4z"/></svg></span><span>Negócio</span></a>
-      <a href="/dojo" class="v-other" style="--ov-accent:#b8463a; --ov-glow:rgba(184,70,58,0.3)"><span class="vm" style="background:#f0ebe0;"><img src="/assets/karate/seal-kara.svg" alt="Aura Karate" style="width:78%;height:78%;object-fit:contain"></span><span>Dojô</span></a>
+
+    <div class="browserframe reveal reveal-d1">
+      <div class="browserframe__bar">
+        <span class="browserframe__dots"><i></i><i></i><i></i></span>
+        <span class="browserframe__url">app.aura.studio/producao</span>
+      </div>
+      <div class="browserframe__body">
+        <div class="kanban">
+          <div class="kanban__col">
+            <div class="kanban__head"><span class="kdot" style="background:var(--st-waiting-base)"></span>Aguardando<span class="kn">2</span></div>
+            <div class="kcard">
+              <div class="kcard__top"><span class="kcard__id">ASX-1039</span><span class="kcard__when">14 jun</span></div>
+              <h5>Quadro decorativo A2</h5><p>Beatriz Nunes</p>
+              <div class="kcard__foot"><span class="kcard__qty">3 un</span><span class="kcard__price">R$ 540</span></div>
+            </div>
+            <div class="kcard">
+              <div class="kcard__top"><span class="kcard__id">ASX-1034</span><span class="kcard__when">24 jun</span></div>
+              <h5>Convites 15 anos</h5><p>Renata Dias</p>
+              <div class="kcard__foot"><span class="kcard__qty">80 un</span><span class="kcard__price">R$ 1.200</span></div>
+            </div>
+          </div>
+          <div class="kanban__col">
+            <div class="kanban__head"><span class="kdot" style="background:var(--st-art-base)"></span>Aguardando arte<span class="kn">1</span></div>
+            <div class="kcard">
+              <div class="kcard__top"><span class="kavatar" style="background:var(--indigo)">C</span><span class="kcard__when" style="color:var(--st-art-ink)">amanhã</span></div>
+              <h5>Canecas de cerâmica</h5><p>João Pedro Lima</p>
+              <div class="kcard__foot"><span class="kcard__qty">24 un</span><span class="kcard__price">R$ 720</span></div>
+            </div>
+          </div>
+          <div class="kanban__col">
+            <div class="kanban__head"><span class="kdot" style="background:var(--st-approved-base)"></span>Arte aprovada<span class="kn">1</span></div>
+            <div class="kcard">
+              <div class="kcard__top"><span class="kcard__id">ASX-1040</span><span class="kcard__when">18 jun</span></div>
+              <h5>Adesivos de marca</h5><p>Studio Luz Foto</p>
+              <div class="kcard__foot"><span class="kcard__qty">500 un</span><span class="kcard__price">R$ 950</span></div>
+            </div>
+          </div>
+          <div class="kanban__col">
+            <div class="kanban__head"><span class="kdot" style="background:var(--st-production-base)"></span>Em produção<span class="kn">2</span></div>
+            <div class="kcard">
+              <div class="kcard__top"><span class="kavatar" style="background:var(--magenta-600)">M</span><span class="kcard__when">hoje</span></div>
+              <h5>Camisetas evento</h5><p>Malu Eventos</p>
+              <div class="kcard__foot"><span class="kcard__qty">40 un</span><span class="kcard__price">R$ 2.000</span></div>
+            </div>
+          </div>
+          <div class="kanban__col">
+            <div class="kanban__head"><span class="kdot" style="background:var(--st-ready-base)"></span>Pronto<span class="kn">1</span></div>
+            <div class="kcard">
+              <div class="kcard__top"><span class="kcard__id">ASX-1031</span><span class="kcard__when" style="color:var(--st-ready-ink)">retira hoje</span></div>
+              <h5>Kit lembrancinhas</h5><p>Festa da Lara</p>
+              <div class="kcard__foot"><span class="kcard__qty">60 un</span><span class="kcard__price">R$ 900</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<div data-mount="footer"></div>
-<div data-mount="wa"></div>
-<script src="/js/chrome.js"></script>
-<script src="/js/site.js"></script>
+<hr class="divider" />
+
+<!-- ░░ FEATURE 05 · WHATSAPP ░░ -->
+<section class="section section--soft" id="wa">
+  <div class="wrap">
+    <div class="feature">
+      <div class="feature__copy reveal">
+        <span class="eyebrow" style="color:#34D399"><span class="dot"></span>WhatsApp · integração completa</span>
+        <h2 class="h2">Integrado de verdade</h2>
+        <p class="lead">Cada pedido tem um botão de WhatsApp com a mensagem já montada: status, arte, prazo. A integração é completa, mas você manda. Nenhuma mensagem sai sem o seu toque — porque atendimento de personalizado é relação, não robô.</p>
+        <ul class="feature__list">
+          <li><span class="ck"><svg><use href="#i-check"/></svg></span><span><b>Mensagem pronta</b> com os dados do pedido — é só revisar e enviar.</span></li>
+          <li><span class="ck"><svg><use href="#i-check"/></svg></span><span><b>Você no controle:</b> aprova cada envio, no seu tom, na sua hora.</span></li>
+          <li><span class="ck"><svg><use href="#i-check"/></svg></span><span><b>Histórico no pedido:</b> tudo que foi falado fica junto da ordem.</span></li>
+        </ul>
+      </div>
+
+      <div class="feature__media reveal reveal-d1">
+        <div class="wa-chat">
+          <div class="wa-top">
+            <span class="av">JP</span>
+            <div><h5>João Pedro Lima</h5><span class="st">pedido ASX-1041 · online</span></div>
+          </div>
+          <div class="wa-body" id="wa-body">
+            <div class="wa-bub wa-in">Oi! Conseguiu ver a arte das canecas? 😊<span class="t">09:12</span></div>
+            <div class="wa-bub wa-out">
+              <div class="wa-card"><span class="th" style="background:var(--grad-primary)"></span><div><b>Canecas de cerâmica · 24 un</b><small>mockup 3D · arte v2</small></div></div>
+              Prontinho, João! Mandei o mockup pra você girar e conferir antes da gente produzir. 🎨<span class="t">09:14</span>
+            </div>
+            <div class="wa-bub wa-in">Ficou lindo! Pode produzir 🙌<span class="t">09:15</span></div>
+          </div>
+          <div class="wa-compose">
+            <span class="field" id="wa-field">Arte aprovada — vamos pra produção! 🚀</span>
+            <span class="send" id="wa-send"><svg><use href="#i-send"/></svg></span>
+          </div>
+        </div>
+
+        <div class="wa-control" style="margin-top:14px">
+          <div class="wa-ctrl-card is-armed" id="wa-ctrl">
+            <div class="wa-toggle">
+              <div>
+                <span class="lbl">Envio manual · você aprova</span>
+                <p>A mensagem fica pronta no pedido. Nada vai pro cliente sem o seu OK.</p>
+              </div>
+              <span class="wa-switch" id="wa-switch" role="switch" aria-checked="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ STAT BAND ░░ -->
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="statband">
+      <div class="stat reveal"><div class="n" data-count="5">5</div><div class="l">ferramentas num sistema só — loja, 3D, estoque, produção e WhatsApp</div></div>
+      <div class="stat reveal reveal-d1"><div class="n" data-count="3" data-suffix="D">3D</div><div class="l">mockup em todo item do estoque e da loja</div></div>
+      <div class="stat reveal reveal-d2"><div class="n"><em>0</em></div><div class="l">planilhas, abas perdidas e copia-e-cola de pedido</div></div>
+      <div class="stat reveal reveal-d3"><div class="n" data-count="100" data-suffix="%">100%</div><div class="l">em português, com financeiro e fiscal brasileiros</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ░░ MOST COMPLETE / COMPARISON ░░ -->
+<section class="section" id="completo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Por que a Aura Studio</span>
+      <h2 class="h2">O mais completo pra <em>personalizados</em></h2>
+      <p class="lead">Loja, 3D, estoque, produção e WhatsApp costumam morar em quatro ferramentas diferentes. Aqui, é uma só — pensada pro seu negócio, não adaptada de um ERP genérico.</p>
+    </div>
+
+    <div class="compare-wrap reveal reveal-d1">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Recurso</th>
+            <th class="aura col-aura"><span class="compare__head-aura"><img src="/assets/studio/sparkle-gradient.svg" alt=""/>Aura Studio</span></th>
+            <th>ERP genérico</th>
+            <th>Plataforma de e-commerce</th>
+            <th>Planilha + WhatsApp</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th>Loja digital com mock 3D</th><td class="aura"><span class="yes"><svg width="20" height="20"><use href="#i-check"/></svg></span></td><td><span class="no">—</span></td><td><span class="partial">parcial</span></td><td><span class="no">—</span></td></tr>
+          <tr><th>Seletor de personalização pro cliente</th><td class="aura"><span class="yes"><svg width="20" height="20"><use href="#i-check"/></svg></span></td><td><span class="no">—</span></td><td><span class="partial">plugin</span></td><td><span class="no">—</span></td></tr>
+          <tr><th>Estoque com mockup 3D</th><td class="aura"><span class="yes"><svg width="20" height="20"><use href="#i-check"/></svg></span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
+          <tr><th>Kanban de produção</th><td class="aura"><span class="yes"><svg width="20" height="20"><use href="#i-check"/></svg></span></td><td><span class="partial">genérico</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
+          <tr><th>WhatsApp integrado (você aprova)</th><td class="aura"><span class="yes"><svg width="20" height="20"><use href="#i-check"/></svg></span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="partial">manual</span></td></tr>
+          <tr><th>Financeiro & fiscal brasileiros</th><td class="aura"><span class="yes"><svg width="20" height="20"><use href="#i-check"/></svg></span></td><td><span class="partial">parcial</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
+          <tr><th>Tudo num lugar só, em português</th><td class="aura"><span class="yes"><svg width="20" height="20"><use href="#i-check"/></svg></span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ INDUSTRIES ░░ -->
+<section class="section section--soft" id="ramos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Pra quem é</span>
+      <h2 class="h2">Feita pra todo mundo que <em>vive de personalizar</em></h2>
+      <p class="lead">Se o seu produto sai com o nome, a cor ou a arte do cliente, a Aura Studio é pra você.</p>
+    </div>
+    <div class="segs">
+      <div class="seg reveal"><div class="seg__ico"><svg><use href="#i-shirt"/></svg></div><h5>Camisetaria & estamparia</h5><p>DTF, sublimação e serigrafia com pedidos em lote e mockup pronto.</p></div>
+      <div class="seg reveal reveal-d1"><div class="seg__ico"><svg><use href="#i-mug"/></svg></div><h5>Canecas & foto-presente</h5><p>Caneca mágica, térmica e brindes com a foto e o nome de cada cliente.</p></div>
+      <div class="seg reveal reveal-d2"><div class="seg__ico"><svg><use href="#i-party"/></svg></div><h5>Festas & lembrancinhas</h5><p>Kits, topos de bolo, convites e personalizados pra cada evento.</p></div>
+      <div class="seg reveal reveal-d3"><div class="seg__ico"><svg><use href="#i-briefcase"/></svg></div><h5>Brindes corporativos</h5><p>Pedido em volume com a marca do cliente, aprovação e prazo no quadro.</p></div>
+      <div class="seg reveal"><div class="seg__ico"><svg><use href="#i-pen"/></svg></div><h5>Papelaria personalizada</h5><p>Convites, planners, adesivos e cadernos sob medida, do digital ao papel.</p></div>
+      <div class="seg reveal reveal-d1"><div class="seg__ico"><svg><use href="#i-printer"/></svg></div><h5>Gráfica rápida</h5><p>Cartões, banners e impressão sob demanda com fila de produção organizada.</p></div>
+      <div class="seg reveal reveal-d2"><div class="seg__ico"><svg><use href="#i-laser"/></svg></div><h5>Gravação a laser & MDF</h5><p>Troféus, placas e decoração gravada com mockup antes de cortar.</p></div>
+      <div class="seg reveal reveal-d3"><div class="seg__ico"><svg><use href="#i-gift"/></svg></div><h5>Presentes criativos</h5><p>Almofadas, quadros e kits montados — cada um do jeito do cliente.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ FINAL CTA ░░ -->
+<section class="section" id="final">
+  <div class="wrap">
+    <div class="finalcta reveal">
+      <span class="eyebrow">Bora começar?</span>
+      <h2 class="display" style="font-size:clamp(34px,5.4vw,64px);margin-top:14px">Sua loja, seu 3D e sua produção <em>no ar hoje</em></h2>
+      <p>Tudo que o seu ateliê precisa pra vender, personalizar, produzir e entregar — num sistema só, em português. Sem fidelidade, sem letras miúdas.</p>
+      <div class="finalcta__cta">
+        <a href="/comecar" class="btn btn--light btn--lg">Criar minha loja grátis<svg><use href="#i-arrow"/></svg></a>
+        <a href="https://wa.me/5511956305269?text=Quero%20conhecer%20a%20Aura%20Studio" target="_blank" rel="noopener" class="btn btn--wa btn--lg"><svg><use href="#i-whatsapp"/></svg>Falar no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ░░ FOOTER ░░ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__about">
+        <a class="brand" href="#top">
+          <img src="/assets/studio/sparkle-gradient.svg" alt="" />
+          <span class="brand__name"><b>Aura</b> <i>Studio</i></span>
+        </a>
+        <p>O vertical da plataforma Aura pra quem faz personalizados. A tecnologia mora no detalhe.</p>
+      </div>
+      <div>
+        <h6>Produto</h6>
+        <ul>
+          <li><a href="#personalizar">Personalização</a></li>
+          <li><a href="#estoque">Estoque 3D</a></li>
+          <li><a href="#loja">Loja digital</a></li>
+          <li><a href="#producao">Produção</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6>Pra quem é</h6>
+        <ul>
+          <li><a href="#ramos">Camisetaria</a></li>
+          <li><a href="#ramos">Canecas & brindes</a></li>
+          <li><a href="#ramos">Festas</a></li>
+          <li><a href="#ramos">Corporativo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6>Aura</h6>
+        <ul>
+          <li><a href="#completo">Por que Aura</a></li>
+          <li><a href="#wa">WhatsApp</a></li>
+          <li><a href="/comecar">Começar grátis</a></li>
+        <li><a href="/">Família Aura</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <span>© 2026 Aura · Studio</span>
+      <span class="verticals">Negócio · <b style="color:var(--accent-ink)">Studio</b> · Dojô</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/studio-landing.js"></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25ce08563247490b918793727e3c1eb1"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

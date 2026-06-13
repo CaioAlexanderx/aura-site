@@ -1,0 +1,146 @@
+/* ===========================================================
+   AURA STUDIO - Colors - "Studio Premium" (unified, DESIGN-31)
+   Warm-editorial family language: panel (dark, default) +
+   storefront (light, warm paper) + shared materials.
+   Accents derive from a single brand color (the lojista's, in
+   public surfaces). Canonical brand = Aura navy. Derived values
+   are precomputed in OKLab and hardcoded for robustness; the
+   storefront sets --brand at runtime to re-theme.
+   State color is semantic & universal - NEVER the brand.
+   =========================================================== */
+:root {
+  /* Raw brand scales (specimens + gradients) */
+  --navy-50:#EFF6FF; --navy-100:#DBEAFE; --navy-200:#BFDBFE; --navy-300:#93C5FD;
+  --navy-400:#60A5FA; --navy-500:#3B82F6; --navy-600:#2563EB; --navy-700:#1D4ED8;
+  --navy-800:#1E40AF; --navy-900:#1E3A8A; --indigo:#4338CA;
+  --magenta-50:#FDF2F8; --magenta-100:#FCE7F3; --magenta-200:#FBCFE8; --magenta-300:#F9A8D4;
+  --magenta-400:#F472B6; --magenta-500:#EC4899; --magenta-600:#DB2777; --magenta-700:#BE185D;
+  --magenta-800:#9D174D; --magenta-900:#831843;
+
+  /* Brand gradients (logo / Sparkle identity) */
+  --grad-brand: linear-gradient(120deg, #1E3A8A 0%, #4338CA 45%, #DB2777 100%); /* @kind color */
+  --grad-primary: linear-gradient(135deg, #1E3A8A, #3B82F6); /* @kind color */
+  --grad-accent: linear-gradient(135deg, #EC4899, #F472B6); /* @kind color */
+
+  /* DEFAULT THEME - DARK (panel). Warm near-black. */
+  --bg:#0C0A0A;
+  --bg-soft:#131011;
+  --surface:#0C0A0A;
+  --surface-card:#17151A;
+  --surface-elev:#211D26;
+
+  --ink:#FBF8F3;
+  --ink-2:#C9C2B8;
+  --ink-3:#8E867B;
+  --ink-4:#5C554D;
+  --ink-5:#38323A;
+
+  --border:#38323A;
+  --border-soft:#29242A;
+
+  /* Brand - single source + derived family (dark-tuned navy) */
+  --brand:#3B82F6;
+  --brand-rgb:59,130,246; /* @kind other */
+  --brand-on:#FFFFFF;
+  --brand-ink:#93C5FD;
+  --brand-strong:#689FFB;
+  --brand-soft:#172031;
+  --brand-ghost:#11141B;
+  --brand-line:#1C2B47;
+
+  /* Accent - fixed identity spark (magenta), warm-aware */
+  --accent:#F472B6;
+  --accent-on:#1A1714;
+  --accent-ink:#F9A8D4;
+  --accent-hover:#F990C4;
+  --accent-soft:#331D27;
+  --accent-ghost:#1D1216;
+
+  /* Legacy aliases -> brand (component compat) */
+  --primary:#3B82F6;
+  --primary-hover:#689FFB;
+  --primary-soft:#172031;
+  --primary-ghost:#11141B;
+  --primary-border:#1C2B47;
+
+  /* Tonal shadow tints (consumed by spacing.css) */
+  --shadow-rgb:0,0,0;
+  --shadow-brand-rgb:59,130,246;
+
+  /* Status - StudioSemantic (dark) */
+  --success:#34D399; --success-soft:rgba(52,211,153,.16); --success-ink:#6EE7B7;
+  --warning:#FBBF24; --warning-soft:rgba(251,191,36,.16); --warning-ink:#FCD34D;
+  --danger:#F87171; --danger-soft:rgba(248,113,113,.16); --danger-ink:#FCA5A5;
+  --info:#60A5FA; --info-soft:rgba(96,165,250,.16); --info-ink:#93C5FD;
+
+  /* Order-status intents - dark */
+  --st-waiting-base:#FBBF24; --st-waiting-soft:rgba(251,191,36,.18); --st-waiting-ink:#FCD34D;
+  --st-art-base:#FB923C; --st-art-soft:rgba(251,146,60,.18); --st-art-ink:#FDBA74;
+  --st-approved-base:#34D399; --st-approved-soft:rgba(52,211,153,.18); --st-approved-ink:#6EE7B7;
+  --st-production-base:#60A5FA; --st-production-soft:rgba(96,165,250,.18); --st-production-ink:#93C5FD;
+  --st-ready-base:#2DD4BF; --st-ready-soft:rgba(45,212,191,.18); --st-ready-ink:#5EEAD4;
+  --st-delivered-base:#94A3B8; --st-delivered-soft:rgba(148,163,184,.16); --st-delivered-ink:#CBD5E1;
+  --st-danger-base:#F87171; --st-danger-soft:rgba(248,113,113,.18); --st-danger-ink:#FCA5A5;
+  --st-changes-base:#FB7185; --st-changes-soft:rgba(251,113,133,.18); --st-changes-ink:#FDA4AF;
+  --st-neutral-base:#64748B; --st-neutral-soft:rgba(100,116,139,.16); --st-neutral-ink:#CBD5E1;
+}
+
+/* LIGHT THEME - warm editorial paper (storefront / public).
+   Opt in: data-theme="light". */
+[data-theme="light"] {
+  --bg:#FBF8F3;
+  --bg-soft:#F4EFE7;
+  --surface:#FBF8F3;
+  --surface-card:#FFFFFF;
+  --surface-elev:#FFFFFF;
+
+  --ink:#1A1714;
+  --ink-2:#4A443C;
+  --ink-3:#837A6E;
+  --ink-4:#B4A99A;
+  --ink-5:#D8CEBF;
+
+  --border:#D8CEBF;
+  --border-soft:#E7DFD3;
+
+  --brand:#1E3A8A;
+  --brand-rgb:30,58,138; /* @kind other */
+  --brand-on:#FFFFFF;
+  --brand-ink:#1E3A8A;
+  --brand-strong:#142A69;
+  --brand-soft:#D9DDE6;
+  --brand-ghost:#EAEAEC;
+  --brand-line:#C6CDDE;
+
+  --accent:#EC4899;
+  --accent-on:#FFFFFF;
+  --accent-ink:#BE185D;
+  --accent-hover:#B53574;
+  --accent-soft:#FDE1E6;
+  --accent-ghost:#FCEDED;
+
+  --primary:#1E3A8A;
+  --primary-hover:#142A69;
+  --primary-soft:#D9DDE6;
+  --primary-ghost:#EAEAEC;
+  --primary-border:#C6CDDE;
+
+  --shadow-rgb:30,58,138;
+  --shadow-brand-rgb:30,58,138;
+
+  /* Status - StudioSemantic (light) */
+  --success:#059669; --success-soft:#D1FAE5; --success-ink:#065F46;
+  --warning:#B45309; --warning-soft:#FEF3C7; --warning-ink:#92400E;
+  --danger:#DC2626; --danger-soft:#FEE2E2; --danger-ink:#991B1B;
+  --info:#2563EB; --info-soft:#DBEAFE; --info-ink:#1E40AF;
+
+  --st-waiting-base:#B45309; --st-waiting-soft:#FEF3C7; --st-waiting-ink:#92400E;
+  --st-art-base:#EA580C; --st-art-soft:#FFEDD5; --st-art-ink:#9A3412;
+  --st-approved-base:#059669; --st-approved-soft:#D1FAE5; --st-approved-ink:#065F46;
+  --st-production-base:#2563EB; --st-production-soft:#DBEAFE; --st-production-ink:#1E40AF;
+  --st-ready-base:#0D9488; --st-ready-soft:#CCFBF1; --st-ready-ink:#115E59;
+  --st-delivered-base:#64748B; --st-delivered-soft:#F1F5F9; --st-delivered-ink:#475569;
+  --st-danger-base:#DC2626; --st-danger-soft:#FEE2E2; --st-danger-ink:#991B1B;
+  --st-changes-base:#E11D48; --st-changes-soft:#FFE4E6; --st-changes-ink:#9F1239;
+  --st-neutral-base:#64748B; --st-neutral-soft:#F1F5F9; --st-neutral-ink:#475569;
+}
