@@ -30,7 +30,11 @@
 /comecar.html /comecar 301
 /comparativo.html /comparativo 301
 /sistema-de-crediario.html /sistema-de-crediario 301
-/pdv-para-loja-de-roupas.html /pdv-para-loja-de-roupas 301
+/sistema-para-loja-de-roupas.html /sistema-para-loja-de-roupas 301
+/sistema-para-loja-de-calcados.html /sistema-para-loja-de-calcados 301
+# 14/06/2026: LP de roupas repaginada de /pdv-... para o termo-cabeca /sistema-...
+/pdv-para-loja-de-roupas /sistema-para-loja-de-roupas 301
+/pdv-para-loja-de-roupas.html /sistema-para-loja-de-roupas 301
 
 # 08/06/2026: verticais Odonto/Beauty/Pet descontinuadas no site; novas
 # verticais Studio e Dojo (Aura Karate / FPKT). URLs antigas -> hub /segmentos.
