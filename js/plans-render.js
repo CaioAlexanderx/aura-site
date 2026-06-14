@@ -38,14 +38,12 @@
   }
 
   function verticalAddonHTML() {
-    return '<div class="plan-vertical-addon" title="Camada vertical disponível como módulo (+R$ 39/mês)">' +
+    return '<div class="plan-vertical-addon" title="Vertical do seu setor já incluída no plano">' +
       '<div class="plan-vertical-dots">' +
-        '<span style="background:#06B6D4;" title="Odonto"></span>' +
-        '<span style="background:#F472B6;" title="Beauty"></span>' +
-        '<span style="background:#F97316;" title="Food"></span>' +
-        '<span style="background:#10B981;" title="Pet"></span>' +
+        '<span style="background:#E11D74;" title="Studio"></span>' +
+        '<span style="background:#b8463a;" title="Dojô"></span>' +
       '</div>' +
-      '<div class="plan-vertical-addon-label">+ módulo vertical disponível</div>' +
+      '<div class="plan-vertical-addon-label">Vertical do seu setor incluída</div>' +
     '</div>';
   }
 

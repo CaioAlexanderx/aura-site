@@ -4,7 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Planos · Aura — Escolha pelo seu tamanho.</title>
-<meta name="description" content="Três planos da Aura. Pague pelo que usa, cresça quando quiser. A camada vertical do seu setor (Odonto, Beauty, Food ou Pet) é um módulo opcional a partir do Negócio.">
+<meta name="description" content="Três planos da Aura com preço fixo: seu preço não sobe porque você vendeu mais. Studio e Dojô já vêm incluídos nos planos Negócio e Expansão, sem custo à parte.">
+<link rel="canonical" href="https://www.getaura.com.br/planos">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aura">
+<meta property="og:title" content="Planos · Aura — Escolha pelo seu tamanho.">
+<meta property="og:description" content="Três planos da Aura com preço fixo: seu preço não sobe porque você vendeu mais. Studio e Dojô já vêm incluídos nos planos Negócio e Expansão, sem custo à parte.">
+<meta property="og:url" content="https://www.getaura.com.br/planos">
+<meta property="og:image" content="https://www.getaura.com.br/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="icon" type="image/png" href="/Icon.png">
 <link rel="apple-touch-icon" href="/Icon.png">
 <link rel="stylesheet" href="/css/tokens.css?v=2">
@@ -243,6 +252,11 @@
   }
 
   .compare-section { padding: 100px 0; background: #faf8f4; }
+  .compare-scroll { border-radius: 24px; }
+  @media (max-width: 720px) {
+    .compare-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .compare-table { min-width: 640px; }
+  }
   .compare-table {
     width: 100%;
     border-collapse: separate;
@@ -340,8 +354,8 @@
   <div class="container">
     <div class="text-center stack-md" style="max-width: 760px; margin: 0 auto 32px;" data-reveal>
       <div class="eyebrow center">Planos · transparente</div>
-      <h1 class="display" data-typein>Pague pelo que <em>usa.</em><br>Cresça quando <em>quiser.</em></h1>
-      <p class="lead" style="margin: 0 auto;">Três planos. A camada do seu setor — Odonto, Beauty, Food ou Pet — é um <strong>módulo opcional</strong> a partir do Negócio, por R$ 39/mês. Sem fidelidade. Sem letras miúdas.</p>
+      <h1 class="display" data-typein>Seu preço não sobe<br>porque você vendeu <em>mais.</em></h1>
+      <p class="lead" style="margin: 0 auto;">Escolha o plano pelo tamanho da operação — e acabou. Sem cobrança por pedido, sem surpresa no fim do mês. Studio e Dojô já vêm <strong>incluídos</strong> nos planos Negócio e Expansão, sem custo à parte.</p>
     </div>
 
     <div data-plans-render="full"></div>
@@ -362,15 +376,13 @@
     <div class="addons-strip" data-reveal data-reveal-delay="1">
       <div class="addon-card">
         <div class="addon-card-head">
-          <span class="addon-card-name">Módulo vertical</span>
-          <span class="addon-card-price">R$ 39/mês</span>
+          <span class="addon-card-name">Vertical do seu setor</span>
+          <span class="addon-card-price">Incluída</span>
         </div>
-        <div class="addon-card-desc">Camada especialista do seu setor: Odonto, Beauty, Food ou Pet. Disponível a partir do Negócio.</div>
-        <div class="addon-dots-row" title="Verticais disponíveis">
-          <span style="background:#06B6D4;" title="Odonto"></span>
-          <span style="background:#F472B6;" title="Beauty"></span>
-          <span style="background:#F97316;" title="Food"></span>
-          <span style="background:#10B981;" title="Pet"></span>
+        <div class="addon-card-desc">Studio ou Dojô já vêm nos planos Negócio e Expansão — sem custo à parte.</div>
+        <div class="addon-dots-row" title="Verticais incluídas">
+          <span style="background:#E11D74;" title="Studio"></span>
+          <span style="background:#b8463a;" title="Dojô"></span>
         </div>
       </div>
       <div class="addon-card">
@@ -400,7 +412,7 @@
     </div>
 
     <div style="overflow-x: auto;" data-reveal data-reveal-delay="1">
-      <table class="compare-table">
+      <div class="compare-scroll"><table class="compare-table">
         <thead>
           <tr>
             <th>Recurso</th>
@@ -446,40 +458,36 @@
           <tr><td>WhatsApp Business</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
           <tr><td>HUB Social (Instagram + WA)</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
 
-          <tr class="cat"><td colspan="4">IA & escala</td></tr>
-          <tr><td>Categorização por IA</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
-          <tr><td>5 agentes de IA</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
+          <tr class="cat"><td colspan="4">Escala</td></tr>
+          <tr><td>Categorização automática de despesas</td><td class="feat-no"></td><td class="feat-yes"></td><td class="feat-yes"></td></tr>
           <tr><td>Multi-CNPJ consolidado</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
           <tr><td>Usuários com login</td><td>1</td><td>até 3</td><td>Ilimitado</td></tr>
           <tr><td>API completa</td><td class="feat-no"></td><td class="feat-no"></td><td class="feat-yes"></td></tr>
           <tr><td>Customer Success</td><td>Chat</td><td>Prioritário</td><td>Dedicado</td></tr>
 
-          <tr class="cat"><td colspan="4">Módulos opcionais</td></tr>
+          <tr class="cat"><td colspan="4">Camada vertical</td></tr>
           <tr>
-            <td>Camada vertical (Odonto/Beauty/Food/Pet)</td>
+            <td>Vertical do seu setor (Studio/Dojô)</td>
             <td class="feat-no"></td>
             <td>
               <span class="compare-dots">
-                <span style="background:#06B6D4;" title="Odonto"></span>
-                <span style="background:#F472B6;" title="Beauty"></span>
-                <span style="background:#F97316;" title="Food"></span>
-                <span style="background:#10B981;" title="Pet"></span>
+                <span style="background:#E11D74;" title="Studio"></span>
+                <span style="background:#b8463a;" title="Dojô"></span>
               </span>
-              <div style="font-size:11px; color:#7c3aed; margin-top:4px;">+R$ 39/mês</div>
+              <div style="font-size:11px; color:#7c3aed; margin-top:4px;">Incluída</div>
             </td>
             <td>
               <span class="compare-dots">
-                <span style="background:#06B6D4;" title="Odonto"></span>
-                <span style="background:#F472B6;" title="Beauty"></span>
-                <span style="background:#F97316;" title="Food"></span>
-                <span style="background:#10B981;" title="Pet"></span>
+                <span style="background:#E11D74;" title="Studio"></span>
+                <span style="background:#b8463a;" title="Dojô"></span>
               </span>
-              <div style="font-size:11px; color:#7c3aed; margin-top:4px;">+R$ 39/mês</div>
+              <div style="font-size:11px; color:#7c3aed; margin-top:4px;">Incluída</div>
             </td>
           </tr>
+          <tr class="cat"><td colspan="4">Módulos opcionais</td></tr>
           <tr><td>Usuário adicional</td><td class="feat-no"></td><td>+R$ 19/mês</td><td>+R$ 19/mês</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 </section>
@@ -557,12 +565,12 @@
         <div class="faq-a">Não. A Aura é mensal, sem fidelidade. Cancela quando quiser, levando seus dados em export padrão.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q">Posso adicionar a camada do meu setor (Odonto, Beauty, Food ou Pet)?<span class="ic">+</span></div>
-        <div class="faq-a">Sim. A camada vertical é um módulo opcional de R$ 39/mês disponível a partir do plano Negócio. Ela liga telas, fluxos, relatórios e a IA com contexto do seu setor — sem precisar migrar pra outro plano. No checkout você escolhe qual vertical ativar.</div>
+        <div class="faq-q">A especialização do meu setor (Studio ou Dojô) custa a mais?<span class="ic">+</span></div>
+        <div class="faq-a">Não — já vem incluída. Studio e Dojô fazem parte dos planos Negócio e Expansão, sem custo à parte. A ativação é feita dentro do app, depois que sua conta está criada, com a nossa equipe junto.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q">Quando ficam prontas as verticais Beauty e Pet?<span class="ic">+</span></div>
-        <div class="faq-a">Beauty e Pet estão em desenvolvimento e devem entrar em 2026. Você pode entrar na lista de espera pelas páginas das verticais — avisamos antes de qualquer pessoa.</div>
+        <div class="faq-q">A Aura atende federações e academias de Karatê?<span class="ic">+</span></div>
+        <div class="faq-a">Sim — é a vertical <strong>Aura Dojô</strong>, com o sub-segmento <strong>Aura Karate</strong>, parceira oficial da FPKT (Federação Paulista de Karatê Tradicional) e com a JKA em formalização. Cobre praticantes, graduações (kyu/dan), eventos e exames, certificados e anuidades com PIX.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Como funciona o onboarding?<span class="ic">+</span></div>
@@ -594,5 +602,6 @@
 <script src="/js/plans-render.js"></script>
 <script src="/js/chrome.js"></script>
 <script src="/js/site.js"></script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25ce08563247490b918793727e3c1eb1"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

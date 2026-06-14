@@ -89,10 +89,20 @@ async function handleContact(request, env) {
     tipo = '';
   }
 
-  // Verificar API key
+  // ── 1) Encaminha pro CRM (ProspecaoAdmin) — destino primario ──
+  let crmOk = false;
+  try {
+    crmOk = await forwardLeadToCrm(env, { nome, whatsapp, email, empresa, cargo, tipo, vertical, mensagem });
+  } catch (err) {
+    console.error('[contact] crm forward error:', err.message);
+  }
+
+  // ── 2) E-mail (Resend) — registro/fallback (so se configurado) ──
+  let emailOk = false;
   if (!env.RESEND_API_KEY) {
-    console.error('[contact] RESEND_API_KEY nao configurada no env');
-    return jsonResp({ ok: false, error: 'Servico de email indisponivel. Tente pelo WhatsApp direto.' }, 500);
+    return crmOk
+      ? jsonResp({ ok: true, message: 'Recebido! Entraremos em contato pelo WhatsApp em minutos.' })
+      : jsonResp({ ok: false, error: 'Nao foi possivel enviar agora. Tente em alguns minutos ou nos chame no WhatsApp.' }, 502);
   }
 
   // Montar email
@@ -167,21 +177,112 @@ async function handleContact(request, env) {
     if (!resp.ok) {
       const errText = await resp.text().catch(() => '');
       console.error('[contact] resend api error:', resp.status, errText);
-      return jsonResp({ ok: false, error: 'Nao foi possivel enviar agora. Tente em alguns minutos ou nos chame no WhatsApp.' }, 502);
+      if (!crmOk) return jsonResp({ ok: false, error: 'Nao foi possivel enviar agora. Tente em alguns minutos ou nos chame no WhatsApp.' }, 502);
+    } else {
+      const result = await resp.json().catch(() => ({}));
+      console.log('[contact] email enviado:', result?.id, 'nome:', nome, 'crm:', crmOk);
+      emailOk = true;
     }
-
-    const result = await resp.json().catch(() => ({}));
-    console.log('[contact] lead enviado:', result?.id, 'nome:', nome, 'empresa:', empresa || '-');
-    return jsonResp({ ok: true, message: 'Recebido! Entraremos em contato pelo WhatsApp em minutos.' });
   } catch (err) {
-    console.error('[contact] fatal:', err.message);
-    return jsonResp({ ok: false, error: 'Erro inesperado. Tente novamente.' }, 500);
+    console.error('[contact] email fatal:', err.message);
+    if (!crmOk) return jsonResp({ ok: false, error: 'Erro inesperado. Tente novamente.' }, 500);
   }
+
+  return jsonResp({
+    ok: true,
+    message: 'Recebido! Entraremos em contato pelo WhatsApp em minutos.',
+    crm: crmOk,
+    email: emailOk,
+  });
+}
+
+// ── Encaminha o lead pro backend (CRM ProspecaoAdmin), best-effort ──
+async function forwardLeadToCrm(env, f) {
+  const apiBase = env.AURA_API_URL || 'https://aura-backend-production-f805.up.railway.app/api/v1';
+  if (!env.SITE_LEADS_TOKEN) {
+    console.warn('[contact] SITE_LEADS_TOKEN ausente — pulando CRM');
+    return false;
+  }
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 8000);
+  try {
+    const resp = await fetch(`${apiBase}/public/leads`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-site-token': env.SITE_LEADS_TOKEN },
+      body: JSON.stringify({
+        nome: f.nome, whatsapp: f.whatsapp, email: f.email,
+        empresa: f.empresa, cargo: f.cargo, tipo: f.tipo,
+        vertical: f.vertical, mensagem: f.mensagem,
+        partial: !!f.partial, source: f.partial ? 'site_partial' : 'site',
+      }),
+      signal: ctrl.signal,
+    });
+    if (!resp.ok) {
+      console.error('[contact] crm api status:', resp.status);
+      return false;
+    }
+    return true;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// ── Captura PARCIAL (form progressivo passo 1 / exit-intent) ──
+// Pessoa deixou o contato mas ainda NAO enviou o formulario completo.
+// Vai pro CRM como lead parcial (source='site_partial'); SEM e-mail.
+async function handlePartial(request, env) {
+  if (request.method !== 'POST') {
+    return jsonResp({ ok: false, error: 'Metodo nao suportado' }, 405);
+  }
+  let whatsapp = '', email = '', vertical = '', nome = '', honeypot = '';
+  try {
+    const contentType = request.headers.get('content-type') || '';
+    let body;
+    if (contentType.includes('application/json')) {
+      body = await request.json();
+    } else {
+      const form = await request.formData();
+      body = {};
+      for (const [k, v] of form.entries()) body[k] = v;
+    }
+    whatsapp = (body.whatsapp || body.telefone || body.phone || '').toString().trim();
+    email    = (body.email || body['e-mail'] || '').toString().trim();
+    vertical = (body.vertical || '').toString().trim();
+    nome     = (body.nome || body.name || '').toString().trim();
+    honeypot = (body._empresa || body.honeypot || '').toString().trim();
+  } catch (err) {
+    return jsonResp({ ok: false, error: 'Formato invalido' }, 400);
+  }
+
+  // Honeypot — responde 200 sem capturar
+  if (honeypot) return jsonResp({ ok: true });
+
+  // Parcial precisa de telefone OU e-mail
+  const phoneDigits = whatsapp.replace(/\D/g, '');
+  if (phoneDigits.length < 8 && !email) {
+    return jsonResp({ ok: false, error: 'Informe um WhatsApp ou e-mail valido.' }, 400);
+  }
+
+  const ok = await forwardLeadToCrm(env, { nome, whatsapp, email, vertical, partial: true });
+  return ok
+    ? jsonResp({ ok: true, message: 'Recebido! A gente te chama no WhatsApp.' })
+    : jsonResp({ ok: false, error: 'Nao foi possivel agora. Tenta de novo ou chama no WhatsApp.' }, 502);
 }
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+
+    // SEO: host canonico = www. Apex (getaura.com.br) responde 301 limpo
+    // pro mesmo path/query em www (audit 06/2026: apex voltava vazio).
+    if (url.hostname === 'getaura.com.br') {
+      url.hostname = 'www.getaura.com.br';
+      return Response.redirect(url.toString(), 301);
+    }
+
+    if (url.pathname === '/api/lead-partial') {
+      return handlePartial(request, env);
+    }
 
     if (url.pathname === '/api/contact') {
       return handleContact(request, env);

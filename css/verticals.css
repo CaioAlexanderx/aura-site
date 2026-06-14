@@ -9,38 +9,26 @@
   --v-bg-deep: #0a0612;
   --v-bg-soft: #f5f1ff;
 }
-[data-vertical="odonto"] {
-  --v-accent: #06B6D4;
-  --v-accent-2: #0EA5E9;
-  --v-glow: rgba(6,182,212,0.32);
-  --v-bg-deep: #050d12;
-  --v-bg-soft: #ecfeff;
-}
-[data-vertical="beauty"] {
-  --v-accent: #F472B6;
-  --v-accent-2: #FB7185;
-  --v-glow: rgba(244,114,182,0.32);
-  --v-bg-deep: #120710;
+[data-vertical="studio"] {
+  --v-accent: #E11D74;
+  --v-accent-2: #F472B6;
+  --v-glow: rgba(225,29,116,0.32);
+  --v-bg-deep: #0a0a1a;
   --v-bg-soft: #fdf2f8;
 }
-[data-vertical="food"] {
-  --v-accent: #F97316;
-  --v-accent-2: #EF4444;
-  --v-glow: rgba(249,115,22,0.32);
-  --v-bg-deep: #120804;
-  --v-bg-soft: #fff7ed;
-}
-[data-vertical="pet"] {
-  --v-accent: #10B981;
-  --v-accent-2: #34D399;
-  --v-glow: rgba(16,185,129,0.32);
-  --v-bg-deep: #04120a;
-  --v-bg-soft: #ecfdf5;
+/* Aura Dojô — sub-segmento Aura Karate · identidade Shoji/Kinari (vermelhão de carimbo) */
+[data-vertical="dojo"] {
+  --v-accent: #b8463a;
+  --v-accent-2: #a44c3e;
+  --v-glow: rgba(184,70,58,0.30);
+  --v-bg-deep: #1a0e0b;
+  --v-bg-soft: #f0ebe0;
 }
 
 /* =========================================================
    VERTICAIS GRID — clean rebuild
    ========================================================= */
+/* v3.1: 2 verticais (Studio + Dojô) na row 1; Negócio featured ocupa a row 2 inteira */
 .verticais-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

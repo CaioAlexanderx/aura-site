@@ -3,7 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aura — Tecnologia para Negócios</title>
+<title>Aura — Sistema de gestão para loja: PDV, estoque, fiscal e fiado no WhatsApp</title>
+<meta name="description" content="Sistema completo para sua loja: PDV com NFC-e, controle de estoque com grade, troca no caixa, financeiro e crediário (fiado) com cobrança no WhatsApp. Preço fixo — não sobe quando você vende mais. Teste 7 dias grátis.">
+<link rel="canonical" href="https://www.getaura.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aura">
+<meta property="og:title" content="Aura — Sistema de gestão para loja: PDV, estoque, fiscal e fiado no WhatsApp">
+<meta property="og:description" content="Sistema completo para sua loja: PDV com NFC-e, estoque com grade, troca no caixa, financeiro e fiado no WhatsApp. Preço fixo, em português. Teste 7 dias grátis.">
+<meta property="og:url" content="https://www.getaura.com.br/">
+<meta property="og:image" content="https://www.getaura.com.br/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="assets/Icon.png">
 <link rel="apple-touch-icon" href="assets/Icon.png">
 <link rel="stylesheet" href="css/tokens.css?v=2">
@@ -23,25 +32,17 @@
     <div class="nav-dropdown">
       <button>Verticais ▾</button>
       <div class="nav-dropdown-panel">
-        <a class="nav-dropdown-item" href="negocio.html" style="--v-accent:#7c3aed; --v-glow:rgba(124,58,237,0.4)">
+        <a class="nav-dropdown-item" href="/negocio" style="--v-accent:#7c3aed; --v-glow:rgba(124,58,237,0.4)">
           <span class="v-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4l8 16H4z"/><circle cx="12" cy="14" r="1.5" fill="currentColor"/></svg></span>
           <span><div class="v-name">Aura Negócio</div><div class="v-tag">Carro-chefe · varejo geral</div></span>
         </a>
-        <a class="nav-dropdown-item" href="odonto.html" style="--v-accent:#06B6D4; --v-glow:rgba(6,182,212,0.4)">
-          <span class="v-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4c-3 0-5 1.5-7 1.5C4 5.5 4 7 4 8c0 5 1.5 11 3 12 .8 1 1.5 0 2-1.5l.5-3c.2-.7.7-1 1.5-1h2c.8 0 1.3.3 1.5 1l.5 3c.5 1.5 1.2 2.5 2 1.5 1.5-1 3-7 3-12 0-1 0-2.5-1-2.5-2 0-4-1.5-7-1.5z"/></svg></span>
-          <span><div class="v-name">Aura Odonto</div><div class="v-tag">Clínicas e consultórios</div></span>
+        <a class="nav-dropdown-item" href="/studio" style="--v-accent:#E11D74; --v-glow:rgba(225,29,116,0.4)">
+          <span class="v-mark"><svg viewBox="0 0 100 100" fill="none"><path d="M50 5 C54.5 31 69 45.5 95 50 C69 54.5 54.5 69 50 95 C45.5 69 31 54.5 5 50 C31 45.5 45.5 31 50 5 Z" fill="currentColor"/><path d="M82 14 C83.4 21.6 86.4 24.6 94 26 C86.4 27.4 83.4 30.4 82 38 C80.6 30.4 77.6 27.4 70 26 C77.6 24.6 80.6 21.6 82 14 Z" fill="currentColor" opacity="0.8"/></svg></span>
+          <span><div class="v-name">Aura Studio</div><div class="v-tag">Customização, impressão, ateliês</div></span>
         </a>
-        <a class="nav-dropdown-item" href="beauty.html" style="--v-accent:#F472B6; --v-glow:rgba(244,114,182,0.4)">
-          <span class="v-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c-1.5 4.5-6 6-6 10.5 0 3.8 2.7 7.5 6 7.5s6-3.7 6-7.5C18 9 13.5 7.5 12 3z"/><circle cx="10" cy="14" r="1" fill="currentColor"/></svg></span>
-          <span><div class="v-name">Aura Beauty</div><div class="v-tag">Salões, barbearias, estúdios</div></span>
-        </a>
-        <a class="nav-dropdown-item" href="food.html" style="--v-accent:#F97316; --v-glow:rgba(249,115,22,0.4)">
-          <span class="v-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c-2.5 3-4 5-4 9 0 3 1.5 5 4 7 2.5-2 4-4 4-7 0-4-1.5-6-4-9z"/></svg></span>
-          <span><div class="v-name">Aura Food</div><div class="v-tag">Restaurantes, bares, deliveries</div></span>
-        </a>
-        <a class="nav-dropdown-item" href="pet.html" style="--v-accent:#10B981; --v-glow:rgba(16,185,129,0.4)">
-          <span class="v-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="9" r="1.6"/><circle cx="16" cy="9" r="1.6"/><circle cx="6" cy="14" r="1.4"/><circle cx="18" cy="14" r="1.4"/><path d="M12 13c-3 0-5.5 2.5-5.5 4.8 0 1.5 1 2.2 2.5 2.2h6c1.5 0 2.5-.7 2.5-2.2 0-2.3-2.5-4.8-5.5-4.8z"/></svg></span>
-          <span><div class="v-name">Aura Pet</div><div class="v-tag">Pet shops, banho e tosa, vets</div></span>
+        <a class="nav-dropdown-item" href="/dojo" style="--v-accent:#b8463a; --v-glow:rgba(184,70,58,0.4)">
+          <span class="v-mark" style="background:#f0ebe0;"><img src="/assets/karate/seal-kara.svg" alt="Aura Karate" style="width:78%;height:78%;object-fit:contain"></span>
+          <span><div class="v-name">Aura Dojô</div><div class="v-tag">Federações e academias · Karatê</div></span>
         </a>
         <a class="nav-dropdown-item" href="planos.html" style="--v-accent:#a78bfa; --v-glow:rgba(167,139,250,0.4)">
           <span class="v-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 11h16M9 6V4M15 6V4"/></svg></span>
@@ -54,7 +55,7 @@
     <a href="#contato">Contato</a>
     <span class="nav-cta-row">
       <a href="https://app.getaura.com.br" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Entrar</a>
-      <a href="https://app.getaura.com.br/cadastro" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Criar conta</a>
+      <a href="/comecar" class="btn btn-primary btn-sm">Começar grátis</a>
     </span>
   </div>
   <button class="nav-mobile-toggle" aria-label="Menu">
@@ -69,18 +70,16 @@
   </button>
   <a href="index.html">Início</a>
   <div class="nav-mobile-divider"></div>
-  <a href="negocio.html">Aura Negócio</a>
-  <a href="odonto.html">Aura Odonto</a>
-  <a href="beauty.html">Aura Beauty</a>
-  <a href="food.html">Aura Food</a>
-  <a href="pet.html">Aura Pet</a>
+  <a href="/negocio">Aura Negócio</a>
+  <a href="/studio">Aura Studio</a>
+  <a href="/dojo">Aura Dojô</a>
   <div class="nav-mobile-divider"></div>
   <a href="planos.html">Planos</a>
   <a href="sobre.html">Sobre</a>
   <a href="#contato">Contato</a>
   <div class="nav-mobile-ctas">
     <a href="https://app.getaura.com.br" target="_blank" rel="noopener" class="btn btn-ghost">Entrar</a>
-    <a href="https://app.getaura.com.br/cadastro" target="_blank" rel="noopener" class="btn btn-primary">Criar conta</a>
+    <a href="/comecar" class="btn btn-primary">Começar grátis</a>
   </div>
 </div>
 
@@ -97,22 +96,21 @@
     <div class="hero-grid" style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center;">
       <div class="stack-lg">
         <div class="row" data-reveal>
-          <span class="eyebrow">Tecnologia para Negócios · pt-BR</span>
+          <span class="eyebrow">Sistema de gestão para loja · pt-BR</span>
         </div>
-        <h1 class="display" data-typein>O sistema do seu <span class="acc">negócio</span>, com a <em>alma</em> do seu setor.</h1>
-        <p class="lead" data-reveal data-reveal-delay="2">Cinco verticais especialistas — Negócio, Odonto, Beauty, Food e Pet — sob uma única plataforma. PDV, financeiro, fiscal, agenda, estoque e IA, tudo no mesmo lugar.</p>
+        <h1 class="display" data-typein>Tudo que a sua loja precisa num sistema só — e o <span class="acc">preço não sobe</span> quando você <em>vende mais</em>.</h1>
+        <p class="lead" data-reveal data-reveal-delay="2">PDV rápido com NFC-e, estoque com grade, troca no caixa, financeiro e o fiado com cobrança no WhatsApp. Seja loja de roupas, calçados, material de construção ou mercadinho — num sistema só, em português.</p>
         <div class="row hero-cta-row" data-reveal data-reveal-delay="3">
+          <a href="/comecar" class="btn btn-primary btn-lg">Criar conta grátis <span class="arrow">→</span></a>
           <a href="https://wa.me/5511956305269?text=Quero%20conhecer%20a%20Aura" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 14.2c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.7 4.3 3.8.6.3 1.1.4 1.4.5.6.2 1.1.2 1.6.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.1-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.2.8.8-3.1-.2-.3C3.8 15 3.3 13.5 3.3 12c0-4.8 3.9-8.7 8.7-8.7s8.7 3.9 8.7 8.7-3.9 8.3-8.7 8.3z"/></svg>
             Chamar no WhatsApp
-            <span class="arrow">→</span>
           </a>
-          <a href="https://app.getaura.com.br/cadastro" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">Criar conta</a>
         </div>
         <div class="row hero-stats-row" style="gap: 32px; margin-top: 16px;" data-reveal data-reveal-delay="4">
           <div class="stack-sm">
-            <div class="label">5</div>
-            <div style="font-size: 13px; color: rgba(220,215,255,0.6);">verticais especialistas</div>
+            <div class="label">Preço fixo</div>
+            <div style="font-size: 13px; color: rgba(220,215,255,0.6);">não sobe com as vendas</div>
           </div>
           <div class="hero-stats-divider" style="width: 1px; height: 40px; background: rgba(255,255,255,0.1);"></div>
           <div class="stack-sm">
@@ -121,8 +119,8 @@
           </div>
           <div class="hero-stats-divider" style="width: 1px; height: 40px; background: rgba(255,255,255,0.1);"></div>
           <div class="stack-sm">
-            <div class="label">IA Aura</div>
-            <div style="font-size: 13px; color: rgba(220,215,255,0.6);">analista incluído</div>
+            <div class="label">Crediário</div>
+            <div style="font-size: 13px; color: rgba(220,215,255,0.6);">próprio, sem maquininha</div>
           </div>
         </div>
       </div>
@@ -166,67 +164,67 @@
             </div>
           </div>
         </div>
-        <!-- Front: food -->
-        <div data-vertical="food" style="position: absolute; left: 8%; top: 100px; z-index: 3;">
+        <!-- Front-left: dojo (Aura Karate) -->
+        <div data-vertical="dojo" style="position: absolute; left: 8%; top: 100px; z-index: 3;">
           <div class="phone levitate" style="--pw: 220px; animation-delay: -2s;">
             <div class="phone-screen">
               <div class="ps-pad">
-                <div class="ps-orb" style="width: 140px; height: 140px; background: #F97316; opacity: 0.5; top: -30px; right: -30px;"></div>
-                <div class="ps-orb" style="width: 160px; height: 160px; background: #EF4444; opacity: 0.3; bottom: -40px; left: -40px;"></div>
+                <div class="ps-orb" style="width: 140px; height: 140px; background: #b8463a; opacity: 0.5; top: -30px; right: -30px;"></div>
+                <div class="ps-orb" style="width: 160px; height: 160px; background: #7c3aed; opacity: 0.3; bottom: -40px; left: -40px;"></div>
                 <div class="ps-header">
-                  <div class="ps-brand"><span class="dot-mark"></span>Aura <span class="acc">Food</span></div>
-                  <span class="ps-pill-accent">3 NOVOS</span>
+                  <div class="ps-brand"><span class="dot-mark" style="background:#b8463a;"></span>Aura <span class="acc" style="color:#d98b80;">Dojô</span></div>
+                  <span class="ps-pill-accent" style="background:rgba(184,70,58,0.25); color:#d98b80;">EXAME</span>
                 </div>
-                <div class="ps-h" style="font-size: 16px;">Cozinha<br>ao vivo.</div>
-                <div class="ps-card" style="border-left: 2px solid #F97316;">
+                <div class="ps-h" style="font-size: 16px;">Exame<br>de faixa.</div>
+                <div class="ps-card" style="border-left: 2px solid #b8463a;">
                   <div style="display: flex; justify-content: space-between; font-size: 9px;">
-                    <span style="color: rgba(255,255,255,0.7);">Mesa 04</span>
-                    <span style="color: #F97316; font-weight: 700;">02:14</span>
+                    <span style="color: rgba(255,255,255,0.7);">Marcos T. · 3º kyu</span>
+                    <span style="color: #d98b80; font-weight: 700;">APTO</span>
                   </div>
-                  <div style="font-size: 11px; margin-top: 4px;">2× Burger Aura</div>
-                  <div style="font-size: 9px; opacity: 0.55;">+ batata, sem cebola</div>
+                  <div style="font-size: 11px; margin-top: 4px;">Faixa verde → roxa</div>
+                  <div style="font-size: 9px; opacity: 0.55;">FPKT · certificado digital</div>
                 </div>
-                <div class="ps-card" style="border-left: 2px solid #EF4444;">
+                <div class="ps-card" style="border-left: 2px solid #34d399;">
                   <div style="display: flex; justify-content: space-between; font-size: 9px;">
-                    <span style="color: rgba(255,255,255,0.7);">iFood #2891</span>
-                    <span style="color: #EF4444; font-weight: 700;">FILA</span>
+                    <span style="color: rgba(255,255,255,0.7);">Anuidade 2026</span>
+                    <span style="color: #34d399; font-weight: 700;">PIX PAGO</span>
                   </div>
-                  <div style="font-size: 11px; margin-top: 4px;">1× Combo família</div>
+                  <div style="font-size: 11px; margin-top: 4px;">Dojô Shubu-kan · 38 praticantes</div>
                 </div>
-                <div class="ps-cta">Liberar comanda</div>
+                <div class="ps-cta" style="background: linear-gradient(135deg, #b8463a, #9d3a30);">Emitir certificado</div>
               </div>
             </div>
           </div>
         </div>
-        <!-- Right: beauty -->
-        <div data-vertical="beauty" style="position: absolute; right: 0; top: 60px; z-index: 2;">
+        <!-- Right: studio -->
+        <div data-vertical="studio" style="position: absolute; right: 0; top: 60px; z-index: 2;">
           <div class="phone levitate tilt-r" style="--pw: 230px; animation-delay: -4s;">
             <div class="phone-screen">
               <div class="ps-pad">
-                <div class="ps-orb" style="width: 160px; height: 160px; background: #F472B6; opacity: 0.5; top: -40px; left: -30px;"></div>
-                <div class="ps-orb" style="width: 180px; height: 180px; background: #D4A574; opacity: 0.3; bottom: -50px; right: -40px;"></div>
+                <div class="ps-orb" style="width: 160px; height: 160px; background: #E11D74; opacity: 0.5; top: -40px; left: -30px;"></div>
+                <div class="ps-orb" style="width: 180px; height: 180px; background: #9333EA; opacity: 0.3; bottom: -50px; right: -40px;"></div>
                 <div class="ps-header">
-                  <div class="ps-brand"><span class="dot-mark"></span>Aura <span class="acc">Beauty</span></div>
-                  <div class="ps-bell">⏰</div>
+                  <div class="ps-brand"><span class="dot-mark"></span>Aura <span class="acc">Studio</span></div>
+                  <div class="ps-bell">✎</div>
                 </div>
-                <div class="ps-h" style="font-size: 16px; font-style: italic;">Sua agenda,<br>seu palco.</div>
+                <div class="ps-h" style="font-size: 16px;">Produção<br>em ordem.</div>
                 <div class="ps-card">
                   <div class="ps-row" style="justify-content: space-between;">
-                    <div style="font-size: 9px; opacity: 0.6;">14:30 · Camila</div>
-                    <span style="color: #F472B6; font-size: 9px;">●</span>
+                    <div style="font-size: 9px; opacity: 0.6;">#482 · Camiseta</div>
+                    <span style="color: #E11D74; font-size: 9px;">●</span>
                   </div>
-                  <div style="font-size: 11px; margin-top: 4px;">Escova + corte</div>
+                  <div style="font-size: 11px; margin-top: 4px;">Aguardando arte</div>
                 </div>
                 <div class="ps-card">
                   <div class="ps-row" style="justify-content: space-between;">
-                    <div style="font-size: 9px; opacity: 0.6;">15:15 · Júlia</div>
-                    <span style="color: #F472B6; font-size: 9px;">●</span>
+                    <div style="font-size: 9px; opacity: 0.6;">#479 · Caneca</div>
+                    <span style="color: #E11D74; font-size: 9px;">●</span>
                   </div>
-                  <div style="font-size: 11px; margin-top: 4px;">Coloração</div>
+                  <div style="font-size: 11px; margin-top: 4px;">Em produção</div>
                 </div>
-                <div class="ps-card" style="background: rgba(244,114,182,0.12); border-color: #F472B6;">
-                  <div style="font-size: 9px; opacity: 0.6;">16:00 · NOVO</div>
-                  <div style="font-size: 11px; margin-top: 2px; font-weight: 600;">Confirmar</div>
+                <div class="ps-card" style="background: rgba(225,29,116,0.12); border-color: #E11D74;">
+                  <div style="font-size: 9px; opacity: 0.6;">#476 · NOVO</div>
+                  <div style="font-size: 11px; margin-top: 2px; font-weight: 600;">Aprovar arte</div>
                 </div>
               </div>
             </div>
@@ -240,105 +238,64 @@
 <!-- ============== MARQUEE — verticais ============== -->
 <section class="section dark" style="padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06);">
   <div class="container" style="margin-bottom: 24px; padding: 0 clamp(20px, 5vw, 80px);">
-    <div class="label text-center">Uma plataforma · cinco identidades</div>
+    <div class="label text-center">Uma plataforma · três identidades</div>
   </div>
   <div class="marquee">
     <div class="marquee-track">
       <span style="font-family: var(--font-heading); font-size: 56px; letter-spacing: -0.03em; color: rgba(220,215,255,0.5);">Aura<span style="color:#7c3aed">.</span> Negócio</span>
       <span style="font-family: var(--font-heading); font-size: 56px; color: rgba(124,58,237,0.4);">✦</span>
-      <span style="font-family: var(--font-heading); font-size: 56px; letter-spacing: -0.03em; color: rgba(220,215,255,0.5);">Aura<span style="color:#06B6D4">.</span> Odonto</span>
-      <span style="font-family: var(--font-heading); font-size: 56px; color: rgba(6,182,212,0.4);">✦</span>
-      <span style="font-family: var(--font-heading); font-size: 56px; letter-spacing: -0.03em; color: rgba(220,215,255,0.5);">Aura<span style="color:#F472B6">.</span> Beauty</span>
-      <span style="font-family: var(--font-heading); font-size: 56px; color: rgba(244,114,182,0.4);">✦</span>
-      <span style="font-family: var(--font-heading); font-size: 56px; letter-spacing: -0.03em; color: rgba(220,215,255,0.5);">Aura<span style="color:#F97316">.</span> Food</span>
-      <span style="font-family: var(--font-heading); font-size: 56px; color: rgba(249,115,22,0.4);">✦</span>
-      <span style="font-family: var(--font-heading); font-size: 56px; letter-spacing: -0.03em; color: rgba(220,215,255,0.5);">Aura<span style="color:#10B981">.</span> Pet</span>
-      <span style="font-family: var(--font-heading); font-size: 56px; color: rgba(16,185,129,0.4);">✦</span>
+      <span style="font-family: var(--font-heading); font-size: 56px; letter-spacing: -0.03em; color: rgba(220,215,255,0.5);">Aura<span style="color:#E11D74">.</span> Studio</span>
+      <span style="font-family: var(--font-heading); font-size: 56px; color: rgba(225,29,116,0.4);">✦</span>
+      <span style="font-family: var(--font-heading); font-size: 56px; letter-spacing: -0.03em; color: rgba(220,215,255,0.5);">Aura<span style="color:#b8463a">.</span> Dojô</span>
+      <span style="font-family: var(--font-heading); font-size: 56px; color: rgba(184,70,58,0.4);">✦</span>
     </div>
   </div>
 </section>
 
 <!-- ============== VERTICAIS GRID ============== -->
-<section class="section light" data-screen-label="verticais">
+<section class="section light" data-screen-label="segmentos-loja">
   <div class="container">
-    <div style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: end; margin-bottom: 64px;">
+    <div class="section-intro-grid" style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: end; margin-bottom: 56px;">
       <div data-reveal>
-        <div class="eyebrow" style="margin-bottom: 16px;">Verticais</div>
-        <h2 class="h1" style="margin-bottom: 0;">Cinco produtos.<br><em style="color:#7c3aed;">Uma alma de marca.</em></h2>
+        <div class="eyebrow" style="margin-bottom: 16px;">Pra cada tipo de loja</div>
+        <h2 class="h1" style="margin-bottom: 0;">A Aura fala a língua<br><em style="color:#7c3aed;">do seu balcão.</em></h2>
       </div>
       <div data-reveal data-reveal-delay="1">
-        <p class="lead" style="margin-left: auto;">Cada Aura é um produto especialista no seu setor — com paleta, mood, tom de voz e fluxos próprios — mas todas compartilham a mesma plataforma e a mesma promessa: <strong>tecnologia que entende o seu jeito de operar.</strong></p>
+        <p class="lead" style="margin-left: auto;">Mesmo sistema, configurado pro jeito que o seu setor vende. Cada loja tem sua dor — grade, troca, fiado, orçamento — e a Aura já vem pronta pra ela.</p>
       </div>
     </div>
 
-    <div class="verticais-grid">
-      <!-- Row 1: Odonto + Food (lançadas) -->
-      <a href="odonto.html" class="vertical-card tilt" data-vertical="odonto" data-reveal data-cursor="hover">
-        <div class="tilt-inner">
-          <div class="v-mark-lg"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M16 6c-4 0-7 2-9 2-1.5 0-2 1-2 2.5C5 16 7 24 9 26c1 1 2 0 2.5-2l1-4c.3-1 1-1.5 2-1.5h3c1 0 1.7.5 2 1.5l1 4c.5 2 1.5 3 2.5 2 2-2 4-10 4-15.5 0-1.5-.5-2.5-2-2.5-2 0-5-2-9-2z"/></svg></div>
-          <h3>Aura <span class="acc">Odonto</span></h3>
-          <div class="v-tagline">Sua clínica em ordem, seu paciente seguro.</div>
-          <div class="v-features">
-            <span>Prontuário</span><span>Odontograma</span><span>Convênios</span>
-          </div>
-          <div class="v-cta">Conhecer <span class="arrow">→</span></div>
-        </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:16px;">
+      <a href="/sistema-para-loja-de-roupas" class="tilt" data-cursor="hover" style="display:block; background:#fff; border:1px solid rgba(109,40,217,0.12); border-radius:20px; padding:24px; text-decoration:none;" data-reveal>
+        <div style="width:34px; height:4px; border-radius:2px; background:linear-gradient(90deg,#7c3aed,#a78bfa); margin-bottom:18px;"></div>
+        <h3 style="font-family:var(--font-heading); font-size:20px; color:#1a1330; margin:0 0 6px;">Loja de roupas</h3>
+        <p style="font-size:14px; line-height:1.55; color:#4a3f6b; margin:0 0 14px;">Grade de tamanho e cor, troca no caixa e o fiado da freguesia.</p>
+        <span style="font-size:14px; color:#7c3aed; font-weight:600;">Ver &rarr;</span>
       </a>
+      <a href="/sistema-para-loja-de-calcados" class="tilt" data-cursor="hover" style="display:block; background:#fff; border:1px solid rgba(109,40,217,0.12); border-radius:20px; padding:24px; text-decoration:none;" data-reveal data-reveal-delay="1">
+        <div style="width:34px; height:4px; border-radius:2px; background:linear-gradient(90deg,#7c3aed,#a78bfa); margin-bottom:18px;"></div>
+        <h3 style="font-family:var(--font-heading); font-size:20px; color:#1a1330; margin:0 0 6px;">Calçados</h3>
+        <p style="font-size:14px; line-height:1.55; color:#4a3f6b; margin:0 0 14px;">Grade por número e modelo, troca de número e crediário.</p>
+        <span style="font-size:14px; color:#7c3aed; font-weight:600;">Ver &rarr;</span>
+      </a>
+      <a href="/sistema-para-loja-de-material-de-construcao" class="tilt" data-cursor="hover" style="display:block; background:#fff; border:1px solid rgba(109,40,217,0.12); border-radius:20px; padding:24px; text-decoration:none;" data-reveal data-reveal-delay="2">
+        <div style="width:34px; height:4px; border-radius:2px; background:linear-gradient(90deg,#7c3aed,#a78bfa); margin-bottom:18px;"></div>
+        <h3 style="font-family:var(--font-heading); font-size:20px; color:#1a1330; margin:0 0 6px;">Material de construção</h3>
+        <p style="font-size:14px; line-height:1.55; color:#4a3f6b; margin:0 0 14px;">Orçamento que vira venda, estoque item a item e conta de obra.</p>
+        <span style="font-size:14px; color:#7c3aed; font-weight:600;">Ver &rarr;</span>
+      </a>
+      <a href="/frente-de-caixa" class="tilt" data-cursor="hover" style="display:block; background:#fff; border:1px solid rgba(109,40,217,0.12); border-radius:20px; padding:24px; text-decoration:none;" data-reveal data-reveal-delay="3">
+        <div style="width:34px; height:4px; border-radius:2px; background:linear-gradient(90deg,#7c3aed,#a78bfa); margin-bottom:18px;"></div>
+        <h3 style="font-family:var(--font-heading); font-size:20px; color:#1a1330; margin:0 0 6px;">Frente de caixa</h3>
+        <p style="font-size:14px; line-height:1.55; color:#4a3f6b; margin:0 0 14px;">PDV rápido com NFC-e, troca no caixa e recebimento por PIX.</p>
+        <span style="font-size:14px; color:#7c3aed; font-weight:600;">Ver &rarr;</span>
+      </a>
+    </div>
 
-      <a href="food.html" class="vertical-card tilt" data-vertical="food" data-reveal data-reveal-delay="1" data-cursor="hover">
-        <div class="tilt-inner">
-          <div class="v-mark-lg"><svg viewBox="0 0 32 32" fill="none"><path d="M16 4c-3 4-5 7-5 11 0 4 2 7 5 9 3-2 5-5 5-9 0-4-2-7-5-11z" fill="white" opacity="0.9"/><path d="M14 16c0-2 1-3 2-4 1 1 2 2 2 4 0 1.5-1 3-2 4-1-1-2-2.5-2-4z" fill="#F97316"/></svg></div>
-          <h3>Aura <span class="acc">Food</span></h3>
-          <div class="v-tagline">Do balcão ao iFood, sem fricção.</div>
-          <div class="v-features">
-            <span>PDV</span><span>iFood</span><span>Cardápio digital</span><span>Fila ao vivo</span>
-          </div>
-          <div class="v-cta">Conhecer <span class="arrow">→</span></div>
-        </div>
-      </a>
+    <p style="text-align:center; margin-top:28px; font-size:14px; color:#756a93;" data-reveal>Tem também papelaria, celular &amp; assistência, autopeças, semijoias, perfumaria e ótica. <a href="/segmentos" style="color:#7c3aed; font-weight:600;">Ver todos os segmentos &rarr;</a></p>
 
-      <!-- Row 2: Beauty + Pet (em breve) -->
-      <a href="beauty.html" class="vertical-card tilt" data-vertical="beauty" data-coming-soon data-reveal data-cursor="hover">
-        <span class="coming-soon-badge">Em breve</span>
-        <div class="tilt-inner">
-          <div class="v-mark-lg"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M16 4c-2 6-8 8-8 14 0 5 4 10 8 10s8-5 8-10c0-6-6-8-8-14z"/><circle cx="13" cy="20" r="1.5" fill="currentColor"/></svg></div>
-          <h3>Aura <span class="acc">Beauty</span></h3>
-          <div class="v-tagline">Agenda cheia, marca lembrada.</div>
-          <div class="v-features">
-            <span>Booking</span><span>Comissões</span><span>Fidelidade</span>
-          </div>
-          <div class="v-cta">Conhecer <span class="arrow">→</span></div>
-        </div>
-      </a>
-
-      <a href="pet.html" class="vertical-card tilt" data-vertical="pet" data-coming-soon data-reveal data-reveal-delay="1" data-cursor="hover">
-        <span class="coming-soon-badge">Em breve</span>
-        <div class="tilt-inner">
-          <div class="v-mark-lg"><svg viewBox="0 0 32 32" fill="none"><circle cx="11" cy="12" r="2.5" fill="currentColor"/><circle cx="21" cy="12" r="2.5" fill="currentColor"/><circle cx="8" cy="18" r="2" fill="currentColor"/><circle cx="24" cy="18" r="2" fill="currentColor"/><path d="M16 16c-4 0-7 3-7 6 0 2 1.5 3 3.5 3h7c2 0 3.5-1 3.5-3 0-3-3-6-7-6z" fill="currentColor"/></svg></div>
-          <h3>Aura <span class="acc">Pet</span></h3>
-          <div class="v-tagline">Todo bicho tem ficha. Todo tutor, histórico.</div>
-          <div class="v-features">
-            <span>Ficha do pet</span><span>Banho e tosa</span><span>Vacinas</span><span>Prontuário vet</span>
-          </div>
-          <div class="v-cta">Conhecer <span class="arrow">→</span></div>
-        </div>
-      </a>
-
-      <!-- Row 3: Negócio em destaque (anchor / mother brand) -->
-      <a href="negocio.html" class="vertical-card vertical-card-featured tilt" data-vertical="negocio" data-reveal data-cursor="hover">
-        <span class="featured-tag">A identidade-mãe</span>
-        <div class="tilt-inner">
-          <div class="featured-col-left">
-            <div class="v-mark-lg"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><path d="M16 5L26 25H6L16 5z" fill="rgba(255,255,255,0.18)"/><circle cx="16" cy="18" r="2" fill="currentColor"/></svg></div>
-            <h3>Aura <span class="acc">Negócio</span></h3>
-            <div class="v-tagline">Atrás de toda Aura especialista, a plataforma-base. Multipropósito por design — pra quem opera o negócio inteiro.</div>
-            <div class="v-cta">Conhecer Aura Negócio <span class="arrow">→</span></div>
-          </div>
-          <div class="v-features">
-            <span>PDV</span><span>Estoque</span><span>NF-e</span><span>Financeiro</span><span>Folha</span><span>Fiscal</span>
-          </div>
-        </div>
-      </a>
+    <div style="text-align:center; margin-top:40px; padding-top:32px; border-top:1px solid rgba(109,40,217,0.12);" data-reveal>
+      <p style="font-size:14px; color:#4a3f6b; margin:0;">Tem ateliê de personalizados ou academia de artes marciais? Conheça a <a href="/studio" style="color:#e11d74; font-weight:600;">Aura Studio</a> e a <a href="/dojo" style="color:#b8463a; font-weight:600;">Aura Dojô</a>.</p>
     </div>
   </div>
 </section>
@@ -350,74 +307,137 @@
     <div class="orb indigo" style="width: 400px; height: 400px; bottom: 10%; left: -50px; opacity: 0.4;"></div>
   </div>
   <div class="container">
-    <div class="text-center stack-md" style="margin: 0 auto 80px; max-width: 720px;" data-reveal>
+    <div class="text-center stack-md" style="margin: 0 auto 80px; max-width: 760px;" data-reveal>
       <div class="eyebrow center">Plataforma</div>
-      <h2 class="h1">Tudo do seu negócio,<br>em <span style="color:#a78bfa;">paz</span>.</h2>
-      <p class="lead" style="margin: 0 auto;">Seis pilares que toda Aura entrega. Em cima disso, cada vertical adiciona o que é específico do seu setor.</p>
+      <h2 class="h1">Uma gama de funcionalidades que a concorrência<br><span style="color:#a78bfa;">não chega nem perto.</span></h2>
+      <p class="lead" style="margin: 0 auto;">Três camadas: o que faz você trocar de sistema hoje, o que faz você ficar, e o que faz você crescer. Tudo no mesmo app — sem módulo pago à parte, sem "fale com o comercial".</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+    <!-- CAMADA 1 · CUNHA — por que trocar agora -->
+    <div data-reveal style="margin-bottom: 16px;">
+      <div class="label" style="color:#a78bfa; margin-bottom: 16px;">01 · Pra trocar hoje — o que os outros deixam na mão</div>
+    </div>
+    <div class="features-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 56px;">
+      <div class="tilt feat-wide" data-reveal style="grid-column: span 2; background: linear-gradient(135deg, rgba(124,58,237,0.22), rgba(167,139,250,0.08)); border: 1px solid rgba(167,139,250,0.35); border-radius: 20px; padding: 28px; position: relative; overflow: hidden;">
+        <div class="tilt-inner">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #7c3aed, #a78bfa); display: grid; place-items: center; color: white; margin-bottom: 20px; box-shadow: 0 8px 20px rgba(124,58,237,0.4);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>
+          </div>
+          <h3 class="h3" style="margin-bottom: 8px;">Crediário próprio + cobrança no WhatsApp</h3>
+          <p class="body">Venda fiado sem maquininha, com score do cliente e régua de cobrança que monta a mensagem com valor, data e PIX — você cobra em um toque, sem constrangimento. É o motivo nº 1 de quem troca pra Aura. Os outros? Nem têm crediário.</p>
+        </div>
+      </div>
+      <div class="tilt" data-reveal data-reveal-delay="1" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 28px;">
+        <div class="tilt-inner">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(124,58,237,0.18); display: grid; place-items: center; color: #a78bfa; margin-bottom: 20px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 9h12l-3-3M20 15H8l3 3"/></svg>
+          </div>
+          <h3 class="h3" style="margin-bottom: 8px;">Troca no caixa</h3>
+          <p class="body">Troca e devolução com saldo automático, direto no PDV. Sem estorno manual, sem caderninho, sem gambiarra.</p>
+        </div>
+      </div>
+      <div class="tilt" data-reveal style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 28px;">
+        <div class="tilt-inner">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(251,191,36,0.18); display: grid; place-items: center; color: #fbbf24; margin-bottom: 20px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 4h16v6H4zM4 14h7v6H4zM15 14h5v6h-5z"/></svg>
+          </div>
+          <h3 class="h3" style="margin-bottom: 8px;">Grade de tamanhos</h3>
+          <p class="body">P, M, G, 36 ao 44, cor e modelo — estoque por variante de verdade. Quem vende roupa sabe: sem isso não é sistema, é planilha.</p>
+        </div>
+      </div>
+      <div class="tilt" data-reveal data-reveal-delay="1" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 28px;">
+        <div class="tilt-inner">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(52,211,153,0.18); display: grid; place-items: center; color: #34d399; margin-bottom: 20px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2v20M17 7H9.5a2.5 2.5 0 000 5h5a2.5 2.5 0 010 5H6"/></svg>
+          </div>
+          <h3 class="h3" style="margin-bottom: 8px;">Preço fixo, de verdade</h3>
+          <p class="body">Vendeu o dobro esse mês? Parabéns — sua mensalidade continua a mesma. Sem cobrança por pedido, por nota ou por "sucesso".</p>
+        </div>
+      </div>
+      <div class="tilt" data-reveal data-reveal-delay="2" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 28px;">
+        <div class="tilt-inner">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(37,211,102,0.18); display: grid; place-items: center; color: #6ee7a8; margin-bottom: 20px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-9 8.4 8.5 8.5 0 01-3.4-.7L3 21l1.8-5.6a8.38 8.38 0 01-.8-3.9 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8z"/></svg>
+          </div>
+          <h3 class="h3" style="margin-bottom: 8px;">Suporte humano, em português</h3>
+          <p class="body">Gente de verdade respondendo no mesmo dia útil. Sem chatbot empurrando FAQ, sem chamado que morre na fila.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAMADA 2 · PROFUNDIDADE — por que ficar -->
+    <div data-reveal style="margin-bottom: 16px;">
+      <div class="label" style="color:#a78bfa; margin-bottom: 16px;">02 · Pra ficar — a operação inteira no mesmo app</div>
+    </div>
+    <div class="features-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 56px;">
       <div class="tilt" data-reveal style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 28px;">
         <div class="tilt-inner">
           <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(124,58,237,0.18); display: grid; place-items: center; color: #a78bfa; margin-bottom: 20px;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h12"/></svg>
           </div>
-          <h3 class="h3" style="margin-bottom: 8px;">PDV / Caixa</h3>
-          <p class="body">Frente de loja rápida, atalhos por teclado, integração de TEF, recibo e NFC-e. Funciona online e offline.</p>
+          <h3 class="h3" style="margin-bottom: 8px;">PDV / NFC-e</h3>
+          <p class="body">Frente de loja rápida, atalhos de teclado, TEF e cupom fiscal em 1 clique.</p>
         </div>
       </div>
-
       <div class="tilt" data-reveal data-reveal-delay="1" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 28px;">
+        <div class="tilt-inner">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(251,191,36,0.18); display: grid; place-items: center; color: #fbbf24; margin-bottom: 20px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M14 3v4a1 1 0 001 1h4M5 21V5a2 2 0 012-2h7l5 5v13a2 2 0 01-2 2H7a2 2 0 01-2-2z"/><path d="M9 12h6M9 16h6"/></svg>
+          </div>
+          <h3 class="h3" style="margin-bottom: 8px;">Fiscal completo</h3>
+          <p class="body">NF-e, NFC-e e NFS-e ilimitadas. Apoio contábil guiado pra MEI e Simples.</p>
+        </div>
+      </div>
+      <div class="tilt" data-reveal data-reveal-delay="2" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 28px;">
         <div class="tilt-inner">
           <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(52,211,153,0.18); display: grid; place-items: center; color: #34d399; margin-bottom: 20px;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M21 7v6h-6"/></svg>
           </div>
           <h3 class="h3" style="margin-bottom: 8px;">Financeiro</h3>
-          <p class="body">DRE, fluxo de caixa, conciliação bancária e categorização automática por IA. O contador adora — e seu bolso também.</p>
+          <p class="body">DRE, fluxo de caixa projetado, conciliação via OFX. O contador agradece.</p>
         </div>
       </div>
-
-      <div class="tilt" data-reveal data-reveal-delay="2" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 28px;">
-        <div class="tilt-inner">
-          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(251,191,36,0.18); display: grid; place-items: center; color: #fbbf24; margin-bottom: 20px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M14 3v4a1 1 0 001 1h4M5 21V5a2 2 0 012-2h7l5 5v13a2 2 0 01-2 2H7a2 2 0 01-2-2z"/><path d="M9 12h6M9 16h6"/></svg>
-          </div>
-          <h3 class="h3" style="margin-bottom: 8px;">NF-e / Fiscal</h3>
-          <p class="body">Emissão de NF-e, NFC-e, NFS-e e SAT em um clique. Apoio contábil informativo embutido.</p>
-        </div>
-      </div>
-
-      <div class="tilt" data-reveal style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 28px;">
-        <div class="tilt-inner">
-          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(167,139,250,0.18); display: grid; place-items: center; color: #c4b5fd; margin-bottom: 20px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
-          </div>
-          <h3 class="h3" style="margin-bottom: 8px;">Agenda</h3>
-          <p class="body">Booking online, lembretes por WhatsApp, comissões e gestão de equipe. Ideal para serviços.</p>
-        </div>
-      </div>
-
-      <div class="tilt" data-reveal data-reveal-delay="1" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 28px;">
+      <div class="tilt" data-reveal data-reveal-delay="3" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 28px;">
         <div class="tilt-inner">
           <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(6,182,212,0.18); display: grid; place-items: center; color: #06b6d4; margin-bottom: 20px;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.7l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.7l7 4a2 2 0 002 0l7-4A2 2 0 0021 16zM3.3 7l8.7 5 8.7-5M12 22V12"/></svg>
           </div>
           <h3 class="h3" style="margin-bottom: 8px;">Estoque</h3>
-          <p class="body">Entrada, saída, lotes, validade, balanço. Integra com PDV em tempo real.</p>
+          <p class="body">Lotes, validade, balanço, entrada via XML. Sincroniza com o PDV em tempo real.</p>
         </div>
       </div>
+    </div>
 
-      <div class="tilt" data-reveal data-reveal-delay="2" style="background: linear-gradient(135deg, rgba(124,58,237,0.18), rgba(167,139,250,0.08)); border: 1px solid rgba(167,139,250,0.3); border-radius: 20px; padding: 28px; position: relative; overflow: hidden;">
+    <!-- CAMADA 3 · EXPANSÃO — por que crescer -->
+    <div data-reveal style="margin-bottom: 16px;">
+      <div class="label" style="color:#a78bfa; margin-bottom: 16px;">03 · Pra crescer — quando a operação escalar</div>
+    </div>
+    <div class="features-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+      <div class="tilt" data-reveal style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 28px;">
         <div class="tilt-inner">
-          <div class="aura-radar" style="position: absolute; top: 28px; right: 28px; width: 36px; height: 36px; color: rgba(167,139,250,0.7);">
-            <span class="ring"></span><span class="ring"></span><span class="ring"></span>
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(167,139,250,0.18); display: grid; place-items: center; color: #c4b5fd; margin-bottom: 20px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/></svg>
           </div>
-          <div style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #7c3aed, #a78bfa); display: grid; place-items: center; color: white; margin-bottom: 20px; box-shadow: 0 8px 20px rgba(124,58,237,0.4);">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>
+          <h3 class="h3" style="margin-bottom: 8px;">Loja digital + HUB Social</h3>
+          <p class="body">Canal Digital com loja online inclusa e Instagram + WhatsApp em automação. Sua vitrine aberta 24h.</p>
+        </div>
+      </div>
+      <div class="tilt" data-reveal data-reveal-delay="1" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 28px;">
+        <div class="tilt-inner">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(124,58,237,0.18); display: grid; place-items: center; color: #a78bfa; margin-bottom: 20px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
           </div>
-          <span class="label" style="font-size: 9px; color: #c4b5fd; padding: 3px 8px; background: rgba(124,58,237,0.18); border-radius: 999px; display: inline-block; margin-bottom: 12px;">IA INCLUSA</span>
-          <h3 class="h3" style="margin-bottom: 8px;">Seu Analista</h3>
-          <p class="body">Agente de IA que conhece seu negócio. Pergunte o que quiser sobre vendas, custos, sazonalidade.</p>
+          <h3 class="h3" style="margin-bottom: 8px;">Multi-CNPJ consolidado</h3>
+          <p class="body">Matriz e filiais num painel só, com DRE por CNPJ e visão agregada. Abriu a segunda loja? A Aura já estava pronta.</p>
+        </div>
+      </div>
+      <div class="tilt" data-reveal data-reveal-delay="2" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 28px;">
+        <div class="tilt-inner">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(225,29,116,0.18); display: grid; place-items: center; color: #f472b6; margin-bottom: 20px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 3h2l2 13h11l2-8H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg>
+          </div>
+          <h3 class="h3" style="margin-bottom: 8px;">Marketplaces + sua maquininha</h3>
+          <p class="body">Mercado Livre e Shopee no mesmo fluxo (Studio) e multi-gateway no Expansão: use a sua própria maquininha, do seu jeito.</p>
         </div>
       </div>
     </div>
@@ -429,11 +449,11 @@
   <div class="container">
     <div class="text-center stack-md" style="margin: 0 auto 64px; max-width: 720px;" data-reveal>
       <div class="eyebrow center">Planos</div>
-      <h2 class="h1">Escolha pelo seu <em style="color:#7c3aed">tamanho</em>.<br>Pague pelo que <em style="color:#7c3aed">usa</em>.</h2>
-      <p class="lead" style="margin: 0 auto;">Cinco planos. Os <strong>Verticais</strong> ativam camadas específicas do seu setor (Odonto, Beauty, Food ou Pet). Você escolhe na hora de assinar.</p>
+      <h2 class="h1">Seu preço <em style="color:#7c3aed">não sobe</em><br>porque você vendeu <em style="color:#7c3aed">mais</em>.</h2>
+      <p class="lead" style="margin: 0 auto;">Escolha o plano pelo tamanho da operação — e acabou. Sem cobrança por pedido, sem surpresa no fim do mês. Studio e Dojô já vêm incluídos nos planos Negócio e Expansão.</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;">
+    <div class="plans-preview-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
       <!-- Essencial -->
       <div data-reveal style="background: white; border: 1px solid rgba(109,40,217,0.10); border-radius: 20px; padding: 24px; display: flex; flex-direction: column;">
         <div class="label" style="margin-bottom: 12px;">Essencial</div>
@@ -442,48 +462,30 @@
         <a href="planos.html#essencial" style="margin-top: auto; padding-top: 24px; color: #7c3aed; font-weight: 600; font-size: 13px;">Ver detalhes →</a>
       </div>
 
-      <div data-reveal data-reveal-delay="1" style="background: white; border: 1px solid rgba(109,40,217,0.10); border-radius: 20px; padding: 24px; display: flex; flex-direction: column;">
-        <div class="label" style="margin-bottom: 12px;">Negócio</div>
-        <div style="font-family: var(--font-heading); font-size: 40px; line-height: 1; letter-spacing: -0.02em; color: #1a1330;">R$ <span data-count="169">169</span><span style="font-size: 16px; color: #756a93;">/mês</span></div>
-        <div style="font-size: 13px; color: #756a93; margin-top: 8px; line-height: 1.4;">Operação completa, multipropósito.</div>
-        <a href="planos.html#negocio" style="margin-top: auto; padding-top: 24px; color: #7c3aed; font-weight: 600; font-size: 13px;">Ver detalhes →</a>
-      </div>
-
-      <!-- Negócio Verticais — destaque -->
-      <div data-reveal data-reveal-delay="2" style="background: linear-gradient(160deg, #7c3aed, #6d28d9); color: white; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; box-shadow: 0 24px 48px rgba(124,58,237,0.3); position: relative; overflow: hidden;">
+      <!-- Negócio — destaque -->
+      <div data-reveal data-reveal-delay="1" style="background: linear-gradient(160deg, #7c3aed, #6d28d9); color: white; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; box-shadow: 0 24px 48px rgba(124,58,237,0.3); position: relative; overflow: hidden;">
         <div style="position: absolute; inset: 0; background: radial-gradient(circle at 100% 0%, rgba(255,255,255,0.18), transparent 50%); pointer-events: none;"></div>
         <div style="position: relative; display: flex; flex-direction: column; height: 100%;">
           <div style="display: flex; gap: 6px; margin-bottom: 12px;">
-            <span style="width: 10px; height: 10px; border-radius: 50%; background: #06B6D4;"></span>
-            <span style="width: 10px; height: 10px; border-radius: 50%; background: #F472B6;"></span>
-            <span style="width: 10px; height: 10px; border-radius: 50%; background: #F97316;"></span>
-            <span style="width: 10px; height: 10px; border-radius: 50%; background: #10B981;"></span>
+            <span style="width: 10px; height: 10px; border-radius: 50%; background: #E11D74;"></span>
+            <span style="width: 10px; height: 10px; border-radius: 50%; background: #b8463a;"></span>
           </div>
-          <div class="label" style="margin-bottom: 8px; color: rgba(255,255,255,0.7);">Negócio · Vertical</div>
+          <div class="label" style="margin-bottom: 8px; color: rgba(255,255,255,0.7);">Negócio</div>
           <div style="font-family: var(--font-heading); font-size: 40px; line-height: 1; letter-spacing: -0.02em;">R$ <span data-count="169">169</span><span style="font-size: 16px; opacity: 0.7;">/mês</span></div>
-          <div style="font-size: 13px; opacity: 0.85; margin-top: 8px; line-height: 1.4;">+ camada do seu setor: Odonto, Beauty, Food ou Pet.</div>
-          <a href="planos.html#negocio-vertical" style="margin-top: auto; padding-top: 24px; color: white; font-weight: 600; font-size: 13px;">Ver verticais →</a>
+          <div style="font-size: 13px; opacity: 0.85; margin-top: 8px; line-height: 1.4;">Operação completa. Studio ou Dojô incluídos, sem custo à parte.</div>
+          <a href="planos.html#negocio" style="margin-top: auto; padding-top: 24px; color: white; font-weight: 600; font-size: 13px;">Ver detalhes →</a>
         </div>
       </div>
 
-      <div data-reveal data-reveal-delay="3" style="background: white; border: 1px solid rgba(109,40,217,0.10); border-radius: 20px; padding: 24px; display: flex; flex-direction: column;">
-        <div class="label" style="margin-bottom: 12px;">Expansão</div>
-        <div style="font-family: var(--font-heading); font-size: 40px; line-height: 1; letter-spacing: -0.02em; color: #1a1330;">R$ <span data-count="269">269</span><span style="font-size: 16px; color: #756a93;">/mês</span></div>
-        <div style="font-size: 13px; color: #756a93; margin-top: 8px; line-height: 1.4;">Multi-loja, IA avançada, integrações.</div>
-        <a href="planos.html#expansao" style="margin-top: auto; padding-top: 24px; color: #7c3aed; font-weight: 600; font-size: 13px;">Ver detalhes →</a>
-      </div>
-
-      <div data-reveal data-reveal-delay="4" style="background: white; border: 1px solid rgba(109,40,217,0.18); border-radius: 20px; padding: 24px; display: flex; flex-direction: column; position: relative;">
+      <div data-reveal data-reveal-delay="2" style="background: white; border: 1px solid rgba(109,40,217,0.18); border-radius: 20px; padding: 24px; display: flex; flex-direction: column; position: relative;">
         <div style="display: flex; gap: 6px; margin-bottom: 12px;">
-          <span style="width: 8px; height: 8px; border-radius: 50%; background: #06B6D4;"></span>
-          <span style="width: 8px; height: 8px; border-radius: 50%; background: #F472B6;"></span>
-          <span style="width: 8px; height: 8px; border-radius: 50%; background: #F97316;"></span>
-          <span style="width: 8px; height: 8px; border-radius: 50%; background: #10B981;"></span>
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: #E11D74;"></span>
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: #b8463a;"></span>
         </div>
-        <div class="label" style="margin-bottom: 8px;">Expansão · Vertical</div>
+        <div class="label" style="margin-bottom: 8px;">Expansão</div>
         <div style="font-family: var(--font-heading); font-size: 40px; line-height: 1; letter-spacing: -0.02em; color: #1a1330;">R$ <span data-count="269">269</span><span style="font-size: 16px; color: #756a93;">/mês</span></div>
-        <div style="font-size: 13px; color: #756a93; margin-top: 8px; line-height: 1.4;">Tudo do Expansão + camada vertical.</div>
-        <a href="planos.html#expansao-vertical" style="margin-top: auto; padding-top: 24px; color: #7c3aed; font-weight: 600; font-size: 13px;">Ver verticais →</a>
+        <div style="font-size: 13px; color: #756a93; margin-top: 8px; line-height: 1.4;">Multi-loja, multi-CNPJ, integrações. Studio ou Dojô incluídos.</div>
+        <a href="planos.html#expansao" style="margin-top: auto; padding-top: 24px; color: #7c3aed; font-weight: 600; font-size: 13px;">Ver detalhes →</a>
       </div>
     </div>
 
@@ -500,7 +502,7 @@
     <div class="orb indigo" style="width: 400px; height: 400px; bottom: -100px; right: 10%; opacity: 0.4;"></div>
   </div>
   <div class="container">
-    <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start;">
+    <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start;">
       <div data-reveal>
         <div class="eyebrow" style="margin-bottom: 16px;">Fale com a gente</div>
         <h2 class="h1" style="margin-bottom: 24px;">Bora <em style="color: #a78bfa;">conversar?</em></h2>
@@ -516,29 +518,46 @@
         </div>
       </div>
 
-      <form class="form-card" data-reveal data-reveal-delay="1" onsubmit="event.preventDefault(); this.querySelector('button[type=submit]').textContent = 'Enviado! Voltamos em breve ✓';">
-        <div class="form-grid">
-          <div class="field"><label>Nome</label><input type="text" placeholder="Caio Alexander" required></div>
-          <div class="field"><label>Cargo</label><input type="text" placeholder="Sócio fundador"></div>
-          <div class="field full"><label>Empresa</label><input type="text" placeholder="Nome do seu negócio"></div>
-          <div class="field full">
-            <label>Vertical de interesse</label>
-            <select>
-              <option>Aura Negócio — varejo geral</option>
-              <option>Aura Odonto — clínicas e consultórios</option>
-              <option>Aura Beauty — salões, barbearias, estúdios</option>
-              <option>Aura Food — restaurantes, bares, delivery</option>
-              <option>Aura Pet — pet shops, banho e tosa, vets</option>
-              <option>Ainda não sei</option>
-            </select>
-          </div>
-          <div class="field"><label>Telefone</label><input type="tel" placeholder="(11) 99999-9999" required></div>
-          <div class="field"><label>E-mail</label><input type="email" placeholder="voce@empresa.com.br" required></div>
-          <div class="field full"><label>Mensagem</label><textarea placeholder="Conta um pouco do seu negócio: quantas lojas, quantos profissionais, o que você usa hoje..."></textarea></div>
+      <form class="form-card" id="homeContactForm" data-form="contact" action="/api/contact" method="POST" data-reveal data-reveal-delay="1">
+        <!-- Passo 1 — WhatsApp sempre visível -->
+        <div class="field full"><label>WhatsApp</label><input type="tel" name="whatsapp" placeholder="(11) 99999-9999" required></div>
+
+        <!-- CTA do passo 1: aparece só com JS (progressive enhancement) -->
+        <div data-lc-step1-cta hidden>
+          <button type="button" class="btn btn-primary btn-lg" data-action="lead-step1" style="width: 100%; margin-top: 16px; justify-content: center;">Quero que me chamem <span class="arrow">→</span></button>
+          <div class="lc-micro">Sem spam. É só pra te ajudar a começar — a gente te chama no WhatsApp.</div>
+          <div class="lc-err" data-lc-error="step1" role="alert"></div>
         </div>
-        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 20px; justify-content: center;">Enviar mensagem <span class="arrow">→</span></button>
+
+        <!-- Passo 2 — resto do form. Sem JS fica visível (form completo funciona normal) -->
+        <div data-lc-step2>
+          <div class="lc-step2-intro" data-lc-intro hidden>Pronto, já anotamos seu contato 🎉<br>Quer adiantar? Conta um pouco do seu negócio:</div>
+          <div class="form-grid">
+            <div class="field"><label>Nome</label><input type="text" name="nome" placeholder="Caio Alexander" required></div>
+            <div class="field"><label>Cargo</label><input type="text" name="cargo" placeholder="Sócio fundador"></div>
+            <div class="field full"><label>Empresa</label><input type="text" name="empresa" placeholder="Nome do seu negócio"></div>
+            <div class="field full">
+              <label>Vertical de interesse</label>
+              <select name="vertical">
+                <option>Aura Negócio — varejo geral</option>
+                <option>Aura Studio — customização, impressão, ateliês</option>
+                <option>Aura Dojô — federações e academias de Karatê</option>
+                <option>Ainda não sei</option>
+              </select>
+            </div>
+            <div class="field full"><label>E-mail</label><input type="email" name="email" placeholder="voce@empresa.com.br"></div>
+            <div class="field full"><label>Mensagem</label><textarea name="mensagem" placeholder="Conta um pouco do seu negócio: quantas lojas, quantos profissionais, o que você usa hoje..."></textarea></div>
+          </div>
+          <div class="form-error" role="alert"></div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 20px; justify-content: center;">Enviar mensagem <span class="arrow">→</span></button>
+        </div>
+
+        <!-- honeypot anti-spam: humanos não preenchem -->
+        <input type="text" name="_empresa" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <a href="https://wa.me/5511956305269?text=Vim%20pelo%20site%20da%20Aura%20e%20quero%20falar%20com%20a%20equipe" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg" style="width: 100%; margin-top: 10px; justify-content: center;">Prefiro o WhatsApp</a>
         <div style="font-size: 11px; color: rgba(220,215,255,0.45); margin-top: 12px; text-align: center; font-style: italic;">A gente nunca compartilha seus dados.</div>
       </form>
+      <div class="form-success" id="homeContactSuccess"><div style="font-size:2.5rem;margin-bottom:10px">🎉</div><strong>Mensagem enviada!</strong><br><span style="font-size:.875rem;color:rgba(220,215,255,0.7)">Entraremos em contato pelo WhatsApp em minutos.</span></div>
     </div>
   </div>
 </section>
@@ -549,10 +568,10 @@
     <div class="footer-grid">
       <div>
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-          <img src="assets/Icon.png" alt="Aura" style="width: 36px; height: 36px; border-radius: 9px; box-shadow: 0 6px 18px rgba(124,58,237,0.4);" />
+          <img src="assets/Icon.png" alt="Aura" style="width: 36px; height: 36px; border-radius: 50%; box-shadow: 0 6px 18px rgba(124,58,237,0.4);" />
           <span style="font-family: var(--font-heading); font-size: 26px; color: white; letter-spacing: -0.02em;">Aura<span style="color: #a78bfa;">.</span></span>
         </div>
-        <p style="font-size: 14px; line-height: 1.6; color: rgba(196,181,253,0.7); max-width: 280px;">Tecnologia para Negócios. Cinco verticais especialistas, uma plataforma única, feita no Brasil.</p>
+        <p style="font-size: 14px; line-height: 1.6; color: rgba(196,181,253,0.7); max-width: 280px;">Tecnologia para Negócios. Três produtos especialistas, uma plataforma única, feita no Brasil.</p>
         <p style="font-family: var(--font-heading); font-style: italic; font-size: 17px; line-height: 1.4; color: #fff; max-width: 300px; margin-top: 20px; letter-spacing: -0.01em;">&quot;Aura, a plataforma do empreendedor brasileiro.&quot;</p>
         <div style="margin-top: 24px; display: flex; gap: 10px;">
           <a href="https://instagram.com/aura_tecnologia" target="_blank" rel="noopener" aria-label="Instagram" style="width: 36px; height: 36px; padding: 0; border-radius: 10px; background: rgba(124,58,237,0.18); display: grid; place-items: center; color: #c4b5fd;">
@@ -568,17 +587,16 @@
       </div>
       <div>
         <h5>Verticais</h5>
-        <a href="negocio.html">Aura Negócio</a>
-        <a href="odonto.html">Aura Odonto</a>
-        <a href="beauty.html">Aura Beauty</a>
-        <a href="food.html">Aura Food</a>
-        <a href="pet.html">Aura Pet</a>
+        <a href="/negocio">Aura Negócio</a>
+        <a href="/studio">Aura Studio</a>
+        <a href="/dojo">Aura Dojô</a>
       </div>
       <div>
         <h5>Produto</h5>
         <a href="planos.html">Planos</a>
+        <a href="/comparativo">Comparativo</a>
         <a href="https://app.getaura.com.br" target="_blank" rel="noopener">Entrar</a>
-        <a href="https://app.getaura.com.br/cadastro" target="_blank" rel="noopener">Criar conta</a>
+        <a href="/comecar">Começar grátis</a>
         <a href="sobre.html">Sobre a Aura</a>
       </div>
       <div>
@@ -607,6 +625,25 @@
   <span class="wa-num">(11) 95630-5269</span>
 </a>
 
+<!-- Exit-intent: captura WhatsApp de quem está saindo (lead parcial) -->
+<div class="lc-modal" id="exitIntentModal" hidden>
+  <div class="lc-modal-backdrop" data-action="exit-close"></div>
+  <div class="lc-modal-card" role="dialog" aria-modal="true" aria-labelledby="exitIntentTitle">
+    <button type="button" class="lc-modal-x" data-action="exit-close" aria-label="Fechar">&times;</button>
+    <div class="lc-modal-emoji">👋</div>
+    <h3 id="exitIntentTitle" class="h3" data-lc-keep>Ó, antes de ir…</h3>
+    <p class="body" data-lc-keep>Deixa seu WhatsApp e a gente te mostra a Aura funcionando no seu negócio — leva 2 minutos, sem compromisso.</p>
+    <input type="tel" id="exitWhats" placeholder="(11) 99999-9999" inputmode="numeric" data-lc-keep>
+    <input type="text" data-exit-hp tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+    <div class="lc-err" data-lc-error="exit" role="alert"></div>
+    <button type="button" class="btn btn-primary btn-lg" data-action="exit-submit" data-lc-keep style="width:100%;justify-content:center;margin-top:6px;">Pode me chamar <span class="arrow">→</span></button>
+    <button type="button" class="lc-modal-later" data-action="exit-close" data-lc-keep>Agora não</button>
+    <div class="lc-modal-success" hidden>🎉 Boa! Te chamamos no WhatsApp em breve.</div>
+  </div>
+</div>
+
 <script src="js/site.js"></script>
+<script src="/js/lead-capture.js"></script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25ce08563247490b918793727e3c1eb1"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
