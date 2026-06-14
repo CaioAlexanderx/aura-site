@@ -51,28 +51,47 @@
     window.addEventListener('load', checkReveals);
   }
 
-  /* ── Pointer tilt (3D parallax) ─────────────────────────── */
-  if (!reduce && window.matchMedia('(hover:hover)').matches) {
+  /* ── Tilt no hover + ARRASTE pra girar (mouse e touch) ──── */
+  if (!reduce) {
     document.querySelectorAll('[data-tilt]').forEach(function (scene) {
       var card = scene.querySelector('.tilt');
       if (!card) return;
       var max = parseFloat(scene.getAttribute('data-tilt-max')) || 12;
+      var hoverable = window.matchMedia('(hover:hover)').matches;
       var raf = null, tx = 0, ty = 0, cx = 0, cy = 0;
+      var dragging = false, baseY = 0, sx = 0, sy = 0;
       function frame() {
-        cx += (tx - cx) * 0.12; cy += (ty - cy) * 0.12;
+        cx += (tx - cx) * 0.16; cy += (ty - cy) * 0.16;
         card.style.transform = 'rotateY(' + cx.toFixed(2) + 'deg) rotateX(' + cy.toFixed(2) + 'deg)';
         if (Math.abs(tx - cx) > 0.05 || Math.abs(ty - cy) > 0.05) raf = requestAnimationFrame(frame);
         else raf = null;
       }
-      scene.addEventListener('pointermove', function (ev) {
-        var r = scene.getBoundingClientRect();
-        var px = (ev.clientX - r.left) / r.width - 0.5;
-        var py = (ev.clientY - r.top) / r.height - 0.5;
-        tx = px * max * 2; ty = -py * max * 2;
-        if (!raf) raf = requestAnimationFrame(frame);
+      function tick() { if (!raf) raf = requestAnimationFrame(frame); }
+      scene.style.cursor = 'grab';
+      scene.style.touchAction = 'pan-y';
+      scene.addEventListener('pointerdown', function (ev) {
+        dragging = true; baseY = tx; sx = ev.clientX; sy = ev.clientY;
+        scene.style.cursor = 'grabbing';
+        try { scene.setPointerCapture(ev.pointerId); } catch (e) {}
       });
+      scene.addEventListener('pointermove', function (ev) {
+        if (dragging) {
+          tx = baseY + (ev.clientX - sx) * 0.7;
+          ty = Math.max(-max, Math.min(max, -(ev.clientY - sy) * 0.35));
+          tick(); return;
+        }
+        if (!hoverable) return;
+        var r = scene.getBoundingClientRect();
+        tx = ((ev.clientX - r.left) / r.width - 0.5) * max * 2;
+        ty = -((ev.clientY - r.top) / r.height - 0.5) * max * 2;
+        tick();
+      });
+      function stop() { if (dragging) { dragging = false; scene.style.cursor = 'grab'; } }
+      scene.addEventListener('pointerup', stop);
+      scene.addEventListener('pointercancel', stop);
       scene.addEventListener('pointerleave', function () {
-        tx = 0; ty = 0; if (!raf) raf = requestAnimationFrame(frame);
+        if (dragging || !hoverable) return;
+        tx = 0; ty = 0; tick();
       });
     });
   }
