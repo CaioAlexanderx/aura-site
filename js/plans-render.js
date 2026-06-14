@@ -17,13 +17,21 @@
     return WA_BASE + msg;
   }
 
+  /* Anual em destaque (2 meses grátis = desconto de 1/6, igual ao checkout
+     do app), com o mensal cheio logo abaixo como referência. */
+  var ANNUAL_DISCOUNT = 1 / 6;
+  function annualMonthly(monthly) { return Math.round(monthly * (1 - ANNUAL_DISCOUNT) * 100) / 100; }
+
   function priceHTML(plan) {
-    if (plan.priceCents != null) {
-      return '<span class="amt">R$ ' + plan.price + '</span>' +
-        '<span class="cents">,' + plan.priceCents + '</span>' +
-        '<span class="per">/mês</span>';
-    }
-    return '<span class="amt">R$ ' + plan.price + '</span><span class="per">/mês</span>';
+    var mo = plan.price;
+    var an = annualMonthly(mo).toFixed(2).split('.'); // ex.: ["140","83"]
+    return '<span class="plan-badge-annual">2 meses grátis</span>' +
+      '<span class="plan-price-main">' +
+        '<span class="amt">R$ ' + an[0] + '</span>' +
+        '<span class="cents">,' + an[1] + '</span>' +
+        '<span class="per">/mês</span>' +
+      '</span>' +
+      '<span class="plan-price-ref">no plano anual · ou R$ ' + mo + '/mês no mensal</span>';
   }
 
   function featuresHTML(features) {

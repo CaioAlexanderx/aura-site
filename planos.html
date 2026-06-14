@@ -90,7 +90,27 @@
     line-height: 1;
     letter-spacing: -0.02em;
     margin-bottom: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
   }
+  .plan-price-main { display: inline-flex; align-items: baseline; }
+  .plan-badge-annual {
+    font-family: var(--font-mono);
+    font-size: 10px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+    color: #1f8a5b; background: rgba(31,138,91,0.12);
+    border: 1px solid rgba(31,138,91,0.25);
+    padding: 3px 9px; border-radius: 999px;
+  }
+  .plan-card.featured .plan-badge-annual {
+    color: #6ee7b7; background: rgba(110,231,183,0.16); border-color: rgba(110,231,183,0.32);
+  }
+  .plan-price-ref {
+    font-family: var(--font-mono); font-size: 11px; color: #756a93;
+    letter-spacing: 0.01em; line-height: 1.3;
+  }
+  .plan-card.featured .plan-price-ref { color: rgba(255,255,255,0.72); }
   .plan-price .amt { font-size: 56px; }
   .plan-price .cents { font-size: 22px; opacity: 0.6; }
   .plan-price .per { font-size: 14px; color: #756a93; margin-left: 4px; }
@@ -361,7 +381,7 @@
     <div data-plans-render="full"></div>
 
     <div class="text-center" style="margin-top: 40px; font-size: 13px; color: rgba(220,215,255,0.55);" data-reveal>
-      Todos os planos: onboarding humano · cancele quando quiser · 15% off no cartão anual, 20% off PIX anual.
+      Todos os planos: onboarding humano · cancele quando quiser · no plano anual você ganha 2 meses grátis (preço acima já é o anual). Mensal cheio disponível também.
     </div>
   </div>
 </section>
