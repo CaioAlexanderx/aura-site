@@ -122,7 +122,43 @@
   document.querySelectorAll('[data-count]').forEach((el) => countObs.observe(el));
 
   // =========================================================
-  // FORM SUBMIT: integra com /api/contact (Cloudflare Pages Function + Resend)
+  // TURNSTILE (anti-bot) — widget dentro do form; o input hidden
+  // cf-turnstile-response entra no FormData automaticamente.
+  // Site Key vazia = desligado (o worker só exige token quando
+  // TURNSTILE_SECRET estiver configurada lá).
+  // =========================================================
+  var TURNSTILE_SITE_KEY = ''; // TODO: cole aqui a Site Key do widget Turnstile
+  var tsLoader = null;
+  function loadTurnstileScript() {
+    if (tsLoader) return tsLoader;
+    tsLoader = new Promise(function (resolve) {
+      if (window.turnstile) return resolve(window.turnstile);
+      var s = document.createElement('script');
+      s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      s.async = true;
+      s.onload = function () { resolve(window.turnstile || null); };
+      s.onerror = function () { resolve(null); };
+      document.head.appendChild(s);
+    });
+    return tsLoader;
+  }
+  function mountTurnstile(form) {
+    if (!TURNSTILE_SITE_KEY || form.querySelector('.cf-turnstile')) return;
+    var holder = document.createElement('div');
+    holder.className = 'cf-turnstile';
+    holder.style.margin = '10px 0';
+    var submit = form.querySelector('button[type="submit"]');
+    if (submit) form.insertBefore(holder, submit); else form.appendChild(holder);
+    loadTurnstileScript().then(function (ts) {
+      if (!ts) return;
+      try {
+        ts.render(holder, { sitekey: TURNSTILE_SITE_KEY, appearance: 'interaction-only', 'refresh-expired': 'auto' });
+      } catch (e) {}
+    });
+  }
+
+  // =========================================================
+  // FORM SUBMIT: integra com /api/contact (Worker + Resend)
   // Marca formularios com [data-form="contact"] pra plugar.
   // =========================================================
   function setupContactForms() {
@@ -132,6 +168,8 @@
       var errorEl = form.querySelector('.form-error');
       var submitBtn = form.querySelector('button[type="submit"]');
       var originalBtnText = submitBtn ? submitBtn.innerHTML : 'Enviar';
+
+      mountTurnstile(form);
 
       form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -156,6 +194,8 @@
             var msg = (res.data && res.data.error) ? res.data.error : 'Algo deu errado. Tente novamente.';
             if (errorEl) { errorEl.textContent = msg; errorEl.classList.add('show'); }
             if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = originalBtnText; }
+            // Token consumido/expirado: gera outro pro próximo clique
+            if (window.turnstile) { try { window.turnstile.reset(); } catch (err) {} }
           }
         }).catch(function(err) {
           if (errorEl) {
@@ -163,6 +203,7 @@
             errorEl.classList.add('show');
           }
           if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = originalBtnText; }
+          if (window.turnstile) { try { window.turnstile.reset(); } catch (err2) {} }
         });
       });
     });

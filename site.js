@@ -2,7 +2,7 @@
    AURA. — Site JS v5 — Glassmorphism + WOW + Form async (12/05)
    ============================================================ */
 
-/* ── Navbar scroll ───────────────────────────────────────── */
+/* ── Navbar scroll ───────────────────────────────────── */
 (function(){
   var nav = document.querySelector('.nav');
   if(!nav) return;
@@ -12,7 +12,7 @@
   }, {passive:true});
 })();
 
-/* ── Mobile hamburger ────────────────────────────────────── */
+/* ── Mobile hamburger ────────────────────────────────── */
 (function(){
   var btn = document.getElementById('nav-hamburger');
   var menu = document.getElementById('nav-mobile');
@@ -31,7 +31,7 @@
   });
 })();
 
-/* ── Scroll reveal ───────────────────────────────────────── */
+/* ── Scroll reveal ───────────────────────────────────── */
 (function(){
   var els = document.querySelectorAll('.reveal, .reveal-scale');
   if(!els.length) return;
@@ -43,7 +43,7 @@
   els.forEach(function(el){ obs.observe(el); });
 })();
 
-/* ── Count-up animation ─────────────────────────────────── */
+/* ── Count-up animation ─────────────────────────────── */
 (function(){
   var nums = document.querySelectorAll('[data-count]');
   if(!nums.length) return;
@@ -65,7 +65,7 @@
   nums.forEach(function(n){ obs.observe(n); });
 })();
 
-/* ── Cursor glow ─────────────────────────────────────────── */
+/* ── Cursor glow ─────────────────────────────────────── */
 (function(){
   if(window.matchMedia('(hover:none)').matches) return;
   var glow = document.createElement('div');
@@ -77,7 +77,7 @@
   requestAnimationFrame(loop);
 })();
 
-/* ── Floating particles ──────────────────────────────────── */
+/* ── Floating particles ──────────────────────────────── */
 (function(){
   var canvas = document.getElementById('hero-particles');
   if(!canvas) return;
@@ -99,7 +99,7 @@
   draw();
 })();
 
-/* ── 3D tilt on cards ────────────────────────────────────── */
+/* ── 3D tilt on cards ────────────────────────────────── */
 (function(){
   if(window.matchMedia('(hover:none)').matches) return;
   document.querySelectorAll('.glass-card, .bento-card').forEach(function(card){
@@ -113,7 +113,7 @@
   });
 })();
 
-/* ── FAQ toggle ──────────────────────────────────────────── */
+/* ── FAQ toggle ────────────────────────────────────── */
 function toggleFaq(btn){
   var item = btn.parentElement;
   var wasOpen = item.classList.contains('open');
@@ -121,7 +121,41 @@ function toggleFaq(btn){
   if(!wasOpen) item.classList.add('open');
 }
 
-/* ── Form submit ─────────────────────────────────────────── */
+/* ── Turnstile (anti-bot) ────────────────────────────── */
+// Widget dentro do form; o input hidden cf-turnstile-response entra no
+// FormData automaticamente. Site Key vazia = desligado (o worker só
+// exige token quando TURNSTILE_SECRET estiver configurada lá).
+var AURA_TURNSTILE_SITE_KEY = ''; // TODO: cole aqui a Site Key do widget Turnstile
+var _auraTsLoader = null;
+function auraLoadTurnstile(){
+  if(_auraTsLoader) return _auraTsLoader;
+  _auraTsLoader = new Promise(function(resolve){
+    if(window.turnstile) return resolve(window.turnstile);
+    var s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+    s.async = true;
+    s.onload = function(){ resolve(window.turnstile || null); };
+    s.onerror = function(){ resolve(null); };
+    document.head.appendChild(s);
+  });
+  return _auraTsLoader;
+}
+function auraMountTurnstile(form){
+  if(!AURA_TURNSTILE_SITE_KEY || form.querySelector('.cf-turnstile')) return;
+  var holder = document.createElement('div');
+  holder.className = 'cf-turnstile';
+  holder.style.margin = '10px 0';
+  var submit = form.querySelector('button[type="submit"]');
+  if(submit) form.insertBefore(holder, submit); else form.appendChild(holder);
+  auraLoadTurnstile().then(function(ts){
+    if(!ts) return;
+    try {
+      ts.render(holder, { sitekey: AURA_TURNSTILE_SITE_KEY, appearance: 'interaction-only', 'refresh-expired': 'auto' });
+    } catch(e){}
+  });
+}
+
+/* ── Form submit ───────────────────────────────────── */
 // 12/05/2026: trata response JSON do Cloudflare Pages Function /api/contact.
 // Mostra mensagem de erro amigavel se backend devolver 4xx/5xx. Desabilita
 // botao durante submit pra evitar duplo envio. Compativel com forms legados
@@ -139,6 +173,8 @@ function setupForm(formId, successId){
     errorEl.style.cssText = 'display:none;margin-top:10px;padding:10px 12px;border-radius:8px;background:rgba(248,113,113,0.12);border:1px solid rgba(248,113,113,0.3);color:#f87171;font-size:.8125rem;text-align:center';
     form.appendChild(errorEl);
   }
+
+  auraMountTurnstile(form);
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
@@ -169,12 +205,15 @@ function setupForm(formId, successId){
         errorEl.textContent = msg;
         errorEl.style.display = 'block';
         if(btn){ btn.disabled = false; btn.innerHTML = originalText; }
+        // Token consumido/expirado: gera outro pro proximo clique
+        if(window.turnstile){ try { window.turnstile.reset(); } catch(err){} }
       }
     })
     .catch(function(err){
       errorEl.textContent = 'Sem conexao com o servidor. Tente novamente ou nos chame no WhatsApp.';
       errorEl.style.display = 'block';
       if(btn){ btn.disabled = false; btn.innerHTML = originalText; }
+      if(window.turnstile){ try { window.turnstile.reset(); } catch(err2){} }
     });
   });
 }
