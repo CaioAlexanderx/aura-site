@@ -2,12 +2,27 @@
 // AURA. — Worker entry-point (Workers + Static Assets)
 //
 // Rotas:
-//   POST /api/contact  → captura lead via Resend
-//   *                  → static assets (HTML, CSS, JS, imagens)
+//   POST /api/contact       → captura lead (CRM + Resend)
+//   POST /api/lead-partial  → captura parcial (CRM, sem email)
+//   *                       → static assets (HTML, CSS, JS, imagens)
+//
+// Anti-bot (10/07/2026) — camadas:
+//   1. Honeypot _empresa (já existia; 200 fake, não envia)
+//   2. Cloudflare Turnstile — valida o token quando TURNSTILE_SECRET
+//      está configurada. SEM a secret o check é PULADO (fail-open),
+//      então dá pra deployar este código ANTES de criar as chaves.
+//   3. Telefone BR de verdade (10-11 dígitos, DDD real, celular c/ 9)
+//   4. URL em nome/mensagem → descarte silencioso (200 fake)
+//   5. cf-ipcountry ≠ BR → descarte silencioso (200 fake)
 //
 // Setup necessario no Cloudflare Dashboard:
 //   Workers & Pages > aura-site > Settings > Variables and Secrets
-//     RESEND_API_KEY = re_xxxxxxxxxx   (Secret, encrypted)
+//     RESEND_API_KEY   = re_xxxxxxxxxx  (Secret)
+//     SITE_LEADS_TOKEN = xxxxxxxxxx     (Secret)
+//     TURNSTILE_SECRET = 0x4AAA...      (Secret — criar widget Turnstile
+//                        p/ www.getaura.com.br em Turnstile > Add widget;
+//                        a SITE KEY vai nos 3 arquivos JS do front:
+//                        site.js, js/site.js e js/lead-capture.js)
 //
 //   Dominio "getaura.com.br" precisa estar verificado no Resend
 //   (DNS records ja apontam — sistema de relatorios usa o mesmo).
@@ -32,6 +47,75 @@ function jsonResp(data, status = 200) {
   });
 }
 
+// ── Anti-bot helpers ────────────────────────────────────────
+
+// Telefone BR: 10-11 dígitos (com 55 opcional na frente), DDD real
+// (11-99, segundo dígito ≠ 0), celular de 11 dígitos começa com 9.
+function isValidBrPhone(v) {
+  let d = (v || '').replace(/\D/g, '');
+  if ((d.length === 12 || d.length === 13) && d.startsWith('55')) d = d.slice(2);
+  if (d.length !== 10 && d.length !== 11) return false;
+  const ddd = parseInt(d.slice(0, 2), 10);
+  if (ddd < 11 || d[1] === '0') return false;
+  if (d.length === 11 && d[2] !== '9') return false;
+  if (/^(\d)\1+$/.test(d.slice(2))) return false; // 999999999 etc
+  return true;
+}
+
+// Spam clássico: link em campo de texto livre.
+function hasSpamContent(...fields) {
+  const s = fields.filter(Boolean).join(' ');
+  return /(https?:\/\/|www\.|\[url|<a\s|href\s*=)/i.test(s);
+}
+
+// Turnstile siteverify. Sem TURNSTILE_SECRET → pula (deploy antes das
+// chaves não quebra os forms). Com secret e sem/inválido token → falha.
+// Erro de rede na API do Turnstile → fail-open (não derruba lead real).
+async function verifyTurnstile(env, token, ip) {
+  if (!env.TURNSTILE_SECRET) return { ok: true, skipped: true };
+  if (!token) return { ok: false, reason: 'missing-token' };
+  try {
+    const resp = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ secret: env.TURNSTILE_SECRET, response: token, remoteip: ip || undefined }),
+    });
+    const data = await resp.json().catch(() => ({}));
+    return { ok: !!data.success, reason: (data['error-codes'] || []).join(',') };
+  } catch (err) {
+    console.error('[turnstile] verify error:', err.message);
+    return { ok: true, degraded: true };
+  }
+}
+
+// Roda as camadas anti-bot comuns aos dois endpoints.
+// Retorna null se passou, ou uma Response pronta se deve parar.
+async function antiBotGate(request, env, { honeypot, tsToken, tag }) {
+  const ip = request.headers.get('cf-connecting-ip') || '';
+
+  // Honeypot — responde 200 mas nao envia (nao revela detecção)
+  if (honeypot) {
+    console.log(`[${tag}] honeypot triggered, ignoring. ip:`, ip);
+    return jsonResp({ ok: true, message: 'Recebido' });
+  }
+
+  // Turnstile
+  const ts = await verifyTurnstile(env, tsToken, ip);
+  if (!ts.ok) {
+    console.log(`[${tag}] turnstile fail (${ts.reason || '?'}). ip:`, ip);
+    return jsonResp({ ok: false, error: 'Não conseguimos confirmar que você não é um robô. Recarrega a página e tenta de novo — ou nos chama no WhatsApp.' }, 403);
+  }
+
+  // País — cliente é loja brasileira; fora do BR = descarte silencioso
+  const reqCountry = request.headers.get('cf-ipcountry') || '';
+  if (reqCountry && reqCountry !== 'BR') {
+    console.log(`[${tag}] non-BR discarded:`, reqCountry, 'ip:', ip);
+    return jsonResp({ ok: true, message: 'Recebido' });
+  }
+
+  return null;
+}
+
 async function handleContact(request, env) {
   if (request.method === 'GET') {
     return jsonResp({ ok: false, error: 'Use POST com nome + whatsapp pra enviar contato' }, 405);
@@ -44,7 +128,7 @@ async function handleContact(request, env) {
   // form da home E aliases do form antigo (/site/index.html ainda em cache
   // ou outras integrações)
   let nome = '', whatsapp = '', tipo = '', mensagem = '', honeypot = '';
-  let cargo = '', empresa = '', vertical = '', email = '';
+  let cargo = '', empresa = '', vertical = '', email = '', tsToken = '';
   try {
     const contentType = request.headers.get('content-type') || '';
     let body;
@@ -65,28 +149,32 @@ async function handleContact(request, env) {
     vertical = (body.vertical || body['vertical-de-interesse'] || '').toString().trim();
     email    = (body.email || body['e-mail'] || '').toString().trim();
     honeypot = (body._empresa || body.honeypot || '').toString().trim();
+    tsToken  = (body['cf-turnstile-response'] || body.turnstile_token || '').toString().trim();
   } catch (err) {
     return jsonResp({ ok: false, error: 'Formato invalido' }, 400);
   }
 
-  // Honeypot — responde 200 mas nao envia (nao revela detecção)
-  if (honeypot) {
-    console.log('[contact] honeypot triggered, ignoring submission');
-    return jsonResp({ ok: true, message: 'Recebido' });
-  }
+  // ── Anti-bot: honeypot + turnstile + país ──
+  const blocked = await antiBotGate(request, env, { honeypot, tsToken, tag: 'contact' });
+  if (blocked) return blocked;
 
   // Validacao basica
   if (!nome || nome.length < 2) {
     return jsonResp({ ok: false, error: 'Nome obrigatorio' }, 400);
   }
-  if (!whatsapp || !/\d/.test(whatsapp)) {
-    return jsonResp({ ok: false, error: 'Telefone/WhatsApp obrigatorio' }, 400);
+  if (!isValidBrPhone(whatsapp)) {
+    return jsonResp({ ok: false, error: 'Coloca um WhatsApp válido com DDD (ex.: 11 91234-5678).' }, 400);
   }
   if (mensagem.length > 2000) {
     return jsonResp({ ok: false, error: 'Mensagem muito longa' }, 400);
   }
   if (tipo && !ALLOWED_TIPOS.includes(tipo)) {
     tipo = '';
+  }
+  // Link em campo livre = spam → descarte silencioso
+  if (hasSpamContent(nome, mensagem, empresa, cargo)) {
+    console.log('[contact] spam content discarded. ip:', request.headers.get('cf-connecting-ip') || '');
+    return jsonResp({ ok: true, message: 'Recebido' });
   }
 
   // ── 1) Encaminha pro CRM (ProspecaoAdmin) — destino primario ──
@@ -234,7 +322,7 @@ async function handlePartial(request, env) {
   if (request.method !== 'POST') {
     return jsonResp({ ok: false, error: 'Metodo nao suportado' }, 405);
   }
-  let whatsapp = '', email = '', vertical = '', nome = '', honeypot = '';
+  let whatsapp = '', email = '', vertical = '', nome = '', honeypot = '', tsToken = '';
   try {
     const contentType = request.headers.get('content-type') || '';
     let body;
@@ -250,17 +338,24 @@ async function handlePartial(request, env) {
     vertical = (body.vertical || '').toString().trim();
     nome     = (body.nome || body.name || '').toString().trim();
     honeypot = (body._empresa || body.honeypot || '').toString().trim();
+    tsToken  = (body['cf-turnstile-response'] || body.turnstile_token || '').toString().trim();
   } catch (err) {
     return jsonResp({ ok: false, error: 'Formato invalido' }, 400);
   }
 
-  // Honeypot — responde 200 sem capturar
-  if (honeypot) return jsonResp({ ok: true });
+  // ── Anti-bot: honeypot + turnstile + país ──
+  const blocked = await antiBotGate(request, env, { honeypot, tsToken, tag: 'partial' });
+  if (blocked) return blocked;
 
-  // Parcial precisa de telefone OU e-mail
-  const phoneDigits = whatsapp.replace(/\D/g, '');
-  if (phoneDigits.length < 8 && !email) {
-    return jsonResp({ ok: false, error: 'Informe um WhatsApp ou e-mail valido.' }, 400);
+  // Parcial precisa de telefone BR válido OU e-mail válido
+  const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (!isValidBrPhone(whatsapp) && !emailValido) {
+    return jsonResp({ ok: false, error: 'Informe um WhatsApp com DDD ou um e-mail valido.' }, 400);
+  }
+  // Link em campo livre = spam → descarte silencioso
+  if (hasSpamContent(nome, vertical)) {
+    console.log('[partial] spam content discarded');
+    return jsonResp({ ok: true });
   }
 
   const ok = await forwardLeadToCrm(env, { nome, whatsapp, email, vertical, partial: true });
