@@ -25,6 +25,16 @@
 /
   Cache-Control: public, max-age=0, must-revalidate
 
+# 09/08/2026: pagina nao linkada (casamento). Fora do indice de buscadores
+# via header — nao usamos Disallow no robots.txt porque isso exporia o path.
+/Casamento-caio-e-lorena
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: public, max-age=0, must-revalidate
+
+/Casamento-caio-e-lorena.html
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: public, max-age=0, must-revalidate
+
 # App — CSP + cache
 /app/*
   Cache-Control: public, max-age=86400
