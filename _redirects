@@ -57,3 +57,11 @@
 # 09/06/2026 (v3.1): vertical Food removida (foco em Negocio + Studio + Dojo).
 /food.html /segmentos 301
 /food /segmentos 301
+
+# 09/08/2026: pagina nao linkada do casamento (Caio & Lorena).
+# Canonical eh /Casamento-caio-e-lorena (C maiusculo, igual ao material
+# impresso e ao QR). Cloudflare Pages trata path como case-sensitive,
+# entao mapeamos o minusculo pra quem digitar na mao.
+/casamento-caio-e-lorena /Casamento-caio-e-lorena 301
+/casamento-caio-e-lorena.html /Casamento-caio-e-lorena 301
+/Casamento-caio-e-lorena.html /Casamento-caio-e-lorena 301
