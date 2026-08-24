@@ -6,9 +6,16 @@
      2) Exit-intent: popup ao sair da página pedindo o WhatsApp.
    Ambos postam em /api/lead-partial (Worker) -> CRM como lead parcial.
    Progressive enhancement: sem este JS, o form completo funciona normal.
+
+   Anti-bot (10/07/2026): Cloudflare Turnstile invisível por envio.
+   Preencha TURNSTILE_SITE_KEY abaixo (mesma key de site.js e js/site.js).
+   Vazia = envia sem token (worker só exige token se TURNSTILE_SECRET
+   estiver configurada lá — deploy em qualquer ordem não quebra).
    ========================================================= */
 (function () {
   "use strict";
+
+  var TURNSTILE_SITE_KEY = ""; // TODO: cole aqui a Site Key do widget Turnstile
 
   var DONE_KEY = "aura_lc_done";      // já capturou algum lead nesta sessão
   var EXIT_KEY = "aura_lc_exit_shown"; // exit-intent já apareceu nesta sessão
@@ -17,6 +24,54 @@
   function digits(v) { return (v || "").replace(/\D/g, ""); }
   function ssGet(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
   function ssSet(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+
+  /* ── Turnstile: widget invisível, um token por envio ───── */
+  var tsLoader = null;
+  function loadTurnstile() {
+    if (!TURNSTILE_SITE_KEY) return Promise.resolve(null);
+    if (tsLoader) return tsLoader;
+    tsLoader = new Promise(function (resolve) {
+      if (window.turnstile) return resolve(window.turnstile);
+      var s = document.createElement("script");
+      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      s.async = true;
+      s.onload = function () { resolve(window.turnstile || null); };
+      s.onerror = function () { resolve(null); };
+      document.head.appendChild(s);
+    });
+    return tsLoader;
+  }
+
+  // Renderiza um widget ancorado perto do botão (visível só se o
+  // Turnstile exigir interação) e resolve com o token — ou null
+  // (falha/timeout: envia sem token; o worker decide).
+  function getTsToken(anchorEl) {
+    return loadTurnstile().then(function (ts) {
+      if (!ts) return null;
+      return new Promise(function (resolve) {
+        var holder = document.createElement("div");
+        var parent = anchorEl && anchorEl.parentNode ? anchorEl.parentNode : document.body;
+        parent.appendChild(holder);
+        var widgetId = null, done = false;
+        function finish(tok) {
+          if (done) return;
+          done = true;
+          try { if (widgetId !== null) ts.remove(widgetId); } catch (e) {}
+          if (holder.parentNode) holder.parentNode.removeChild(holder);
+          resolve(tok);
+        }
+        try {
+          widgetId = ts.render(holder, {
+            sitekey: TURNSTILE_SITE_KEY,
+            appearance: "interaction-only",
+            callback: function (token) { finish(token); },
+            "error-callback": function () { finish(null); }
+          });
+        } catch (e) { finish(null); }
+        setTimeout(function () { finish(null); }, 12000);
+      });
+    });
+  }
 
   function postPartial(payload) {
     return fetch("/api/lead-partial", {
@@ -31,7 +86,7 @@
   function showErr(el, msg) { if (el) { el.textContent = msg; el.classList.add("show"); } }
   function clearErr(el) { if (el) { el.textContent = ""; el.classList.remove("show"); } }
 
-  // ── 1) Form progressivo ──────────────────────────────────
+  // ── 1) Form progressivo ────────────────────────────────────
   function setupProgressive() {
     var form = $("#homeContactForm");
     if (!form) return;
@@ -47,6 +102,9 @@
     // Liga o modo progressivo: esconde o passo 2, mostra o CTA do passo 1.
     step2.hidden = true;
     cta.hidden = false;
+
+    // Pré-carrega o script do Turnstile (não bloqueia nada)
+    loadTurnstile();
 
     function revealStep2() {
       step2.hidden = false;
@@ -67,7 +125,10 @@
       var orig = btn.innerHTML;
       btn.disabled = true; btn.innerHTML = "Enviando...";
       var hp = form.querySelector('[name="_empresa"]');
-      postPartial({ whatsapp: phone, _empresa: hp ? hp.value : "" })
+      getTsToken(btn)
+        .then(function (tok) {
+          return postPartial({ whatsapp: phone, _empresa: hp ? hp.value : "", turnstile_token: tok || "" });
+        })
         .then(function (res) {
           btn.disabled = false; btn.innerHTML = orig;
           if (res.status >= 200 && res.status < 300 && res.data && res.data.ok) {
@@ -129,7 +190,10 @@
       }
       var orig = submitBtn.innerHTML;
       submitBtn.disabled = true; submitBtn.innerHTML = "Enviando...";
-      postPartial({ whatsapp: phone, _empresa: hp ? hp.value : "" })
+      getTsToken(submitBtn)
+        .then(function (tok) {
+          return postPartial({ whatsapp: phone, _empresa: hp ? hp.value : "", turnstile_token: tok || "" });
+        })
         .then(function (res) {
           submitBtn.disabled = false; submitBtn.innerHTML = orig;
           if (res.status >= 200 && res.status < 300 && res.data && res.data.ok) {
