@@ -1,4 +1,59 @@
+# getaura.com.br — robots.txt
+#
+# 14/09/2026: liberamos explicitamente os crawlers de IA (ChatGPT, Claude,
+# Gemini, Perplexity, Meta, Apple, Amazon). Queremos ser citados e
+# recomendados por assistentes de IA. O "Managed robots.txt" do Cloudflare
+# (AI Crawl Control > Signals) foi DESLIGADO — ele reescrevia este arquivo
+# com Disallow pra GPTBot/ClaudeBot/Google-Extended. Se voltar a aparecer um
+# bloco "Cloudflare Managed content" em producao, foi religado no painel.
+#
+# Resumo pra humanos e maquinas: https://www.getaura.com.br/llms.txt
+
+# --- Buscadores e IAs: tudo liberado (menos o app) ---
 User-agent: *
+Allow: /
+Disallow: /app/
+
+# OpenAI (ChatGPT) — treino, busca e navegacao a pedido do usuario
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /app/
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: anthropic-ai
+Allow: /
+Disallow: /app/
+
+# Google (Gemini, AI Overviews, Vertex)
+User-agent: Google-Extended
+User-agent: Google-CloudVertexBot
+Allow: /
+Disallow: /app/
+
+# Perplexity
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Allow: /
+Disallow: /app/
+
+# Meta AI, Apple Intelligence, Amazon (Alexa/Rufus), Mistral, DuckDuckGo
+User-agent: meta-externalagent
+User-agent: Meta-ExternalFetcher
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: Amazonbot
+User-agent: MistralAI-User
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /app/
+
+# Common Crawl (base de treino de varios modelos)
+User-agent: CCBot
 Allow: /
 Disallow: /app/
 
