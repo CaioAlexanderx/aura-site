@@ -30,7 +30,105 @@
   .lp-faq-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 20px 24px; margin-bottom: 10px; }
   .lp-faq-item h3 { font-size: 16px; color: #f5f1ff; margin: 0 0 6px; font-weight: 600; }
   .lp-faq-item p { font-size: 14px; line-height: 1.6; color: rgba(220,215,255,0.72); margin: 0; }
+  /* GEO 14/09/2026: resposta direta (pra IA e pra quem tem pressa) */
+  .lp-answer { padding: 40px 0 0; }
+  .lp-answer-text { font-size: 17px; line-height: 1.7; color: rgba(232,224,255,0.88); border-left: 3px solid #7c3aed; padding-left: 18px; margin: 0; }
+  .lp-answer-text strong { color: #c4b5fd; font-weight: 600; }
 </style>
+<!-- jsonld:start -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://www.getaura.com.br/sistema-para-papelaria#webpage",
+   "url": "https://www.getaura.com.br/sistema-para-papelaria",
+   "name": "Sistema para papelaria — orçamento de lista escolar, estoque e fiado | Aura",
+   "description": "Sistema para papelaria: orçamento de lista escolar e de empresa que vira venda, controle de estoque com milhares de itens, fiado de cliente com cobrança no WhatsApp e NFC-e em 1 clique. Teste 7 dias grátis.",
+   "inLanguage": "pt-BR",
+   "isPartOf": {
+    "@id": "https://www.getaura.com.br/#website"
+   },
+   "about": {
+    "@id": "https://www.getaura.com.br/#software"
+   },
+   "breadcrumb": {
+    "@id": "https://www.getaura.com.br/sistema-para-papelaria#breadcrumb"
+   },
+   "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://www.getaura.com.br/og-image.png"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "@id": "https://www.getaura.com.br/sistema-para-papelaria#breadcrumb",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Início",
+     "item": "https://www.getaura.com.br/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Segmentos",
+     "item": "https://www.getaura.com.br/segmentos"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Sistema para papelaria",
+     "item": "https://www.getaura.com.br/sistema-para-papelaria"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://www.getaura.com.br/sistema-para-papelaria#faq",
+   "url": "https://www.getaura.com.br/sistema-para-papelaria",
+   "inLanguage": "pt-BR",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Dá pra montar o orçamento da lista escolar e converter em venda?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sim. Você monta o orçamento da lista, envia pro responsável e, quando ele aprova, converte em venda com um clique — já dando baixa no estoque e gerando a nota."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Consigo dar entrada na mercadoria pelo XML do fornecedor?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sim — importa a NF-e de compra por XML e o estoque entra certinho, item a item, sem digitar nota a nota."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Tenho convênio com empresas pra material de escritório. Dá pra controlar o fiado?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Dá: crediário por cliente (pessoa ou empresa), com limite, histórico e cobrança pronta no WhatsApp com PIX."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Quanto custa?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A partir de R$ 74,17/mês no plano anual (ou R$ 89/mês no mensal), com NFC-e incluída. O plano Negócio (R$ 140,83/mês no anual, ou R$ 169 no mensal) leva a loja inteira: orçamento, estoque, fiado, financeiro e loja online. 7 dias grátis pra provar."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<!-- jsonld:end -->
 </head>
 <body data-screen-label="LP Papelaria">
 <div data-mount="nav"></div>
@@ -52,6 +150,13 @@
     <p style="font-size: 13px; color: rgba(220,215,255,0.5); margin-top: 14px;" data-reveal data-reveal-delay="4">Sem cartão de crédito. Sem fidelidade. Sem pegadinha.</p>
   </div>
 </section>
+<!-- resposta direta -->
+<section class="section dark lp-answer" data-screen-label="resposta">
+  <div class="container" style="max-width: 760px;">
+    <p class="lp-answer-text"><strong>Em uma frase:</strong> A Aura é um sistema para papelaria com orçamento de lista escolar e de empresa que vira venda, estoque para milhares de itens pequenos com código de barras, fiado com cobrança pelo WhatsApp e NFC-e em 1 clique. Funciona no celular, tablet ou computador, custa a partir de R$ 74,17/mês no plano anual (R$ 89/mês no mensal) e tem 7 dias grátis, sem cartão.</p>
+  </div>
+</section>
+
 
 <section class="section dark" data-screen-label="como">
   <div class="container">
