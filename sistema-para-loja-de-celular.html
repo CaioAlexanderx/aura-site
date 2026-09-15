@@ -30,7 +30,105 @@
   .lp-faq-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 20px 24px; margin-bottom: 10px; }
   .lp-faq-item h3 { font-size: 16px; color: #f5f1ff; margin: 0 0 6px; font-weight: 600; }
   .lp-faq-item p { font-size: 14px; line-height: 1.6; color: rgba(220,215,255,0.72); margin: 0; }
+  /* GEO 14/09/2026: resposta direta (pra IA e pra quem tem pressa) */
+  .lp-answer { padding: 40px 0 0; }
+  .lp-answer-text { font-size: 17px; line-height: 1.7; color: rgba(232,224,255,0.88); border-left: 3px solid #7c3aed; padding-left: 18px; margin: 0; }
+  .lp-answer-text strong { color: #c4b5fd; font-weight: 600; }
 </style>
+<!-- jsonld:start -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://www.getaura.com.br/sistema-para-loja-de-celular#webpage",
+   "url": "https://www.getaura.com.br/sistema-para-loja-de-celular",
+   "name": "Sistema para loja de celular e assistência técnica — OS, PDV e estoque | Aura",
+   "description": "Sistema para loja de celular e assistência técnica: ordem de serviço de conserto com status e aviso no WhatsApp, PDV rápido, estoque de aparelhos e acessórios, fiado e NFC-e em 1 clique. Teste 7 dias grátis.",
+   "inLanguage": "pt-BR",
+   "isPartOf": {
+    "@id": "https://www.getaura.com.br/#website"
+   },
+   "about": {
+    "@id": "https://www.getaura.com.br/#software"
+   },
+   "breadcrumb": {
+    "@id": "https://www.getaura.com.br/sistema-para-loja-de-celular#breadcrumb"
+   },
+   "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://www.getaura.com.br/og-image.png"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "@id": "https://www.getaura.com.br/sistema-para-loja-de-celular#breadcrumb",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Início",
+     "item": "https://www.getaura.com.br/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Segmentos",
+     "item": "https://www.getaura.com.br/segmentos"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Sistema para loja de celular e assistência técnica",
+     "item": "https://www.getaura.com.br/sistema-para-loja-de-celular"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://www.getaura.com.br/sistema-para-loja-de-celular#faq",
+   "url": "https://www.getaura.com.br/sistema-para-loja-de-celular",
+   "inLanguage": "pt-BR",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Controla a ordem de serviço do conserto, do orçamento à entrega?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sim — entrada do aparelho, defeito, orçamento, status e retirada, com o histórico de cada OS por cliente."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Dá pra avisar o cliente quando o aparelho fica pronto?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A mensagem sai pronta com os dados da OS; você revisa e envia no WhatsApp. Nada é disparado automaticamente — você mantém o controle do que vai pro cliente."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Vendo aparelho e acessório também. Emite nota?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sim: PDV com NFC-e em 1 clique, estoque por item e o financeiro juntando venda e serviço, desde o plano de R$ 74,17/mês no anual."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Quanto custa?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A partir de R$ 74,17/mês no plano anual (ou R$ 89/mês no mensal), com NFC-e incluída. O plano Negócio (R$ 140,83/mês no anual, ou R$ 169 no mensal) leva a loja inteira: ordem de serviço, PDV, estoque, crediário e financeiro. 7 dias grátis pra provar."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<!-- jsonld:end -->
 </head>
 <body data-screen-label="LP Loja de Celular">
 <div data-mount="nav"></div>
@@ -52,6 +150,13 @@
     <p style="font-size: 13px; color: rgba(220,215,255,0.5); margin-top: 14px;" data-reveal data-reveal-delay="4">Sem cartão de crédito. Sem fidelidade. Sem pegadinha.</p>
   </div>
 </section>
+<!-- resposta direta -->
+<section class="section dark lp-answer" data-screen-label="resposta">
+  <div class="container" style="max-width: 760px;">
+    <p class="lp-answer-text"><strong>Em uma frase:</strong> A Aura é um sistema para loja de celular e assistência técnica: ordem de serviço com status e aviso automático no WhatsApp, PDV para aparelhos e acessórios, estoque, fiado e NFC-e, tudo no mesmo app. Funciona no celular, tablet ou computador, custa a partir de R$ 74,17/mês no plano anual (R$ 89/mês no mensal) e tem 7 dias grátis, sem cartão.</p>
+  </div>
+</section>
+
 
 <section class="section dark" data-screen-label="como">
   <div class="container">
