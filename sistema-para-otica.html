@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistema para ótica — ordem de serviço da lente, armações e parcelado | Aura</title>
-<meta name="description" content="Sistema para ótica: ordem de serviço que acompanha o pedido da lente do laboratório à entrega, armações por modelo e cor, venda parcelada e fiado com cobrança no WhatsApp e NFC-e. Teste 7 dias grátis.">
+<title>Sistema para ótica — receituário, laboratório na OS e sinal na abertura | Aura</title>
+<meta name="description" content="Sistema para ótica: receituário OD/OE do cliente, ordem de serviço com etapa de laboratório, sinal na abertura com saldo na entrega, aviso de óculos prontos no WhatsApp, crediário e NFC-e. Teste 7 dias grátis.">
 <link rel="canonical" href="https://www.getaura.com.br/sistema-para-otica">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Aura">
-<meta property="og:title" content="Sistema para ótica — ordem de serviço da lente, armações e parcelado">
-<meta property="og:description" content="Ordem de serviço da lente do laboratório à entrega, armações por modelo e cor, venda parcelada e NFC-e. Teste 7 dias grátis.">
+<meta property="og:title" content="Sistema para ótica — receituário, laboratório na OS e sinal na abertura">
+<meta property="og:description" content="Receita do cliente, esteira do laboratório, sinal na abertura e aviso de óculos prontos pelo WhatsApp. Crediário e NFC-e no mesmo sistema. Teste 7 dias grátis.">
 <meta property="og:url" content="https://www.getaura.com.br/sistema-para-otica">
-<meta property="og:image" content="https://www.getaura.com.br/og-image.png">
+<meta property="og:image" content="https://www.getaura.com.br/assets/otica/laboratorio.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/Icon.png">
 <link rel="apple-touch-icon" href="/Icon.png">
@@ -19,7 +19,10 @@
 <link rel="stylesheet" href="/css/site.css?v=2">
 <link rel="stylesheet" href="/css/verticals.css?v=2">
 <style>
-  .lp-hero { padding: 150px 0 70px; position: relative; overflow: hidden; }
+  /* 15/09/2026: primeira LP do site com screenshots reais do app (módulo Ótica).
+     Os frames abaixo (janela de navegador e celular) inauguram a convenção
+     /assets/otica/*.png — ver _headers para o cache. */
+  .lp-hero { padding: 150px 0 40px; position: relative; overflow: hidden; }
   .lp-blocks { max-width: 880px; margin: 0 auto; display: grid; gap: 16px; }
   .lp-block { display: grid; grid-template-columns: 56px 1fr; gap: 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 18px; padding: 26px 28px; align-items: start; }
   @media (max-width: 600px) { .lp-block { grid-template-columns: 1fr; gap: 12px; } }
@@ -30,6 +33,38 @@
   .lp-faq-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 20px 24px; margin-bottom: 10px; }
   .lp-faq-item h3 { font-size: 16px; color: #f5f1ff; margin: 0 0 6px; font-weight: 600; }
   .lp-faq-item p { font-size: 14px; line-height: 1.6; color: rgba(220,215,255,0.72); margin: 0; }
+
+  /* Screenshot em janela de navegador */
+  .shot { max-width: 1040px; margin: 40px auto 0; border-radius: 16px; background: #0b0d1c; border: 1px solid rgba(167,139,250,0.22); box-shadow: 0 40px 100px rgba(0,0,0,0.55), 0 0 0 1px rgba(124,58,237,0.12), 0 0 120px rgba(124,58,237,0.18); overflow: hidden; }
+  .shot-bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: #10132a; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .shot-bar i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.14); display: block; }
+  .shot-bar i:nth-child(1) { background: #f87171; } .shot-bar i:nth-child(2) { background: #fbbf24; } .shot-bar i:nth-child(3) { background: #34d399; }
+  .shot-bar span { margin-left: 8px; font-family: var(--font-mono); font-size: 11px; color: rgba(220,215,255,0.45); }
+  .shot img { display: block; width: 100%; height: auto; }
+  .shot-caption { text-align: center; font-size: 13px; color: rgba(220,215,255,0.55); margin: 14px auto 0; max-width: 720px; line-height: 1.5; }
+
+  /* Feature em duas colunas: texto + screenshot */
+  .feat { display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: center; max-width: 1100px; margin: 0 auto; padding: 56px 0; }
+  .feat.flip { grid-template-columns: 1.25fr 1fr; }
+  .feat.flip .feat-text { order: 2; }
+  .feat + .feat { border-top: 1px solid rgba(255,255,255,0.06); }
+  .feat h3 { font-family: var(--font-heading); font-size: clamp(28px, 3vw, 40px); line-height: 1.05; letter-spacing: -0.02em; color: #f5f1ff; margin: 10px 0 14px; }
+  .feat h3 em { font-style: italic; color: #a78bfa; }
+  .feat p { font-size: 16px; line-height: 1.65; color: rgba(220,215,255,0.78); margin: 0 0 12px; }
+  .feat ul { margin: 0; padding-left: 18px; color: rgba(220,215,255,0.78); font-size: 15px; line-height: 1.7; }
+  .feat .shot { margin: 0; }
+  @media (max-width: 860px) { .feat, .feat.flip { grid-template-columns: 1fr; gap: 24px; padding: 40px 0; } .feat.flip .feat-text { order: 0; } }
+
+  /* Celular com o acompanhamento público */
+  .feat-phone { display: flex; justify-content: center; }
+  .phone-img { --pw: 260px; width: var(--pw); max-width: 100%; border-radius: 36px; padding: 8px; background: #000; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 30px 80px rgba(0,0,0,0.55), inset 0 0 0 2px #1a1a2a; position: relative; }
+  .phone-img img { display: block; width: 100%; height: auto; border-radius: 28px; }
+
+  .rule { max-width: 880px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 720px) { .rule { grid-template-columns: 1fr; } }
+  .rule div { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 18px 20px; }
+  .rule b { display: block; color: #f5f1ff; font-size: 15px; margin-bottom: 6px; }
+  .rule span { font-size: 13.5px; line-height: 1.55; color: rgba(220,215,255,0.7); }
 </style>
 </head>
 <body data-screen-label="LP Ótica">
@@ -43,49 +78,148 @@
   <div class="grain"></div>
   <div class="container text-center" style="position: relative; max-width: 800px;">
     <div class="eyebrow center" style="margin-bottom: 16px;" data-reveal>Sistema para ótica</div>
-    <h1 class="display" data-typein>Da armação à <em>lente pronta</em> — sua ótica no controle.</h1>
-    <p class="lead" style="margin: 16px auto 28px;" data-reveal data-reveal-delay="2">Ordem de serviço que acompanha o pedido da lente do laboratório à entrega, armações por modelo e cor, a venda parcelada e o fiado do cliente — e a nota em 1 clique. Sem óculos esquecido e sem cliente sem resposta.</p>
+    <h1 class="display" data-typein>Da receita à <em>lente pronta</em> — sua ótica no controle.</h1>
+    <p class="lead" style="margin: 16px auto 28px;" data-reveal data-reveal-delay="2">Receituário do cliente, ordem de serviço com a etapa do laboratório, sinal na abertura com saldo na entrega e o aviso de "óculos prontos" no WhatsApp. Crediário, estoque de armações e NFC-e no mesmo sistema.</p>
     <div class="row" style="justify-content: center;" data-reveal data-reveal-delay="3">
       <a href="/comecar" class="btn btn-primary btn-lg">Testar grátis por 7 dias <span class="arrow">→</span></a>
       <a href="https://wa.me/5511956305269?text=Tenho%20%C3%B3tica%20e%20quero%20conhecer%20a%20Aura" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">Chamar no WhatsApp</a>
     </div>
     <p style="font-size: 13px; color: rgba(220,215,255,0.5); margin-top: 14px;" data-reveal data-reveal-delay="4">Sem cartão de crédito. Sem fidelidade. Sem pegadinha.</p>
   </div>
+  <div class="container" style="position: relative;" data-reveal data-reveal-delay="3">
+    <div class="shot">
+      <div class="shot-bar"><i></i><i></i><i></i><span>app.getaura.com.br/otica</span></div>
+      <img src="/assets/otica/laboratorio.png" alt="Tela Laboratório da Aura: esteira com cinco estações — aguardando envio, no laboratório, recebidas, montagem e prontas — e a lista de óculos em andamento" width="1568" height="744" loading="eager">
+    </div>
+    <p class="shot-caption">O Laboratório: quantos pares estão em cada estação, quais passaram do prazo e quais já podem ser retirados. Numa olhada.</p>
+  </div>
+</section>
+
+<section class="section dark" data-screen-label="recursos">
+  <div class="container">
+    <div class="text-center stack-md" style="margin: 0 auto 8px; max-width: 720px;" data-reveal>
+      <div class="eyebrow center">Feito para o balcão da ótica</div>
+      <h2 class="h1">A venda é só o começo — tem a <em style="color:#a78bfa;">receita</em>, o laboratório e a entrega.</h2>
+    </div>
+
+    <div class="feat" data-reveal>
+      <div class="feat-text">
+        <div class="eyebrow">Receituário</div>
+        <h3>A receita do cliente, <em>como no papel</em> do médico.</h3>
+        <p>Grade OD/OE com esférico, cilíndrico, eixo, adição, DNP e altura. Graus em passos de 0,25 e eixo de 0 a 180 — o sistema não deixa passar grau que não existe.</p>
+        <ul>
+          <li>Prescritor com CRM ou optometrista, emissão e validade.</li>
+          <li>A receita fica com o cliente e é reaproveitada no próximo par.</li>
+          <li>Livro de receitas exportável, do jeito que a vigilância pede.</li>
+        </ul>
+      </div>
+      <div class="shot">
+        <div class="shot-bar"><i></i><i></i><i></i><span>app.getaura.com.br/otica/receitas</span></div>
+        <img src="/assets/otica/receitas.png" alt="Receituário da Aura: lista de receitas por cliente com prescritor, graus OD/OE e validade, com as que vencem em 30 dias no topo" width="1568" height="744" loading="lazy">
+      </div>
+    </div>
+
+    <div class="feat flip" data-reveal>
+      <div class="feat-text">
+        <div class="eyebrow">OS de óculos</div>
+        <h3>Receita, armação, lentes e <em>sinal</em> numa tela só.</h3>
+        <p>Escolhe a receita válida ou digita a nova, puxa a armação do estoque, marca as lentes e os tratamentos, escolhe o laboratório — e a data prometida sai sozinha do prazo dele.</p>
+        <ul>
+          <li>Sinal em Pix, dinheiro ou cartão entra no caixa na hora.</li>
+          <li>Saldo vira parcela do crediário, com vencimento na entrega.</li>
+          <li>Impressão em A4 com a marca da loja para o cliente levar.</li>
+        </ul>
+      </div>
+      <div class="shot">
+        <div class="shot-bar"><i></i><i></i><i></i><span>app.getaura.com.br/otica/nova</span></div>
+        <img src="/assets/otica/nova-os.png" alt="Formulário de nova OS de óculos da Aura: cliente, grade da receita OD/OE, armação do estoque, lentes com tratamentos, laboratório e sinal" width="1568" height="744" loading="lazy">
+      </div>
+    </div>
+
+    <div class="feat" data-reveal>
+      <div class="feat-text">
+        <div class="eyebrow">Esteira do laboratório</div>
+        <h3>Enviou, chegou, montou, <em>pronta</em>. Com refação sem drama.</h3>
+        <p>Cada OS anda pela esteira com um botão por vez: enviar ao laboratório, lentes chegaram, iniciar montagem, marcar como pronta. Passou do prazo prometido? Fica em vermelho antes de o cliente ligar.</p>
+        <ul>
+          <li>Refação volta ao laboratório com motivo e contador, sem perder a OS.</li>
+          <li>Garantia de adaptação e garantia do laboratório, cada uma com seu prazo.</li>
+          <li>Nº do pedido no laboratório fica na OS, para cobrar sem procurar papel.</li>
+        </ul>
+      </div>
+      <div class="shot">
+        <div class="shot-bar"><i></i><i></i><i></i><span>app.getaura.com.br/otica/…</span></div>
+        <img src="/assets/otica/os-detalhe.png" alt="Detalhe de uma OS de óculos na Aura: linha do tempo da esteira com o botão da próxima etapa, receita congelada, armação e lentes, financeiro com sinal e saldo" width="1568" height="744" loading="lazy">
+      </div>
+    </div>
+
+    <div class="feat flip" data-reveal>
+      <div class="feat-text">
+        <div class="eyebrow">Aviso no WhatsApp</div>
+        <h3>"Seus óculos estão prontos" — <em>com link</em> para acompanhar e pagar.</h3>
+        <p>Quando a OS fica pronta, o cliente recebe pelo WhatsApp oficial um link com as etapas do pedido e o Pix do saldo. Nada de receita na mensagem: só o que ele precisa para buscar.</p>
+        <ul>
+          <li>Pós-venda de adaptação três dias depois da entrega.</li>
+          <li>Lembrete quando a receita está para vencer, para ele voltar ao oftalmologista — e à sua loja.</li>
+          <li>Sem WhatsApp oficial? O texto sai pronto para o wa.me.</li>
+        </ul>
+      </div>
+      <div class="feat-phone">
+        <div class="phone-img">
+          <img src="/assets/otica/acompanhar.png" alt="Página pública de acompanhamento no celular: etapas do pedido dos óculos e o saldo com Pix" width="460" height="744" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section dark deep" data-screen-label="regras">
+  <div class="container">
+    <div class="text-center stack-md" style="margin: 0 auto 32px; max-width: 720px;" data-reveal>
+      <div class="eyebrow center">Do jeito que a lei da ótica pede</div>
+      <h2 class="h2" style="color: white;">Feito lendo o Decreto 24.492, não só o concorrente.</h2>
+    </div>
+    <div class="rule" data-reveal>
+      <div><b>Livro de receitas digital</b><span>Cada receita aviada fica registrada com paciente, prescritor e as OS em que foi usada. Exporta em um clique quando a vigilância sanitária pedir.</span></div>
+      <div><b>Prescritor certo</b><span>Médico com CRM ou optometrista de nível superior, como o STJ decidiu em 2026. E nenhuma comissão para quem prescreve — isso é vedado pelo Código de Ética Médica.</span></div>
+      <div><b>Receita é dado de saúde</b><span>Ela nunca sai numa mensagem de WhatsApp nem no link de acompanhamento. O cliente recebe só o que precisa para buscar os óculos.</span></div>
+    </div>
+  </div>
 </section>
 
 <section class="section dark" data-screen-label="como">
   <div class="container">
     <div class="text-center stack-md" style="margin: 0 auto 56px; max-width: 720px;" data-reveal>
-      <div class="eyebrow center">Por que ótica precisa de sistema próprio</div>
-      <h2 class="h1">A venda é só o começo — tem o <em style="color:#a78bfa;">laboratório</em> e a entrega.</h2>
+      <div class="eyebrow center">O resto da loja já vem junto</div>
+      <h2 class="h1">Ótica é varejo. A Aura <em style="color:#a78bfa;">já era</em> varejo.</h2>
     </div>
     <div class="lp-blocks">
       <div class="lp-block" data-reveal>
         <div class="lp-num">1</div>
         <div>
-          <h3>Ordem de serviço da lente, do pedido à entrega</h3>
-          <p>Registra o pedido do cliente, acompanha o serviço no laboratório e o status até o óculos ficar pronto. Cada OS com seu histórico — sem perder o prazo nem o pedido na correria.</p>
+          <h3>Crediário e carnê com cobrança no WhatsApp</h3>
+          <p>Óculos quase sempre é parcelado. O saldo da OS vira parcela, o carnê imprime na hora e a régua de cobrança lembra o cliente pelo WhatsApp oficial, com Pix. <a href="/sistema-de-crediario" style="color:#a78bfa; text-decoration: underline;">Veja o crediário.</a></p>
         </div>
       </div>
       <div class="lp-block" data-reveal data-reveal-delay="1">
         <div class="lp-num">2</div>
         <div>
-          <h3>Aviso pro cliente no WhatsApp, no seu tempo</h3>
-          <p>"Seu óculos ficou pronto" sai pronto com os dados da OS pra você revisar e enviar no WhatsApp. Nada dispara sozinho — você manda, no seu tom.</p>
+          <h3>Armações em estoque, com cor e tamanho</h3>
+          <p>Armações por marca, modelo, cor e aro-ponte-haste, com código de barras e saldo próprio. A armação sai do estoque na venda do sinal, como qualquer produto.</p>
         </div>
       </div>
       <div class="lp-block" data-reveal data-reveal-delay="2">
         <div class="lp-num">3</div>
         <div>
-          <h3>Armações em estoque e venda parcelada</h3>
-          <p>Armações por modelo, cor e marca com saldo próprio, e a venda parcelada da casa — óculos quase sempre é parcelado. Crediário por cliente com cobrança pronta no WhatsApp. <a href="/sistema-de-crediario" style="color:#a78bfa; text-decoration: underline;">Veja o crediário.</a></p>
+          <h3>Nota em 1 clique e financeiro junto</h3>
+          <p>NFC-e direto do balcão, com QR Code da SEFAZ. Venda, sinal, saldo e parcelas somando no mesmo financeiro, sem planilha à parte.</p>
         </div>
       </div>
       <div class="lp-block" data-reveal data-reveal-delay="3">
         <div class="lp-num">4</div>
         <div>
-          <h3>Nota em 1 clique e financeiro junto</h3>
-          <p>NFC-e direto do balcão, com QR Code da SEFAZ, desde o plano de R$ 74,17/mês no anual. Venda, serviço e parcelas somando no mesmo financeiro, sem planilha à parte.</p>
+          <h3>Liga em um toque, sem trocar de sistema</h3>
+          <p>A ótica é um módulo do plano Negócio: ligou em Configurações, apareceu no menu. A loja que também vende relógio ou joia continua no mesmo caixa.</p>
         </div>
       </div>
     </div>
@@ -99,10 +233,11 @@
       <h2 class="h2" style="color: white;">Perguntas que ouvimos no balcão</h2>
     </div>
     <div class="lp-faq" data-reveal>
-      <div class="lp-faq-item"><h3>Acompanha o pedido da lente até a entrega?</h3><p>Sim — a ordem de serviço registra o pedido, o serviço no laboratório e o status até a retirada, com o histórico de cada cliente.</p></div>
-      <div class="lp-faq-item"><h3>Dá pra avisar o cliente quando o óculos fica pronto?</h3><p>A mensagem sai pronta com os dados da OS; você revisa e envia no WhatsApp. Nada é disparado automaticamente — você mantém o controle.</p></div>
-      <div class="lp-faq-item"><h3>Vendo quase tudo parcelado. O sistema controla?</h3><p>Controla: crediário próprio por cliente, com limite, parcelas e cobrança pronta no WhatsApp com PIX.</p></div>
-      <div class="lp-faq-item"><h3>Quanto custa?</h3><p>A partir de R$ 74,17/mês no plano anual (ou R$ 89/mês no mensal), com NFC-e incluída. O plano Negócio (R$ 140,83/mês no anual, ou R$ 169 no mensal) leva a ótica inteira: ordem de serviço, estoque de armações, crediário, financeiro e PDV. 7 dias grátis pra provar.</p></div>
+      <div class="lp-faq-item"><h3>Acompanha o pedido da lente até a entrega?</h3><p>Sim. A OS de óculos tem a etapa do laboratório: enviada, no laboratório, lentes recebidas, montagem e pronta, com refação quando precisar. Atraso em relação à data prometida aparece em vermelho.</p></div>
+      <div class="lp-faq-item"><h3>Dá pra avisar o cliente quando o óculos fica pronto?</h3><p>Dá, pelo WhatsApp oficial, com um link em que ele vê as etapas e paga o saldo por Pix. Pode ser automático ao marcar a OS como pronta, ou pelo wa.me com o texto pronto.</p></div>
+      <div class="lp-faq-item"><h3>E o sinal? Meu cliente sempre deixa uma entrada.</h3><p>O sinal é registrado na abertura da OS e entra no caixa; o saldo vira parcela no crediário com vencimento na data prometida. Na entrega, recebe o resto e fecha.</p></div>
+      <div class="lp-faq-item"><h3>Integra com o laboratório?</h3><p>Hoje a OS guarda o laboratório, o prazo e o nº do pedido, e imprime em A4 para enviar. Integração direta com portais como Zeiss e Hoya está no radar; nenhum deles tem API pública ainda.</p></div>
+      <div class="lp-faq-item"><h3>Quanto custa?</h3><p>A ótica faz parte do plano Negócio: R$ 140,83/mês no anual ou R$ 169 no mensal, com OS de óculos, receituário, crediário, estoque de armações, financeiro, PDV e NFC-e. 7 dias grátis para provar, sem cartão.</p></div>
     </div>
     <div class="text-center" style="margin-top: 40px;" data-reveal>
       <a href="/comecar" class="btn btn-primary btn-lg">Começar grátis <span class="arrow">→</span></a>
