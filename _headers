@@ -24,6 +24,10 @@
 /og-image.png
   Cache-Control: public, max-age=604800
 
+# 15/09/2026: screenshots do app usados nas LPs (primeiro: /assets/otica)
+/assets/*
+  Cache-Control: public, max-age=604800
+
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
 
