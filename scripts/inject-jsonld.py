@@ -65,7 +65,7 @@ def organization():
         "url": SITE + "/",
         "logo": {"@type": "ImageObject", "url": SITE + "/Icon.png"},
         "image": SITE + "/og-image.png",
-        "description": "Sistema de gestao em nuvem para lojas: PDV com NFC-e, estoque com grade, troca no caixa, financeiro e crediario com cobranca no WhatsApp. Preco fixo, em portugues.",
+        "description": "ERP e sistema de gestão em nuvem para lojas: PDV com NFC-e, estoque com grade, troca no caixa, financeiro e crediário com cobrança no WhatsApp. Preço fixo, em português.",
         "address": {"@type": "PostalAddress", "addressLocality": "Jacareí", "addressRegion": "SP", "addressCountry": "BR"},
         "areaServed": "BR",
         "contactPoint": [{
@@ -132,10 +132,11 @@ def software():
         "alternateName": ["Aura Negócio", "Aura Studio", "Aura Dojô"],
         "url": SITE + "/",
         "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "PDV, ERP e gestao para varejo",
+        "applicationSubCategory": "ERP para pequenas empresas, PDV e gestão para varejo",
         "operatingSystem": "Web, Android, iOS",
         "inLanguage": "pt-BR",
-        "description": "Sistema de gestao para loja: PDV com NFC-e, estoque com grade, troca no caixa, financeiro com DRE e crediario (fiado) com cobranca automatica no WhatsApp. Preco fixo por plano, teste gratis de 7 dias sem cartao.",
+        "description": "ERP em nuvem para comércio e varejo: PDV com NFC-e, estoque com grade, troca no caixa, financeiro com DRE e crediário (fiado) com cobrança automática no WhatsApp. Preço fixo por plano, teste grátis de 7 dias sem cartão.",
+        "keywords": "ERP, ERP para pequenas empresas, ERP para loja, ERP em nuvem, sistema de gestão, PDV, frente de caixa, NFC-e, controle de estoque, crediário, fiado",
         "featureList": FEATURES,
         "offers": offers,
         "publisher": {"@id": ORG_ID},
@@ -177,6 +178,8 @@ def build_graph(fname, src):
     canonical = get(r'<link rel="canonical" href="([^"]+)"', src) or SITE + "/" + fname.replace(".html", "")
     title = get(r"<title>(.*?)</title>", src)
     desc = get(r'<meta name="description" content="([^"]*)"', src)
+    # imagem da pagina: respeita o og:image (ex.: /sistema-para-otica usa screenshot proprio)
+    image = get(r'<meta property="og:image" content="([^"]+)"', src) or SITE + "/og-image.png"
     is_home = fname == "index.html"
     name = "Início" if is_home else page_name(title)
 
@@ -213,7 +216,7 @@ def build_graph(fname, src):
         "isPartOf": {"@id": SITE_ID},
         "about": {"@id": APP_ID},
         "breadcrumb": {"@id": canonical + "#breadcrumb"},
-        "primaryImageOfPage": {"@type": "ImageObject", "url": SITE + "/og-image.png"},
+        "primaryImageOfPage": {"@type": "ImageObject", "url": image},
     }
     graph += [webpage, breadcrumb]
 

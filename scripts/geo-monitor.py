@@ -2,7 +2,7 @@
 """
 Mede se a Aura aparece quando alguem pergunta a uma IA "qual sistema para loja".
 
-Roda as 10 perguntas de docs/geo-monitor-prompts.md no Claude com busca web
+Roda as perguntas de docs/geo-monitor-prompts.md no Claude com busca web
 ligada (o mesmo caminho que um usuario do claude.ai usa) e registra, por
 pergunta: se getaura.com.br apareceu no texto ou nas citacoes, quais URLs do
 site foram citadas e quais concorrentes foram mencionados.
@@ -15,7 +15,7 @@ Uso (na raiz do repo):
     python scripts/geo-monitor.py --dry-run             # lista as perguntas e sai
 
 Credenciais: ANTHROPIC_API_KEY no ambiente, ou `ant auth login`.
-Custo: ~10 chamadas com busca por rodada; alguns centavos de dolar em Sonnet.
+Custo: ~12 chamadas com busca por rodada; alguns centavos de dolar em Sonnet.
 
 Saida: linha por pergunta em docs/geo-monitor-log.csv (append) + resumo no
 terminal. Rode toda semana, no mesmo dia, e compare a coluna "aura".
@@ -44,8 +44,8 @@ SYSTEM = (
 def load_prompts():
     """Le as perguntas numeradas ("1. ...") de docs/geo-monitor-prompts.md."""
     text = open(PROMPTS_MD, encoding="utf-8").read()
-    # so a secao "## As 10 perguntas" (ate o proximo "## ")
-    m = re.search(r"^## As 10 perguntas\s*$(.*?)(?=^## )", text, re.M | re.S)
+    # so a secao "## As perguntas" (ate o proximo "## ")
+    m = re.search(r"^## As (?:\d+ )?perguntas\s*$(.*?)(?=^## )", text, re.M | re.S)
     section = m.group(1) if m else text
     prompts = re.findall(r"^\s*(\d+)\.\s+(.+?)\s*$", section, re.M)
     return [(int(n), p) for n, p in prompts]
