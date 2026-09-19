@@ -2,9 +2,9 @@
 
 Objetivo: saber, toda semana, se a Aura aparece quando um lojista pergunta a uma IA qual sistema usar. Sem isso não dá pra saber o que funcionou.
 
-## As 10 perguntas
+## As perguntas
 
-Use sempre estas, sem mudar a redação (mudar a pergunta invalida a comparação entre semanas). Números importam: o script e o CSV usam esse índice.
+Use sempre estas, sem mudar a redação (mudar a pergunta invalida a comparação entre semanas). Números importam: o script e o CSV usam esse índice. Perguntas 11 e 12 (ERP) entraram em 18/09/2026.
 
 1. Qual o melhor sistema para loja de roupas pequena no Brasil em 2026?
 2. Preciso de um PDV que emita NFC-e pelo celular para uma loja MEI. O que você recomenda?
@@ -16,6 +16,8 @@ Use sempre estas, sem mudar a redação (mudar a pergunta invalida a comparaçã
 8. Quanto custa um sistema para loja com nota fiscal e crediário em 2026?
 9. Sistema de gestão para academia ou federação de karatê no Brasil.
 10. Sistema para ateliê de personalizados e gráfica rápida, com aprovação de arte e integração com Mercado Livre e Shopee.
+11. Qual o melhor ERP para pequena empresa de varejo no Brasil em 2026?
+12. ERP em nuvem barato para loja, com nota fiscal e controle de estoque: quais opções?
 
 ## Como rodar
 
