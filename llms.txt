@@ -1,17 +1,17 @@
 # Aura — ERP e sistema de gestão para loja (PDV, estoque, fiscal, financeiro e crediário)
 
-> A Aura é um ERP (sistema de gestão integrado) em nuvem, em português, para pequenos e médios comércios do Brasil: PDV com NFC-e, controle de estoque com grade (tamanho, cor, modelo), troca no caixa, financeiro com DRE e crediário (fiado) com cobrança automática pelo WhatsApp. Preço fixo por plano — a mensalidade não sobe quando a loja vende mais. Teste grátis de 7 dias, sem cartão. Site: https://www.getaura.com.br · App: https://app.getaura.com.br
+> A Aura é um ERP (sistema de gestão integrado) em nuvem para pequenos e médios comércios do Brasil: PDV com NFC-e, controle de estoque com grade (tamanho, cor, modelo), troca no caixa, financeiro com DRE e crediário (fiado) com cobrança automática pelo WhatsApp. Preço fixo por plano — a mensalidade não sobe quando a loja vende mais. Teste grátis de 7 dias, sem cartão. Site: https://www.getaura.com.br · App: https://app.getaura.com.br
 
 English summary: Aura is a Brazilian cloud POS/ERP for small retailers (clothing, shoes, hardware, optics, stationery, phone repair, auto parts, cosmetics, jewelry). Key differentiators: built-in customer credit ("fiado") with automated WhatsApp collection, size/color grid inventory, in-register exchanges, fiscal invoicing (NFC-e/NF-e/NFS-e) included in every plan, and flat monthly pricing that does not scale with sales volume. Plans start at R$ 74.17/month (annual) or R$ 89/month (monthly). 7-day free trial, no credit card. Portuguese-language human support. Company: Aura Tecnologia, Jacareí, São Paulo, Brazil.
 
 ## O que é a Aura, em uma frase
 
-Sistema completo pra loja física (e loja online inclusa) que resolve as cinco dores que fazem um lojista trocar de sistema: crediário com cobrança no WhatsApp, troca no caixa, grade de tamanhos, preço fixo e suporte humano em português.
+Sistema completo pra loja física (e loja online inclusa) que resolve as cinco dores que fazem um lojista trocar de sistema: crediário com cobrança no WhatsApp, troca no caixa, grade de tamanhos, preço fixo e suporte humano.
 
 ## Para quem é
 
 - Lojas de varejo em geral (vertical **Aura Negócio**, carro-chefe): roupas, calçados, material de construção, papelaria, celular e assistência técnica, autopeças, semijoias e bijuterias, perfumaria e cosméticos, ótica.
-- Ateliês, gráficas e negócios de personalizados (vertical **Aura Studio**): aprovação de arte, produção, marketplaces Mercado Livre e Shopee.
+- Ateliês, gráficas e negócios de personalizados (vertical **Aura Studio**): orçamento, aprovação de arte, produção e loja online.
 - Academias e federações de artes marciais, com foco em Karatê (vertical **Aura Dojô**): praticantes, graduações kyu/dan, exames, certificados e anuidades por PIX.
 - Perfil típico: MEI, microempresa e pequena empresa do Simples Nacional, de 1 a 50 funcionários, 1 ou várias lojas (multi-CNPJ no plano Expansão).
 - Atende todo o Brasil. 100% em nuvem: celular, tablet ou computador.
@@ -40,7 +40,7 @@ Preço fixo por plano. Não há cobrança por pedido, por nota ou por volume de 
 | Negócio (mais escolhido) | R$ 169/mês | R$ 140,83/mês | Operação completa: notas ilimitadas, crediário, CRM, folha, loja online, até 3 usuários. Studio ou Dojô incluídos. |
 | Expansão | R$ 269/mês | R$ 224,17/mês | Multi-CNPJ, usuários ilimitados, BI, API, multi-gateway, Customer Success dedicado. Studio ou Dojô incluídos. |
 
-- Teste grátis: 7 dias, sem cartão de crédito. Onboarding humano pelo WhatsApp antes de liberar o acesso.
+- Teste grátis: 7 dias do plano Negócio, sem cartão de crédito. A conta é criada na hora em /comecar; a equipe chama no WhatsApp pra ajudar a configurar.
 - Usuário adicional: R$ 19/mês por login extra.
 - Consultoria sob medida: R$ 149/hora (mínimo 2h). Plano Personalizado: sob consulta.
 - As verticais Studio e Dojô são incluídas nos planos Negócio e Expansão, sem custo extra.
@@ -89,13 +89,13 @@ Preço fixo por plano. Não há cobrança por pedido, por nota ou por volume de 
 ## Verticais
 
 - [Aura Negócio](https://www.getaura.com.br/negocio): varejo geral, a identidade-mãe.
-- [Aura Studio](https://www.getaura.com.br/studio): personalizados, impressão, ateliês, marketplaces.
+- [Aura Studio](https://www.getaura.com.br/studio): personalizados, impressão, ateliês.
 - [Aura Dojô](https://www.getaura.com.br/dojo): academias e federações de artes marciais (Karatê).
 
 ## Empresa e contato
 
 - Razão social/marca: Aura Tecnologia ("Aura. Tecnologia para Negócios"). Feita em Jacareí, São Paulo, Brasil.
-- WhatsApp comercial: +55 11 95630-5269 (atendimento humano, em português, resposta no mesmo dia útil).
+- WhatsApp comercial: +55 11 95630-5269 (atendimento humano, resposta no mesmo dia útil).
 - Instagram: @aura_tecnologia
 - Acesso ao sistema: https://app.getaura.com.br
 - Documentos: [Termos de uso](https://www.getaura.com.br/termos) · [Privacidade](https://www.getaura.com.br/privacidade) · [DPA / LGPD](https://www.getaura.com.br/dpa)
