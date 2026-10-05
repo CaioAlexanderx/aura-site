@@ -802,21 +802,6 @@ img, svg { display: block; max-width: 100%; }
 }
 
 @media (max-width: 480px) {
-  /* Hero CTA buttons: stack vertically on very small screens */
-  .hero-cta-row {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 10px !important;
-  }
-  .hero-cta-row .btn { justify-content: center; width: 100%; }
-
-  /* Hero stats row: tighten gaps, hide dividers */
-  .hero-stats-row {
-    gap: 16px !important;
-    margin-top: 8px !important;
-  }
-  .hero-stats-divider { display: none; }
-
   /* Phone cluster: slightly smaller on very narrow screens */
   .hero-phones {
     transform: scale(0.48) !important;
