@@ -8,3 +8,10 @@ docs
 scripts
 app
 README.md
+# Arquivos internos: código do worker e configuração não são assets
+src/
+.gitignore
+.assetsignore
+.claude/
+*.pyc
+__pycache__/
