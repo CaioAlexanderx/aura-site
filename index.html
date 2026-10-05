@@ -17,7 +17,6 @@
 <link rel="apple-touch-icon" href="assets/Icon.png">
 <link rel="stylesheet" href="css/tokens.css?v=2">
 <link rel="stylesheet" href="css/site.css?v=2">
-<link rel="stylesheet" href="css/verticals.css?v=2">
 <!-- jsonld:start -->
 <script type="application/ld+json">
 {
@@ -327,6 +326,80 @@
   .lp-faq-item h3 { font-size: 16px; color: #f5f1ff; margin: 0 0 6px; font-weight: 600; }
   .lp-faq-item p { font-size: 14px; line-height: 1.6; color: rgba(220,215,255,0.72); margin: 0; }
   .lp-faq-item a { color: #c4b5fd; text-decoration: underline; }
+
+  /* ---------- Hero ---------- */
+  .home-hero.section { padding-top: clamp(104px, 9vw, 128px); padding-bottom: clamp(56px, 6vw, 88px); }
+  .home-hero-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(32px, 4vw, 56px); align-items: center; }
+  .home-hero-copy .eyebrow { margin-bottom: 18px; }
+  .home-hero-title { font-family: var(--font-heading); font-weight: 400; font-size: clamp(38px, 4.4vw, 60px); line-height: 1.04; letter-spacing: -0.025em; color: var(--section-ink); text-wrap: balance; }
+  .home-hero-title .acc { color: var(--violet-3); font-style: italic; }
+  .home-hero-copy .lead { margin-top: 18px; max-width: 34em; }
+  .home-hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .home-hero-micro { margin-top: 12px; font-size: 13px; color: var(--section-ink-3); }
+  .home-hero-micro strong { color: var(--section-ink-2); font-weight: 600; }
+  .home-hero-proof { list-style: none; display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--section-border); font-size: 13px; color: var(--section-ink-2); }
+  .home-hero-proof .label { display: block; color: #fff; margin-bottom: 2px; }
+  .home-hero-media { position: relative; }
+  .home-hero-media .browser-shot { transform: perspective(1600px) rotateY(-5deg) rotateX(1.5deg); transform-origin: left center; }
+  .home-hero-tag { position: absolute; left: -18px; bottom: 34px; display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 12px; background: #fff; color: #1a1330; font-size: 13px; font-weight: 600; box-shadow: 0 18px 40px rgba(0,0,0,0.45); z-index: 2; }
+  .home-hero-tag i { width: 9px; height: 9px; border-radius: 50%; background: #25D366; flex: none; }
+
+  /* Captura do sistema numa moldura de navegador */
+  .browser-shot { border-radius: 14px; overflow: hidden; border: 1px solid rgba(167,139,250,0.28); background: #0b0d1f; box-shadow: 0 40px 90px rgba(0,0,0,0.55), 0 0 0 6px rgba(124,58,237,0.08); }
+  .browser-shot-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: #11142a; border-bottom: 1px solid var(--section-border); }
+  .browser-shot-bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.18); flex: none; }
+  .browser-shot-bar span { margin-left: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--section-ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .browser-shot img { width: 100%; height: auto; }
+
+  /* ---------- Faixa de segmentos ---------- */
+  .home-segments.section { padding-top: 18px; padding-bottom: 18px; border-top: 1px solid var(--section-border); border-bottom: 1px solid var(--section-border); }
+  .home-segments .container { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+  .home-segments-label { font-size: 13px; color: var(--section-ink-3); }
+  .home-segments-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+  .home-chip { display: inline-block; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--section-border); background: var(--section-card); font-size: 13px; color: var(--section-ink-2); transition: border-color 0.2s var(--ease), color 0.2s var(--ease), background 0.2s var(--ease); }
+  .home-chip:hover, .home-chip:focus-visible { border-color: rgba(167,139,250,0.55); background: rgba(124,58,237,0.12); color: #fff; }
+
+  /* ---------- Por dentro ---------- */
+  .home-tour-intro .eyebrow { margin-bottom: 14px; }
+  .home-tour-intro .h2 em { color: var(--violet-3); }
+  .home-tour-intro .lead { margin-top: 12px; }
+  .home-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0 22px; }
+  .home-tabs[hidden] { display: none; }
+  .home-tab { padding: 9px 18px; border-radius: 999px; border: 1px solid var(--section-border); background: var(--section-card); color: var(--section-ink-2); font-size: 14px; font-weight: 600; transition: all 0.2s var(--ease); }
+  .home-tab:hover { color: #fff; border-color: rgba(167,139,250,0.45); }
+  .home-tab[aria-selected="true"] { background: var(--violet); border-color: var(--violet); color: #fff; }
+  .home-tab:focus-visible, .home-panel:focus-visible { outline: 2px solid var(--violet-3); outline-offset: 3px; }
+  .home-panel { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 32px; align-items: start; margin-top: 40px; border-radius: 14px; }
+  .home-tabs:not([hidden]) ~ .home-panel { margin-top: 0; }
+  .home-panel[hidden] { display: none; }
+  .home-checks { list-style: none; display: grid; gap: 10px; margin-top: 14px; font-size: 15px; line-height: 1.5; color: var(--section-ink-2); }
+  .home-checks li { position: relative; padding-left: 24px; }
+  .home-checks li::before { content: "✓"; position: absolute; left: 0; color: var(--violet-3); font-weight: 700; }
+
+  /* Depoimento */
+  .home-quote { display: flex; align-items: center; gap: 24px; margin-top: 48px; padding: 22px 24px; border-radius: 16px; border: 1px solid rgba(167,139,250,0.28); background: var(--section-card); }
+  .home-quote-logo { width: 168px; height: 76px; flex: none; border-radius: 12px; background: #fff; overflow: hidden; }
+  /* A logo vem com muito branco em volta: enquadra só a palavra */
+  .home-quote-logo img { width: 100%; height: 100%; object-fit: cover; object-position: 49% 44%; transform: scale(1.5); }
+  .home-quote blockquote p { font-family: var(--font-heading); font-style: italic; font-size: clamp(19px, 1.8vw, 22px); line-height: 1.35; color: var(--section-ink); text-wrap: pretty; }
+  .home-quote figcaption { margin-top: 8px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--section-ink-3); }
+
+  @media (max-width: 900px) {
+    .home-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+    .home-hero-media .browser-shot { transform: none; }
+    .home-hero-tag { left: 10px; bottom: 10px; font-size: 12px; padding: 8px 12px; }
+    .home-panel { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+    .home-quote { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 600px) {
+    .home-hero.section { padding-top: 92px; }
+    .home-hero-copy .eyebrow { margin-bottom: 14px; }
+    .home-hero-copy .lead { margin-top: 14px; font-size: 16px; }
+    .home-hero-ctas { margin-top: 22px; gap: 10px; }
+    .home-hero-ctas .btn { flex: 1 1 100%; justify-content: center; }
+    .home-hero-proof { gap: 12px 20px; margin-top: 22px; padding-top: 18px; }
+    .home-segments.section { padding-top: 16px; padding-bottom: 16px; }
+  }
 </style>
 </head>
 <body data-screen-label="01 Home">
@@ -394,171 +467,152 @@
 </div>
 
 <!-- ============== HERO ============== -->
-<section class="section dark deep" style="padding-top: 160px;" data-screen-label="hero">
+<!-- Texto e botões do hero aparecem na hora (sem animação de entrada): o
+     "Testar 7 dias grátis" precisa estar na primeira tela em 1440x900 e 375x812. -->
+<section class="section dark deep home-hero" data-screen-label="hero">
   <div class="orbs">
     <div class="orb violet" style="width: 600px; height: 600px; top: -100px; left: -150px;"></div>
     <div class="orb indigo" style="width: 500px; height: 500px; top: 200px; right: -100px;"></div>
-    <div class="orb pink" style="width: 400px; height: 400px; bottom: -100px; left: 30%; opacity: 0.35;"></div>
   </div>
   <div class="grain"></div>
 
   <div class="container">
-    <div class="hero-grid" style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center;">
-      <div class="stack-lg">
-        <div class="row" data-reveal>
-          <span class="eyebrow">Sistema de gestão para loja</span>
-        </div>
-        <h1 class="display" data-typein>Tudo da sua loja em um sistema só — e o <span class="acc">preço não sobe</span> quando você <em>vende mais</em>.</h1>
-        <p class="lead" data-reveal data-reveal-delay="2">PDV com NFC-e, estoque com grade, troca no caixa, financeiro e o fiado com cobrança no WhatsApp — sem complicação.</p>
-        <div class="row hero-cta-row" data-reveal data-reveal-delay="3">
-          <a href="/comecar" class="btn btn-primary btn-lg">Criar conta grátis <span class="arrow">→</span></a>
+    <div class="home-hero-grid">
+      <div class="home-hero-copy">
+        <span class="eyebrow">Sistema de gestão para loja</span>
+        <h1 class="home-hero-title">Tudo da sua loja em um sistema só. E o <span class="acc">preço não sobe</span> quando você vende mais.</h1>
+        <p class="lead">Caixa com nota fiscal, estoque com grade, troca no balcão, financeiro e o fiado com cobrança no WhatsApp.</p>
+        <div class="home-hero-ctas">
+          <a href="/comecar" class="btn btn-primary btn-lg">Testar 7 dias grátis <span class="arrow">→</span></a>
           <a href="https://wa.me/5511956305269?text=Quero%20conhecer%20a%20Aura" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 14.2c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.7 4.3 3.8.6.3 1.1.4 1.4.5.6.2 1.1.2 1.6.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.1-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.2.8.8-3.1-.2-.3C3.8 15 3.3 13.5 3.3 12c0-4.8 3.9-8.7 8.7-8.7s8.7 3.9 8.7 8.7-3.9 8.3-8.7 8.3z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 14.2c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.7 4.3 3.8.6.3 1.1.4 1.4.5.6.2 1.1.2 1.6.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.1-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.2.8.8-3.1-.2-.3C3.8 15 3.3 13.5 3.3 12c0-4.8 3.9-8.7 8.7-8.7s8.7 3.9 8.7 8.7-3.9 8.3-8.7 8.3z"/></svg>
             Chamar no WhatsApp
           </a>
         </div>
-        <div class="row hero-stats-row" style="gap: 32px; margin-top: 16px;" data-reveal data-reveal-delay="4">
-          <div class="stack-sm">
-            <div class="label">Preço fixo</div>
-            <div style="font-size: 13px; color: rgba(220,215,255,0.6);">não sobe com as vendas</div>
-          </div>
-          <div class="hero-stats-divider" style="width: 1px; height: 40px; background: rgba(255,255,255,0.1);"></div>
-          <div class="stack-sm">
-            <div class="label">PDV → NF-e</div>
-            <div style="font-size: 13px; color: rgba(220,215,255,0.6);">tudo na mesma tela</div>
-          </div>
-          <div class="hero-stats-divider" style="width: 1px; height: 40px; background: rgba(255,255,255,0.1);"></div>
-          <div class="stack-sm">
-            <div class="label">Crediário</div>
-            <div style="font-size: 13px; color: rgba(220,215,255,0.6);">próprio, sem maquininha</div>
-          </div>
-        </div>
+        <p class="home-hero-micro"><strong>Sem cartão de crédito.</strong> Você cria a conta e já entra.</p>
+        <ul class="home-hero-proof">
+          <li><strong class="label">Preço fixo</strong>a partir de R$ 89/mês</li>
+          <li><strong class="label">Notas ilimitadas</strong>no plano Negócio</li>
+          <li><strong class="label">Suporte humano</strong>no mesmo dia útil</li>
+        </ul>
       </div>
 
-      <!-- Hero phones cluster -->
-      <div class="hero-phones" style="position: relative; height: 580px;" data-reveal data-reveal-delay="2">
-        <!-- Back: violeta -->
-        <div data-vertical="negocio" style="position: absolute; left: 50%; top: 30px; transform: translateX(-58%);">
-          <div class="phone levitate" style="--pw: 240px; opacity: 0.85;">
-            <div class="phone-screen">
-              <div class="ps-pad">
-                <div class="ps-orb" style="width: 160px; height: 160px; background: #7c3aed; opacity: 0.4; top: -40px; left: -40px;"></div>
-                <div class="ps-orb" style="width: 180px; height: 180px; background: #a78bfa; opacity: 0.3; bottom: -60px; right: -60px;"></div>
-                <div class="ps-header">
-                  <div class="ps-brand"><span class="dot-mark"></span>Aura<span class="acc">.</span></div>
-                  <div class="ps-bell">⋯</div>
-                </div>
-                <div class="ps-h">Bom dia,<br>Caio.</div>
-                <div class="ps-card">
-                  <div style="font-size: 8px; opacity: 0.6; letter-spacing: 0.1em;">SALDO HOJE</div>
-                  <div class="ps-num" style="font-size: 22px; font-weight: 700; margin-top: 4px;">R$ 18.420</div>
-                  <div style="height: 30px; margin-top: 8px; display: flex; align-items: flex-end; gap: 3px;">
-                    <div style="flex:1; height: 40%; background: #7c3aed; border-radius: 2px;"></div>
-                    <div style="flex:1; height: 65%; background: #7c3aed; border-radius: 2px;"></div>
-                    <div style="flex:1; height: 30%; background: #7c3aed; opacity: 0.6; border-radius: 2px;"></div>
-                    <div style="flex:1; height: 80%; background: #a78bfa; border-radius: 2px;"></div>
-                    <div style="flex:1; height: 95%; background: #a78bfa; border-radius: 2px;"></div>
-                  </div>
-                </div>
-                <div class="ps-card ps-row" style="justify-content: space-between;">
-                  <div>
-                    <div style="font-size: 9px; opacity: 0.55;">12 vendas</div>
-                    <div class="ps-num" style="font-weight: 700;">+ R$ 4.280</div>
-                  </div>
-                  <span class="ps-pill-accent">Venda #128</span>
-                </div>
-                <div class="ps-tabbar">
-                  <div class="ti active">●</div><div class="ti">$</div><div class="ti">▤</div><div class="ti">⊕</div>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="home-hero-media">
+        <div class="browser-shot">
+          <div class="browser-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>app.getaura.com.br · Crediário</span></div>
+          <picture>
+            <source type="image/webp" srcset="/assets/home/crediario.webp">
+            <img src="/assets/home/crediario.jpg" width="1568" height="744" fetchpriority="high" alt="Tela do Crediário da Aura: R$ 2.289,50 em aberto, parcelas vencidas, carteira por faixa de atraso e a lista de clientes com o botão de cobrar no WhatsApp">
+          </picture>
         </div>
-        <!-- Front-left: dojo (Aura Karate) -->
-        <div data-vertical="dojo" style="position: absolute; left: 8%; top: 100px; z-index: 3;">
-          <div class="phone levitate" style="--pw: 220px; animation-delay: -2s;">
-            <div class="phone-screen">
-              <div class="ps-pad">
-                <div class="ps-orb" style="width: 140px; height: 140px; background: #b8463a; opacity: 0.5; top: -30px; right: -30px;"></div>
-                <div class="ps-orb" style="width: 160px; height: 160px; background: #7c3aed; opacity: 0.3; bottom: -40px; left: -40px;"></div>
-                <div class="ps-header">
-                  <div class="ps-brand"><span class="dot-mark" style="background:#b8463a;"></span>Aura <span class="acc" style="color:#d98b80;">Dojô</span></div>
-                  <span class="ps-pill-accent" style="background:rgba(184,70,58,0.25); color:#d98b80;">EXAME</span>
-                </div>
-                <div class="ps-h" style="font-size: 16px;">Exame<br>de faixa.</div>
-                <div class="ps-card" style="border-left: 2px solid #b8463a;">
-                  <div style="display: flex; justify-content: space-between; font-size: 9px;">
-                    <span style="color: rgba(255,255,255,0.7);">Marcos T. · 3º kyu</span>
-                    <span style="color: #d98b80; font-weight: 700;">APTO</span>
-                  </div>
-                  <div style="font-size: 11px; margin-top: 4px;">Faixa verde → roxa</div>
-                  <div style="font-size: 9px; opacity: 0.55;">FPKT · certificado digital</div>
-                </div>
-                <div class="ps-card" style="border-left: 2px solid #34d399;">
-                  <div style="display: flex; justify-content: space-between; font-size: 9px;">
-                    <span style="color: rgba(255,255,255,0.7);">Anuidade 2026</span>
-                    <span style="color: #34d399; font-weight: 700;">PIX PAGO</span>
-                  </div>
-                  <div style="font-size: 11px; margin-top: 4px;">Dojô Shubu-kan · 38 praticantes</div>
-                </div>
-                <div class="ps-cta" style="background: linear-gradient(135deg, #b8463a, #9d3a30);">Emitir certificado</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Right: studio -->
-        <div data-vertical="studio" style="position: absolute; right: 0; top: 60px; z-index: 2;">
-          <div class="phone levitate tilt-r" style="--pw: 230px; animation-delay: -4s;">
-            <div class="phone-screen">
-              <div class="ps-pad">
-                <div class="ps-orb" style="width: 160px; height: 160px; background: #E11D74; opacity: 0.5; top: -40px; left: -30px;"></div>
-                <div class="ps-orb" style="width: 180px; height: 180px; background: #9333EA; opacity: 0.3; bottom: -50px; right: -40px;"></div>
-                <div class="ps-header">
-                  <div class="ps-brand"><span class="dot-mark"></span>Aura <span class="acc">Studio</span></div>
-                  <div class="ps-bell">✎</div>
-                </div>
-                <div class="ps-h" style="font-size: 16px;">Produção<br>em ordem.</div>
-                <div class="ps-card">
-                  <div class="ps-row" style="justify-content: space-between;">
-                    <div style="font-size: 9px; opacity: 0.6;">#482 · Camiseta</div>
-                    <span style="color: #E11D74; font-size: 9px;">●</span>
-                  </div>
-                  <div style="font-size: 11px; margin-top: 4px;">Aguardando arte</div>
-                </div>
-                <div class="ps-card">
-                  <div class="ps-row" style="justify-content: space-between;">
-                    <div style="font-size: 9px; opacity: 0.6;">#479 · Caneca</div>
-                    <span style="color: #E11D74; font-size: 9px;">●</span>
-                  </div>
-                  <div style="font-size: 11px; margin-top: 4px;">Em produção</div>
-                </div>
-                <div class="ps-card" style="background: rgba(225,29,116,0.12); border-color: #E11D74;">
-                  <div style="font-size: 9px; opacity: 0.6;">#476 · NOVO</div>
-                  <div style="font-size: 11px; margin-top: 2px; font-weight: 600;">Aprovar arte</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p class="home-hero-tag"><i aria-hidden="true"></i>Cobrança pronta no WhatsApp, em um toque</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============== MARQUEE — verticais ============== -->
-<section class="section dark" style="padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06);">
-  <div class="container" style="margin-bottom: 24px; padding: 0 clamp(20px, 5vw, 80px);">
-    <div class="label text-center">Uma plataforma · três identidades</div>
+<!-- ============== SEGMENTOS (faixa) ============== -->
+<section class="section dark home-segments" aria-label="Segmentos atendidos">
+  <div class="container">
+    <p class="home-segments-label">Pronta para:</p>
+    <ul class="home-segments-list">
+      <li><a class="home-chip" href="/sistema-para-loja-de-roupas">Roupas</a></li>
+      <li><a class="home-chip" href="/sistema-para-loja-de-calcados">Calçados</a></li>
+      <li><a class="home-chip" href="/sistema-para-loja-de-material-de-construcao">Material de construção</a></li>
+      <li><a class="home-chip" href="/sistema-para-otica">Ótica</a></li>
+      <li><a class="home-chip" href="/sistema-para-papelaria">Papelaria</a></li>
+      <li><a class="home-chip" href="/sistema-para-loja-de-celular">Celular e assistência</a></li>
+      <li><a class="home-chip" href="/studio">Personalizados (Studio)</a></li>
+      <li><a class="home-chip" href="/dojo">Karatê (Dojô)</a></li>
+    </ul>
   </div>
-  <div class="marquee">
-    <div class="marquee-track">
-      <span style="font-family: var(--font-heading); font-size: 56px; letter-spacing: -0.03em; color: rgba(220,215,255,0.5);">Aura<span style="color:#7c3aed">.</span> Negócio</span>
-      <span style="font-family: var(--font-heading); font-size: 56px; color: rgba(124,58,237,0.4);">✦</span>
-      <span style="font-family: var(--font-heading); font-size: 56px; letter-spacing: -0.03em; color: rgba(220,215,255,0.5);">Aura<span style="color:#E11D74">.</span> Studio</span>
-      <span style="font-family: var(--font-heading); font-size: 56px; color: rgba(225,29,116,0.4);">✦</span>
-      <span style="font-family: var(--font-heading); font-size: 56px; letter-spacing: -0.03em; color: rgba(220,215,255,0.5);">Aura<span style="color:#b8463a">.</span> Dojô</span>
-      <span style="font-family: var(--font-heading); font-size: 56px; color: rgba(184,70,58,0.4);">✦</span>
+</section>
+
+<!-- ============== POR DENTRO (abas com capturas reais) ============== -->
+<!-- Sem JS: os três painéis aparecem empilhados e a lista de abas fica escondida.
+     Com JS: abas acessíveis (setas ←/→, Home/End). Script no fim da página. -->
+<section class="section dark home-tour" id="por-dentro" data-screen-label="por-dentro">
+  <div class="container">
+    <div class="home-tour-intro" data-reveal>
+      <span class="eyebrow">Por dentro</span>
+      <h2 class="h2">Veja a Aura <em>funcionando</em>, não uma ilustração.</h2>
+      <p class="lead">Três telas que você vai usar todo dia. São capturas do sistema, do jeito que ele abre no seu computador.</p>
     </div>
+
+    <div class="home-tabs" role="tablist" aria-label="Telas da Aura" hidden data-home-tablist>
+      <button type="button" class="home-tab" role="tab" id="tab-crediario" aria-controls="painel-crediario" aria-selected="true">Crediário</button>
+      <button type="button" class="home-tab" role="tab" id="tab-caixa" aria-controls="painel-caixa" aria-selected="false" tabindex="-1">Caixa</button>
+      <button type="button" class="home-tab" role="tab" id="tab-estoque" aria-controls="painel-estoque" aria-selected="false" tabindex="-1">Estoque</button>
+    </div>
+
+    <div class="home-panel" id="painel-crediario" role="tabpanel" aria-labelledby="tab-crediario" tabindex="0">
+      <div class="home-panel-text">
+        <h3 class="h3">O fiado sob controle</h3>
+        <ul class="home-checks">
+          <li>Limite por cliente e venda no carnê</li>
+          <li>Quem está em dia e quem atrasou, por faixa</li>
+          <li>Mensagem de cobrança com valor, data e PIX</li>
+        </ul>
+      </div>
+      <div class="browser-shot">
+        <div class="browser-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Crediário</span></div>
+        <picture>
+          <source type="image/webp" srcset="/assets/home/crediario.webp">
+          <img src="/assets/home/crediario.jpg" width="1568" height="744" loading="lazy" decoding="async" alt="Crediário da Aura: total em aberto, valor vencido, clientes em atraso e a carteira dividida por faixa de atraso">
+        </picture>
+      </div>
+    </div>
+
+    <div class="home-panel" id="painel-caixa" role="tabpanel" aria-labelledby="tab-caixa" tabindex="0">
+      <div class="home-panel-text">
+        <h3 class="h3">Venda em poucos toques</h3>
+        <ul class="home-checks">
+          <li>Leitor de código de barras ou busca</li>
+          <li>PIX, cartão, dinheiro e crediário na mesma venda</li>
+          <li>Troca e devolução direto no caixa</li>
+        </ul>
+      </div>
+      <div class="browser-shot">
+        <div class="browser-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Caixa</span></div>
+        <picture>
+          <source type="image/webp" srcset="/assets/home/caixa.webp">
+          <img src="/assets/home/caixa.jpg" width="1568" height="744" loading="lazy" decoding="async" alt="Caixa da Aura: produtos com foto e estoque, venda de R$ 329,70 com três itens e as formas de pagamento PIX, dinheiro, débito, crédito e crediário">
+        </picture>
+      </div>
+    </div>
+
+    <div class="home-panel" id="painel-estoque" role="tabpanel" aria-labelledby="tab-estoque" tabindex="0">
+      <div class="home-panel-text">
+        <h3 class="h3">Estoque que avisa</h3>
+        <ul class="home-checks">
+          <li>Valor em estoque a custo e a venda</li>
+          <li>Alerta de estoque baixo com reposição sugerida</li>
+          <li>Importação por planilha ou XML do fornecedor</li>
+        </ul>
+      </div>
+      <div class="browser-shot">
+        <div class="browser-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Estoque</span></div>
+        <picture>
+          <source type="image/webp" srcset="/assets/home/estoque.webp">
+          <img src="/assets/home/estoque.jpg" width="1568" height="744" loading="lazy" decoding="async" alt="Estoque da Aura: valor em estoque, 23 alertas de estoque baixo e a lista de produtos com código, variante, quantidade, preço e margem">
+        </picture>
+      </div>
+    </div>
+
+    <figure class="home-quote" data-reveal>
+      <div class="home-quote-logo">
+        <picture>
+          <source type="image/webp" srcset="/assets/home/finesse.webp">
+          <img src="/assets/home/finesse.jpg" width="1536" height="1024" loading="lazy" decoding="async" alt="Logo da Finesse">
+        </picture>
+      </div>
+      <div>
+        <blockquote>
+          <p>“Depois de passar por diversos sistemas, encontrei na Aura tudo o que a Finesse precisa para continuar crescendo.”</p>
+        </blockquote>
+        <figcaption>Eryca · Finesse · Macapá</figcaption>
+      </div>
+    </figure>
   </div>
 </section>
 
@@ -842,12 +896,11 @@
     <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start;">
       <div data-reveal>
         <div class="eyebrow" style="margin-bottom: 16px;">Fale com a gente</div>
-        <h2 class="h1" style="margin-bottom: 24px;">Bora <em style="color: #a78bfa;">conversar?</em></h2>
-        <p class="lead" style="margin-bottom: 32px;">A gente entende a sua operação antes de propor qualquer coisa. Chama no WhatsApp ou deixa o seu número que a gente te chama.</p>
+        <h2 class="h1" style="margin-bottom: 24px;">Chama a gente no <em style="color: #a78bfa;">WhatsApp</em>.</h2>
+        <p class="lead" style="margin-bottom: 32px;">Atendimento humano. Resposta no mesmo dia útil.</p>
 
         <div style="font-size: 13px; color: rgba(220,215,255,0.55); line-height: 1.6;">
-          <strong style="color: #fff;">(11) 95630-5269</strong> · resposta no <strong style="color: #fff;">mesmo dia útil.</strong><br>
-          Atendimento humano, sem chatbot.
+          WhatsApp <strong style="color: #fff;">(11) 95630-5269</strong> · sem chatbot.
         </div>
       </div>
 
@@ -954,6 +1007,38 @@
   </div>
 </div>
 
+<script>
+/* Abas do "Por dentro". Sem JS os painéis ficam empilhados; aqui a lista
+   de abas aparece e só o painel escolhido fica visível. Setas ←/→, Home e End. */
+(function () {
+  var list = document.querySelector('[data-home-tablist]');
+  if (!list) return;
+  var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+  function select(tab, focus) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      var panel = document.getElementById(t.getAttribute('aria-controls'));
+      if (panel) panel.hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { select(tab, false); });
+    tab.addEventListener('keydown', function (e) {
+      var next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); select(next, true); }
+    });
+  });
+  list.hidden = false;
+  select(tabs[0], false);
+})();
+</script>
 <script src="js/site.js"></script>
 <script src="/js/phone-br.js"></script>
 <script src="/js/lead-capture.js?v=2"></script>
