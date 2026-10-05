@@ -418,8 +418,19 @@ img, svg { display: block; max-width: 100%; }
   color: #03200E;
   font-weight: 700;
   font-size: 14px;
-  box-shadow: 0 12px 32px rgba(37,211,102,0.45), 0 0 0 0 rgba(37,211,102,0.6);
+  box-shadow: 0 12px 32px rgba(37,211,102,0.45);
   transition: all 0.25s var(--ease);
+}
+/* 04/10/2026: o anel do pulso era um box-shadow animado (repinta a sombra de
+   32px a cada quadro). Agora é uma camada com só transform/opacity. */
+.wa-float::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(37,211,102,0.55);
+  z-index: -1;
+  pointer-events: none;
   animation: waPulse 2.4s var(--ease) infinite;
 }
 .wa-float:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 18px 40px rgba(37,211,102,0.55); }
@@ -432,8 +443,8 @@ img, svg { display: block; max-width: 100%; }
 }
 .wa-float .wa-num { font-family: var(--font-mono); letter-spacing: -0.01em; }
 @keyframes waPulse {
-  0%, 100% { box-shadow: 0 12px 32px rgba(37,211,102,0.45), 0 0 0 0 rgba(37,211,102,0.55); }
-  50%      { box-shadow: 0 12px 32px rgba(37,211,102,0.45), 0 0 0 18px rgba(37,211,102,0); }
+  0%, 100% { transform: scale(1, 1); opacity: 1; }
+  50%       { transform: scale(var(--wa-ring-x, 1.18), var(--wa-ring-y, 1.64)); opacity: 0; }
 }
 
 /* =========================================================
@@ -492,32 +503,37 @@ img, svg { display: block; max-width: 100%; }
 /* =========================================================
    SCROLL REVEAL
    ========================================================= */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
-}
+/* 04/10/2026: a ocultação só existe quando o js/site.js marca o bloco como
+   .reveal-pending — e ele só marca o que está FORA da primeira tela. Sem JS,
+   ou com JS que falhe, tudo fica visível. O que já está na tela no carregamento
+   nunca passa por opacidade 0. Entrada curta: 0.4s, 14px, stagger <= 0.24s.
+   A transição fica na regra base (como antes), para não sobrepor a transição
+   de hover dos cartões; no estado pendente ela é desligada. */
+[data-reveal] { transition: opacity 0.4s var(--ease), transform 0.4s var(--ease); }
+[data-reveal].reveal-pending { opacity: 0; transform: translateY(14px); transition: none; }
 [data-reveal].in { opacity: 1; transform: translateY(0); }
-[data-reveal-delay="1"] { transition-delay: 0.08s; }
-[data-reveal-delay="2"] { transition-delay: 0.16s; }
-[data-reveal-delay="3"] { transition-delay: 0.24s; }
-[data-reveal-delay="4"] { transition-delay: 0.32s; }
-[data-reveal-delay="5"] { transition-delay: 0.40s; }
-[data-reveal-delay="6"] { transition-delay: 0.48s; }
+[data-reveal-delay="1"] { transition-delay: 0.06s; }
+[data-reveal-delay="2"] { transition-delay: 0.12s; }
+[data-reveal-delay="3"] { transition-delay: 0.18s; }
+[data-reveal-delay="4"],
+[data-reveal-delay="5"],
+[data-reveal-delay="6"] { transition-delay: 0.24s; }
 
 /* =========================================================
    TYPE-IN ANIMATION (word-by-word)
    ========================================================= */
+/* 04/10/2026: cascata curta (0.22s por palavra, atraso total ≤ 0.1s, definido
+   no js/site.js) para o título estar legível em ~300ms. Só opacity/transform:
+   o blur(8px) por palavra saiu porque animar filter custa caro no celular. */
 .type-in .word {
   display: inline-block;
   opacity: 0;
-  transform: translateY(0.5em) rotate(2deg);
-  filter: blur(8px);
-  animation: typeIn 0.7s var(--ease) forwards;
+  transform: translateY(0.35em) rotate(2deg);
+  animation: typeIn 0.22s var(--ease) forwards;
 }
 .type-in .word.space { width: 0.32em; animation: none; opacity: 1; }
 @keyframes typeIn {
-  to { opacity: 1; transform: translateY(0) rotate(0); filter: blur(0); }
+  to { opacity: 1; transform: translateY(0) rotate(0); }
 }
 
 /* =========================================================
@@ -719,6 +735,25 @@ img, svg { display: block; max-width: 100%; }
 }
 
 /* =========================================================
+   LOOPS CONTÍNUOS — pausa fora da tela e movimento reduzido
+   (04/10/2026). O js/site.js põe .anim-off nos contêineres de loop
+   (orbs, marquee, levitate, radar, brilho do hero) que saem da tela.
+   ========================================================= */
+.anim-off, .anim-off *, .anim-off::before, .anim-off::after { animation-play-state: paused !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-reveal], [data-reveal].reveal-pending, [data-reveal].in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: none !important;
+  }
+  .type-in .word { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .orb, .marquee-track, .phone.levitate, .aura-radar .ring, .coming-soon-badge::before,
+  .v-hero::after, .wa-float, .wa-float::after { animation: none !important; }
+}
+
+/* =========================================================
    UTIL
    ========================================================= */
 .divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--section-border, rgba(255,255,255,0.12)), transparent); margin: 64px 0; }
@@ -798,7 +833,7 @@ img, svg { display: block; max-width: 100%; }
 
   /* wa-float: hide number on mobile */
   .wa-float .wa-num { display: none; }
-  .wa-float { padding: 14px; }
+  .wa-float { padding: 14px; --wa-ring-x: 1.64; }
 }
 
 @media (max-width: 480px) {
