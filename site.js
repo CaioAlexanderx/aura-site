@@ -32,21 +32,72 @@
 })();
 
 /* ── Scroll reveal ───────────────────────────────────────── */
+/* 04/10/2026: o CSS só esconde .reveal-pending. A primeira tela aparece já;
+   o resto anima uma vez ao entrar (unobserve). Rede de segurança: sem
+   IntersectionObserver, com movimento reduzido, ou se ele não disparar
+   (aba em segundo plano, painel embutido), scroll/visibilitychange e
+   load + 1,2 s revelam o que estiver na tela ou acima dela. */
 (function(){
   var els = document.querySelectorAll('.reveal, .reveal-scale');
   if(!els.length) return;
-  var obs = new IntersectionObserver(function(entries){
+  var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var obs = null, pending = [], timer = 0;
+  function vh(){ return window.innerHeight || document.documentElement.clientHeight; }
+  function show(el){
+    el.classList.add('visible');
+    el.classList.remove('reveal-pending');
+    if(obs) obs.unobserve(el);
+  }
+  function sweep(){
+    var h = vh();
+    pending = pending.filter(function(el){
+      if(el.getBoundingClientRect().top < h * 0.92){ show(el); return false; }
+      return true;
+    });
+    if(!pending.length) stop();
+  }
+  function onSafety(){
+    if(timer) return;
+    timer = setTimeout(function(){ timer = 0; sweep(); }, 160);
+  }
+  function stop(){
+    window.removeEventListener('scroll', onSafety);
+    window.removeEventListener('resize', onSafety);
+    document.removeEventListener('visibilitychange', onSafety);
+  }
+  if(typeof window.IntersectionObserver !== 'function' || reduce){
+    els.forEach(show);
+    return;
+  }
+  obs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+      if(e.isIntersecting){
+        show(e.target);
+        pending = pending.filter(function(el){ return el !== e.target; });
+      }
     });
   }, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
-  els.forEach(function(el){ obs.observe(el); });
+  var h = vh();
+  els.forEach(function(el){
+    var r = el.getBoundingClientRect();
+    if(r.top < h && r.bottom > 0){ show(el); return; }
+    el.classList.add('reveal-pending');
+    pending.push(el);
+    obs.observe(el);
+  });
+  if(!pending.length) return;
+  window.addEventListener('scroll', onSafety, {passive:true});
+  window.addEventListener('resize', onSafety, {passive:true});
+  document.addEventListener('visibilitychange', onSafety);
+  function late(){ setTimeout(sweep, 1200); }
+  if(document.readyState === 'complete') late();
+  else window.addEventListener('load', late, {once:true});
 })();
 
 /* ── Count-up animation ─────────────────────────────────── */
 (function(){
   var nums = document.querySelectorAll('[data-count]');
-  if(!nums.length) return;
+  if(!nums.length || typeof window.IntersectionObserver !== 'function') return;
   var obs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(!e.isIntersecting) return;
@@ -71,10 +122,11 @@
   var glow = document.createElement('div');
   glow.className = 'cursor-glow';
   document.body.appendChild(glow);
-  var mx = -200, my = -200;
-  document.addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; }, {passive:true});
-  function loop(){ glow.style.transform = 'translate(' + (mx - 200) + 'px,' + (my - 200) + 'px)'; requestAnimationFrame(loop); }
-  requestAnimationFrame(loop);
+  // 04/10/2026: um quadro por movimento do mouse, em vez de laço eterno.
+  var mx = -200, my = -200, raf = 0;
+  function paint(){ raf = 0; glow.style.transform = 'translate(' + (mx - 200) + 'px,' + (my - 200) + 'px)'; }
+  document.addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; if(!raf) raf = requestAnimationFrame(paint); }, {passive:true});
+  requestAnimationFrame(paint);
 })();
 
 /* ── Floating particles ──────────────────────────────────── */

@@ -126,13 +126,19 @@ p { color: var(--ink-2); font-size: 1.0625rem; max-width: 560px; }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
+/* 04/10/2026: só esconde o que o /site.js marcou como .reveal-pending (fora da
+   primeira tela). Sem JS, tudo visível. Entrada: 0.4s, 14px, stagger <= 0.24s.
+   A transição fica na classe base (como antes) para não atropelar a transição
+   de hover dos cartões das páginas; no estado pendente ela é desligada. */
+.reveal { transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out); }
+.reveal.reveal-pending { opacity: 0; transform: translateY(14px); transition: none; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-scale { opacity: 0; transform: scale(0.95); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
+.reveal-scale { transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out); }
+.reveal-scale.reveal-pending { opacity: 0; transform: scale(0.97); transition: none; }
 .reveal-scale.visible { opacity: 1; transform: scale(1); }
-.stagger-1 { transition-delay: 0.1s; } .stagger-2 { transition-delay: 0.2s; }
-.stagger-3 { transition-delay: 0.3s; } .stagger-4 { transition-delay: 0.4s; }
-.stagger-5 { transition-delay: 0.5s; } .stagger-6 { transition-delay: 0.6s; }
+.stagger-1 { transition-delay: 0.06s; } .stagger-2 { transition-delay: 0.12s; }
+.stagger-3 { transition-delay: 0.18s; } .stagger-4 { transition-delay: 0.24s; }
+.stagger-5 { transition-delay: 0.24s; } .stagger-6 { transition-delay: 0.24s; }
 .text-center { text-align: center; }
 .gap-row { display: flex; gap: 12px; flex-wrap: wrap; }
 
@@ -225,7 +231,8 @@ p { color: var(--ink-2); font-size: 1.0625rem; max-width: 560px; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-  .reveal, .reveal-scale { opacity: 1; transform: none; }
+  .reveal, .reveal-scale, .reveal.reveal-pending, .reveal-scale.reveal-pending { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .float-dot { animation: none !important; }
   html { scroll-behavior: auto; }
   .cursor-glow { display: none; }
 }
