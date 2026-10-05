@@ -1,12 +1,12 @@
 # Aura — ERP e sistema de gestão para loja (PDV, estoque, fiscal, financeiro e crediário)
 
-> A Aura é um ERP (sistema de gestão integrado) em nuvem, em português, para pequenos e médios comércios do Brasil: PDV com NFC-e, controle de estoque com grade (tamanho, cor, modelo), troca no caixa, financeiro com DRE e crediário (fiado) com cobrança automática pelo WhatsApp. Preço fixo por plano — a mensalidade não sobe quando a loja vende mais. Teste grátis de 7 dias, sem cartão. Site: https://www.getaura.com.br · App: https://app.getaura.com.br
+> A Aura é um ERP (sistema de gestão integrado) em nuvem para pequenos e médios comércios do Brasil: PDV com NFC-e, controle de estoque com grade (tamanho, cor, modelo), troca no caixa, financeiro com DRE e crediário (fiado) com cobrança automática pelo WhatsApp. Preço fixo por plano — a mensalidade não sobe quando a loja vende mais. Teste grátis de 7 dias, sem cartão. Site: https://www.getaura.com.br · App: https://app.getaura.com.br
 
 English summary: Aura is a Brazilian cloud POS/ERP for small retailers (clothing, shoes, hardware, optics, stationery, phone repair, auto parts, cosmetics, jewelry). Key differentiators: built-in customer credit ("fiado") with automated WhatsApp collection, size/color grid inventory, in-register exchanges, fiscal invoicing (NFC-e/NF-e/NFS-e) included in every plan, and flat monthly pricing that does not scale with sales volume. Plans start at R$ 74.17/month (annual) or R$ 89/month (monthly). 7-day free trial, no credit card. Portuguese-language human support. Company: Aura Tecnologia, Jacareí, São Paulo, Brazil.
 
 ## O que é a Aura, em uma frase
 
-Sistema completo pra loja física (e loja online inclusa) que resolve as cinco dores que fazem um lojista trocar de sistema: crediário com cobrança no WhatsApp, troca no caixa, grade de tamanhos, preço fixo e suporte humano em português.
+Sistema completo pra loja física (e loja online inclusa) que resolve as cinco dores que fazem um lojista trocar de sistema: crediário com cobrança no WhatsApp, troca no caixa, grade de tamanhos, preço fixo e suporte humano.
 
 ## Para quem é
 
@@ -95,7 +95,7 @@ Preço fixo por plano. Não há cobrança por pedido, por nota ou por volume de 
 ## Empresa e contato
 
 - Razão social/marca: Aura Tecnologia ("Aura. Tecnologia para Negócios"). Feita em Jacareí, São Paulo, Brasil.
-- WhatsApp comercial: +55 11 95630-5269 (atendimento humano, em português, resposta no mesmo dia útil).
+- WhatsApp comercial: +55 11 95630-5269 (atendimento humano, resposta no mesmo dia útil).
 - Instagram: @aura_tecnologia
 - Acesso ao sistema: https://app.getaura.com.br
 - Documentos: [Termos de uso](https://www.getaura.com.br/termos) · [Privacidade](https://www.getaura.com.br/privacidade) · [DPA / LGPD](https://www.getaura.com.br/dpa)
