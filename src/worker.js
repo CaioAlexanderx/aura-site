@@ -3,17 +3,20 @@
 //
 // Rotas:
 //   POST /api/lead-partial → "quero que me chamem": só o WhatsApp,
-//                            encaminhado ao CRM (ProspecaoAdmin)
+//                            encaminhado ao CRM (ProspecaoAdmin) e por
+//                            e-mail (Resend) para contato@getaura.com.br
 //   *    /api/contact      → 410: o formulário completo foi desativado
 //                            (o site só tem contato por WhatsApp)
 //   *                      → static assets (HTML, CSS, JS, imagens)
 //
 // Variáveis (Workers & Pages > aura-site > Settings > Variables and Secrets):
 //   SITE_LEADS_TOKEN  — token do endpoint público de leads do backend
+//   RESEND_API_KEY    — chave da Resend para o e-mail do lead (secret)
 //   AURA_API_URL      — opcional; base da API (default: produção)
 // ============================================================
 
 import AuraPhone from '../js/phone-br.js';
+import { sendLeadEmail } from './lead-email.js';
 
 // Origens que podem postar lead. localhost/127.0.0.1 em qualquer porta (dev).
 const ALLOWED_ORIGINS = ['https://www.getaura.com.br', 'https://getaura.com.br'];
@@ -82,7 +85,8 @@ async function forwardLeadToCrm(env, f) {
 }
 
 // ── "Quero que me chamem" (bloco WhatsApp das páginas + exit-intent) ──
-// Só o WhatsApp. Vai pro CRM como lead parcial (source='site_partial').
+// Só o WhatsApp. Vai pro CRM como lead parcial (source='site_partial')
+// e por e-mail, em paralelo. Basta um dos dois chegar para dar sucesso.
 async function handlePartial(request, env) {
   if (request.method !== 'POST') {
     return jsonResp({ ok: false, error: 'Metodo nao suportado' }, 405);
@@ -131,11 +135,24 @@ async function handlePartial(request, env) {
     return jsonResp({ ok: false, error: AuraPhone.ERROR_MSG }, 400);
   }
 
-  const ok = await forwardLeadToCrm(env, {
-    whatsapp: AuraPhone.format(whatsapp),
-    mensagem: 'Pediu para ser chamado no WhatsApp' + (page ? ' (site: ' + page + ')' : ''),
-  });
-  return ok
+  const phone = AuraPhone.format(whatsapp);
+  const [crm, email] = await Promise.allSettled([
+    forwardLeadToCrm(env, {
+      whatsapp: phone,
+      mensagem: 'Pediu para ser chamado no WhatsApp' + (page ? ' (site: ' + page + ')' : ''),
+    }),
+    sendLeadEmail(env, {
+      phone,
+      digits: AuraPhone.normalize(whatsapp),
+      page,
+      country: request.headers.get('cf-ipcountry') || '',
+    }),
+  ]);
+  const crmOk = crm.status === 'fulfilled' && crm.value === true;
+  const emailOk = email.status === 'fulfilled' && email.value === true;
+  console.log('[lead] crm: ' + (crmOk ? 'ok' : 'falhou') + ', email: ' + (emailOk ? 'ok' : 'falhou') + (page ? ' (página ' + page + ')' : ''));
+
+  return crmOk || emailOk
     ? jsonResp({ ok: true, message: 'Anotado! A gente te chama no WhatsApp em horário comercial.' })
     : jsonResp({ ok: false, error: 'Nao foi possivel agora. Tenta de novo ou chama a gente no WhatsApp.' }, 502);
 }
