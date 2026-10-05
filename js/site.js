@@ -167,11 +167,13 @@
   });
 
   // ----- LOOPS: pausa orbs/marquee/levitate/radar/brilho do hero fora da tela -----
+  // [data-hero-flip]: o flip de telas da home troca no fim da animação de
+  // progresso, então pausar a animação aqui também pausa a troca.
   if (hasIO) {
     const loopIO = new IntersectionObserver((entries) => {
       entries.forEach((entry) => entry.target.classList.toggle('anim-off', !entry.isIntersecting));
     }, { rootMargin: '100px 0px' });
-    document.querySelectorAll('.orbs, .marquee, .phone.levitate, .aura-radar, .v-hero')
+    document.querySelectorAll('.orbs, .marquee, .phone.levitate, .aura-radar, .v-hero, [data-hero-flip]')
       .forEach((el) => loopIO.observe(el));
   }
 

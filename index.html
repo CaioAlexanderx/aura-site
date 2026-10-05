@@ -339,8 +339,7 @@
   .home-hero-micro strong { color: var(--section-ink-2); font-weight: 600; }
   .home-hero-proof { list-style: none; display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--section-border); font-size: 13px; color: var(--section-ink-2); }
   .home-hero-proof .label { display: block; color: #fff; margin-bottom: 2px; }
-  .home-hero-media { position: relative; }
-  .home-hero-media .browser-shot { transform: perspective(1600px) rotateY(-5deg) rotateX(1.5deg); transform-origin: left center; }
+  .home-hero-frame { position: relative; }
   .home-hero-tag { position: absolute; left: -18px; bottom: 34px; display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 12px; background: #fff; color: #1a1330; font-size: 13px; font-weight: 600; box-shadow: 0 18px 40px rgba(0,0,0,0.45); z-index: 2; }
   .home-hero-tag i { width: 9px; height: 9px; border-radius: 50%; background: #25D366; flex: none; }
 
@@ -350,6 +349,44 @@
   .browser-shot-bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.18); flex: none; }
   .browser-shot-bar span { margin-left: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--section-ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .browser-shot img { width: 100%; height: auto; }
+
+  /* ---------- Flip das telas no hero (04/10/2026) ----------
+     .hero-flip guarda a inclinação de repouso; .hero-flip-card gira 180° a
+     cada troca (cartão de duas faces). A área da imagem tem proporção fixa
+     (a da 1ª captura): telas mais baixas são cortadas por cima, sem salto. */
+  .home-hero-media { --flip-dur: 760ms; --flip-depth: 140px; --flip-interval: 4.5s; }
+  .hero-flip { transform: perspective(1600px) rotateY(-5deg) rotateX(1.5deg); transform-origin: left center; transform-style: preserve-3d; }
+  .hero-flip-card { position: relative; transform-style: preserve-3d; }
+  .hero-flip-face { position: relative; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .hero-flip-face + .hero-flip-face { position: absolute; inset: 0; transform: rotateY(180deg); }
+  .hero-flip-media { aspect-ratio: 1568 / 744; }
+  .hero-flip-media picture { display: block; height: 100%; }
+  .browser-shot .hero-flip-media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: opacity 0.15s ease; }
+  /* Brilho que atravessa a tela durante o giro */
+  .hero-flip-face::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; background: linear-gradient(105deg, transparent 30%, rgba(196,181,253,0.32) 48%, rgba(255,255,255,0.18) 52%, transparent 70%); transform: translateX(-100%); }
+  .hero-flip-card.is-flipping .hero-flip-face::after { animation: hero-flip-sheen var(--flip-dur) ease-out; }
+  @keyframes hero-flip-sheen { 0% { opacity: 0; transform: translateX(-100%); } 35% { opacity: 1; } 100% { opacity: 0; transform: translateX(100%); } }
+  /* Etiqueta: troca curta no meio do giro (não gira junto) */
+  .home-hero-tag span { transition: opacity 0.1s ease, transform 0.1s ease; }
+  .home-hero-tag.is-out span { opacity: 0; transform: translateY(5px); }
+  /* Indicadores com progresso (só existem com JS: nascem com [hidden]) */
+  .hero-flip-nav { display: flex; justify-content: center; gap: 4px; margin-top: 18px; }
+  .hero-flip-nav[hidden] { display: none; }
+  .hero-flip-dot { display: flex; align-items: center; width: 44px; height: 28px; padding: 0 6px; border: 0; background: none; cursor: pointer; }
+  .hero-flip-dot span { position: relative; display: block; width: 100%; height: 3px; border-radius: 3px; overflow: hidden; background: rgba(255,255,255,0.16); transition: background 0.2s ease; }
+  .hero-flip-dot:hover span { background: rgba(255,255,255,0.3); }
+  .hero-flip-dot span::after { content: ""; position: absolute; inset: 0; background: var(--violet-3); transform: scaleX(0); transform-origin: left; }
+  .hero-flip-dot[aria-current="true"] span::after { animation: hero-flip-progress var(--flip-interval) linear forwards; }
+  .hero-flip-dot:focus-visible { outline: 2px solid var(--violet-3); outline-offset: 2px; border-radius: 6px; }
+  /* .anim-off (js/site.js) não alcança pseudo-elementos dos filhos: regra própria */
+  .is-paused .hero-flip-dot[aria-current="true"] span::after,
+  .anim-off .hero-flip-dot[aria-current="true"] span::after { animation-play-state: paused; }
+  @keyframes hero-flip-progress { to { transform: scaleX(1); } }
+  @media (prefers-reduced-motion: reduce) {
+    /* Sem giro e sem troca automática: o ativo fica cheio, a troca é por fade */
+    .hero-flip-dot[aria-current="true"] span::after { animation: none; transform: scaleX(1); }
+    .hero-flip-card.is-flipping .hero-flip-face::after { animation: none; }
+  }
 
   /* ---------- Faixa de segmentos ---------- */
   .home-segments.section { padding-top: 18px; padding-bottom: 18px; border-top: 1px solid var(--section-border); border-bottom: 1px solid var(--section-border); }
@@ -386,7 +423,9 @@
 
   @media (max-width: 900px) {
     .home-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
-    .home-hero-media .browser-shot { transform: none; }
+    /* Sem inclinação; a perspectiva fica só para o giro, um pouco mais curto */
+    .home-hero-media { --flip-dur: 640ms; --flip-depth: 90px; }
+    .hero-flip { transform: perspective(1100px); }
     .home-hero-tag { left: 10px; bottom: 10px; font-size: 12px; padding: 8px 12px; }
     .home-panel { grid-template-columns: minmax(0, 1fr); gap: 20px; }
     .home-quote { flex-direction: column; align-items: flex-start; }
@@ -497,15 +536,32 @@
         </ul>
       </div>
 
-      <div class="home-hero-media">
-        <div class="browser-shot">
-          <div class="browser-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>app.getaura.com.br · Crediário</span></div>
-          <picture>
-            <source type="image/webp" srcset="/assets/home/crediario.webp">
-            <img src="/assets/home/crediario.jpg" width="1568" height="744" fetchpriority="high" alt="Tela do Crediário da Aura: R$ 2.289,50 em aberto, parcelas vencidas, carteira por faixa de atraso e a lista de clientes com o botão de cobrar no WhatsApp">
-          </picture>
+      <!-- Moldura que vira e mostra outras telas (script no fim da página).
+           Sem JS: só o Crediário, estático, e os indicadores não aparecem. -->
+      <div class="home-hero-media" data-hero-flip>
+        <div class="home-hero-frame">
+          <div class="hero-flip">
+            <div class="hero-flip-card">
+              <div class="browser-shot hero-flip-face">
+                <div class="browser-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>app.getaura.com.br · Crediário</span></div>
+                <div class="hero-flip-media">
+                  <picture>
+                    <source type="image/webp" srcset="/assets/home/crediario.webp">
+                    <img src="/assets/home/crediario.jpg" width="1568" height="744" fetchpriority="high" alt="Tela do Crediário da Aura: R$ 2.289,50 em aberto, parcelas vencidas, carteira por faixa de atraso e a lista de clientes com o botão de cobrar no WhatsApp">
+                  </picture>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="home-hero-tag"><i aria-hidden="true"></i><span>Cobrança pronta no WhatsApp, em um toque</span></p>
         </div>
-        <p class="home-hero-tag"><i aria-hidden="true"></i>Cobrança pronta no WhatsApp, em um toque</p>
+        <div class="hero-flip-nav" hidden>
+          <button type="button" class="hero-flip-dot" aria-label="Ver tela do Crediário" aria-current="true" data-shot="crediario" data-name="Crediário" data-tag="Cobrança pronta no WhatsApp, em um toque" data-alt="Tela do Crediário da Aura: R$ 2.289,50 em aberto, parcelas vencidas, carteira por faixa de atraso e a lista de clientes com o botão de cobrar no WhatsApp"><span></span></button>
+          <button type="button" class="hero-flip-dot" aria-label="Ver tela do Caixa" data-shot="caixa" data-name="Caixa" data-tag="Venda em poucos toques, com foto do produto" data-alt="Tela do Caixa da Aura: produtos com foto e estoque, venda de R$ 329,70 com três itens e as formas de pagamento PIX, dinheiro, débito, crédito e crediário"><span></span></button>
+          <button type="button" class="hero-flip-dot" aria-label="Ver tela do Estoque" data-shot="estoque" data-name="Estoque" data-tag="Estoque que avisa quando está acabando" data-alt="Tela do Estoque da Aura: valor em estoque, 23 alertas de estoque baixo e a lista de produtos com código, variante, quantidade, preço e margem"><span></span></button>
+          <button type="button" class="hero-flip-dot" aria-label="Ver tela da Grade" data-shot="grade" data-name="Grade" data-tag="Cor e tamanho, cada peça com o seu estoque" data-alt="Cadastro de produto na Aura com estoque por cor e tamanho: grade com rosa, preto e marrom nos tamanhos M, P e G, cada combinação com a sua quantidade"><span></span></button>
+          <button type="button" class="hero-flip-dot" aria-label="Ver tela de Clientes" data-shot="clientes" data-name="Clientes" data-tag="Cliente parado volta com um cupom no WhatsApp" data-alt="Tela de Clientes da Aura: reativação por WhatsApp com 24 clientes sem comprar há 60 dias ou mais, que já gastaram R$ 12.673,10, e o botão de mandar cupom"><span></span></button>
+        </div>
       </div>
     </div>
   </div>
@@ -1037,6 +1093,170 @@
   });
   list.hidden = false;
   select(tabs[0], false);
+})();
+
+/* Flip das telas do hero. A moldura é um cartão de duas faces: a face
+   escondida recebe a próxima tela e o cartão gira 180°. O tempo de cada tela
+   é a própria animação de progresso do indicador ativo (animationend = próxima),
+   então pausar é só pausar essa animação: hover na moldura, foco nos
+   indicadores, aba oculta (.is-paused) e fora da tela (.anim-off do js/site.js).
+   As outras 4 imagens carregam depois do load; só vira para imagem pronta.
+   Movimento reduzido: sem giro e sem troca automática; clique troca por fade. */
+(function () {
+  var root = document.querySelector('[data-hero-flip]');
+  var nav = root && root.querySelector('.hero-flip-nav');
+  if (!nav || !root.animate) return;
+  var stage = root.querySelector('.hero-flip');
+  var card = root.querySelector('.hero-flip-card');
+  var tag = root.querySelector('.home-hero-tag');
+  var tagText = tag.querySelector('span');
+  var faces = [card.querySelector('.hero-flip-face')];
+  var firstImg = faces[0].querySelector('img');
+  var dots = Array.prototype.slice.call(nav.querySelectorAll('.hero-flip-dot'));
+  var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var shots = dots.map(function (d) { return { key: d.dataset.shot, name: d.dataset.name, tag: d.dataset.tag, alt: d.dataset.alt, img: null, ready: false }; });
+  var cur = 0, side = 0, busy = false, want = -1, pauses = {};
+
+  // Segunda face: cópia da primeira, com espaço para uma <img> simples.
+  faces[1] = faces[0].cloneNode(false);
+  faces[1].innerHTML = faces[0].querySelector('.browser-shot-bar').outerHTML + '<div class="hero-flip-media"></div>';
+  faces[1].setAttribute('aria-hidden', 'true');
+  card.appendChild(faces[1]);
+
+  function pause(why, on) {
+    if (on) pauses[why] = 1; else delete pauses[why];
+    root.classList.toggle('is-paused', Object.keys(pauses).length > 0);
+  }
+
+  // Carrega a imagem no mesmo formato que o navegador escolheu para a 1ª (webp ou jpg).
+  function load(i) {
+    var s = shots[i];
+    if (s.img) return;
+    var ext = /\.webp(\?|$)/.test(firstImg.currentSrc) ? '.webp' : '.jpg';
+    s.img = new Image();
+    s.img.width = 1568; s.img.height = 744;
+    s.img.alt = s.alt;
+    s.img.decoding = 'async';
+    s.img.onload = function () {
+      var done = function () { s.ready = true; if (want === i) go(i); };
+      s.img.decode ? s.img.decode().then(done, done) : done();
+    };
+    s.img.src = '/assets/home/' + s.key + ext;
+  }
+  function loadAll() { for (var i = 0; i < shots.length; i++) load(i); }
+
+  function fill(face, s) {
+    face.querySelector('.browser-shot-bar span').textContent = 'app.getaura.com.br · ' + s.name;
+    var media = face.querySelector('.hero-flip-media');
+    media.textContent = '';
+    media.appendChild(s.img);
+  }
+  function mark(i) {
+    dots.forEach(function (d, j) {
+      if (j === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+    });
+  }
+  function swapTag(s, delay) {
+    setTimeout(function () { tag.classList.add('is-out'); }, Math.max(0, delay - 100));
+    setTimeout(function () { tagText.textContent = s.tag; tag.classList.remove('is-out'); }, delay);
+  }
+
+  function go(i) {
+    if (i === cur || busy) { if (busy) want = i; return; }
+    var s = shots[i];
+    if (!s.ready) { want = i; load(i); return; } // vira quando a imagem estiver pronta
+    want = -1;
+    cur = i;
+    mark(i);
+    if (mq.matches) { // movimento reduzido: fade curto na mesma face
+      var img = faces[side].querySelector('img');
+      busy = true;
+      img.style.opacity = '0';
+      tag.classList.add('is-out');
+      setTimeout(function () {
+        img.style.opacity = '';
+        s.img.style.opacity = '0';
+        fill(faces[side], s);
+        void s.img.offsetWidth; // aplica o 0 antes de voltar ao 1 (transição)
+        s.img.style.opacity = '';
+        tagText.textContent = s.tag; tag.classList.remove('is-out');
+        busy = false;
+        if (want >= 0) go(want);
+      }, 150);
+      return;
+    }
+    var back = faces[1 - side];
+    fill(back, s);
+    var dur = parseFloat(getComputedStyle(stage).getPropertyValue('--flip-dur')) || 760;
+    var depth = getComputedStyle(stage).getPropertyValue('--flip-depth').trim() || '140px';
+    var from = side * 180;
+    busy = true;
+    card.classList.add('is-flipping');
+    var anim = card.animate([
+      { transform: 'translateZ(0) rotateY(' + from + 'deg)' },
+      { transform: 'translateZ(-' + depth + ') rotateY(' + (from + 90) + 'deg)', offset: 0.5 },
+      { transform: 'translateZ(0) rotateY(' + (from + 180) + 'deg)' }
+    ], { duration: dur, easing: 'cubic-bezier(0.65, 0, 0.35, 1)' });
+    side = 1 - side;
+    card.style.transform = 'rotateY(' + side * 180 + 'deg)';
+    swapTag(s, dur / 2);
+    anim.onfinish = anim.oncancel = function () {
+      busy = false;
+      card.classList.remove('is-flipping');
+      faces[side].removeAttribute('aria-hidden');
+      faces[1 - side].setAttribute('aria-hidden', 'true');
+      if (want >= 0) go(want);
+    };
+  }
+
+  // A 1ª tela já está na face da frente.
+  shots[0].ready = true;
+  shots[0].img = firstImg;
+  // Ela vive num <picture>; ao sair dele o navegador escolheria de novo a fonte.
+  // Por isso, na 1ª volta, a 1ª face ganha uma <img> simples com a mesma URL.
+  function adoptFirst() {
+    var img = new Image();
+    img.width = 1568; img.height = 744; img.alt = shots[0].alt; img.src = firstImg.currentSrc || firstImg.src;
+    shots[0].img = img;
+  }
+
+  // Autoplay: fim do progresso do indicador ativo = próxima tela.
+  nav.addEventListener('animationend', function (e) {
+    if (e.animationName !== 'hero-flip-progress' || mq.matches) return;
+    go((cur + 1) % shots.length);
+  });
+  dots.forEach(function (d, i) {
+    d.addEventListener('click', function () {
+      if (i === cur) return;
+      go(i); // marcar o novo ativo reinicia o progresso (temporizador)
+    });
+    d.addEventListener('keydown', function (e) {
+      var n = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
+      if (n === null) return;
+      e.preventDefault();
+      dots[(n + dots.length) % dots.length].focus();
+    });
+  });
+  // Hover só com mouse: no toque não há "sair", e a pausa ficaria presa.
+  stage.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') pause('hover', true); });
+  stage.addEventListener('pointerleave', function () { pause('hover', false); });
+  nav.addEventListener('focusin', function () { pause('focus', true); });
+  nav.addEventListener('focusout', function () { pause('focus', false); });
+  document.addEventListener('visibilitychange', function () { pause('hidden', document.hidden); });
+  pause('hidden', document.hidden);
+
+  root.setAttribute('role', 'group');
+  root.setAttribute('aria-roledescription', 'carrossel');
+  root.setAttribute('aria-label', 'Telas do sistema');
+  nav.hidden = false;
+
+  function later() {
+    adoptFirst();
+    if (window.requestIdleCallback) requestIdleCallback(loadAll, { timeout: 1500 });
+    else setTimeout(loadAll, 300);
+  }
+  if (document.readyState === 'complete') later();
+  else window.addEventListener('load', later, { once: true });
 })();
 </script>
 <script src="js/site.js"></script>
