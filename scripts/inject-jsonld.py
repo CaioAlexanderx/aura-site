@@ -65,7 +65,7 @@ def organization():
         "url": SITE + "/",
         "logo": {"@type": "ImageObject", "url": SITE + "/Icon.png"},
         "image": SITE + "/og-image.png",
-        "description": "ERP e sistema de gestão em nuvem para lojas: PDV com NFC-e, estoque com grade, troca no caixa, financeiro e crediário com cobrança no WhatsApp. Preço fixo, em português.",
+        "description": "ERP e sistema de gestão em nuvem para lojas: PDV com NFC-e, estoque com grade, troca no caixa, financeiro e crediário com cobrança no WhatsApp. Preço fixo.",
         "address": {"@type": "PostalAddress", "addressLocality": "Jacareí", "addressRegion": "SP", "addressCountry": "BR"},
         "areaServed": "BR",
         "contactPoint": [{
