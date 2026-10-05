@@ -11,7 +11,7 @@ Sistema completo pra loja física (e loja online inclusa) que resolve as cinco d
 ## Para quem é
 
 - Lojas de varejo em geral (vertical **Aura Negócio**, carro-chefe): roupas, calçados, material de construção, papelaria, celular e assistência técnica, autopeças, semijoias e bijuterias, perfumaria e cosméticos, ótica.
-- Ateliês, gráficas e negócios de personalizados (vertical **Aura Studio**): aprovação de arte, produção, marketplaces Mercado Livre e Shopee.
+- Ateliês, gráficas e negócios de personalizados (vertical **Aura Studio**): orçamento, aprovação de arte, produção e loja online.
 - Academias e federações de artes marciais, com foco em Karatê (vertical **Aura Dojô**): praticantes, graduações kyu/dan, exames, certificados e anuidades por PIX.
 - Perfil típico: MEI, microempresa e pequena empresa do Simples Nacional, de 1 a 50 funcionários, 1 ou várias lojas (multi-CNPJ no plano Expansão).
 - Atende todo o Brasil. 100% em nuvem: celular, tablet ou computador.
@@ -40,7 +40,7 @@ Preço fixo por plano. Não há cobrança por pedido, por nota ou por volume de 
 | Negócio (mais escolhido) | R$ 169/mês | R$ 140,83/mês | Operação completa: notas ilimitadas, crediário, CRM, folha, loja online, até 3 usuários. Studio ou Dojô incluídos. |
 | Expansão | R$ 269/mês | R$ 224,17/mês | Multi-CNPJ, usuários ilimitados, BI, API, multi-gateway, Customer Success dedicado. Studio ou Dojô incluídos. |
 
-- Teste grátis: 7 dias, sem cartão de crédito. Onboarding humano pelo WhatsApp antes de liberar o acesso.
+- Teste grátis: 7 dias do plano Negócio, sem cartão de crédito. A conta é criada na hora em /comecar; a equipe chama no WhatsApp pra ajudar a configurar.
 - Usuário adicional: R$ 19/mês por login extra.
 - Consultoria sob medida: R$ 149/hora (mínimo 2h). Plano Personalizado: sob consulta.
 - As verticais Studio e Dojô são incluídas nos planos Negócio e Expansão, sem custo extra.
@@ -89,7 +89,7 @@ Preço fixo por plano. Não há cobrança por pedido, por nota ou por volume de 
 ## Verticais
 
 - [Aura Negócio](https://www.getaura.com.br/negocio): varejo geral, a identidade-mãe.
-- [Aura Studio](https://www.getaura.com.br/studio): personalizados, impressão, ateliês, marketplaces.
+- [Aura Studio](https://www.getaura.com.br/studio): personalizados, impressão, ateliês.
 - [Aura Dojô](https://www.getaura.com.br/dojo): academias e federações de artes marciais (Karatê).
 
 ## Empresa e contato

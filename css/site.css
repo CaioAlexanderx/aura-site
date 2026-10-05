@@ -840,22 +840,25 @@ img, svg { display: block; max-width: 100%; }
 }
 
 /* =========================================================
-   Form states — usado por setupContactForms() em js/site.js
-   (sucesso/erro do formulário de contato; data-form="contact")
-   ========================================================= */
-.form-success { display: none; }
-.form-success.show { display: block; text-align: center; padding: 32px 0; color: #fff; }
-.form-error { display: none; margin-top: 12px; font-size: 13px; line-height: 1.5; color: #fca5a5; }
-.form-error.show { display: block; }
-
-/* =========================================================
-   Lead capture — form progressivo (passo 1/2) + exit-intent
+   Contato só por WhatsApp — bloco [data-wa-lead] + exit-intent
    (usado por js/lead-capture.js; posta em /api/lead-partial)
    ========================================================= */
-.lc-micro { margin-top: 10px; font-size: 12px; line-height: 1.5; color: rgba(220,215,255,0.5); text-align: center; }
+.wa-lead { text-align: center; }
+.wa-lead-title { font-family: var(--font-heading); font-size: 24px; line-height: 1.25; color: #fff; margin-bottom: 8px; }
+.wa-lead-sub { font-size: 14px; line-height: 1.55; color: rgba(220,215,255,0.7); margin: 0 0 22px; }
+.wa-lead-cta { width: 100%; justify-content: center; }
+.wa-lead-or { display: flex; align-items: center; gap: 12px; margin: 22px 0 18px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(220,215,255,0.45); }
+.wa-lead-or::before, .wa-lead-or::after { content: ""; flex: 1; height: 1px; background: rgba(255,255,255,0.1); }
+.wa-lead-callback { text-align: left; }
+.wa-lead-callback .field label { font-family: var(--font-body); font-size: 14px; letter-spacing: 0; text-transform: none; color: rgba(231,226,255,0.85); }
+.wa-lead-callback input[aria-invalid="true"] { border-color: rgba(248,113,113,0.7); }
+.wa-lead-submit { width: 100%; justify-content: center; margin-top: 14px; }
+.lc-micro { margin-top: 12px; font-size: 12px; line-height: 1.5; color: rgba(220,215,255,0.5); text-align: center; }
 .lc-err { display: none; margin-top: 12px; font-size: 13px; line-height: 1.5; color: #fca5a5; }
 .lc-err.show { display: block; }
-.lc-step2-intro { margin-bottom: 18px; padding: 14px 16px; border-radius: 14px; background: rgba(124,58,237,0.12); border: 1px solid rgba(167,139,250,0.28); color: #e7e2ff; font-size: 14px; line-height: 1.5; text-align: center; }
+.lc-success { margin-top: 22px; padding: 16px 18px; border-radius: 14px; background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.35); color: #d9fbe6; font-size: 15px; line-height: 1.5; text-align: center; outline: none; }
+.lc-success[hidden] { display: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
 /* Modal exit-intent */
 .lc-modal { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 20px; opacity: 0; transition: opacity .25s ease; }

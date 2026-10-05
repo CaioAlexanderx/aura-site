@@ -71,7 +71,7 @@
       </div>
       <div>
         <h5>Contato</h5>
-        <a href="https://wa.me/5511956305269" target="_blank" rel="noopener">(11) 95630-5269</a><a href="/#contato">Formulário</a><a href="https://instagram.com/aura_tecnologia" target="_blank" rel="noopener">@aura_tecnologia</a>
+        <a href="https://wa.me/5511956305269" target="_blank" rel="noopener">(11) 95630-5269</a><a href="/#contato">Quero que me chamem</a><a href="https://instagram.com/aura_tecnologia" target="_blank" rel="noopener">@aura_tecnologia</a>
       </div>
     </div>
     <div class="footer-bottom">

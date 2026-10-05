@@ -121,53 +121,6 @@
   }, { threshold: 0.4 });
   document.querySelectorAll('[data-count]').forEach((el) => countObs.observe(el));
 
-  // =========================================================
-  // FORM SUBMIT: integra com /api/contact (Cloudflare Pages Function + Resend)
-  // Marca formularios com [data-form="contact"] pra plugar.
-  // =========================================================
-  function setupContactForms() {
-    document.querySelectorAll('form[data-form="contact"]').forEach(function(form) {
-      var successEl = form.parentElement.querySelector('.form-success') ||
-                      document.querySelector(form.getAttribute('data-success'));
-      var errorEl = form.querySelector('.form-error');
-      var submitBtn = form.querySelector('button[type="submit"]');
-      var originalBtnText = submitBtn ? submitBtn.innerHTML : 'Enviar';
-
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        if (errorEl) { errorEl.classList.remove('show'); errorEl.textContent = ''; }
-        if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = 'Enviando...'; }
-
-        var formData = new FormData(form);
-        var action = form.getAttribute('action') || '/api/contact';
-
-        fetch(action, {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        }).then(function(r) {
-          return r.json().then(function(data) { return { status: r.status, data: data }; });
-        }).then(function(res) {
-          if (res.status === 200 && res.data && res.data.ok) {
-            form.style.display = 'none';
-            if (successEl) successEl.classList.add('show');
-            if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = originalBtnText; }
-          } else {
-            var msg = (res.data && res.data.error) ? res.data.error : 'Algo deu errado. Tente novamente.';
-            if (errorEl) { errorEl.textContent = msg; errorEl.classList.add('show'); }
-            if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = originalBtnText; }
-          }
-        }).catch(function(err) {
-          if (errorEl) {
-            errorEl.textContent = 'Erro de conexao. Verifique sua internet e tente de novo.';
-            errorEl.classList.add('show');
-          }
-          if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = originalBtnText; }
-        });
-      });
-    });
-  }
-  setupContactForms();
 
   // =========================================================
   // MOBILE NAV TOGGLE — abre/fecha menu mobile
