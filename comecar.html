@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- @dsCard group="Brand" name="Comecar" subtitle="Checkout trial · wizard de 2 passos (CNPJ → Conta)" -->
+<!-- @dsCard group="Brand" name="Comecar" subtitle="Checkout trial · wizard de 3 passos (CNPJ → Ramo → Conta)" -->
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -71,7 +71,7 @@
   }
   @media (max-width: 460px) { .trial-tagline { font-size: 13px; padding: 10px 14px; } }
 
-  /* ---- Progress: 2 steps ---- */
+  /* ---- Progress: 3 steps ---- */
   .wiz-progress {
     display: flex;
     align-items: center;
@@ -129,6 +129,11 @@
     transition: transform 0.45s var(--ease);
   }
   .wiz-connector.fill::after { transform: scaleX(1); }
+  @media (max-width: 460px) {
+    .wiz-progress { gap: 8px; }
+    .wiz-step { gap: 7px; }
+    .wiz-connector { width: 22px; }
+  }
 
   /* ---- Card ---- */
   .wiz-card {
@@ -228,6 +233,9 @@
     padding: 16px 22px;
     font-size: 16px;
   }
+  /* .label do site.css (mono, caixa alta, ink-3) vazava pro texto do botão
+     e o deixava com cara de desabilitado. */
+  .cmc-btn .label { font: inherit; letter-spacing: inherit; text-transform: none; color: inherit; }
   .cmc-btn[disabled] { opacity: 0.55; cursor: not-allowed; transform: none !important; box-shadow: 0 8px 24px rgba(124,58,237,0.2), inset 0 1px 0 rgba(255,255,255,0.18); }
   .cmc-btn .spinner {
     width: 17px; height: 17px;
@@ -294,6 +302,7 @@
   .result-head svg { width: 15px; height: 15px; }
   .result-rows { display: grid; gap: 11px; margin-bottom: 18px; }
   .result-rows .r { display: flex; flex-direction: column; gap: 2px; }
+  .result-rows .r[hidden] { display: none; }
   .result-rows .r .k {
     font-family: var(--font-mono);
     font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
@@ -307,6 +316,84 @@
     text-decoration-color: rgba(170,160,235,0.3);
   }
   .result-correct:hover { color: var(--violet-3); }
+
+  /* ---- Passo Ramo: sugestão pelo CNPJ ---- */
+  .ramo-sug {
+    margin-bottom: 16px;
+    padding: 16px 18px;
+    border-radius: var(--r-2xl);
+    background: rgba(124,58,237,0.14);
+    border: 1px solid rgba(167,139,250,0.5);
+  }
+  .ramo-sug[hidden], .ramo-note[hidden], .ramo-extra[hidden] { display: none; }
+  .ramo-sug .k {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--violet-3);
+  }
+  .ramo-sug strong { display: block; margin-top: 5px; font-size: 17px; font-weight: 600; color: var(--ink); }
+  .ramo-sug .d { display: block; margin-top: 3px; font-size: 13.5px; line-height: 1.45; color: var(--ink-2); }
+  .ramo-note { margin: -4px 0 14px; font-size: 13px; color: var(--ink-3); }
+  .ramo-note b { color: var(--ink-2); font-weight: 600; }
+
+  /* ---- Passo Ramo: opções (radiogroup) ---- */
+  .ramo-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 360px) { .ramo-opts { grid-template-columns: 1fr; } }
+  .ramo-opt {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 13px 14px;
+    text-align: left;
+    background: rgba(0,0,0,0.22);
+    border: 1px solid var(--border-2);
+    border-radius: var(--r-xl);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.18s var(--ease);
+  }
+  .ramo-opt .d { display: block; margin-top: 3px; font-size: 12.5px; font-weight: 400; color: var(--ink-3); }
+  .ramo-opt:hover { border-color: rgba(167,139,250,0.5); }
+  .ramo-opt:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(124,58,237,0.22); border-color: var(--violet); }
+  .ramo-opt[aria-checked="true"] {
+    background: rgba(124,58,237,0.2);
+    border-color: var(--violet-3);
+    box-shadow: inset 0 0 0 1px var(--violet-3);
+  }
+  .ramo-opt[aria-checked="true"] .d { color: var(--ink-2); }
+
+  /* ---- Passo Ramo: pergunta extra (OS) ---- */
+  .ramo-extra { margin-top: 20px; }
+  .ramo-extra .q { font-size: 14.5px; line-height: 1.4; color: var(--ink); font-weight: 500; margin-bottom: 10px; }
+  .ramo-toggle { display: inline-flex; gap: 8px; }
+  .ramo-toggle button {
+    min-width: 76px;
+    padding: 9px 18px;
+    border-radius: var(--r-pill);
+    background: rgba(0,0,0,0.22);
+    border: 1px solid var(--border-2);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-2);
+    cursor: pointer;
+    transition: all 0.18s var(--ease);
+  }
+  .ramo-toggle button:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(124,58,237,0.22); }
+  .ramo-toggle button[aria-pressed="true"] {
+    color: #fff;
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    border-color: transparent;
+  }
+  .ramo-extra .field-hint { margin-top: 8px; }
+  [data-step="ramo"] .cmc-btn { margin-top: 22px; }
 
   /* ---- Terms checkbox ---- */
   .terms {
@@ -485,15 +572,20 @@
       </div>
     </div>
 
-    <!-- PROGRESS · 2 passos -->
+    <!-- PROGRESS · 3 passos -->
     <div class="wiz-progress cmc-rise d1" data-progress>
       <div class="wiz-step active" data-progress-for="cnpj">
         <span class="dot"><span class="num">1</span><svg class="chk" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg></span>
         <span class="lbl">CNPJ</span>
       </div>
-      <div class="wiz-connector" data-connector></div>
-      <div class="wiz-step" data-progress-for="conta">
+      <div class="wiz-connector" data-connector="ramo"></div>
+      <div class="wiz-step" data-progress-for="ramo">
         <span class="dot"><span class="num">2</span><svg class="chk" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg></span>
+        <span class="lbl">Ramo</span>
+      </div>
+      <div class="wiz-connector" data-connector="conta"></div>
+      <div class="wiz-step" data-progress-for="conta">
+        <span class="dot"><span class="num">3</span><svg class="chk" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg></span>
         <span class="lbl">Conta</span>
       </div>
     </div>
@@ -534,6 +626,7 @@
             <div class="r"><span class="k">Razão social</span><span class="v" data-field="legal_name">—</span></div>
             <div class="r"><span class="k">Nome fantasia</span><span class="v" data-field="trade_name">—</span></div>
             <div class="r"><span class="k">Cidade / UF</span><span class="v" data-field="city_uf">—</span></div>
+            <div class="r" data-row="atividade" hidden><span class="k">Atividade</span><span class="v" data-field="cnae_descricao">—</span></div>
           </div>
           <button class="btn btn-primary cmc-btn" data-action="cnpj-confirm">
             <span class="label">Confirmar e continuar</span>
@@ -544,9 +637,59 @@
         </div>
       </section>
 
-      <!-- ============ PASSO 2 · CONTA ============ -->
-      <section data-step="conta" hidden>
+      <!-- ============ PASSO 2 · RAMO ============ -->
+      <section data-step="ramo" hidden>
         <a class="step-back" data-action="back-cnpj" href="#">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5L5.5 8l4.5 4.5"/></svg>
+          Voltar
+        </a>
+        <h1 class="step-title" id="ramo-title">Qual é o seu <em>ramo</em>?</h1>
+        <p class="step-sub">A Aura já abre montada pro seu tipo de loja.</p>
+
+        <!-- sugestão pelo CNAE (preenchida pelo JS) -->
+        <div class="ramo-sug" data-ramo-sug hidden>
+          <span class="k">Pelo seu CNPJ, parece que é</span>
+          <strong data-ramo-sug-name></strong>
+          <span class="d" data-ramo-sug-desc></span>
+        </div>
+        <p class="ramo-note" data-ramo-note hidden></p>
+
+        <div class="ramo-opts" role="radiogroup" aria-labelledby="ramo-title" data-ramo-opts>
+          <button type="button" class="ramo-opt" role="radio" aria-checked="false" tabindex="-1" data-segment="varejo">Loja em geral<span class="d">roupas, calçados, papelaria…</span></button>
+          <button type="button" class="ramo-opt" role="radio" aria-checked="false" tabindex="-1" data-segment="matcon">Material de construção<span class="d">orçamento, entrega, m² e kg</span></button>
+          <button type="button" class="ramo-opt" role="radio" aria-checked="false" tabindex="-1" data-segment="otica">Ótica<span class="d">receita e laboratório</span></button>
+          <button type="button" class="ramo-opt" role="radio" aria-checked="false" tabindex="-1" data-segment="assistencia">Assistência técnica<span class="d">ordem de serviço e garantia</span></button>
+          <button type="button" class="ramo-opt" role="radio" aria-checked="false" tabindex="-1" data-segment="studio">Personalizados<span class="d">arte, produção, mockup 3D</span></button>
+          <button type="button" class="ramo-opt" role="radio" aria-checked="false" tabindex="-1" data-segment="outro">Outro<span class="d">a gente te ajuda a montar</span></button>
+        </div>
+
+        <!-- pergunta extra: Ordem de Serviço (some em assistência e personalizados) -->
+        <div class="ramo-extra" role="group" aria-labelledby="ramo-extra-q" aria-describedby="ramo-extra-hint" data-ramo-extra hidden>
+          <p class="q" id="ramo-extra-q">Você também faz consertos ou serviços com prazo?</p>
+          <div class="ramo-toggle">
+            <button type="button" aria-pressed="false" data-extra-os="sim">Sim</button>
+            <button type="button" aria-pressed="true" data-extra-os="nao">Não</button>
+          </div>
+          <div class="field-hint" id="ramo-extra-hint">Liga a Ordem de Serviço junto.</div>
+        </div>
+
+        <div class="form-error" data-error="ramo">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="8" r="6.5"/><path d="M8 5v3.5M8 11h.01"/></svg>
+          <span data-error-msg></span>
+        </div>
+
+        <button class="btn btn-primary cmc-btn" data-action="ramo-confirm" disabled>
+          <span class="label" data-ramo-btn-label>Continuar</span>
+          <span class="arrow">→</span>
+          <span class="spinner"></span>
+        </button>
+
+        <a class="skip-link" href="https://wa.me/5511956305269?text=Quero%20ajuda%20pra%20escolher%20o%20ramo%20da%20minha%20loja%20na%20Aura" target="_blank" rel="noopener">Dá pra mudar depois, falando com a gente</a>
+      </section>
+
+      <!-- ============ PASSO 3 · CONTA ============ -->
+      <section data-step="conta" hidden>
+        <a class="step-back" data-action="back-ramo" href="#">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5L5.5 8l4.5 4.5"/></svg>
           Voltar
         </a>
