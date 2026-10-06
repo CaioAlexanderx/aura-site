@@ -16,7 +16,7 @@
 <link rel="icon" type="image/png" href="assets/Icon.png">
 <link rel="apple-touch-icon" href="assets/Icon.png">
 <link rel="stylesheet" href="css/tokens.css?v=2">
-<link rel="stylesheet" href="css/site.css?v=2">
+<link rel="stylesheet" href="css/site.css?v=3">
 <!-- jsonld:start -->
 <script type="application/ld+json">
 {
@@ -343,12 +343,7 @@
   .home-hero-tag { position: absolute; left: -18px; bottom: 34px; display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 12px; background: #fff; color: #1a1330; font-size: 13px; font-weight: 600; box-shadow: 0 18px 40px rgba(0,0,0,0.45); z-index: 2; }
   .home-hero-tag i { width: 9px; height: 9px; border-radius: 50%; background: #25D366; flex: none; }
 
-  /* Captura do sistema numa moldura de navegador */
-  .browser-shot { border-radius: 14px; overflow: hidden; border: 1px solid rgba(167,139,250,0.28); background: #0b0d1f; box-shadow: 0 40px 90px rgba(0,0,0,0.55), 0 0 0 6px rgba(124,58,237,0.08); }
-  .browser-shot-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: #11142a; border-bottom: 1px solid var(--section-border); }
-  .browser-shot-bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.18); flex: none; }
-  .browser-shot-bar span { margin-left: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--section-ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .browser-shot img { width: 100%; height: auto; }
+  /* Moldura .app-shot: css/site.css (compartilhada com as páginas de segmento) */
 
   /* ---------- Flip das telas no hero (04/10/2026) ----------
      .hero-flip guarda a inclinação de repouso; .hero-flip-card gira 180° a
@@ -361,7 +356,7 @@
   .hero-flip-face + .hero-flip-face { position: absolute; inset: 0; transform: rotateY(180deg); }
   .hero-flip-media { aspect-ratio: 1568 / 744; }
   .hero-flip-media picture { display: block; height: 100%; }
-  .browser-shot .hero-flip-media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: opacity 0.15s ease; }
+  .app-shot .hero-flip-media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: opacity 0.15s ease; }
   /* Brilho que atravessa a tela durante o giro */
   .hero-flip-face::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; background: linear-gradient(105deg, transparent 30%, rgba(196,181,253,0.32) 48%, rgba(255,255,255,0.18) 52%, transparent 70%); transform: translateX(-100%); }
   .hero-flip-card.is-flipping .hero-flip-face::after { animation: hero-flip-sheen var(--flip-dur) ease-out; }
@@ -542,8 +537,8 @@
         <div class="home-hero-frame">
           <div class="hero-flip">
             <div class="hero-flip-card">
-              <div class="browser-shot hero-flip-face">
-                <div class="browser-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>app.getaura.com.br · Crediário</span></div>
+              <div class="app-shot hero-flip-face">
+                <div class="app-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>app.getaura.com.br · Crediário</span></div>
                 <div class="hero-flip-media">
                   <picture>
                     <source type="image/webp" srcset="/assets/home/crediario.webp">
@@ -610,8 +605,8 @@
           <li>Mensagem de cobrança com valor, data e PIX</li>
         </ul>
       </div>
-      <div class="browser-shot">
-        <div class="browser-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Crediário</span></div>
+      <div class="app-shot">
+        <div class="app-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Crediário</span></div>
         <picture>
           <source type="image/webp" srcset="/assets/home/crediario.webp">
           <img src="/assets/home/crediario.jpg" width="1568" height="744" loading="lazy" decoding="async" alt="Crediário da Aura: total em aberto, valor vencido, clientes em atraso e a carteira dividida por faixa de atraso">
@@ -628,8 +623,8 @@
           <li>Troca e devolução direto no caixa</li>
         </ul>
       </div>
-      <div class="browser-shot">
-        <div class="browser-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Caixa</span></div>
+      <div class="app-shot">
+        <div class="app-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Caixa</span></div>
         <picture>
           <source type="image/webp" srcset="/assets/home/caixa.webp">
           <img src="/assets/home/caixa.jpg" width="1568" height="744" loading="lazy" decoding="async" alt="Caixa da Aura: produtos com foto e estoque, venda de R$ 329,70 com três itens e as formas de pagamento PIX, dinheiro, débito, crédito e crediário">
@@ -646,8 +641,8 @@
           <li>Importação por planilha ou XML do fornecedor</li>
         </ul>
       </div>
-      <div class="browser-shot">
-        <div class="browser-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Estoque</span></div>
+      <div class="app-shot">
+        <div class="app-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Estoque</span></div>
         <picture>
           <source type="image/webp" srcset="/assets/home/estoque.webp">
           <img src="/assets/home/estoque.jpg" width="1568" height="744" loading="lazy" decoding="async" alt="Estoque da Aura: valor em estoque, 23 alertas de estoque baixo e a lista de produtos com código, variante, quantidade, preço e margem">
@@ -1119,7 +1114,7 @@
 
   // Segunda face: cópia da primeira, com espaço para uma <img> simples.
   faces[1] = faces[0].cloneNode(false);
-  faces[1].innerHTML = faces[0].querySelector('.browser-shot-bar').outerHTML + '<div class="hero-flip-media"></div>';
+  faces[1].innerHTML = faces[0].querySelector('.app-shot-bar').outerHTML + '<div class="hero-flip-media"></div>';
   faces[1].setAttribute('aria-hidden', 'true');
   card.appendChild(faces[1]);
 
@@ -1146,7 +1141,7 @@
   function loadAll() { for (var i = 0; i < shots.length; i++) load(i); }
 
   function fill(face, s) {
-    face.querySelector('.browser-shot-bar span').textContent = 'app.getaura.com.br · ' + s.name;
+    face.querySelector('.app-shot-bar span').textContent = 'app.getaura.com.br · ' + s.name;
     var media = face.querySelector('.hero-flip-media');
     media.textContent = '';
     media.appendChild(s.img);

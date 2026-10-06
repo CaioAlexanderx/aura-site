@@ -897,3 +897,33 @@ img, svg { display: block; max-width: 100%; }
 .lc-modal-later { display: block; width: 100%; margin-top: 10px; padding: 8px; font-size: 13px; color: rgba(220,215,255,0.55); background: none; border: none; cursor: pointer; }
 .lc-modal-later:hover { color: #fff; }
 .lc-modal-success { color: #fff; font-size: 1.05rem; padding: 12px 0; }
+
+/* =========================================================
+   Captura real do app numa moldura de navegador (06/10/2026)
+   Usada no hero e no "Por dentro" da home e no bloco "Veja por
+   dentro" das páginas de segmento. Imagens em /assets/home/.
+   ========================================================= */
+.app-shot { border-radius: 14px; overflow: hidden; border: 1px solid rgba(167,139,250,0.28); background: #0b0d1f; box-shadow: 0 40px 90px rgba(0,0,0,0.55), 0 0 0 6px rgba(124,58,237,0.08); }
+.app-shot-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: #11142a; border-bottom: 1px solid var(--section-border); }
+.app-shot-bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.18); flex: none; }
+.app-shot-bar span { margin-left: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--section-ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.app-shot img { width: 100%; height: auto; }
+
+/* Bloco "Veja por dentro" (páginas de segmento): 1 a 3 telas */
+.shots-section { border-top: 1px solid var(--section-border); }
+.shots-intro { max-width: 720px; margin: 0 auto 48px; text-align: center; }
+.shots-intro .eyebrow { margin-bottom: 14px; }
+.shots-intro .h2 em { color: var(--violet-3, #a78bfa); }
+.shots-intro p { margin-top: 14px; font-size: 16px; line-height: 1.65; color: var(--section-ink-2); text-wrap: pretty; }
+.shots-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; align-items: start; max-width: 1180px; margin: 0 auto; }
+.shots-grid.is-single { grid-template-columns: minmax(0, 1fr); max-width: 920px; }
+/* Três telas: a primeira em destaque, as outras duas lado a lado */
+.shots-grid.is-triple > :first-child { grid-column: 1 / -1; max-width: 920px; width: 100%; justify-self: center; }
+.shot-fig { margin: 0; min-width: 0; }
+.shot-fig .app-shot { box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 0 0 6px rgba(124,58,237,0.08); }
+.shot-tag { display: flex; align-items: flex-start; gap: 10px; margin-top: 16px; font-size: 15px; font-weight: 600; line-height: 1.45; color: var(--section-ink, #fff); }
+.shot-tag::before { content: ""; width: 9px; height: 9px; margin-top: 6px; border-radius: 50%; background: var(--violet-3, #a78bfa); box-shadow: 0 0 0 4px rgba(167,139,250,0.16); flex: none; }
+@media (max-width: 900px) {
+  .shots-grid, .shots-grid.is-triple { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .shots-intro { margin-bottom: 32px; }
+}
