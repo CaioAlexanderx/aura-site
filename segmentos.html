@@ -14,32 +14,50 @@
 <meta property="og:image" content="https://www.getaura.com.br/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/site.css?v=3">
-  <style>
-    .page-hero{padding:140px 0 60px;text-align:center}
-    .seg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:4rem}
-    .seg-full-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-xl);padding:32px;transition:all var(--dur) var(--ease)}
-    .seg-full-card.highlighted{border-color:var(--violet-3);box-shadow:var(--shadow-glow)}
-    .seg-full-card:hover{border-color:var(--border-3);transform:translateY(-4px);box-shadow:var(--shadow-glow)}
-    .seg-full-card .icon{font-size:2.5rem;margin-bottom:16px}
-    .seg-full-card h3{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:8px}
-    .seg-full-card .desc{font-size:.9375rem;color:var(--ink-2);line-height:1.7;margin-bottom:16px}
-    .seg-full-card ul{margin-bottom:20px}
-    .seg-full-card ul li{display:flex;align-items:center;gap:8px;font-size:.8125rem;color:var(--ink-2);padding:5px 0}
-    .seg-full-card ul li::before{content:'✓';color:var(--green);font-weight:600}
-    .seg-full-card .plano-req{font-size:.6875rem;color:var(--violet-3);background:var(--violet-glow);padding:4px 10px;border-radius:var(--radius-pill);display:inline-block;margin-bottom:12px}
-    .seg-full-card .destaque-badge{font-size:.6875rem;color:#fff;background:var(--grad-cta);padding:4px 10px;border-radius:var(--radius-pill);display:inline-block;margin-left:8px;font-weight:600}
-    .seg-ramos{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-bottom:1rem}
-    .seg-ramo{display:block;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;text-decoration:none;transition:all var(--dur) var(--ease)}
-    .seg-ramo:hover{border-color:var(--violet-3);transform:translateY(-3px);box-shadow:var(--shadow-glow)}
-    .seg-ramo b{font-family:var(--font-display);font-weight:700;font-size:1.02rem;display:block;margin-bottom:4px;color:var(--ink)}
-    .seg-ramo span{font-size:.85rem;color:var(--ink-2);line-height:1.5}
-    @media(max-width:768px){.seg-grid{grid-template-columns:1fr}}
-  </style>
+<link rel="icon" type="image/png" href="/Icon.png">
+<link rel="apple-touch-icon" href="/Icon.png">
+<link rel="stylesheet" href="/css/tokens.css?v=2">
+<link rel="stylesheet" href="/css/site.css?v=2">
+<style>
+  .pg-hero { padding-top: 140px; padding-bottom: 80px; }
+  .pg-head { max-width: 760px; margin: 0 auto; text-align: center; }
+  .pg-head .lead { margin: 0 auto; }
+  .pg-head h1 em { font-style: italic; color: #a78bfa; }
+  .pg-sec-head { max-width: 640px; margin: 0 auto 40px; text-align: center; }
+  .pg-sec-head .eyebrow { justify-content: center; }
+  .pg-sec-head .lead { margin: 0 auto; }
+
+  .seg-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .seg-full-card { background: var(--section-card); border: 1px solid var(--section-border); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; align-items: flex-start; transition: border-color 0.25s var(--ease), transform 0.25s var(--ease), box-shadow 0.25s var(--ease); }
+  .seg-full-card.highlighted { border-color: rgba(167,139,250,0.55); box-shadow: 0 0 40px rgba(124,58,237,0.18); }
+  .seg-full-card[data-reveal]:hover { border-color: rgba(167,139,250,0.55); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(124,58,237,0.22); }
+  .seg-full-card .icon { font-size: 40px; line-height: 1; margin-bottom: 16px; }
+  .seg-full-card h3 { margin-bottom: 8px; }
+  .seg-full-card .desc { margin-bottom: 16px; }
+  .seg-full-card ul { list-style: none; padding: 0; margin: 0 0 24px; flex: 1; }
+  .seg-full-card ul li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; line-height: 1.45; color: var(--section-ink-2); padding: 5px 0; }
+  .seg-full-card ul li::before { content: '✓'; color: var(--green); font-weight: 600; }
+  .plano-req { font-family: var(--font-mono); font-size: 11px; line-height: 1.4; color: var(--violet-3); background: var(--violet-wash); padding: 5px 12px; border-radius: 999px; display: inline-block; margin-bottom: 12px; }
+  .destaque-badge { font-family: var(--font-body); font-size: 11px; font-weight: 600; color: #fff; background: linear-gradient(135deg, #7c3aed, #6d28d9); padding: 4px 10px; border-radius: 999px; display: inline-block; margin-left: 8px; vertical-align: middle; letter-spacing: 0; }
+
+  .seg-ramos { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; max-width: 1100px; margin: 0 auto; }
+  .seg-ramo { display: block; background: var(--section-card); border: 1px solid var(--section-border); border-radius: 16px; padding: 18px 20px; text-decoration: none; color: inherit; transition: border-color 0.25s var(--ease), transform 0.25s var(--ease), box-shadow 0.25s var(--ease); }
+  .seg-ramo:hover { border-color: rgba(124,58,237,0.55); box-shadow: 0 12px 28px rgba(124,58,237,0.14); }
+  .seg-ramo[data-reveal]:hover { transform: translateY(-3px); }
+  .seg-ramo b { font-family: var(--font-heading); font-weight: 400; font-size: 20px; display: block; margin-bottom: 4px; color: var(--section-ink); }
+  .seg-ramo span { font-size: 14px; color: var(--section-ink-2); line-height: 1.5; }
+  .seg-recursos { text-align: center; margin-top: 24px; color: var(--section-ink-2); font-size: 14px; }
+  .seg-recursos a { color: var(--violet-deep); font-weight: 600; }
+
+  .pg-cta { max-width: 640px; margin: 0 auto; text-align: center; align-items: center; }
+  .pg-cta .lead { margin: 0 auto; }
+
+  @media (max-width: 880px) { .seg-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) {
+    .pg-hero { padding-top: 104px; padding-bottom: 56px; }
+    .seg-full-card { padding: 24px; }
+  }
+</style>
 <!-- jsonld:start -->
 <script type="application/ld+json">
 {
@@ -89,45 +107,75 @@
 </script>
 <!-- jsonld:end -->
 </head>
-<body>
-<nav class="nav"><div class="nav-inner"><a href="/" class="nav-logo"><img src="/Icon.png" width="32" height="32" alt="Aura" style="border-radius:8px"><span class="nav-wordmark">Aura.</span></a><div class="nav-links"><a href="/produto">Produto</a><a href="/segmentos">Segmentos</a><a href="/planos">Planos</a><a href="/#faq">Dúvidas</a></div><div class="nav-ctas"><a href="https://app.getaura.com.br" class="btn btn-secondary btn-sm">Entrar</a><a href="/contato" class="btn btn-primary btn-sm">Solicitar demo</a></div><button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div><div class="nav-mobile" id="nav-mobile"><ul><li><a href="/produto">Produto</a></li><li><a href="/segmentos">Segmentos</a></li><li><a href="/planos">Planos</a></li></ul><div class="nav-mobile-ctas"><a href="/contato" class="btn btn-primary btn-lg">Solicitar demo</a></div></div></nav>
+<body data-screen-label="Segmentos">
+<div data-mount="nav"></div>
 
-<section class="page-hero"><div class="container"><span class="section-badge">Segmentos</span><h1 class="reveal">Feito para o seu<br>tipo de negócio.</h1><p class="reveal stagger-1" style="margin:0 auto">Módulos específicos que se adaptam ao que você faz. Varejo já vem completo no Essencial. As especializações (Studio e Dojô) já vêm incluídas nos planos Negócio e Expansão — sem custo à parte.</p></div></section>
-
-<section style="padding-top:0"><div class="container">
-<div class="seg-grid">
-  <div class="seg-full-card highlighted reveal stagger-1"><div class="icon">🛍️</div><h3>Aura Negócio<span class="destaque-badge">Carro-chefe</span></h3><span class="plano-req">Incluso desde o Essencial · a partir de R$ 74,17/mês no anual (R$ 89 no mensal)</span><p class="desc">Operação completa pra loja física e online. PDV com NFC-e, crediário próprio, troca de mercadoria, multi-CNPJ e curva ABC — sem precisar amarrar 5 sistemas.</p><ul><li>PDV com NFC-e em 1 clique</li><li>Crediário próprio sem maquininha (semanal/quinzenal/mensal)</li><li>Troca de mercadoria com saldo automático</li><li>Multi-pagamento na mesma venda (Pix + cartão + dinheiro)</li><li>Estoque com código de barras + curva ABC automática</li><li>Variantes (tamanho, cor, modelo)</li><li>Importação DANFE XML do fornecedor</li><li>Multi-CNPJ consolidado (matriz + filiais)</li><li>Etiquetas customizadas 33×21mm</li></ul><a href="/negocio" class="btn btn-primary btn-sm">Ver Aura Negócio →</a></div>
-
-  <div class="seg-full-card reveal stagger-2"><div class="icon">🎨</div><h3>Aura Studio</h3><span class="plano-req">Incluída no Negócio e Expansão</span><p class="desc">Para ateliês de customização, gráficas e personalização: configurador, aprovação de arte e produção em kanban.</p><ul><li>Configurador de produto (texto, cor, imagem)</li><li>Aprovação de arte por WhatsApp</li><li>KDS de produção em kanban</li><li>Orçamentos, insumos e loja digital</li></ul><a href="/studio" class="btn btn-secondary btn-sm">Ver Aura Studio →</a></div>
-
-  <div class="seg-full-card reveal stagger-1"><div class="icon">🥋</div><h3>Aura Dojô<span class="destaque-badge" style="background:#b8463a">Karatê · FPKT</span></h3><span class="plano-req">Incluída no Negócio e Expansão</span><p class="desc">Federações e academias de artes marciais. Aura Karate é parceira oficial da FPKT (JKA em breve).</p><ul><li>Praticantes e graduações (kyu/dan)</li><li>Eventos e exames de faixa</li><li>Certificados digitais de graduação</li><li>Anuidades e mensalidades com PIX</li><li>Inadimplência, financeiro e dojôs filiados</li></ul><a href="/dojo" class="btn btn-secondary btn-sm">Ver Aura Dojô →</a></div>
-</div>
-</div></section>
-
-<section style="padding-top:0"><div class="container">
-  <div style="text-align:center;max-width:640px;margin:0 auto 40px">
-    <span class="section-badge">Por ramo</span>
-    <h2 class="reveal" style="margin-bottom:.75rem">A Aura no balcão do seu ramo</h2>
-    <p class="reveal stagger-1" style="margin:0 auto;color:var(--ink-2)">Cada ramo tem sua dor — grade, troca, fiado, orçamento, ordem de serviço. Veja a Aura configurada pro seu.</p>
+<section class="section dark deep pg-hero" data-screen-label="Segmentos">
+  <div class="orbs">
+    <div class="orb violet" style="width: 600px; height: 600px; top: -120px; right: -160px;"></div>
+    <div class="orb indigo" style="width: 420px; height: 420px; bottom: -80px; left: -140px; opacity: 0.35;"></div>
   </div>
-  <div class="seg-ramos reveal stagger-1">
-    <a class="seg-ramo" href="/sistema-para-loja-de-roupas"><b>Loja de roupas</b><span>Grade de tamanho e cor, troca no caixa e fiado da freguesia.</span></a>
-    <a class="seg-ramo" href="/sistema-para-loja-de-calcados"><b>Loja de calçados</b><span>Grade por número e modelo, troca de número e crediário.</span></a>
-    <a class="seg-ramo" href="/sistema-para-loja-de-material-de-construcao"><b>Material de construção</b><span>Orçamento que vira venda, estoque item a item e conta de obra.</span></a>
-    <a class="seg-ramo" href="/sistema-para-papelaria"><b>Papelaria</b><span>Orçamento de lista escolar, estoque e fiado de convênio.</span></a>
-    <a class="seg-ramo" href="/sistema-para-loja-de-celular"><b>Celular &amp; assistência</b><span>Ordem de serviço do conserto, PDV e estoque de acessórios.</span></a>
-    <a class="seg-ramo" href="/sistema-para-autopecas"><b>Autopeças</b><span>Estoque-catálogo na loja virtual e conta de oficina.</span></a>
-    <a class="seg-ramo" href="/sistema-para-loja-de-semijoias"><b>Semijoias &amp; bijuteria</b><span>Estoque por modelo, cor e banho, parcelado e loja virtual.</span></a>
-    <a class="seg-ramo" href="/sistema-para-loja-de-perfumaria"><b>Perfumaria &amp; cosméticos</b><span>Estoque por marca e linha, fiado e catálogo na loja virtual.</span></a>
-    <a class="seg-ramo" href="/sistema-para-otica"><b>Ótica</b><span>Receituário, esteira do laboratório na OS, sinal na abertura e aviso de óculos prontos no WhatsApp.</span></a>
+  <div class="grain"></div>
+  <div class="container">
+    <div class="pg-head stack-md" data-reveal>
+      <div class="eyebrow center">Segmentos</div>
+      <h1 class="h1">Feito para o seu<br><em>tipo de negócio.</em></h1>
+      <p class="lead">Módulos específicos que se adaptam ao que você faz. Varejo já vem completo no Essencial. As especializações (Studio e Dojô) já vêm incluídas nos planos Negócio e Expansão — sem custo à parte.</p>
+    </div>
   </div>
-  <p style="text-align:center;margin-top:24px;color:var(--ink-2);font-size:.9rem">Por recurso: <a href="/frente-de-caixa" style="color:var(--violet-3);font-weight:600">Frente de caixa (PDV)</a> &nbsp;·&nbsp; <a href="/emissor-de-nfce" style="color:var(--violet-3);font-weight:600">Emissor de NFC-e</a></p>
-</div></section>
+</section>
 
-<section style="background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(109,40,217,0.05));border-top:1px solid var(--border-2)"><div class="container" style="text-align:center;max-width:600px"><h2 class="reveal" style="margin-bottom:1rem">Não encontrou seu segmento?</h2><p class="reveal stagger-1" style="margin:0 auto 2rem;color:var(--ink-2)">Fale com a equipe — podemos adaptar a Aura para o seu tipo de negócio.</p><a href="/contato" class="btn btn-primary btn-lg reveal stagger-2">Falar com a equipe</a></div></section>
+<section class="section dark" data-screen-label="Verticais" style="padding-top: 0;">
+  <div class="container">
+    <div class="seg-grid">
+      <div class="seg-full-card highlighted" data-reveal data-reveal-delay="1"><div class="icon">🛍️</div><h3 class="h3">Aura Negócio<span class="destaque-badge">Carro-chefe</span></h3><span class="plano-req">Incluso desde o Essencial · a partir de R$ 74,17/mês no anual (R$ 89 no mensal)</span><p class="body desc">Operação completa pra loja física e online. PDV com NFC-e, crediário próprio, troca de mercadoria, multi-CNPJ e curva ABC — sem precisar amarrar 5 sistemas.</p><ul><li>PDV com NFC-e em 1 clique</li><li>Crediário próprio sem maquininha (semanal/quinzenal/mensal)</li><li>Troca de mercadoria com saldo automático</li><li>Multi-pagamento na mesma venda (Pix + cartão + dinheiro)</li><li>Estoque com código de barras + curva ABC automática</li><li>Variantes (tamanho, cor, modelo)</li><li>Importação DANFE XML do fornecedor</li><li>Multi-CNPJ consolidado (matriz + filiais)</li><li>Etiquetas customizadas 33×21mm</li></ul><a href="/negocio" class="btn btn-primary btn-sm">Ver Aura Negócio →</a></div>
+      <div class="seg-full-card" data-reveal data-reveal-delay="2"><div class="icon">🎨</div><h3 class="h3">Aura Studio</h3><span class="plano-req">Incluída no Negócio e Expansão</span><p class="body desc">Para ateliês de customização, gráficas e personalização: configurador, aprovação de arte e produção em kanban.</p><ul><li>Configurador de produto (texto, cor, imagem)</li><li>Aprovação de arte por WhatsApp</li><li>KDS de produção em kanban</li><li>Orçamentos, insumos e loja digital</li></ul><a href="/studio" class="btn btn-ghost btn-sm">Ver Aura Studio →</a></div>
+      <div class="seg-full-card" data-reveal data-reveal-delay="1"><div class="icon">🥋</div><h3 class="h3">Aura Dojô<span class="destaque-badge" style="background:#b8463a">Karatê · FPKT</span></h3><span class="plano-req">Incluída no Negócio e Expansão</span><p class="body desc">Federações e academias de artes marciais. Aura Karate é parceira oficial da FPKT (JKA em breve).</p><ul><li>Praticantes e graduações (kyu/dan)</li><li>Eventos e exames de faixa</li><li>Certificados digitais de graduação</li><li>Anuidades e mensalidades com PIX</li><li>Inadimplência, financeiro e dojôs filiados</li></ul><a href="/dojo" class="btn btn-ghost btn-sm">Ver Aura Dojô →</a></div>
+    </div>
+  </div>
+</section>
 
-<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="/" class="nav-logo" style="display:inline-flex;margin-bottom:4px"><img src="/Icon.png" width="28" height="28" alt="Aura" style="border-radius:6px"><span class="nav-wordmark" style="font-size:18px">Aura.</span></a><p>Tecnologia para negócios. Jacareí, SP.</p></div><div class="footer-col"><h4>Produto</h4><ul><li><a href="/produto">O que faz</a></li><li><a href="/segmentos">Segmentos</a></li><li><a href="/planos">Planos</a></li></ul></div><div class="footer-col"><h4>Empresa</h4><ul><li><a href="/sobre">Sobre</a></li><li><a href="/privacidade">Privacidade</a></li></ul></div><div class="footer-col"><h4>Acesso</h4><ul><li><a href="https://app.getaura.com.br">Entrar</a></li><li><a href="/contato">Contato</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Aura. Tecnologia para Negócios.</p></div></div></footer>
-<script src="/site.js?v=3"></script>
+<section class="section light" data-screen-label="Por ramo">
+  <div class="container">
+    <div class="pg-sec-head stack-md" data-reveal>
+      <div class="eyebrow center">Por ramo</div>
+      <h2 class="h2">A Aura no balcão do seu ramo</h2>
+      <p class="lead">Cada ramo tem sua dor — grade, troca, fiado, orçamento, ordem de serviço. Veja a Aura configurada pro seu.</p>
+    </div>
+    <div class="seg-ramos">
+      <a class="seg-ramo" href="/sistema-para-loja-de-roupas" data-reveal data-reveal-delay="1"><b>Loja de roupas</b><span>Grade de tamanho e cor, troca no caixa e fiado da freguesia.</span></a>
+      <a class="seg-ramo" href="/sistema-para-loja-de-calcados" data-reveal data-reveal-delay="2"><b>Loja de calçados</b><span>Grade por número e modelo, troca de número e crediário.</span></a>
+      <a class="seg-ramo" href="/sistema-para-loja-de-material-de-construcao" data-reveal data-reveal-delay="3"><b>Material de construção</b><span>Orçamento que vira venda, estoque item a item e conta de obra.</span></a>
+      <a class="seg-ramo" href="/sistema-para-papelaria" data-reveal data-reveal-delay="1"><b>Papelaria</b><span>Orçamento de lista escolar, estoque e fiado de convênio.</span></a>
+      <a class="seg-ramo" href="/sistema-para-loja-de-celular" data-reveal data-reveal-delay="2"><b>Celular &amp; assistência</b><span>Ordem de serviço do conserto, PDV e estoque de acessórios.</span></a>
+      <a class="seg-ramo" href="/sistema-para-autopecas" data-reveal data-reveal-delay="3"><b>Autopeças</b><span>Estoque-catálogo na loja virtual e conta de oficina.</span></a>
+      <a class="seg-ramo" href="/sistema-para-loja-de-semijoias" data-reveal data-reveal-delay="1"><b>Semijoias &amp; bijuteria</b><span>Estoque por modelo, cor e banho, parcelado e loja virtual.</span></a>
+      <a class="seg-ramo" href="/sistema-para-loja-de-perfumaria" data-reveal data-reveal-delay="2"><b>Perfumaria &amp; cosméticos</b><span>Estoque por marca e linha, fiado e catálogo na loja virtual.</span></a>
+      <a class="seg-ramo" href="/sistema-para-otica" data-reveal data-reveal-delay="3"><b>Ótica</b><span>Receituário, esteira do laboratório na OS, sinal na abertura e aviso de óculos prontos no WhatsApp.</span></a>
+    </div>
+    <p class="seg-recursos" data-reveal>Por recurso: <a href="/frente-de-caixa">Frente de caixa (PDV)</a> &nbsp;·&nbsp; <a href="/emissor-de-nfce">Emissor de NFC-e</a></p>
+  </div>
+</section>
+
+<section class="section dark deep" data-screen-label="Falar com a equipe">
+  <div class="orbs">
+    <div class="orb violet" style="width: 600px; height: 600px; top: -120px; right: -160px;"></div>
+    <div class="orb indigo" style="width: 420px; height: 420px; bottom: -80px; left: -140px; opacity: 0.35;"></div>
+  </div>
+  <div class="grain"></div>
+  <div class="container">
+    <div class="pg-cta stack-md" data-reveal>
+      <h2 class="h2">Não encontrou seu segmento?</h2>
+      <p class="lead">Fale com a equipe — podemos adaptar a Aura para o seu tipo de negócio.</p>
+      <div><a href="/contato" class="btn btn-primary btn-lg">Falar com a equipe</a></div>
+    </div>
+  </div>
+</section>
+
+<div data-mount="footer"></div>
+<div data-mount="wa"></div>
+<script src="/js/chrome.js"></script>
+<script src="/js/site.js"></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25ce08563247490b918793727e3c1eb1"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

@@ -14,49 +14,63 @@
 <meta property="og:image" content="https://www.getaura.com.br/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="icon" href="/Icon.png" type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/site.css?v=3">
-  <style>
-    .page-hero{padding:140px 0 60px;text-align:center}
-    .page-hero p{margin:0 auto}
-    .journey{counter-reset:step}
-    .journey-step{display:grid;grid-template-columns:80px 1fr;gap:32px;margin-bottom:3rem;align-items:start}
-    .journey-num{width:64px;height:64px;border-radius:50%;background:var(--violet-glow);backdrop-filter:blur(12px);border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.5rem;font-weight:900;color:var(--violet-3);position:relative;flex-shrink:0}
-    .journey-num::after{content:'';position:absolute;top:64px;left:50%;width:1px;height:calc(100% + 16px);background:var(--border-2);transform:translateX(-50%)}
-    .journey-step:last-child .journey-num::after{display:none}
-    .journey-content h3{font-family:var(--font-display);font-size:1.5rem;font-weight:700;margin-bottom:.5rem}
-    .journey-content p{font-size:1rem;color:var(--ink-2);line-height:1.75}
-    .benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .benefit-card{background:var(--bg-glass);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:var(--radius-xl);padding:32px;text-align:center;transition:all var(--dur) var(--ease)}
-    .benefit-card:hover{border-color:var(--border-3);transform:translateY(-3px);box-shadow:var(--shadow-glow)}
-    .benefit-icon{font-size:2.5rem;margin-bottom:16px}
-    .benefit-card h4{font-family:var(--font-display);font-size:1.125rem;font-weight:700;margin-bottom:8px}
-    .benefit-card p{font-size:.875rem;color:var(--ink-2);line-height:1.65}
-    .highlight-num{font-family:var(--font-display);font-size:2rem;font-weight:900;color:var(--violet-4);margin-bottom:4px}
-    .s-connected{background:var(--bg-2)}
-    .connected-visual{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:2rem}
-    .conn-node{background:var(--bg-glass);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;text-align:center;transition:all var(--dur) var(--ease);position:relative}
-    .conn-node:hover{border-color:var(--violet-3);transform:scale(1.03)}
-    .conn-node::after{content:'→';position:absolute;right:-14px;top:50%;transform:translateY(-50%);color:var(--violet-3);font-size:1.25rem}
-    .conn-node:last-child::after{display:none}
-    .conn-icon{font-size:1.75rem;margin-bottom:8px}
-    .conn-label{font-size:.75rem;font-weight:600;color:var(--ink-2);text-transform:uppercase;letter-spacing:.06em}
-    .product-quote{font-family:var(--font-display);font-size:clamp(1.25rem,2.5vw,1.75rem);font-weight:700;line-height:1.5;text-align:center;max-width:640px;margin:0 auto;color:var(--ink);padding:3rem 0}
-    .product-quote em{font-style:normal;color:var(--violet-3)}
-    .nav-icon{width:32px;height:32px;border-radius:8px}
-    .nav-icon-sm{width:28px;height:28px;border-radius:6px}
-    @media(max-width:768px){
-      .journey-step{grid-template-columns:48px 1fr;gap:20px}
-      .journey-num{width:48px;height:48px;font-size:1.125rem}
-      .benefit-grid{grid-template-columns:1fr}
-      .connected-visual{grid-template-columns:repeat(2,1fr)}
-      .conn-node::after{display:none}
-    }
-  </style>
+<link rel="icon" type="image/png" href="/Icon.png">
+<link rel="apple-touch-icon" href="/Icon.png">
+<link rel="stylesheet" href="/css/tokens.css?v=2">
+<link rel="stylesheet" href="/css/site.css?v=2">
+<style>
+  .pg-hero { padding-top: 140px; padding-bottom: 80px; }
+  .pg-head { max-width: 760px; margin: 0 auto; text-align: center; }
+  .pg-head .lead { margin: 0 auto; }
+  .pg-head h1 em { font-style: italic; color: #a78bfa; }
+  .pg-sec-head { max-width: 720px; margin: 0 auto 48px; text-align: center; }
+  .pg-sec-head .eyebrow { justify-content: center; }
+
+  .journey { max-width: 860px; margin: 0 auto; }
+  .journey-step { display: grid; grid-template-columns: 80px 1fr; gap: 32px; margin-bottom: 48px; align-items: start; }
+  .journey-step:last-child { margin-bottom: 0; }
+  .journey-num { width: 64px; height: 64px; border-radius: 50%; background: var(--violet-wash); border: 1px solid var(--border-2); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-size: 28px; color: var(--violet-deep); position: relative; flex-shrink: 0; }
+  .journey-num::after { content: ''; position: absolute; top: 64px; left: 50%; width: 1px; height: calc(100% + 16px); background: var(--section-border); transform: translateX(-50%); }
+  .journey-step:last-child .journey-num::after { display: none; }
+  .journey-content h3 { margin-bottom: 8px; }
+
+  .benefit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .benefit-card { background: var(--section-card); border: 1px solid var(--section-border); border-radius: 20px; padding: 32px; text-align: center; transition: border-color 0.25s var(--ease), transform 0.25s var(--ease), box-shadow 0.25s var(--ease); }
+  .benefit-card[data-reveal]:hover { border-color: rgba(124,58,237,0.45); transform: translateY(-3px); box-shadow: 0 16px 36px rgba(124,58,237,0.14); }
+  .benefit-icon { font-size: 40px; margin-bottom: 16px; line-height: 1; }
+  .highlight-num { font-family: var(--font-heading); font-size: 34px; line-height: 1.1; color: var(--violet-deep); margin-bottom: 4px; }
+  .benefit-card h4 { font-family: var(--font-body); font-size: 17px; font-weight: 700; color: var(--section-ink); margin: 0 0 8px; }
+  .benefit-card p { font-size: 14px; line-height: 1.65; color: var(--section-ink-2); margin: 0; }
+
+  .connected-visual { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; max-width: 1000px; margin: 0 auto; }
+  .conn-node { background: var(--section-card); border: 1px solid var(--section-border); border-radius: 16px; padding: 20px; text-align: center; position: relative; transition: border-color 0.25s var(--ease), transform 0.25s var(--ease); }
+  .conn-node:hover { border-color: rgba(167,139,250,0.55); }
+  .conn-node::after { content: '→'; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); color: var(--violet-3); font-size: 20px; }
+  .conn-node:last-child::after { display: none; }
+  .conn-icon { font-size: 28px; margin-bottom: 8px; line-height: 1; }
+  .conn-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--section-ink-2); }
+  .product-quote { font-family: var(--font-heading); font-size: clamp(26px, 3.4vw, 40px); line-height: 1.25; text-align: center; max-width: 680px; margin: 0 auto; padding: 56px 0 0; color: var(--section-ink); }
+  .product-quote em { font-style: italic; color: var(--violet-3); }
+
+  .pg-cta { max-width: 640px; margin: 0 auto; text-align: center; align-items: center; }
+  .pg-cta .lead { margin: 0 auto; }
+  .pg-cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  @media (hover: hover) { .conn-node:hover { transform: translateY(-2px); } }
+  @media (max-width: 880px) {
+    .benefit-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+    .connected-visual { grid-template-columns: repeat(2, 1fr); }
+    .conn-node::after { display: none; }
+    .conn-node:last-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 600px) {
+    .pg-hero { padding-top: 104px; padding-bottom: 56px; }
+    .journey-step { grid-template-columns: 48px 1fr; gap: 20px; margin-bottom: 36px; }
+    .journey-num { width: 48px; height: 48px; font-size: 22px; }
+    .journey-num::after { top: 48px; }
+    .benefit-card { padding: 24px; }
+  }
+</style>
 <!-- jsonld:start -->
 <script type="application/ld+json">
 {
@@ -106,15 +120,85 @@
 </script>
 <!-- jsonld:end -->
 </head>
-<body>
-<nav class="nav"><div class="nav-inner"><a href="/" class="nav-logo"><img src="/Icon.png" class="nav-icon" alt="Aura"><span class="nav-wordmark">Aura.</span></a><div class="nav-links"><a href="/produto">Produto</a><a href="/segmentos">Segmentos</a><a href="/planos">Planos</a><a href="/#faq">Dúvidas</a></div><div class="nav-ctas"><a href="https://app.getaura.com.br" class="btn btn-secondary btn-sm">Entrar</a><a href="/comecar" class="btn btn-primary btn-sm">Começar grátis</a></div><button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div><div class="nav-mobile" id="nav-mobile"><ul><li><a href="/produto">Produto</a></li><li><a href="/segmentos">Segmentos</a></li><li><a href="/planos">Planos</a></li></ul><div class="nav-mobile-ctas"><a href="/#contato" class="btn btn-primary btn-lg">Começar agora</a><a href="https://app.getaura.com.br" class="btn btn-secondary btn-lg">Já sou cliente — Entrar</a></div></div></nav>
-<section class="page-hero"><div class="container"><span class="section-badge">Produto</span><h1 class="reveal">Menos tempo gerenciando.<br><span class="text-gradient">Mais tempo crescendo.</span></h1><p class="reveal stagger-1">PDV, fiscal, financeiro, CRM e crediário — num app só, por um preço que não sobe com as vendas. O combo que a concorrência só entrega se você amarrar 5 sistemas.</p></div></section>
-<section style="padding-top:0"><div class="container"><div class="section-header"><span class="section-badge">Como funciona</span><h2 class="reveal">Três passos. Zero complicação.</h2></div><div class="journey"><div class="journey-step reveal stagger-1"><div class="journey-num">1</div><div class="journey-content"><h3>Cadastre seu negócio</h3><p>Informe o CNPJ e a Aura configura tudo automaticamente — regime tributário, obrigações fiscais e módulos recomendados pro seu segmento. Multi-CNPJ desde o plano Negócio.</p></div></div><div class="journey-step reveal stagger-2"><div class="journey-num">2</div><div class="journey-content"><h3>Conecte sua operação</h3><p>Venda no PDV, emita NFC-e em 1 clique, registre o crediário do cliente, atualize estoque, recebe via Pix — tudo conectado. O que você registra em um lugar aparece nos outros.</p></div></div><div class="journey-step reveal stagger-3"><div class="journey-num">3</div><div class="journey-content"><h3>Acompanhe e cresça</h3><p>Relatórios automáticos toda segunda, DRE em regime de caixa, ranking de clientes, alertas fiscais e relatórios que explicam os números em linguagem simples.</p></div></div></div></div></section>
-<section class="s-connected"><div class="container"><div class="section-header centered"><span class="section-badge">Integração</span><h2 class="reveal">Tudo conectado. Nada solto.</h2></div><div class="connected-visual reveal"><div class="conn-node"><div class="conn-icon">🛒</div><div class="conn-label">Você vende</div></div><div class="conn-node"><div class="conn-icon">🧾</div><div class="conn-label">NFC-e emitida</div></div><div class="conn-node"><div class="conn-icon">📦</div><div class="conn-label">Estoque atualiza</div></div><div class="conn-node"><div class="conn-icon">💰</div><div class="conn-label">Financeiro registra</div></div><div class="conn-node"><div class="conn-icon">📊</div><div class="conn-label">Relatório pronto</div></div></div><div class="product-quote reveal">Você faz a venda. <em>A Aura cuida do resto.</em></div></div></section>
-<section><div class="container"><div class="section-header centered"><span class="section-badge">Resultados</span><h2 class="reveal">O que muda no dia a dia</h2></div><div class="benefit-grid"><div class="benefit-card reveal stagger-1"><div class="benefit-icon">🧾</div><div class="highlight-num">1 clique</div><h4>NFC-e na venda</h4><p>Cupom fiscal emitido na hora pelo PDV, com QR Code SEFAZ e DANFE pronta pra imprimir. Davi Calçados emite em produção real.</p></div><div class="benefit-card reveal stagger-2"><div class="benefit-icon">💳</div><div class="highlight-num">Próprio</div><h4>Crediário sem maquininha</h4><p>Venda parcelada na sua conta, sem taxa de cartão. Cliente paga semanal, quinzenal ou mensal. Você controla o histórico.</p></div><div class="benefit-card reveal stagger-3"><div class="benefit-icon">🏢</div><div class="highlight-num">Multi</div><h4>Várias empresas, 1 painel</h4><p>Matriz e filiais consolidadas. Estoque compartilhado opcional, DRE por CNPJ e relatórios agregados.</p></div><div class="benefit-card reveal stagger-1"><div class="benefit-icon">📲</div><div class="highlight-num">1 toque</div><h4>Cobrança no WhatsApp</h4><p>Crediário em atraso? A régua monta a mensagem com valor, data e chave PIX — você cobra em um toque, sem constrangimento e sem caderninho.</p></div><div class="benefit-card reveal stagger-2"><div class="benefit-icon">📊</div><div class="highlight-num">Auto</div><h4>Relatórios toda segunda</h4><p>Faturamento, ticket médio, produtos mais vendidos, clientes a reativar. Chega no WhatsApp e e-mail, sem você pedir.</p></div><div class="benefit-card reveal stagger-3"><div class="benefit-icon">⏱️</div><div class="highlight-num">8h/sem</div><h4>Tempo de volta</h4><p>Menos planilha, menos caderno, menos WhatsApp atropelado. Mais tempo com cliente e família.</p></div></div></div></section>
-<section style="background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(109,40,217,0.05));border-top:1px solid var(--border-2)"><div class="container" style="text-align:center;max-width:600px"><h2 class="reveal" style="margin-bottom:1rem">Duvida? Testa.</h2><p class="reveal stagger-1" style="margin:0 auto 2rem;color:var(--ink-2)">7 dias do plano Negócio completo, grátis, sem cartão. Se não for o melhor sistema que você já usou, é só não ficar.</p><div class="gap-row reveal stagger-2" style="justify-content:center"><a href="/comecar" class="btn btn-primary btn-lg">Começar grátis</a><a href="/planos" class="btn btn-secondary btn-lg">Ver planos →</a></div></div></section>
-<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="/" class="nav-logo" style="display:inline-flex;margin-bottom:4px"><img src="/Icon.png" class="nav-icon-sm" alt="Aura"><span class="nav-wordmark" style="font-size:18px">Aura.</span></a><p>Tecnologia para negócios que querem crescer sem complicação.</p></div><div class="footer-col"><h4>Produto</h4><ul><li><a href="/produto">O que faz</a></li><li><a href="/segmentos">Segmentos</a></li><li><a href="/planos">Planos</a></li></ul></div><div class="footer-col"><h4>Empresa</h4><ul><li><a href="/sobre">Sobre</a></li><li><a href="/privacidade">Privacidade</a></li></ul></div><div class="footer-col"><h4>Acesso</h4><ul><li><a href="https://app.getaura.com.br">Entrar no app</a></li><li><a href="/contato">Começar agora</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Aura. Tecnologia para Negócios.</p></div></div></footer>
-<script src="/site.js?v=3"></script>
+<body data-screen-label="Produto">
+<div data-mount="nav"></div>
+
+<section class="section dark deep pg-hero" data-screen-label="Produto">
+  <div class="orbs">
+    <div class="orb violet" style="width: 600px; height: 600px; top: -120px; right: -160px;"></div>
+    <div class="orb indigo" style="width: 420px; height: 420px; bottom: -80px; left: -140px; opacity: 0.35;"></div>
+  </div>
+  <div class="grain"></div>
+  <div class="container">
+    <div class="pg-head stack-md" data-reveal>
+      <div class="eyebrow center">Produto</div>
+      <h1 class="h1">Menos tempo gerenciando.<br><em>Mais tempo crescendo.</em></h1>
+      <p class="lead">PDV, fiscal, financeiro, CRM e crediário — num app só, por um preço que não sobe com as vendas. O combo que a concorrência só entrega se você amarrar 5 sistemas.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section light" data-screen-label="Como funciona">
+  <div class="container">
+    <div class="pg-sec-head stack-md" data-reveal>
+      <div class="eyebrow center">Como funciona</div>
+      <h2 class="h2">Três passos. Zero complicação.</h2>
+    </div>
+    <div class="journey">
+      <div class="journey-step" data-reveal data-reveal-delay="1"><div class="journey-num">1</div><div class="journey-content"><h3 class="h3">Cadastre seu negócio</h3><p class="body">Informe o CNPJ e a Aura configura tudo automaticamente — regime tributário, obrigações fiscais e módulos recomendados pro seu segmento. Multi-CNPJ desde o plano Negócio.</p></div></div>
+      <div class="journey-step" data-reveal data-reveal-delay="2"><div class="journey-num">2</div><div class="journey-content"><h3 class="h3">Conecte sua operação</h3><p class="body">Venda no PDV, emita NFC-e em 1 clique, registre o crediário do cliente, atualize estoque, recebe via Pix — tudo conectado. O que você registra em um lugar aparece nos outros.</p></div></div>
+      <div class="journey-step" data-reveal data-reveal-delay="3"><div class="journey-num">3</div><div class="journey-content"><h3 class="h3">Acompanhe e cresça</h3><p class="body">Relatórios automáticos toda segunda, DRE em regime de caixa, ranking de clientes, alertas fiscais e relatórios que explicam os números em linguagem simples.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section dark" data-screen-label="Integração">
+  <div class="container">
+    <div class="pg-sec-head stack-md" data-reveal>
+      <div class="eyebrow center">Integração</div>
+      <h2 class="h2">Tudo conectado. Nada solto.</h2>
+    </div>
+    <div class="connected-visual" data-reveal><div class="conn-node"><div class="conn-icon">🛒</div><div class="conn-label">Você vende</div></div><div class="conn-node"><div class="conn-icon">🧾</div><div class="conn-label">NFC-e emitida</div></div><div class="conn-node"><div class="conn-icon">📦</div><div class="conn-label">Estoque atualiza</div></div><div class="conn-node"><div class="conn-icon">💰</div><div class="conn-label">Financeiro registra</div></div><div class="conn-node"><div class="conn-icon">📊</div><div class="conn-label">Relatório pronto</div></div></div>
+    <div class="product-quote" data-reveal>Você faz a venda. <em>A Aura cuida do resto.</em></div>
+  </div>
+</section>
+
+<section class="section light" data-screen-label="Resultados">
+  <div class="container">
+    <div class="pg-sec-head stack-md" data-reveal>
+      <div class="eyebrow center">Resultados</div>
+      <h2 class="h2">O que muda no dia a dia</h2>
+    </div>
+    <div class="benefit-grid">
+      <div class="benefit-card" data-reveal data-reveal-delay="1"><div class="benefit-icon">🧾</div><div class="highlight-num">1 clique</div><h4>NFC-e na venda</h4><p>Cupom fiscal emitido na hora pelo PDV, com QR Code SEFAZ e DANFE pronta pra imprimir. Davi Calçados emite em produção real.</p></div>
+      <div class="benefit-card" data-reveal data-reveal-delay="2"><div class="benefit-icon">💳</div><div class="highlight-num">Próprio</div><h4>Crediário sem maquininha</h4><p>Venda parcelada na sua conta, sem taxa de cartão. Cliente paga semanal, quinzenal ou mensal. Você controla o histórico.</p></div>
+      <div class="benefit-card" data-reveal data-reveal-delay="3"><div class="benefit-icon">🏢</div><div class="highlight-num">Multi</div><h4>Várias empresas, 1 painel</h4><p>Matriz e filiais consolidadas. Estoque compartilhado opcional, DRE por CNPJ e relatórios agregados.</p></div>
+      <div class="benefit-card" data-reveal data-reveal-delay="1"><div class="benefit-icon">📲</div><div class="highlight-num">1 toque</div><h4>Cobrança no WhatsApp</h4><p>Crediário em atraso? A régua monta a mensagem com valor, data e chave PIX — você cobra em um toque, sem constrangimento e sem caderninho.</p></div>
+      <div class="benefit-card" data-reveal data-reveal-delay="2"><div class="benefit-icon">📊</div><div class="highlight-num">Auto</div><h4>Relatórios toda segunda</h4><p>Faturamento, ticket médio, produtos mais vendidos, clientes a reativar. Chega no WhatsApp e e-mail, sem você pedir.</p></div>
+      <div class="benefit-card" data-reveal data-reveal-delay="3"><div class="benefit-icon">⏱️</div><div class="highlight-num">8h/sem</div><h4>Tempo de volta</h4><p>Menos planilha, menos caderno, menos WhatsApp atropelado. Mais tempo com cliente e família.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section dark deep" data-screen-label="Começar">
+  <div class="orbs">
+    <div class="orb violet" style="width: 600px; height: 600px; top: -120px; right: -160px;"></div>
+    <div class="orb indigo" style="width: 420px; height: 420px; bottom: -80px; left: -140px; opacity: 0.35;"></div>
+  </div>
+  <div class="grain"></div>
+  <div class="container">
+    <div class="pg-cta stack-md" data-reveal>
+      <h2 class="h2">Duvida? Testa.</h2>
+      <p class="lead">7 dias do plano Negócio completo, grátis, sem cartão. Se não for o melhor sistema que você já usou, é só não ficar.</p>
+      <div class="pg-cta-row"><a href="/comecar" class="btn btn-primary btn-lg">Começar grátis</a><a href="/planos" class="btn btn-ghost btn-lg">Ver planos →</a></div>
+    </div>
+  </div>
+</section>
+
+<div data-mount="footer"></div>
+<div data-mount="wa"></div>
+<script src="/js/chrome.js"></script>
+<script src="/js/site.js"></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25ce08563247490b918793727e3c1eb1"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
