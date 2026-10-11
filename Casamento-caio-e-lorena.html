@@ -36,7 +36,7 @@
   html { scroll-behavior: smooth; overflow-x: hidden; overflow-x: clip; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body {
     background: var(--bg); color: var(--ink); font-family: var(--slab); font-weight: 300;
-    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: hidden;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   }
   a { color: var(--ink); text-decoration: none; }
   img { max-width: 100%; height: auto; display: block; }
@@ -53,7 +53,7 @@
   @keyframes pulse { 0%, 100% { opacity: .42 } 50% { opacity: 1 } }
   @keyframes ember { 0% { transform: translateY(0) scale(1); opacity: 0 } 12% { opacity: .85 } 100% { transform: translateY(-120vh) scale(.4); opacity: 0 } }
 
-  .page { position: relative; z-index: 1; }
+  .page { position: relative; z-index: 1; overflow-x: clip; } /* clip (e nao hidden) para nao quebrar o menu fixo */
 
   /* ---------- navegação ---------- */
   .nav { position: sticky; top: 0; z-index: 50; background: rgba(6, 2, 4, .86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); padding-top: env(safe-area-inset-top, 0px); }
