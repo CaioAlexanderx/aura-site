@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="theme-color" content="#050103">
+<meta name="format-detection" content="telephone=no, email=no, address=no">
 <title>Caio e Lorena · 31.10.2026</title>
 <meta name="description" content="Caio e Lorena · 31 de outubro de 2026 · Jacareí, SP">
 <link rel="canonical" href="https://www.getaura.com.br/Casamento-caio-e-lorena">
@@ -32,7 +33,7 @@
     color-scheme: dark;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: rgba(236, 231, 222, .12); }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; overflow-x: clip; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body {
     background: var(--bg); color: var(--ink); font-family: var(--slab); font-weight: 300;
     -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: hidden;
@@ -43,7 +44,7 @@
   :focus-visible { outline: 1px solid var(--ink); outline-offset: 4px; }
 
   /* ---------- fundo animado ---------- */
-  .bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: var(--wine); }
+  .bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; height: 100lvh; z-index: 0; overflow: hidden; contain: strict; pointer-events: none; background: var(--wine); }
   .bg__roses { position: absolute; inset: 0; background: url("/assets/casamento/rosas.webp") center/cover; animation: drift 30s ease-in-out infinite; }
   .bg__glow { position: absolute; inset: 0; background: radial-gradient(ellipse 62% 52% at 50% 38%, rgba(255, 46, 72, .42), transparent 72%); animation: pulse 8s ease-in-out infinite; }
   .bg__vignette { position: absolute; inset: 0; background: radial-gradient(ellipse 118% 102% at 50% 50%, rgba(4, 1, 3, .18) 34%, rgba(4, 1, 3, .42) 72%, rgba(4, 1, 3, .7) 92%, rgba(4, 1, 3, .8) 100%); }
@@ -56,20 +57,21 @@
 
   /* ---------- navegação ---------- */
   .nav { position: sticky; top: 0; z-index: 50; background: rgba(6, 2, 4, .86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); padding-top: env(safe-area-inset-top, 0px); }
-  .nav__in { max-width: 1080px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 14px; }
-  .nav__mono { font-family: var(--script); font-size: 25px; line-height: 1; white-space: nowrap; flex: none; }
-  .nav__links { margin-left: auto; min-width: 0; display: flex; gap: clamp(10px, 3vw, 28px); overflow-x: auto; scrollbar-width: none; font-size: clamp(9.5px, 2.6vw, 11px); letter-spacing: .14em; text-transform: uppercase; font-weight: 600; white-space: nowrap; }
+  .nav__in { max-width: 1080px; margin: 0 auto; padding: 2px 16px; display: flex; align-items: center; gap: 14px; }
+  .nav__mono { font-family: var(--script); font-size: 25px; line-height: 1; white-space: nowrap; flex: none; padding: 10px 0; }
+  .nav__links { margin-left: auto; min-width: 0; display: flex; gap: 24px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scrollbar-width: none; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; white-space: nowrap; }
   .nav__links::-webkit-scrollbar { display: none; }
-  .nav__links a { opacity: .82; padding: 6px 0; }
+  .nav__links a { opacity: .78; padding: 12px 2px; scroll-snap-align: center; border-bottom: 1px solid transparent; transition: opacity .2s, border-color .2s; }
+  .nav__links a.is-active { opacity: 1; border-bottom-color: rgba(236, 231, 222, .7); }
   .nav__links a:hover { opacity: 1; }
 
   /* ---------- hero ---------- */
   .hero { position: relative; text-align: center; padding: clamp(36px, 9vw, 72px) 16px clamp(56px, 11vw, 92px); }
   .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 88% 74% at 50% 46%, rgba(5, 1, 3, .84), rgba(5, 1, 3, .6) 42%, rgba(5, 1, 3, .28) 68%, transparent 92%); pointer-events: none; }
   .hero > * { position: relative; }
-  .orn { width: min(400px, 72vw); margin: 0 auto; }
+  .orn { width: min(400px, 72vw, 70vh); margin: 0 auto; }
   .orn--flip { transform: scaleY(-1); }
-  .medal { width: min(320px, 70vw); margin: 0 auto; transform-origin: 50% 0; animation: swing 3.2s cubic-bezier(.22, .84, .32, 1) .2s both; }
+  .medal { width: min(320px, 70vw, 52vh); width: min(320px, 70vw, 52svh); margin: 0 auto; transform-origin: 50% 0; animation: swing 3.2s cubic-bezier(.22, .84, .32, 1) .2s both; }
   .medal__chain { width: 1px; height: clamp(30px, 8vw, 52px); margin: 0 auto; background: linear-gradient(rgba(236, 231, 222, 0), rgba(236, 231, 222, .6)); }
   .medal__img { position: relative; }
   .medal__img::before { content: ""; position: absolute; top: 6%; bottom: 6%; left: -14%; right: -14%; border-radius: 50%; background: radial-gradient(ellipse, rgba(255, 42, 68, .5), transparent 70%); animation: pulse 8s ease-in-out infinite; }
@@ -79,7 +81,7 @@
   .hero__names span { font-size: .62em; opacity: .85; }
   .hero__rule { width: 130px; height: 1px; margin: 22px auto; background: linear-gradient(90deg, transparent, rgba(236, 231, 222, .75), transparent); }
   .hero__date { font-size: clamp(12px, 3vw, 15px); letter-spacing: .42em; text-indent: .42em; font-weight: 600; }
-  .hero__place { font-size: 11px; letter-spacing: .3em; text-indent: .3em; opacity: .75; margin-top: 12px; }
+  .hero__place { font-size: 12px; letter-spacing: .3em; text-indent: .3em; opacity: .75; margin-top: 12px; }
   .hero__motto { font-family: var(--script); font-size: clamp(26px, 6vw, 38px); margin: clamp(22px, 5vw, 30px) 0 clamp(26px, 6vw, 38px); opacity: .92; text-shadow: 0 2px 18px rgba(0, 0, 0, .7); }
   .hero__meta { animation: rise 1.4s ease-out 2s both; }
   @keyframes rise { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: none } }
@@ -91,7 +93,7 @@
   .eyebrow { font-size: 12px; letter-spacing: .44em; text-indent: .44em; font-weight: 600; opacity: .72; text-transform: uppercase; }
   .title { font-family: var(--script); font-size: clamp(46px, 9vw, 72px); line-height: 1.1; margin-top: 8px; text-wrap: balance; }
   .lead { font-size: 17px; line-height: 1.8; margin-top: 20px; color: var(--ink-soft); text-wrap: pretty; max-width: 52ch; margin-inline: auto; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-top: 30px; padding: 16px 34px; border: 1px solid rgba(236, 231, 222, .6); font-size: 11px; letter-spacing: .3em; text-indent: .3em; font-weight: 600; text-transform: uppercase; transition: background .25s, color .25s; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-top: 30px; min-height: 50px; padding: 14px 28px; border: 1px solid rgba(236, 231, 222, .6); font-size: 12px; letter-spacing: .3em; text-indent: .3em; font-weight: 600; text-transform: uppercase; transition: background .25s, color .25s; }
   .btn:hover { background: var(--ink); color: #12060a; }
   .btn--solid { background: var(--ink); color: #12060a; }
   .btn--solid:hover { background: #fff; }
@@ -102,9 +104,10 @@
 
   /* ---------- cronograma ---------- */
   .tl { list-style: none; margin: 36px auto 0; max-width: 460px; text-align: left; position: relative; }
-  .tl::before { content: ""; position: absolute; left: 82px; top: 18px; bottom: 18px; width: 1px; background: rgba(236, 231, 222, .45); }
-  .tl li { display: grid; grid-template-columns: 70px 24px 44px 1fr; align-items: center; gap: 0 10px; padding: 12px 0; }
-  .tl__time { text-align: right; font-family: var(--serif); font-size: 19px; font-variant-numeric: tabular-nums; }
+  .tl { --c1: 70px; --c2: 24px; --c3: 44px; --g: 10px; }
+  .tl::before { content: ""; position: absolute; left: calc(var(--c1) + var(--g) + var(--c2) / 2); top: 18px; bottom: 18px; width: 1px; background: rgba(236, 231, 222, .45); }
+  .tl li { display: grid; grid-template-columns: var(--c1) var(--c2) var(--c3) minmax(0, 1fr); align-items: center; gap: 0 var(--g); padding: 12px 0; }
+  .tl__time { text-align: right; font-family: var(--serif); font-size: 19px; font-variant-numeric: lining-nums tabular-nums; }
   .tl__time--soft { font-family: var(--slab); font-size: 14px; font-style: italic; opacity: .8; }
   .tl__dot { justify-self: center; width: 9px; height: 9px; background: var(--ink); transform: rotate(45deg); box-shadow: 0 0 0 4px #12060a, 0 0 0 5px rgba(236, 231, 222, .5); }
   .tl__ic svg { width: 40px; height: 40px; display: block; }
@@ -122,7 +125,7 @@
   .stores { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; }
   .stores .btn { margin-top: 0; flex: 1 1 200px; max-width: 280px; }
   .stores .btn.is-mine { background: var(--ink); color: #12060a; }
-  .link-sub { display: inline-block; margin-top: 20px; font-size: 14px; font-style: italic; color: var(--ink-soft); border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+  .link-sub { display: inline-block; margin-top: 10px; padding: 14px 6px; font-size: 15px; font-style: italic; color: var(--ink-soft); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 5px; }
   /* ---------- jogos ---------- */
   .soon { margin-top: 26px; font-size: 12px; letter-spacing: .36em; text-indent: .36em; font-weight: 600; color: var(--rose); text-transform: uppercase; }
 
@@ -146,11 +149,25 @@
   /* ---------- rodapé ---------- */
   footer { text-align: center; padding: 56px 16px calc(56px + env(safe-area-inset-bottom, 0px)); }
   footer .names { font-family: var(--script); font-size: 40px; }
-  footer p { font-size: 11px; letter-spacing: .3em; text-indent: .3em; opacity: .7; margin-top: 10px; text-transform: uppercase; }
+  footer p { font-size: 12px; letter-spacing: .3em; text-indent: .3em; opacity: .7; margin-top: 10px; text-transform: uppercase; }
 
+  @media (max-width: 400px) {
+    section { padding-left: 12px; padding-right: 12px; }
+    .panel { padding-left: 16px; padding-right: 16px; }
+    .tl { --c1: 54px; --c2: 16px; --c3: 30px; --g: 8px; }
+    .tl__time { font-size: 16px; }
+    .tl__time--soft { font-size: 12px; line-height: 1.2; }
+    .tl__ic svg { width: 30px; height: 30px; }
+    .tl__ev h3 { font-size: 13px; letter-spacing: .12em; }
+    .tl__ev p { font-size: 14px; line-height: 1.35; }
+    .btn { letter-spacing: .18em; text-indent: .18em; padding: 14px 16px; white-space: nowrap; }
+    footer p { letter-spacing: .16em; text-indent: .16em; }
+  }
   @media (max-width: 430px) {
     .nav__mono { display: none; }
-    .nav__links { margin: 0 auto; }
+    .nav__in { padding: 2px 0; }
+    .nav__links { margin: 0; padding: 0 16px; width: 100%; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 28px), transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 28px), transparent 100%); }
+    .nav__links::after { content: ""; flex: 0 0 4px; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -246,7 +263,7 @@
       <div class="frame" id="wedshoots-code-box">
         <div class="eyebrow">Código do álbum</div>
         <div class="code" id="wedshoots-code">BR05502a99</div>
-        <button class="btn" type="button" data-copy="wedshoots-code" style="margin-top:16px;padding:12px 24px">Copiar código</button>
+        <button class="btn" type="button" data-copy="wedshoots-code" style="margin-top:16px">Copiar código</button>
       </div>
       <a class="link-sub" id="wedshoots-link" href="https://www.casamentos.com.br/web/caio-e-lorena/wedshoots-9" target="_blank" rel="noopener">Ver o álbum no navegador</a>
     </div>
@@ -316,6 +333,27 @@
   var WEDSHOOTS = { url: 'https://www.casamentos.com.br/web/caio-e-lorena/wedshoots-9', codigo: 'BR05502a99' };
   /* Pix estático (sem valor) para a chave lorenaflores0613@gmail.com */
   var PIX_PAYLOAD = '00020126480014br.gov.bcb.pix0126lorenaflores0613@gmail.com5204000053039865802BR5913CAIO E LORENA6007JACAREI62070503***630420E1';
+
+  (function () {
+    /* destaca no menu a seção que está na tela e mantém o item visível na barra */
+    var nav = document.querySelector('.nav__links');
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          links.forEach(function (a) {
+            var on = a.getAttribute('href') === '#' + e.target.id;
+            a.classList.toggle('is-active', on);
+            if (on && nav.scrollWidth > nav.clientWidth) {
+              nav.scrollTo({ left: a.offsetLeft - (nav.clientWidth - a.offsetWidth) / 2, behavior: 'smooth' });
+            }
+          });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      links.forEach(function (a) { var t = document.querySelector(a.getAttribute('href')); if (t) io.observe(t); });
+    }
+  })();
 
   (function () {
     document.getElementById('wedshoots-code').textContent = WEDSHOOTS.codigo;
