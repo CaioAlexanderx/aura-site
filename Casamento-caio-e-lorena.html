@@ -36,7 +36,7 @@
   html { scroll-behavior: smooth; overflow-x: hidden; overflow-x: clip; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body {
     background: var(--bg); color: var(--ink); font-family: var(--slab); font-weight: 300;
-    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: hidden;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   }
   a { color: var(--ink); text-decoration: none; }
   img { max-width: 100%; height: auto; display: block; }
@@ -53,7 +53,7 @@
   @keyframes pulse { 0%, 100% { opacity: .42 } 50% { opacity: 1 } }
   @keyframes ember { 0% { transform: translateY(0) scale(1); opacity: 0 } 12% { opacity: .85 } 100% { transform: translateY(-120vh) scale(.4); opacity: 0 } }
 
-  .page { position: relative; z-index: 1; }
+  .page { position: relative; z-index: 1; overflow-x: clip; } /* clip (e nao hidden) para nao quebrar o menu fixo */
 
   /* ---------- navegação ---------- */
   .nav { position: sticky; top: 0; z-index: 50; background: rgba(6, 2, 4, .86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); padding-top: env(safe-area-inset-top, 0px); }
@@ -146,6 +146,12 @@
   .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); background: var(--ink); color: #12060a; padding: 12px 20px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; opacity: 0; transition: opacity .25s, transform .25s; z-index: 100; pointer-events: none; }
   .toast.is-on { opacity: 1; transform: translate(-50%, 0); }
 
+  .letter { margin: 22px auto 0; max-width: 50ch; display: grid; gap: 14px; }
+  .letter p { font-size: 17px; line-height: 1.75; color: var(--ink-soft); text-wrap: pretty; }
+  .sign { margin-top: 30px; display: grid; gap: 4px; }
+  .sign span { font-size: 15px; font-style: italic; color: var(--ink-soft); }
+  .sign b { font-family: var(--script); font-weight: 400; font-size: 38px; line-height: 1.1; }
+  .sign small { font-size: .62em; }
   /* ---------- rodapé ---------- */
   footer { text-align: center; padding: 56px 16px calc(56px + env(safe-area-inset-bottom, 0px)); }
   footer .names { font-family: var(--script); font-size: 40px; }
@@ -196,7 +202,7 @@
         <a href="#fotos">Fotos</a>
         <a href="#jogos">Jogos</a>
         <a href="#menu">Menu</a>
-        <a href="#pix">Lua de mel</a>
+        <a href="#pix">Presentes</a>
       </div>
     </div>
   </nav>
@@ -300,9 +306,14 @@
   <section id="pix">
     <div class="panel">
       <img class="orn" src="/assets/casamento/ornamento.webp" alt="" width="800" height="163" style="width:min(300px,60vw);margin-bottom:26px;opacity:.9">
-      <div class="eyebrow">Lua de mel</div>
-      <h2 class="title">Nossa próxima aventura</h2>
-      <p class="lead">O principal a gente já tem: um ao outro, e você sentado à nossa mesa nessa noite. Se ainda assim quiser mandar a gente para longe por alguns dias, o Pix está logo abaixo.</p>
+      <div class="eyebrow">Pra quem nos perguntou</div>
+      <h2 class="title">Sobre presentes</h2>
+      <div class="letter">
+        <p>A presença de vocês em nosso casamento já é o maior presente que poderíamos receber. Muitos de vocês estarão viajando para estar conosco, e isso, por si só, significa muito para nós.</p>
+        <p>Não preparamos lista de presentes, pois já temos nossa casa completa e não esperamos receber nada além do carinho de vocês nesse dia especial.</p>
+        <p>Ainda assim, algumas pessoas nos perguntaram sobre a possibilidade de presentear. Para quem fizer questão, deixamos abaixo a chave Pix como uma opção prática e totalmente opcional.</p>
+        <p>Sintam-se à vontade. O mais importante é celebrar juntos.</p>
+      </div>
       <div class="frame">
         <div class="eyebrow">Chave Pix</div>
         <div class="pix__key" id="pix-key">lorenaflores0613@gmail.com</div>
@@ -314,6 +325,10 @@
           <img src="/assets/casamento/pix-qr.png" alt="QR Code Pix para a chave lorenaflores0613@gmail.com" width="400" height="400">
           <small>Vendo em outra tela? Escaneie com o app do banco.</small>
         </div>
+      </div>
+      <div class="sign">
+        <span>Com carinho,</span>
+        <b>Caio <small>e</small> Lorena</b>
       </div>
       <img class="orn orn--flip" src="/assets/casamento/ornamento.webp" alt="" width="800" height="163" style="width:min(300px,60vw);margin-top:30px;opacity:.9">
     </div>
