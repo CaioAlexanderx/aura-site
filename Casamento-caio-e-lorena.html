@@ -114,11 +114,15 @@
   .tl__ev p { font-size: 15px; font-style: italic; color: var(--ink-soft); margin-top: 2px; }
 
   /* ---------- fotos ---------- */
-  .code { font-family: var(--serif); font-size: clamp(22px, 6vw, 30px); letter-spacing: .12em; margin-top: 12px; }
+  .code { font-family: var(--serif); font-size: clamp(22px, 6vw, 30px); letter-spacing: .12em; margin-top: 12px; font-variant-numeric: lining-nums; }
   .steps { list-style: none; counter-reset: s; margin: 26px auto 0; max-width: 420px; text-align: left; display: grid; gap: 12px; }
   .steps li { counter-increment: s; display: grid; grid-template-columns: 30px 1fr; gap: 10px; font-size: 16px; line-height: 1.55; color: var(--ink-soft); }
   .steps li::before { content: counter(s); font-family: var(--serif); font-size: 18px; color: var(--ink); text-align: center; border: 1px solid var(--line); height: 30px; line-height: 28px; }
 
+  .stores { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; }
+  .stores .btn { margin-top: 0; flex: 1 1 200px; max-width: 280px; }
+  .stores .btn.is-mine { background: var(--ink); color: #12060a; }
+  .link-sub { display: inline-block; margin-top: 20px; font-size: 14px; font-style: italic; color: var(--ink-soft); border-bottom: 1px solid var(--line); padding-bottom: 2px; }
   /* ---------- jogos ---------- */
   .soon { margin-top: 26px; font-size: 12px; letter-spacing: .36em; text-indent: .36em; font-weight: 600; color: var(--rose); text-transform: uppercase; }
 
@@ -232,14 +236,19 @@
       <p class="lead">Toda foto que você tirar cabe aqui. Suba as suas no Wedshoots e veja a noite pelos olhos de todo mundo que estava lá, inclusive os ângulos que a gente jamais veria.</p>
       <ol class="steps">
         <li><span>Baixe o app <b>Wedshoots</b> no seu celular.</span></li>
-        <li><span>Entre no nosso álbum com o código abaixo.</span></li>
+        <li><span>Abra o app e entre no nosso álbum com o código abaixo.</span></li>
         <li><span>Fotografe tudo. Sem moderação.</span></li>
       </ol>
+      <div class="stores">
+        <a class="btn" data-store="ios" href="https://app.appsflyer.com/id606927319?pid=WP-iOS-BR&amp;c=WP-BR-LANDINGS&amp;s=br" target="_blank" rel="noopener">Baixar no iPhone</a>
+        <a class="btn" data-store="android" href="https://app.appsflyer.com/br.com.casamentos.launcher?pid=WP-Android-BR&amp;c=WP-BR-LANDINGS" target="_blank" rel="noopener">Baixar no Android</a>
+      </div>
       <div class="frame" id="wedshoots-code-box">
         <div class="eyebrow">Código do álbum</div>
-        <div class="code" id="wedshoots-code">em breve</div>
+        <div class="code" id="wedshoots-code">BR05502a99</div>
+        <button class="btn" type="button" data-copy="wedshoots-code" style="margin-top:16px;padding:12px 24px">Copiar código</button>
       </div>
-      <a class="btn" id="wedshoots-link" href="#" target="_blank" rel="noopener" aria-disabled="true">Abrir o Wedshoots</a>
+      <a class="link-sub" id="wedshoots-link" href="https://www.casamentos.com.br/web/caio-e-lorena/wedshoots-9" target="_blank" rel="noopener">Ver o álbum no navegador</a>
     </div>
   </section>
 
@@ -304,15 +313,19 @@
 
 <script>
   /* ===== Configuração: preencha quando tiver os dados do Wedshoots ===== */
-  var WEDSHOOTS = { url: '', codigo: '' };
+  var WEDSHOOTS = { url: 'https://www.casamentos.com.br/web/caio-e-lorena/wedshoots-9', codigo: 'BR05502a99' };
   /* Pix estático (sem valor) para a chave lorenaflores0613@gmail.com */
   var PIX_PAYLOAD = '00020126480014br.gov.bcb.pix0126lorenaflores0613@gmail.com5204000053039865802BR5913CAIO E LORENA6007JACAREI62070503***630420E1';
 
   (function () {
-    if (WEDSHOOTS.codigo) document.getElementById('wedshoots-code').textContent = WEDSHOOTS.codigo;
-    if (WEDSHOOTS.url) {
-      var a = document.getElementById('wedshoots-link');
-      a.href = WEDSHOOTS.url; a.removeAttribute('aria-disabled');
+    document.getElementById('wedshoots-code').textContent = WEDSHOOTS.codigo;
+    document.getElementById('wedshoots-link').href = WEDSHOOTS.url;
+    /* destaca a loja do celular de quem abriu (os dois botões continuam visíveis) */
+    var ua = navigator.userAgent || '';
+    var mine = /iPhone|iPad|iPod/i.test(ua) ? 'ios' : (/Android/i.test(ua) ? 'android' : '');
+    if (mine) {
+      var el = document.querySelector('[data-store="' + mine + '"]');
+      el.classList.add('is-mine'); el.parentNode.insertBefore(el, el.parentNode.firstChild);
     }
 
     var toast = document.getElementById('toast'), timer;
@@ -330,8 +343,9 @@
     document.querySelectorAll('[data-copy]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var which = btn.getAttribute('data-copy');
-        var text = which === 'pix-payload' ? PIX_PAYLOAD : document.getElementById('pix-key').textContent.trim();
-        var done = function () { show(which === 'pix-payload' ? 'Copiado! Cole no app do banco' : 'Chave copiada'); };
+        var text = which === 'pix-payload' ? PIX_PAYLOAD : document.getElementById(which).textContent.trim();
+        var msg = { 'pix-payload': 'Copiado! Cole no app do banco', 'pix-key': 'Chave copiada', 'wedshoots-code': 'Código copiado' }[which];
+        var done = function () { show(msg); };
         if (navigator.clipboard && window.isSecureContext) {
           navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text) ? done() : show('Não deu para copiar'); });
         } else { fallbackCopy(text) ? done() : show('Não deu para copiar'); }
