@@ -36,7 +36,7 @@
   html { scroll-behavior: smooth; overflow-x: hidden; overflow-x: clip; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body {
     background: var(--bg); color: var(--ink); font-family: var(--slab); font-weight: 300;
-    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: hidden;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   }
   a { color: var(--ink); text-decoration: none; }
   img { max-width: 100%; height: auto; display: block; }
@@ -146,6 +146,14 @@
   .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); background: var(--ink); color: #12060a; padding: 12px 20px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; opacity: 0; transition: opacity .25s, transform .25s; z-index: 100; pointer-events: none; }
   .toast.is-on { opacity: 1; transform: translate(-50%, 0); }
 
+  .secret { padding-top: 8px; padding-bottom: 0; text-align: center; }
+  .secret summary { list-style: none; display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 12px; cursor: pointer; font-size: 12px; letter-spacing: .3em; text-indent: .3em; text-transform: uppercase; font-weight: 600; opacity: .5; transition: opacity .2s; }
+  .secret summary::-webkit-details-marker { display: none; }
+  .secret summary::after { content: "+"; font-family: var(--serif); font-size: 16px; letter-spacing: 0; }
+  .secret details[open] summary { opacity: .85; }
+  .secret details[open] summary::after { content: "−"; }
+  .secret summary:hover { opacity: .85; }
+  .secret details[open] .panel { margin-top: 18px; animation: rise .5s ease-out both; }
   /* ---------- rodapé ---------- */
   footer { text-align: center; padding: 56px 16px calc(56px + env(safe-area-inset-bottom, 0px)); }
   footer .names { font-family: var(--script); font-size: 40px; }
@@ -196,7 +204,6 @@
         <a href="#fotos">Fotos</a>
         <a href="#jogos">Jogos</a>
         <a href="#menu">Menu</a>
-        <a href="#pix">Lua de mel</a>
       </div>
     </div>
   </nav>
@@ -296,8 +303,10 @@
     </div>
   </section>
 
-  <!-- ================= PIX ================= -->
-  <section id="pix">
+  <!-- ================= PIX (discreto: fora do menu, abre ao tocar) ================= -->
+  <section id="pix" class="secret">
+    <details id="pix-details">
+      <summary>Lua de mel</summary>
     <div class="panel">
       <img class="orn" src="/assets/casamento/ornamento.webp" alt="" width="800" height="163" style="width:min(300px,60vw);margin-bottom:26px;opacity:.9">
       <div class="eyebrow">Lua de mel</div>
@@ -317,6 +326,7 @@
       </div>
       <img class="orn orn--flip" src="/assets/casamento/ornamento.webp" alt="" width="800" height="163" style="width:min(300px,60vw);margin-top:30px;opacity:.9">
     </div>
+    </details>
   </section>
 
   <footer>
@@ -333,6 +343,13 @@
   var WEDSHOOTS = { url: 'https://www.casamentos.com.br/web/caio-e-lorena/wedshoots-9', codigo: 'BR05502a99' };
   /* Pix estático (sem valor) para a chave lorenaflores0613@gmail.com */
   var PIX_PAYLOAD = '00020126480014br.gov.bcb.pix0126lorenaflores0613@gmail.com5204000053039865802BR5913CAIO E LORENA6007JACAREI62070503***630420E1';
+
+  (function () {
+    /* quem chegar por um link com #pix já vê a seção aberta */
+    var d = document.getElementById('pix-details');
+    function openIfPix() { if (location.hash === '#pix') { d.open = true; } }
+    openIfPix(); window.addEventListener('hashchange', openIfPix);
+  })();
 
   (function () {
     /* destaca no menu a seção que está na tela e mantém o item visível na barra */
