@@ -5,5 +5,13 @@
   "assets": {
     "directory": "./",
     "binding": "ASSETS"
-  }
+  },
+  // Quiz do casamento (Caio e Lorena) — gabarito, horarios e jogadas
+  "d1_databases": [
+    {
+      "binding": "QUIZ_DB",
+      "database_name": "casamento-quiz",
+      "database_id": "a603cd5c-37cf-4ab5-ae12-6ed55f5d36bd"
+    }
+  ]
 }
