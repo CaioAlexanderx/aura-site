@@ -7,6 +7,7 @@
 //                            e-mail (Resend) para contato@getaura.com.br
 //   *    /api/contact      → 410: o formulário completo foi desativado
 //                            (o site só tem contato por WhatsApp)
+//   *    /api/quiz[/jogar] → quiz do casamento (src/quiz.js, D1 QUIZ_DB)
 //   *                      → static assets (HTML, CSS, JS, imagens)
 //
 // Variáveis (Workers & Pages > aura-site > Settings > Variables and Secrets):
@@ -17,6 +18,7 @@
 
 import AuraPhone from '../js/phone-br.js';
 import { sendLeadEmail } from './lead-email.js';
+import { handleQuiz } from './quiz.js';
 
 // Origens que podem postar lead. localhost/127.0.0.1 em qualquer porta (dev).
 const ALLOWED_ORIGINS = ['https://www.getaura.com.br', 'https://getaura.com.br'];
@@ -176,6 +178,11 @@ export default {
 
     if (url.pathname === '/api/contact') {
       return handleContact();
+    }
+
+    // Quiz do casamento (Caio e Lorena) — ver src/quiz.js
+    if (url.pathname === '/api/quiz' || url.pathname.startsWith('/api/quiz/')) {
+      return handleQuiz(request, env, url);
     }
 
     // Tudo mais: static assets
