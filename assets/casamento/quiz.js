@@ -20,14 +20,14 @@
   ];
   var LORENA = [
     ['l1', 'Qual a comida que a Lorena seria capaz de comer todo dia?', ['Lasanha', 'Pizza', 'Camarão', 'Arroz e feijão']],
-    ['l2', 'Qual seria a pior punição possível para a Lorena?', ['Ficar satisfeita antes de comer 500 salgadinhos', 'O Caio atrasar para a cerimônia', 'Esquecer de provar os doces do casamento', 'Ter que usar roupa amarela por um mês']],
+    ['l2', 'Qual seria a pior punição possível para a Lorena?', ['Receber um áudio de 8 minutos no WhatsApp', 'O Caio atrasar para a cerimônia', 'Esquecer de provar os doces do casamento', 'Ter que usar roupa amarela por um mês']],
     ['l3', 'Qual o maior medo da Lorena?', ['Barata', 'Altura', 'Palhaço', 'Acabar o café']],
-    ['l4', 'Qual estilo de música a Lorena NÃO aguenta ouvir?', ['Sertanejo', 'Funk', 'Todas as opções', 'O Caio cantando no chuveiro']],
-    ['l5', 'Qual a cor preferida da Lorena?', ['Amarelo', 'Roxo', 'Bege', 'Laranja']],
-    ['l6', 'Qual seria a profissão da Lorena numa vida passada vitoriana?', ['Bruxa que vende poções', 'Mercadora viajante', 'Costureira da realeza', 'Médium que conversa com os mortos por dinheiro']],
-    ['l7', 'Qual a faixa da Lorena no karatê?', ['Branca', 'Faixa de pedestre', 'Marrom', 'Preta']],
-    ['l8', 'Qual o personagem preferido da Lorena em Harry Potter?', ['Dobby', 'Sirius Black', 'Severus Snape', 'Ron Weasley']],
-    ['l9', 'Qual frase a Lorena mais repete?', ['"Tô com fome"', '"Tô com frio"', '"Não, tô ótima"', '"Sim, senhor"']],
+    ['l4', 'Qual estilo de música a Lorena NÃO aguenta ouvir?', ['Sertanejo', 'Funk', 'Pagode', 'Todas as opções']],
+    ['l5', 'Qual a cor preferida da Lorena?', ['Preto', 'Roxo', 'Vinho', 'Laranja']],
+    ['l6', 'Qual seria a profissão da Lorena numa vida passada vitoriana?', ['Bruxa que vende poções', 'Mercadora viajante', 'Costureira da realeza', 'Médium que conversa com os mortos']],
+    ['l7', 'Qual a faixa da Lorena no karatê?', ['Branca', 'Marrom', 'Preta', 'Faixa de pedestre']],
+    ['l8', 'Qual o gênero literário preferido da Lorena?', ['Romance', 'Suspense', 'Terror', 'Não ficção']],
+    ['l9', 'Qual frase a Lorena mais repete?', ['"Tô com fome"', '"Tô com frio"', '"Não"', '"Sim, senhor"']],
     ['l10', 'Se a Lorena pudesse banir uma coisa do mundo para sempre, o que provavelmente escolheria?', ['Pessoas que dizem "é rapidinho" e levam duas horas', 'Vizinho com furadeira domingo às 8h da manhã', 'Comida japonesa', 'Café descafeinado']]
   ];
   // Misturadas: Caio, Lorena, Caio, Lorena...
