@@ -13,6 +13,11 @@
 #
 # 21/05/2026: publicados Termos de Uso v2.
 
+# 13/10/2026: link de indicacao. O cartao "Indique" do app compartilha
+# getaura.com.br/r/<codigo> (REF-...); sem esta regra dava 404. 302 porque o
+# codigo muda por indicador. js/comecar.js le ?ref= e manda como access_code.
+/r/:code /comecar?ref=:code 302
+
 # Forcar URL limpa (sem .html)
 /precos.html /planos 301
 /precos /planos 301
