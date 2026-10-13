@@ -32,6 +32,18 @@
   var ACCESS_CODE = "COMECAR";
   var TERMS_VERSION = "v2";
 
+  // Indicação (13/10/2026): getaura.com.br/r/<código> redireciona pra
+  // /comecar?ref=<código> (ver _redirects). Só códigos REF-… são aceitos;
+  // qualquer outra coisa na URL é ignorada e o cadastro segue com COMECAR.
+  // Se o backend recusar o código (inválido, desativado, esgotado,
+  // expirado), o cadastro refaz uma vez com COMECAR, sem erro na tela.
+  var referralCode = null;
+  try {
+    var refParam = new URLSearchParams(window.location.search).get("ref");
+    refParam = typeof refParam === "string" ? refParam.trim().toUpperCase() : "";
+    if (/^REF-[A-Z0-9]{3,40}$/.test(refParam)) referralCode = refParam;
+  } catch (_) {}
+
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
@@ -453,7 +465,7 @@
       phone: phone || null,
       company_name: companyName,
       cnpj: state.cnpj || null,
-      access_code: ACCESS_CODE,
+      access_code: referralCode || ACCESS_CODE,
       terms_accepted: true,
       terms_version: TERMS_VERSION,
     };
@@ -473,6 +485,11 @@
           setTimeout(function () {
             window.location.href = APP_LOGIN + "?email=" + encodeURIComponent(email) + "&from=comecar";
           }, 2600);
+        } else if (r.status === 400 && referralCode && r.data && /^c[oó]digo/i.test(String(r.data.error || ""))) {
+          // código de indicação recusado: o backend desfaz a transação, então
+          // dá pra tentar de novo com o código padrão.
+          referralCode = null;
+          doRegister();
         } else if (r.status === 400 && r.data && (r.data.code === "SEGMENT_INVALID" || r.data.code === "EXTRAS_INVALID")) {
           showStep("ramo");
           showError("ramo", "Não deu pra salvar o ramo escolhido. Marca de novo e continua — se repetir, chama a gente no WhatsApp.");
