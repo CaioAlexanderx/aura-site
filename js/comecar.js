@@ -18,6 +18,10 @@
      segment_suggested. ?ramo= na URL (páginas de segmento) pré-marca a
      opção e prevalece sobre a sugestão do CNAE. Nada disso vai pro
      localStorage: fica só em memória.
+   • Origem (15/10/2026, t2-09): o register recebe `origem` opcional com o
+     primeiro toque do visitante (utm_*, landing_page, referrer, first_seen_at),
+     gravado por js/origem.js no localStorage do site por 30 dias. Sem
+     primeiro toque, o campo nem vai no corpo. Não tem relação com ?ref= nem ?ramo=.
    • Handoff (T3.2): app não aceita sessão externa cross-origin
      (token vive no localStorage de app.getaura.com.br). Fallback v1:
      redirect pro login do app com ?email= pré-preenchido.
@@ -475,6 +479,11 @@
     }
     var seg = segmentPayload();
     Object.keys(seg).forEach(function (k) { body[k] = seg[k]; });
+
+    // Primeiro toque (js/origem.js). Opcional: sem ele o cadastro segue igual.
+    var origem = null;
+    try { origem = window.AuraOrigem ? window.AuraOrigem.get() : null; } catch (_) {}
+    if (origem) body.origem = origem;
 
     setLoading(btn, true);
     post("/auth/register", body, 15000)
