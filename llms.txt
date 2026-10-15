@@ -32,7 +32,7 @@ Sistema completo pra loja física (e loja online inclusa) que resolve as cinco d
 
 ## Planos e preços (fonte: https://www.getaura.com.br/planos)
 
-Preço fixo por plano. Não há cobrança por pedido, por nota ou por volume de vendas. Essencial: R$ 74,17 por mês no plano anual (R$ 89 no mensal). Negócio: R$ 140,83 por mês no anual (R$ 169 no mensal). Expansão: R$ 224,17 por mês no anual (R$ 269 no mensal). O anual é cobrado mês a mês, sem fidelidade. Sem multa de cancelamento, dados exportáveis.
+Preço fixo por plano. Não há cobrança por pedido, por nota ou por volume de vendas. Essencial: R$ 74,17 por mês no plano anual (R$ 89 no mensal). Negócio: R$ 140,83 por mês no anual (R$ 169 no mensal). Expansão: R$ 224,17 por mês no anual (R$ 269 no mensal). O anual é cobrado mês a mês, sem fidelidade. No plano anual você paga 10 meses e usa 12 (2 meses grátis). Sem multa de cancelamento, dados exportáveis.
 
 | Plano | Mensal | Anual (equivalente/mês) | Para quem |
 |---|---|---|---|

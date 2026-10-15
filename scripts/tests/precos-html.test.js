@@ -98,7 +98,8 @@ teste('llms.txt: frase aprovada, alternativas e data de revisão', () => {
   assert.ok(t.includes('Essencial: R$ 74,17 por mês no plano anual (R$ 89 no mensal). Negócio: R$ 140,83 por mês no anual (R$ 169 no mensal). Expansão: R$ 224,17 por mês no anual (R$ 269 no mensal). O anual é cobrado mês a mês, sem fidelidade.'));
   assert.ok(/GestãoClick/.test(t) && /Phibo/.test(t));
   assert.ok(t.includes('Revisado em 15/10/2026'));
-  assert.ok(!/paga 10 meses/.test(t), 'sobrou a frase antiga de 10 meses');
+  // 15/10/2026 (Caio): a frase dos 10 meses volta, ao lado do "cobrado mês a mês".
+  assert.ok(t.includes('No plano anual você paga 10 meses e usa 12 (2 meses grátis).'), 'falta a frase dos 2 meses grátis');
 });
 
 teste('arquivos com fim de linha LF', () => {
