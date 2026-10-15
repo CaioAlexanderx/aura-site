@@ -3,7 +3,8 @@
 Injeta JSON-LD (schema.org) em todas as paginas publicas do site.
 
 Uso (na raiz do repo):
-    python scripts/inject-jsonld.py
+    python scripts/inject-jsonld.py                      # todas as paginas
+    python scripts/inject-jsonld.py index.html planos.html   # so essas
 
 Idempotente: o bloco fica entre <!-- jsonld:start --> e <!-- jsonld:end -->
 no <head>; rodar de novo substitui. Rode sempre que criar/alterar uma pagina
@@ -36,10 +37,17 @@ SKIP = {"termos.html", "privacidade.html", "dpa.html"}
 SKIP_PREFIX = ("Casamento",)
 
 # ---- Precos (fonte da verdade: js/plans-data.js + planos.html) ----
+# (nome, ancora em /planos, mensal, anual equivalente por mes, o que o plano inclui)
+# 15/10/2026: um Offer por plano, com o mensal e o anual-equivalente dentro do
+# mesmo Offer. Antes eram 6 Offers soltos (mensal e anual de cada plano na mesma
+# lista) e uma IA lendo a lista corrida podia colar o R$ 89 no pacote de R$ 169.
 PLANS = [
-    ("Essencial", 89.00, 74.17, "PDV, NFC-e (ate 50/mes), estoque com variantes, financeiro basico, 1 usuario."),
-    ("Negócio", 169.00, 140.83, "Operacao completa: notas ilimitadas, crediario com cobranca no WhatsApp, CRM, folha, loja online, ate 3 usuarios. Studio ou Dojo incluidos."),
-    ("Expansão", 269.00, 224.17, "Multi-CNPJ, usuarios ilimitados, BI, API, multi-gateway, Customer Success dedicado. Studio ou Dojo incluidos."),
+    ("Essencial", "essencial", 89.00, 74.17,
+     "PDV com NFC-e, até 50 notas fiscais por mês (NF-e e NFC-e), estoque com variantes, financeiro básico, 1 usuário com login. Crediário (fiado) a partir do plano Negócio."),
+    ("Negócio", "negocio", 169.00, 140.83,
+     "Operação completa: notas fiscais ilimitadas (NF-e, NFC-e e NFS-e), crediário (fiado) com cobrança no WhatsApp, CRM, folha de pagamento, loja online, até 3 usuários com login. Studio ou Dojô incluídos."),
+    ("Expansão", "expansao", 269.00, 224.17,
+     "Tudo do Negócio (notas ilimitadas e crediário), mais usuários ilimitados, multi-CNPJ, BI, API, multi-gateway e Customer Success dedicado. Studio ou Dojô incluídos."),
 ]
 
 FEATURES = [
@@ -92,38 +100,41 @@ def website():
 
 def software():
     offers = []
-    for name, monthly, annual, desc in PLANS:
+    for name, anchor, monthly, annual, desc in PLANS:
+        mo = f"{monthly:.2f}"
+        an = f"{annual:.2f}"
+        mo_br = f"{monthly:.2f}".replace(".", ",")
+        an_br = f"{annual:.2f}".replace(".", ",")
+        mo_txt = mo_br[:-3] if mo_br.endswith(",00") else mo_br
         offers.append({
             "@type": "Offer",
-            "name": f"Plano {name} (mensal)",
-            "price": f"{monthly:.2f}",
+            "name": f"Plano {name}",
+            "price": mo,
             "priceCurrency": "BRL",
-            "url": SITE + "/planos",
+            "url": f"{SITE}/planos#{anchor}",
             "availability": "https://schema.org/InStock",
-            "description": desc,
-            "priceSpecification": {
-                "@type": "UnitPriceSpecification",
-                "price": f"{monthly:.2f}",
-                "priceCurrency": "BRL",
-                "billingIncrement": 1,
-                "unitCode": "MON",
-            },
-        })
-        offers.append({
-            "@type": "Offer",
-            "name": f"Plano {name} (anual, 2 meses gratis)",
-            "price": f"{annual:.2f}",
-            "priceCurrency": "BRL",
-            "url": SITE + "/planos",
-            "availability": "https://schema.org/InStock",
-            "description": f"Equivalente mensal no plano anual. {desc}",
-            "priceSpecification": {
-                "@type": "UnitPriceSpecification",
-                "price": f"{annual:.2f}",
-                "priceCurrency": "BRL",
-                "billingIncrement": 12,
-                "unitCode": "MON",
-            },
+            "description": (
+                f"{desc} Preço: R$ {mo_txt} por mês no plano mensal; "
+                f"R$ {an_br} por mês no plano anual, cobrado mês a mês, sem fidelidade."
+            ),
+            "priceSpecification": [
+                {
+                    "@type": "UnitPriceSpecification",
+                    "name": f"Plano {name} mensal",
+                    "price": mo,
+                    "priceCurrency": "BRL",
+                    "billingIncrement": 1,
+                    "unitCode": "MON",
+                },
+                {
+                    "@type": "UnitPriceSpecification",
+                    "name": f"Plano {name} anual (valor por mês, cobrado mês a mês, sem fidelidade)",
+                    "price": an,
+                    "priceCurrency": "BRL",
+                    "billingIncrement": 1,
+                    "unitCode": "MON",
+                },
+            ],
         })
     return {
         "@type": "SoftwareApplication",
@@ -260,8 +271,13 @@ def inject(fname):
 
 
 def main():
-    files = sorted(os.path.basename(p) for p in glob.glob(os.path.join(ROOT, "*.html")))
-    files = [f for f in files if f not in SKIP and not f.startswith(SKIP_PREFIX)]
+    # sem argumentos: todas as paginas; com argumentos: so esses arquivos
+    # (ex.: python scripts/inject-jsonld.py index.html planos.html)
+    if len(sys.argv) > 1:
+        files = [os.path.basename(a) for a in sys.argv[1:]]
+    else:
+        files = sorted(os.path.basename(p) for p in glob.glob(os.path.join(ROOT, "*.html")))
+        files = [f for f in files if f not in SKIP and not f.startswith(SKIP_PREFIX)]
     print(f"Injetando JSON-LD em {len(files)} paginas:")
     for f in files:
         inject(f)
