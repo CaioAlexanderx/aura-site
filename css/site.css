@@ -874,6 +874,8 @@ img, svg { display: block; max-width: 100%; }
 .wa-lead-callback input[aria-invalid="true"] { border-color: rgba(248,113,113,0.7); }
 .wa-lead-submit { width: 100%; justify-content: center; margin-top: 14px; }
 .lc-micro { margin-top: 12px; font-size: 12px; line-height: 1.5; color: rgba(220,215,255,0.5); text-align: center; }
+.lc-turnstile { margin-top: 14px; display: flex; justify-content: center; }
+.lc-turnstile:empty { display: none; }
 .lc-err { display: none; margin-top: 12px; font-size: 13px; line-height: 1.5; color: #fca5a5; }
 .lc-err.show { display: block; }
 .lc-success { margin-top: 22px; padding: 16px 18px; border-radius: 14px; background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.35); color: #d9fbe6; font-size: 15px; line-height: 1.5; text-align: center; outline: none; }

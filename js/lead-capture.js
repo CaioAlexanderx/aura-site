@@ -6,7 +6,11 @@
      2) Exit-intent (#exitIntentModal): popup ao sair pedindo o WhatsApp.
    Ambos postam em /api/lead-partial (Worker) -> CRM como lead parcial.
    Validação do celular: js/phone-br.js (mesma regra do Worker).
-   Envia `t` = ms desde o carregamento da página (time trap anti-robô).
+   Anti-robô (t2-12): envia `hp` (honeypot, campo invisível) e `elapsed_ms`
+   (ms desde o carregamento da página; menos de 3 s = robô). Cloudflare
+   Turnstile só entra se o bloco (ou o modal) tiver data-turnstile-sitekey
+   PREENCHIDO; vazio, nada é carregado e o formulário funciona como antes.
+   O token vai como `turnstile_token`.
    ========================================================= */
 (function () {
   "use strict";
@@ -25,16 +29,18 @@
     return Math.round(window.performance && performance.now ? performance.now() : 0);
   }
 
-  function postPartial(phone, hpValue) {
+  function postPartial(phone, hpValue, token) {
+    var payload = {
+      whatsapp: phone,
+      hp: hpValue || "",
+      elapsed_ms: elapsed(),
+      page: location.pathname
+    };
+    if (token) payload.turnstile_token = token;
     return fetch("/api/lead-partial", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        whatsapp: phone,
-        _empresa: hpValue || "",
-        t: elapsed(),
-        page: location.pathname
-      })
+      body: JSON.stringify(payload)
     }).then(function (r) {
       return r.json().catch(function () { return {}; }).then(function (d) {
         return { status: r.status, data: d };
@@ -51,6 +57,55 @@
     if (input) input.removeAttribute("aria-invalid");
   }
 
+  // ── Cloudflare Turnstile (opcional) ──────────────────────
+  // Só existe se o host (bloco ou modal) tiver data-turnstile-sitekey
+  // preenchido. O script do Cloudflare só é baixado quando a pessoa foca no
+  // campo do celular. Se não carregar (bloqueador), o envio segue sem token e
+  // o servidor decide.
+  var TS_SRC = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+  var tsLoading = null;
+  function loadTurnstile() {
+    if (window.turnstile) return Promise.resolve(window.turnstile);
+    if (!tsLoading) {
+      tsLoading = new Promise(function (resolve, reject) {
+        var s = document.createElement("script");
+        s.src = TS_SRC; s.async = true; s.defer = true;
+        s.onload = function () { window.turnstile ? resolve(window.turnstile) : reject(new Error("turnstile")); };
+        s.onerror = function () { tsLoading = null; reject(new Error("turnstile")); };
+        document.head.appendChild(s);
+      });
+    }
+    return tsLoading;
+  }
+  function setupTurnstile(host, before, input) {
+    var sitekey = ((host && host.getAttribute("data-turnstile-sitekey")) || "").replace(/\s+/g, "");
+    if (!sitekey || !before || !before.parentNode) return null;
+    var box = document.createElement("div");
+    box.className = "lc-turnstile";
+    box.setAttribute("data-lc-keep", "");
+    before.parentNode.insertBefore(box, before);
+    var state = { token: "", widget: null, started: false, failed: false };
+    state.start = function () {
+      if (state.started) return;
+      state.started = true;
+      loadTurnstile().then(function (ts) {
+        state.widget = ts.render(box, {
+          sitekey: sitekey,
+          theme: "dark",
+          callback: function (t) { state.token = t; },
+          "expired-callback": function () { state.token = ""; },
+          "error-callback": function () { state.token = ""; state.failed = true; }
+        });
+      }).catch(function () { state.failed = true; });
+    };
+    state.reset = function () {
+      state.token = "";
+      if (state.widget !== null && window.turnstile) { try { window.turnstile.reset(state.widget); } catch (e) {} }
+    };
+    input.addEventListener("focus", state.start);
+    return state;
+  }
+
   // Máscara (11) 99999-9999 — só reformata com o cursor no fim, pra não
   // atrapalhar quem está corrigindo um dígito no meio.
   function attachMask(input) {
@@ -63,24 +118,31 @@
   }
 
   // Valida + envia. onOk() assume depois do sucesso.
-  function submitPhone(input, btn, errEl, hp, onOk) {
+  function submitPhone(input, btn, errEl, hp, ts, onOk) {
     clearErr(errEl, input);
     var phone = input.value;
     if (!Phone.isValid(phone)) { showErr(errEl, input, Phone.ERROR_MSG); return; }
+    if (ts && !ts.token && !ts.failed) {
+      ts.start();
+      showErr(errEl, null, "Confirme a verificação acima e envie de novo.");
+      return;
+    }
     var orig = btn.innerHTML;
     btn.disabled = true; btn.innerHTML = "Enviando...";
-    postPartial(phone, hp ? hp.value : "")
+    postPartial(phone, hp ? hp.value : "", ts ? ts.token : "")
       .then(function (res) {
         btn.disabled = false; btn.innerHTML = orig;
         if (res.status >= 200 && res.status < 300 && res.data && res.data.ok) {
           ssSet(DONE_KEY, "1");
           onOk();
         } else {
+          if (ts) ts.reset();
           showErr(errEl, input, (res.data && res.data.error) || "Não rolou agora. Tenta de novo ou chama a gente no WhatsApp.");
         }
       })
       .catch(function () {
         btn.disabled = false; btn.innerHTML = orig;
+        if (ts) ts.reset();
         showErr(errEl, input, "Sem conexão. Tenta de novo ou chama a gente no WhatsApp.");
       });
   }
@@ -98,10 +160,11 @@
 
     form.hidden = false; // sem JS o campo fica oculto e sobra o botão wa.me
     attachMask(input);
+    var ts = setupTurnstile(block, btn, input);
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      submitPhone(input, btn, errEl, hp, function () {
+      submitPhone(input, btn, errEl, hp, ts, function () {
         form.hidden = true;
         if (success) {
           success.textContent = SUCCESS_MSG;
@@ -125,6 +188,7 @@
     var opened = false;
     if (!input || !submitBtn) return;
     attachMask(input);
+    var ts = setupTurnstile(modal, submitBtn, input);
 
     function canOpen() {
       return !opened && ssGet(EXIT_KEY) !== "1" && ssGet(DONE_KEY) !== "1";
@@ -144,7 +208,7 @@
     }
 
     function doSubmit() {
-      submitPhone(input, submitBtn, errEl, hp, function () {
+      submitPhone(input, submitBtn, errEl, hp, ts, function () {
         var keep = modal.querySelectorAll("[data-lc-keep]");
         for (var i = 0; i < keep.length; i++) keep[i].style.display = "none";
         if (successEl) { successEl.textContent = SUCCESS_MSG; successEl.hidden = false; }
