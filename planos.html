@@ -360,6 +360,19 @@
     font-size: 15px;
   }
   .faq-item.open .faq-a { max-height: 600px; padding-top: 14px; }
+
+  /* 15/10/2026: tabela de preços estática (o número tem de estar no HTML, sem depender do JS) */
+  .plan-prices-static { max-width: 760px; margin: 40px auto 0; color: rgba(220,215,255,0.85); }
+  .plan-prices-static h2 { font-family: var(--font-heading); font-size: 20px; color: white; text-align: center; margin: 0 0 14px; letter-spacing: -0.01em; }
+  .plan-prices-static table { width: 100%; border-collapse: collapse; background: rgba(255,255,255,0.04); border: 1px solid rgba(124,58,237,0.18); border-radius: 14px; overflow: hidden; font-size: 14px; }
+  .plan-prices-static th, .plan-prices-static td { padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(124,58,237,0.14); }
+  .plan-prices-static tr:last-child th, .plan-prices-static tr:last-child td { border-bottom: 0; }
+  .plan-prices-static thead th { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: #a78bfa; font-weight: 600; }
+  .plan-prices-static tbody th { color: white; font-weight: 600; }
+  .plan-prices-static .plan-prices-note { text-align: center; font-size: 13px; margin-top: 12px; color: rgba(220,215,255,0.7); }
+  @media (max-width: 560px) {
+    .plan-prices-static th, .plan-prices-static td { padding: 10px 12px; font-size: 13px; }
+  }
 </style>
 <!-- jsonld:start -->
 <script type="application/ld+json">
@@ -397,99 +410,84 @@
    "offers": [
     {
      "@type": "Offer",
-     "name": "Plano Essencial (mensal)",
+     "name": "Plano Essencial",
      "price": "89.00",
      "priceCurrency": "BRL",
-     "url": "https://www.getaura.com.br/planos",
+     "url": "https://www.getaura.com.br/planos#essencial",
      "availability": "https://schema.org/InStock",
-     "description": "PDV, NFC-e (ate 50/mes), estoque com variantes, financeiro basico, 1 usuario.",
-     "priceSpecification": {
-      "@type": "UnitPriceSpecification",
-      "price": "89.00",
-      "priceCurrency": "BRL",
-      "billingIncrement": 1,
-      "unitCode": "MON"
-     }
+     "description": "PDV com NFC-e, até 50 notas fiscais por mês (NF-e e NFC-e), estoque com variantes, financeiro básico, 1 usuário com login. Crediário (fiado) a partir do plano Negócio. Preço: R$ 89 por mês no plano mensal; R$ 74,17 por mês no plano anual, cobrado mês a mês, sem fidelidade.",
+     "priceSpecification": [
+      {
+       "@type": "UnitPriceSpecification",
+       "name": "Plano Essencial mensal",
+       "price": "89.00",
+       "priceCurrency": "BRL",
+       "billingIncrement": 1,
+       "unitCode": "MON"
+      },
+      {
+       "@type": "UnitPriceSpecification",
+       "name": "Plano Essencial anual (valor por mês, cobrado mês a mês, sem fidelidade)",
+       "price": "74.17",
+       "priceCurrency": "BRL",
+       "billingIncrement": 1,
+       "unitCode": "MON"
+      }
+     ]
     },
     {
      "@type": "Offer",
-     "name": "Plano Essencial (anual, 2 meses gratis)",
-     "price": "74.17",
-     "priceCurrency": "BRL",
-     "url": "https://www.getaura.com.br/planos",
-     "availability": "https://schema.org/InStock",
-     "description": "Equivalente mensal no plano anual. PDV, NFC-e (ate 50/mes), estoque com variantes, financeiro basico, 1 usuario.",
-     "priceSpecification": {
-      "@type": "UnitPriceSpecification",
-      "price": "74.17",
-      "priceCurrency": "BRL",
-      "billingIncrement": 12,
-      "unitCode": "MON"
-     }
-    },
-    {
-     "@type": "Offer",
-     "name": "Plano Negócio (mensal)",
+     "name": "Plano Negócio",
      "price": "169.00",
      "priceCurrency": "BRL",
-     "url": "https://www.getaura.com.br/planos",
+     "url": "https://www.getaura.com.br/planos#negocio",
      "availability": "https://schema.org/InStock",
-     "description": "Operacao completa: notas ilimitadas, crediario com cobranca no WhatsApp, CRM, folha, loja online, ate 3 usuarios. Studio ou Dojo incluidos.",
-     "priceSpecification": {
-      "@type": "UnitPriceSpecification",
-      "price": "169.00",
-      "priceCurrency": "BRL",
-      "billingIncrement": 1,
-      "unitCode": "MON"
-     }
+     "description": "Operação completa: notas fiscais ilimitadas (NF-e, NFC-e e NFS-e), crediário (fiado) com cobrança no WhatsApp, CRM, folha de pagamento, loja online, até 3 usuários com login. Studio ou Dojô incluídos. Preço: R$ 169 por mês no plano mensal; R$ 140,83 por mês no plano anual, cobrado mês a mês, sem fidelidade.",
+     "priceSpecification": [
+      {
+       "@type": "UnitPriceSpecification",
+       "name": "Plano Negócio mensal",
+       "price": "169.00",
+       "priceCurrency": "BRL",
+       "billingIncrement": 1,
+       "unitCode": "MON"
+      },
+      {
+       "@type": "UnitPriceSpecification",
+       "name": "Plano Negócio anual (valor por mês, cobrado mês a mês, sem fidelidade)",
+       "price": "140.83",
+       "priceCurrency": "BRL",
+       "billingIncrement": 1,
+       "unitCode": "MON"
+      }
+     ]
     },
     {
      "@type": "Offer",
-     "name": "Plano Negócio (anual, 2 meses gratis)",
-     "price": "140.83",
-     "priceCurrency": "BRL",
-     "url": "https://www.getaura.com.br/planos",
-     "availability": "https://schema.org/InStock",
-     "description": "Equivalente mensal no plano anual. Operacao completa: notas ilimitadas, crediario com cobranca no WhatsApp, CRM, folha, loja online, ate 3 usuarios. Studio ou Dojo incluidos.",
-     "priceSpecification": {
-      "@type": "UnitPriceSpecification",
-      "price": "140.83",
-      "priceCurrency": "BRL",
-      "billingIncrement": 12,
-      "unitCode": "MON"
-     }
-    },
-    {
-     "@type": "Offer",
-     "name": "Plano Expansão (mensal)",
+     "name": "Plano Expansão",
      "price": "269.00",
      "priceCurrency": "BRL",
-     "url": "https://www.getaura.com.br/planos",
+     "url": "https://www.getaura.com.br/planos#expansao",
      "availability": "https://schema.org/InStock",
-     "description": "Multi-CNPJ, usuarios ilimitados, BI, API, multi-gateway, Customer Success dedicado. Studio ou Dojo incluidos.",
-     "priceSpecification": {
-      "@type": "UnitPriceSpecification",
-      "price": "269.00",
-      "priceCurrency": "BRL",
-      "billingIncrement": 1,
-      "unitCode": "MON"
-     }
-    },
-    {
-     "@type": "Offer",
-     "name": "Plano Expansão (anual, 2 meses gratis)",
-     "price": "224.17",
-     "priceCurrency": "BRL",
-     "url": "https://www.getaura.com.br/planos",
-     "availability": "https://schema.org/InStock",
-     "description": "Equivalente mensal no plano anual. Multi-CNPJ, usuarios ilimitados, BI, API, multi-gateway, Customer Success dedicado. Studio ou Dojo incluidos.",
-     "priceSpecification": {
-      "@type": "UnitPriceSpecification",
-      "price": "224.17",
-      "priceCurrency": "BRL",
-      "billingIncrement": 12,
-      "unitCode": "MON"
-     }
+     "description": "Tudo do Negócio (notas ilimitadas e crediário), mais usuários ilimitados, multi-CNPJ, BI, API, multi-gateway e Customer Success dedicado. Studio ou Dojô incluídos. Preço: R$ 269 por mês no plano mensal; R$ 224,17 por mês no plano anual, cobrado mês a mês, sem fidelidade.",
+     "priceSpecification": [
+      {
+       "@type": "UnitPriceSpecification",
+       "name": "Plano Expansão mensal",
+       "price": "269.00",
+       "priceCurrency": "BRL",
+       "billingIncrement": 1,
+       "unitCode": "MON"
+      },
+      {
+       "@type": "UnitPriceSpecification",
+       "name": "Plano Expansão anual (valor por mês, cobrado mês a mês, sem fidelidade)",
+       "price": "224.17",
+       "priceCurrency": "BRL",
+       "billingIncrement": 1,
+       "unitCode": "MON"
+      }
+     ]
     }
    ],
    "publisher": {
@@ -628,6 +626,21 @@
     </div>
 
     <div data-plans-render="full"></div>
+
+    <section class="plan-prices-static" aria-labelledby="precos-resumo" data-reveal>
+      <h2 id="precos-resumo">Preços dos planos</h2>
+      <table>
+        <thead>
+          <tr><th scope="col">Plano</th><th scope="col">No plano anual</th><th scope="col">No plano mensal</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Essencial</th><td>R$ 74,17 por mês</td><td>R$ 89 por mês</td></tr>
+          <tr><th scope="row">Negócio</th><td>R$ 140,83 por mês</td><td>R$ 169 por mês</td></tr>
+          <tr><th scope="row">Expansão</th><td>R$ 224,17 por mês</td><td>R$ 269 por mês</td></tr>
+        </tbody>
+      </table>
+      <p class="plan-prices-note">O anual é cobrado mês a mês, sem fidelidade.</p>
+    </section>
 
     <div class="text-center" style="margin-top: 40px; font-size: 13px; color: rgba(220,215,255,0.55);" data-reveal>
       Todos os planos: onboarding humano · cancele quando quiser · no plano anual você ganha 2 meses grátis (preço acima já é o anual). Mensal cheio disponível também.
