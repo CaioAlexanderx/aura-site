@@ -90,8 +90,6 @@ window.AURA_PLANS = {
       'Margem por produto e ranking de lucratividade',
       'Análise de cohorts e LTV avançado',
       'Relatórios customizados (BI)',
-      'Gateway personalizado (use sua própria maquininha)',
-      'Multi-gateway (Asaas, Stone, Cielo, etc.)',
       'API completa para integrações',
       'HUB Social: Instagram + WhatsApp em automação',
       'Webhooks para automações próprias',
