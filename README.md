@@ -25,4 +25,5 @@ Não há suíte de framework; os testes de fumaça rodam com Node puro:
 
 ```
 node scripts/tests/indexnow.test.js
+node scripts/tests/promessas-sem-lastro.test.js   # site sem TEF, multi-gateway, lotes/validade nem balanço de estoque (roda também no CI)
 ```
