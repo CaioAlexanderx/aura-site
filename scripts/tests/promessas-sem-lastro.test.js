@@ -8,6 +8,11 @@
 //   - "balanço" a até 3 palavras de estoque, lote(s) ou validade.
 // "Balanço" de DRE, "teflon" e afins não quebram o teste.
 //
+// O mesmo vale para o JSON-LD: os blocos <script type="application/ld+json">
+// são decodificados e varridos, a fonte deles (scripts/inject-jsonld.py) é
+// varrida, e `inject-jsonld.py --check` tem de sair sem mudar nenhuma página
+// (pula se não houver python no PATH).
+//
 // O que é servido: o Worker usa assets na raiz (wrangler.jsonc) e o
 // .assetsignore deixa de fora app/, docs/, scripts/, src/ etc. Por isso a
 // varredura cobre só *.html da raiz, llms.txt e js/*.js. Sem dependência e sem rede.
@@ -139,6 +144,84 @@ teste('o site publicado não promete TEF, multi-gateway, lotes/validade nem bala
     problemas.push(...verifica(nome, fs.readFileSync(path.join(ROOT, nome), 'utf8')));
   }
   if (problemas.length) throw new Error(problemas.length + ' ocorrência(s):\n' + problemas.join('\n'));
+});
+
+// --- JSON-LD (<script type="application/ld+json">) ---
+// A varredura acima lê o HTML cru, mas o JSON pode trazer a palavra escapada
+// ("multi-gateway") e o bloco é regerado por scripts/inject-jsonld.py, que
+// fica fora do que é servido. Em 27/10 o script, rodado na main, devolvia
+// "multi-gateway" ao JSON-LD de index e planos. Aqui o JSON é decodificado e
+// varrido, a fonte do script é varrida, e o script tem de rodar sem mudar nada.
+const RE_LDJSON = /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+
+// Todos os textos (chaves e valores) de um valor JSON, numa linha só.
+function textosJson(v, saida = []) {
+  if (typeof v === 'string') saida.push(v);
+  else if (Array.isArray(v)) v.forEach((x) => textosJson(x, saida));
+  else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) { saida.push(k); textosJson(x, saida); }
+  return saida;
+}
+
+// Problemas dentro dos blocos JSON-LD de um HTML (e JSON inválido também é problema).
+function verificaJsonLd(nome, conteudo) {
+  const problemas = [];
+  let m, n = 0;
+  RE_LDJSON.lastIndex = 0;
+  while ((m = RE_LDJSON.exec(conteudo))) {
+    n++;
+    let dados;
+    try { dados = JSON.parse(m[1]); }
+    catch (e) { problemas.push(`${nome}:${linhaDe(conteudo, m.index)}  JSON-LD inválido (${e.message})`); continue; }
+    for (const p of verifica('x.txt', textosJson(dados).join(' \n '))) {
+      problemas.push(`${nome}:${linhaDe(conteudo, m.index)} (JSON-LD #${n})  ${p.replace(/^x\.txt(:\d+)?\s+/, '')}`);
+    }
+  }
+  return { problemas, blocos: n };
+}
+
+teste('detector JSON-LD: pega a palavra mesmo escapada no JSON e deixa passar o que é legítimo', () => {
+  const bloco = (t) => `<head><script type="application/ld+json">${t}</script></head><p>texto</p>`;
+  if (!verificaJsonLd('x.html', bloco('{"featureList":["Multi-CNPJ, API e multi\\u002dgateway"]}')).problemas.length) throw new Error('multi-gateway escapado passou');
+  if (!verificaJsonLd('x.html', bloco('{"description":"PDV com TEF integrado"}')).problemas.length) throw new Error('TEF passou');
+  if (!verificaJsonLd('x.html', bloco('{"text":"lotes e validade"}')).problemas.length) throw new Error('lotes e validade passou');
+  if (!verificaJsonLd('x.html', bloco('{"text":"Balan\\u00e7o de estoque"}')).problemas.length) throw new Error('balanço de estoque escapado passou');
+  if (!verificaJsonLd('x.html', bloco('{ quebrado')).problemas.length) throw new Error('JSON inválido passou');
+  const ok = verificaJsonLd('x.html', bloco('{"description":"DRE e balanço patrimonial, multi-CNPJ e API"}'));
+  if (ok.problemas.length || ok.blocos !== 1) throw new Error('falso positivo: ' + ok.problemas.join('\n'));
+});
+
+teste('o JSON-LD publicado não promete TEF, multi-gateway, lotes/validade nem balanço de estoque', () => {
+  const problemas = [];
+  let blocos = 0;
+  for (const nome of arquivos.filter((a) => a.endsWith('.html'))) {
+    const r = verificaJsonLd(nome, fs.readFileSync(path.join(ROOT, nome), 'utf8'));
+    problemas.push(...r.problemas);
+    blocos += r.blocos;
+  }
+  if (blocos < 25) throw new Error('só ' + blocos + ' blocos JSON-LD achados; a leitura quebrou');
+  if (problemas.length) throw new Error(problemas.length + ' ocorrência(s):\n' + problemas.join('\n'));
+});
+
+const SCRIPT_JSONLD = path.join(ROOT, 'scripts', 'inject-jsonld.py');
+
+teste('a fonte do JSON-LD (scripts/inject-jsonld.py) não promete nada disso', () => {
+  const problemas = verifica('scripts/inject-jsonld.py', fs.readFileSync(SCRIPT_JSONLD, 'utf8'));
+  if (problemas.length) throw new Error(problemas.length + ' ocorrência(s):\n' + problemas.join('\n'));
+});
+
+teste('scripts/inject-jsonld.py --check: rodar o script não muda nenhuma página', () => {
+  const { spawnSync } = require('node:child_process');
+  for (const py of ['python3', 'python']) {
+    const r = spawnSync(py, [SCRIPT_JSONLD, '--check'], { cwd: ROOT, encoding: 'utf8', env: { ...process.env, PYTHONIOENCODING: 'utf-8' } });
+    if (r.error && r.error.code === 'ENOENT') continue;   // tenta o próximo nome
+    if (r.status === 9009) continue;                      // atalho da Microsoft Store no Windows
+    if (r.status !== 0) {
+      const mudaria = (r.stdout || '').split('\n').filter((l) => l.includes('MUDARIA')).join('\n');
+      throw new Error(`${py} saiu com ${r.status}; o script está defasado do HTML commitado:\n${mudaria || r.stdout + r.stderr}`);
+    }
+    return;
+  }
+  console.log('       (sem python no PATH: conferência do script pulada)');
 });
 
 if (falhas) { console.log('\n' + falhas + ' falha(s)'); process.exit(1); }

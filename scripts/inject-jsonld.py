@@ -9,6 +9,13 @@ Uso (na raiz do repo):
 Idempotente: o bloco fica entre <!-- jsonld:start --> e <!-- jsonld:end -->
 no <head>; rodar de novo substitui. Rode sempre que criar/alterar uma pagina
 (principalmente FAQ e <title>/<meta description>), depois commite o HTML.
+Se o bloco que ja esta na pagina tem o mesmo conteudo e so muda a formatacao
+(ex.: /sistema-para-otica, escrito a mao), o arquivo nao e reescrito.
+
+Em dia com o HTML: rodar na main nao muda nenhum arquivo. Se mudar, a fonte
+abaixo (PLANS, FEATURES, textos) ficou para tras do HTML commitado; corrija a
+fonte, nao o HTML. Para conferir sem gravar:
+    python scripts/inject-jsonld.py --check    # sai com 1 se algo mudaria
 
 O que gera por pagina:
   - Organization + WebSite (so na home)
@@ -47,7 +54,7 @@ PLANS = [
     ("Negócio", "negocio", 169.00, 140.83,
      "Operação completa: notas fiscais ilimitadas (NF-e, NFC-e e NFS-e), crediário (fiado) com cobrança no WhatsApp, CRM, folha de pagamento, loja online, até 3 usuários com login. Studio ou Dojô incluídos."),
     ("Expansão", "expansao", 269.00, 224.17,
-     "Tudo do Negócio (notas ilimitadas e crediário), mais usuários ilimitados, multi-CNPJ, BI, API, multi-gateway e Customer Success dedicado. Studio ou Dojô incluídos."),
+     "Tudo do Negócio (notas ilimitadas e crediário), mais usuários ilimitados, multi-CNPJ, BI, API e Customer Success dedicado. Studio ou Dojô incluídos."),
 ]
 
 FEATURES = [
@@ -60,7 +67,7 @@ FEATURES = [
     "CRM com ranking por LTV e retencao de clientes",
     "Folha de pagamento e comissoes automaticas",
     "Loja online inclusa e WhatsApp Business",
-    "Multi-CNPJ consolidado, API e multi-gateway (plano Expansao)",
+    "Multi-CNPJ consolidado e API (plano Expansao)",
 ]
 
 
@@ -249,11 +256,35 @@ def build_graph(fname, src):
 START, END = "<!-- jsonld:start -->", "<!-- jsonld:end -->"
 
 
-def inject(fname):
+BLOCK_RE = re.compile(
+    re.escape(START) + r'\s*<script type="application/ld\+json">(.*?)</script>\s*' + re.escape(END), re.S
+)
+
+
+def current_data(src):
+    """JSON do bloco que ja esta na pagina, ou None se nao houver/nao for valido."""
+    m = BLOCK_RE.search(src)
+    if not m:
+        return None
+    try:
+        return json.loads(m.group(1))
+    except ValueError:
+        return None
+
+
+def inject(fname, check=False):
+    """Devolve True se o arquivo muda. Com check=True so confere, nao grava."""
     path = os.path.join(ROOT, fname)
     src = open(path, encoding="utf-8").read()
     graph, nfaq = build_graph(fname, src)
-    payload = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=1)
+    data = {"@context": "https://schema.org", "@graph": graph}
+    kinds = sorted({g["@type"] for g in graph})
+    if current_data(src) == data:
+        # Mesmo conteudo, talvez com outra formatacao (ex.: /sistema-para-otica,
+        # escrito a mao): nao reescreve so para reformatar.
+        print(f"  {fname:52s} {', '.join(kinds)} (igual)")
+        return False
+    payload = json.dumps(data, ensure_ascii=False, indent=1)
     # </script> dentro de texto quebraria o bloco; escapa por seguranca
     payload = payload.replace("</", "<\\/")
     block = f'{START}\n<script type="application/ld+json">\n{payload}\n</script>\n{END}'
@@ -262,25 +293,34 @@ def inject(fname):
     else:
         if "</head>" not in src:
             print(f"  ! {fname}: sem </head>, pulando")
-            return
+            return False
         new = src.replace("</head>", block + "\n</head>", 1)
-    if new != src:
+    if new == src:
+        return False
+    if not check:
         open(path, "w", encoding="utf-8", newline="\n").write(new)
-    kinds = sorted({g["@type"] for g in graph})
-    print(f"  {fname:52s} {', '.join(kinds)}{f' (FAQ x{nfaq})' if nfaq else ''}")
+    print(f"  {fname:52s} {', '.join(kinds)}{f' (FAQ x{nfaq})' if nfaq else ''} -> {'MUDARIA' if check else 'atualizado'}")
+    return True
 
 
 def main():
     # sem argumentos: todas as paginas; com argumentos: so esses arquivos
     # (ex.: python scripts/inject-jsonld.py index.html planos.html)
-    if len(sys.argv) > 1:
-        files = [os.path.basename(a) for a in sys.argv[1:]]
+    # --check: nao grava nada; sai com 1 se alguma pagina mudaria.
+    args = sys.argv[1:]
+    check = "--check" in args
+    args = [a for a in args if a != "--check"]
+    if args:
+        files = [os.path.basename(a) for a in args]
     else:
         files = sorted(os.path.basename(p) for p in glob.glob(os.path.join(ROOT, "*.html")))
         files = [f for f in files if f not in SKIP and not f.startswith(SKIP_PREFIX)]
-    print(f"Injetando JSON-LD em {len(files)} paginas:")
-    for f in files:
-        inject(f)
+    print(f"{'Conferindo' if check else 'Injetando'} JSON-LD em {len(files)} paginas:")
+    changed = [f for f in files if inject(f, check)]
+    if check and changed:
+        print(f"\n{len(changed)} pagina(s) mudariam: a fonte do script ficou para tras do HTML.")
+        sys.exit(1)
+    print(f"\n{len(changed)} pagina(s) {'mudariam' if check else 'atualizadas'}.")
 
 
 if __name__ == "__main__":

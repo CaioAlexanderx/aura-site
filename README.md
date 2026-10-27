@@ -5,7 +5,7 @@ Site institucional da Aura (getaura.com.br): HTML estático servido por um Worke
 ## Publicar uma página nova
 
 1. Crie o `.html` na raiz e adicione a URL limpa ao `sitemap.xml` (e um redirect `.html` para URL limpa em `_redirects`, como as outras).
-2. Gere o JSON-LD: `python scripts/inject-jsonld.py` (regera todas as páginas; confira o `git diff` e descarte as que você não mexeu).
+2. Gere o JSON-LD: `python scripts/inject-jsonld.py` (passa por todas as páginas, mas só grava as que mudaram de conteúdo; na `main` sem mudança ele não altera nenhum arquivo). `python scripts/inject-jsonld.py --check` confere sem gravar e sai com erro se a fonte do script (planos, preços, recursos) ficou para trás do HTML: nesse caso corrija o script, não o HTML.
 3. Se a página entra no resumo para IAs, acrescente a linha em `llms.txt`.
 4. Abra o PR e mergeie. Espere o deploy chegar em produção.
 5. Avise os buscadores (IndexNow) **depois do deploy**, com o checkout na `main` atualizada:
