@@ -1,0 +1,252 @@
+/* =========================================================
+   AURA — pele 2026 (fase 2, PR 1: base dormente)
+
+   Só vale para a página que declarar data-skin="2026" (no <html> ou num
+   contêiner). Toda regra abaixo tem esse escopo; as 34 páginas de hoje não
+   carregam este arquivo e não mudam.
+
+   Molde: mockup "Páginas internas no visual novo" (Nina, 27/10/2026).
+   Preto #09090b, violetas do sistema Aura, DM Sans pesado nos títulos,
+   DM Mono nos rótulos, Instrument Serif só no logo "Aura.".
+
+   Fontes servidas pelo próprio site (/assets/fonts, woff2 do Fontsource 5.3,
+   subsets latin e latin-ext, licença OFL ao lado). Nomes de família próprios
+   ("Aura DM Sans" etc.) para não colidir com o DM Sans que o tokens.css de
+   hoje puxa do Google. @font-face não aceita seletor: as declarações só
+   registram as famílias e não mudam nada enquanto ninguém as usar.
+
+   Componentes (prefixo s26-, para não cruzar com as classes do site.css):
+   botão primário/ghost, cartão, FAQ em sanfona, tabela, caixa "Em uma frase",
+   índice "Neste guia", mais o andaime que eles pedem (topo, seção, título,
+   rótulo, artigo, chamada final, moldura de captura, logo).
+   ========================================================= */
+
+/* ---- Fontes ---- */
+@font-face { font-family: "Aura DM Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("/assets/fonts/dm-sans-latin-ext-400-normal.woff2") format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "Aura DM Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("/assets/fonts/dm-sans-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Aura DM Sans"; font-style: normal; font-weight: 500; font-display: swap; src: url("/assets/fonts/dm-sans-latin-ext-500-normal.woff2") format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "Aura DM Sans"; font-style: normal; font-weight: 500; font-display: swap; src: url("/assets/fonts/dm-sans-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Aura DM Sans"; font-style: normal; font-weight: 600; font-display: swap; src: url("/assets/fonts/dm-sans-latin-ext-600-normal.woff2") format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "Aura DM Sans"; font-style: normal; font-weight: 600; font-display: swap; src: url("/assets/fonts/dm-sans-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Aura DM Sans"; font-style: normal; font-weight: 700; font-display: swap; src: url("/assets/fonts/dm-sans-latin-ext-700-normal.woff2") format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "Aura DM Sans"; font-style: normal; font-weight: 700; font-display: swap; src: url("/assets/fonts/dm-sans-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Aura DM Sans"; font-style: normal; font-weight: 800; font-display: swap; src: url("/assets/fonts/dm-sans-latin-ext-800-normal.woff2") format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "Aura DM Sans"; font-style: normal; font-weight: 800; font-display: swap; src: url("/assets/fonts/dm-sans-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Aura DM Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("/assets/fonts/dm-mono-latin-ext-400-normal.woff2") format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "Aura DM Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("/assets/fonts/dm-mono-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Aura DM Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("/assets/fonts/dm-mono-latin-ext-500-normal.woff2") format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "Aura DM Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("/assets/fonts/dm-mono-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Aura Instrument Serif"; font-style: normal; font-weight: 400; font-display: swap; src: url("/assets/fonts/instrument-serif-latin-ext-400-normal.woff2") format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "Aura Instrument Serif"; font-style: normal; font-weight: 400; font-display: swap; src: url("/assets/fonts/instrument-serif-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+
+/* ---- Tokens ---- */
+[data-skin="2026"] {
+  --s26-bg:      #09090b;   /* preto do hero */
+  --s26-bg-2:    #131316;   /* painel elevado */
+  --s26-t:       #f4f4f5;   /* texto */
+  --s26-t2:      #a1a1aa;   /* texto secundário */
+  /* Molde: #71717a. Subido para #7d7d86 porque #71717a dá 4,1:1 sobre o
+     preto (3,9:1 no cartão) e os rótulos de 11 a 13 px pedem 4,5:1 (AA);
+     #7d7d86 dá 4,9:1 no preto e 4,7:1 no cartão e na caixa violeta. */
+  --s26-t3:      #7d7d86;
+  --s26-body:    #c4c4cc;   /* texto corrido do artigo */
+  --s26-soft:    #d4d4d8;   /* rótulo claro */
+  --s26-ln:      rgba(255,255,255,.08);
+  --s26-card:    rgba(255,255,255,.025);
+  /* violetas do sistema Aura (css/tokens.css) */
+  --s26-v:       #7c3aed;
+  --s26-v2:      #8b5cf6;
+  --s26-v3:      #a78bfa;
+  --s26-v4:      #c4b5fd;
+  --s26-v-deep:  #6d28d9;
+  --s26-sans:    "Aura DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --s26-mono:    "Aura DM Mono", ui-monospace, Menlo, monospace;
+  --s26-serif:   "Aura Instrument Serif", Georgia, serif;
+  --s26-gutter:  32px;
+}
+
+/* ---- Base (só na página com a pele) ---- */
+html[data-skin="2026"] { background: var(--s26-bg); color-scheme: dark; -webkit-text-size-adjust: 100%; }
+html[data-skin="2026"] body {
+  margin: 0; background: var(--s26-bg); color: var(--s26-t);
+  font-family: var(--s26-sans); font-size: 15px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+[data-skin="2026"] *, [data-skin="2026"] *::before, [data-skin="2026"] *::after { box-sizing: border-box; }
+[data-skin="2026"] img { max-width: 100%; }
+[data-skin="2026"] a { color: inherit; text-decoration: none; }
+[data-skin="2026"] button { font-family: inherit; }
+[data-skin="2026"] a:focus-visible,
+[data-skin="2026"] button:focus-visible,
+[data-skin="2026"] summary:focus-visible { outline: 2px solid var(--s26-v4); outline-offset: 3px; border-radius: 8px; }
+
+/* ---- Logo "Aura." (única serifa) ---- */
+[data-skin="2026"] .s26-brand { display: inline-flex; align-items: center; gap: 10px; }
+[data-skin="2026"] .s26-brand img { width: 28px; height: 28px; border-radius: 50%; display: block; }
+[data-skin="2026"] .s26-brand b { font-family: var(--s26-serif); font-weight: 400; font-size: 23px; letter-spacing: -.5px; line-height: 1; color: var(--s26-t); }
+[data-skin="2026"] .s26-brand b i { color: var(--s26-v); font-style: normal; }
+
+/* ---- Botões ---- */
+[data-skin="2026"] .s26-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  height: 46px; padding: 0 22px; border-radius: 999px; border: 0; cursor: pointer;
+  font-family: var(--s26-sans); font-size: 15px; font-weight: 700; white-space: nowrap; text-decoration: none;
+  transition: transform .2s, box-shadow .2s, background .2s, border-color .2s, color .2s;
+}
+[data-skin="2026"] .s26-btn-p {
+  background: linear-gradient(180deg, var(--s26-v2) 0%, var(--s26-v-deep) 100%); color: #fff;
+  box-shadow: 0 1px 0 rgba(255,255,255,.22) inset, 0 8px 28px rgba(124,58,237,.25);
+}
+[data-skin="2026"] .s26-btn-p:hover { transform: translateY(-2px); box-shadow: 0 1px 0 rgba(255,255,255,.22) inset, 0 14px 40px rgba(124,58,237,.45); color: #fff; }
+[data-skin="2026"] .s26-btn-g { border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); color: var(--s26-soft); font-weight: 600; }
+[data-skin="2026"] .s26-btn-g:hover { border-color: rgba(255,255,255,.28); background: rgba(255,255,255,.06); color: #fff; }
+[data-skin="2026"] .s26-btn-sm { height: 38px; padding: 0 16px; font-size: 14px; }
+
+/* ---- Topo da página: grade de pontos roxos fixa + brilho, sem canvas ---- */
+/* overflow-x: clip corta o brilho de 800 px só na horizontal (sem rolagem lateral
+   no celular) e deixa ele subir por trás do menu, como no molde. */
+[data-skin="2026"] .s26-hero { position: relative; isolation: isolate; overflow-x: clip; padding: 72px var(--s26-gutter) 56px; text-align: center; }
+[data-skin="2026"] .s26-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -2;
+  background-image: radial-gradient(rgba(167,139,250,.22) 1px, transparent 1.3px); background-size: 28px 28px; background-position: center top;
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 20%, #000 0%, rgba(0,0,0,.4) 55%, transparent 80%);
+          mask-image: radial-gradient(ellipse 60% 70% at 50% 20%, #000 0%, rgba(0,0,0,.4) 55%, transparent 80%);
+}
+[data-skin="2026"] .s26-hero::after {
+  content: ""; position: absolute; left: 50%; top: -180px; width: 800px; height: 640px; margin-left: -400px; z-index: -1;
+  border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,.2) 0%, rgba(124,58,237,.05) 45%, transparent 68%); filter: blur(30px);
+}
+[data-skin="2026"] .s26-hero.s26-left { text-align: left; }
+[data-skin="2026"] .s26-in { max-width: 880px; margin: 0 auto; }
+[data-skin="2026"] .s26-hero.s26-left .s26-in { max-width: 760px; }
+
+[data-skin="2026"] .s26-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--s26-mono); font-size: 12px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--s26-soft);
+}
+[data-skin="2026"] .s26-eyebrow i { width: 5px; height: 5px; border-radius: 50%; background: var(--s26-v3); box-shadow: 0 0 10px var(--s26-v3); display: block; flex: none; }
+
+[data-skin="2026"] .s26-h1 {
+  margin: calc(18px - .08em) 0 -.14em; padding: .08em 0 .14em;
+  font-family: var(--s26-sans); font-weight: 800; font-size: clamp(34px, 5.2vw, 62px); line-height: .98; letter-spacing: -.045em;
+  color: var(--s26-t);
+  background: linear-gradient(172deg, #ffffff 0%, #f4f4f5 22%, #b4b4bc 46%, #e9e9ee 58%, #8e8e99 74%, #f4f4f5 90%, #c4b5fd 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  text-wrap: balance;
+}
+[data-skin="2026"] .s26-h1 em { font-style: normal; -webkit-text-fill-color: var(--s26-v4); }
+[data-skin="2026"] .s26-lead { margin: 22px auto 0; max-width: 620px; font-size: clamp(16px, 1.5vw, 18px); line-height: 1.6; color: var(--s26-t2); text-wrap: pretty; }
+[data-skin="2026"] .s26-hero.s26-left .s26-lead { margin-left: 0; }
+[data-skin="2026"] .s26-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 30px; }
+[data-skin="2026"] .s26-hero.s26-left .s26-ctas { justify-content: flex-start; }
+[data-skin="2026"] .s26-fine { margin: 16px 0 0; font-size: 13px; color: var(--s26-t3); }
+[data-skin="2026"] .s26-meta { margin-top: 18px; font-family: var(--s26-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--s26-t3); }
+
+/* ---- Seção e títulos ---- */
+[data-skin="2026"] .s26-sec { padding: 56px var(--s26-gutter); }
+[data-skin="2026"] .s26-sec > .s26-in { display: flex; flex-direction: column; gap: 28px; }
+[data-skin="2026"] .s26-h2 { margin: 0; font-family: var(--s26-sans); font-weight: 700; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.05; letter-spacing: -.035em; color: var(--s26-t); text-wrap: balance; }
+[data-skin="2026"] .s26-h2 em { font-style: normal; color: var(--s26-v4); }
+[data-skin="2026"] .s26-hd { display: flex; flex-direction: column; gap: 12px; max-width: 640px; }
+[data-skin="2026"] .s26-hd p { margin: 0; color: var(--s26-t2); font-size: 16px; line-height: 1.65; }
+[data-skin="2026"] .s26-hd.s26-center { align-self: center; text-align: center; max-width: 720px; }
+[data-skin="2026"] .s26-hd.s26-center .s26-eyebrow { justify-content: center; }
+
+/* ---- Caixa "Em uma frase" ---- */
+[data-skin="2026"] .s26-ans {
+  margin: 0 auto; max-width: 760px; padding: 20px 22px;
+  border: 1px solid rgba(167,139,250,.28); background: rgba(124,58,237,.07); border-radius: 14px;
+  font-size: 16px; line-height: 1.7; color: #e4e4e7;
+}
+[data-skin="2026"] .s26-ans b { color: var(--s26-v4); font-weight: 600; }
+
+/* ---- Cartão ---- */
+[data-skin="2026"] .s26-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+[data-skin="2026"] .s26-card { border: 1px solid var(--s26-ln); background: var(--s26-card); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+[data-skin="2026"] .s26-card .s26-tag { font-family: var(--s26-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--s26-v3); }
+[data-skin="2026"] .s26-card h3 { margin: 0; font-size: 20px; line-height: 1.2; font-weight: 700; letter-spacing: -.02em; color: var(--s26-t); }
+[data-skin="2026"] .s26-card p { margin: 0; font-size: 15px; line-height: 1.65; color: var(--s26-t2); }
+[data-skin="2026"] .s26-card a,
+[data-skin="2026"] .s26-art a,
+[data-skin="2026"] .s26-faq a { color: var(--s26-v4); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---- Moldura de captura do app ---- */
+[data-skin="2026"] .s26-shots { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+[data-skin="2026"] .s26-fig { display: flex; flex-direction: column; gap: 10px; margin: 0; min-width: 0; }
+[data-skin="2026"] .s26-fig figcaption { font-size: 14px; color: var(--s26-t2); }
+[data-skin="2026"] .s26-dev { border: 1px solid var(--s26-ln); border-radius: 14px; background: linear-gradient(180deg, #16161a, #0e0e11); overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+[data-skin="2026"] .s26-dev-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--s26-ln); }
+[data-skin="2026"] .s26-dev-bar span { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.14); flex: none; }
+[data-skin="2026"] .s26-dev-bar em { margin-left: 8px; font-style: normal; font-family: var(--s26-mono); font-size: 11px; color: var(--s26-t3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+[data-skin="2026"] .s26-dev img { display: block; width: 100%; height: auto; }
+[data-skin="2026"] .s26-cap { margin: 0; font-size: 13px; color: var(--s26-t3); text-align: center; }
+
+/* ---- FAQ em sanfona (details/summary nativo; a resposta fica no HTML) ---- */
+[data-skin="2026"] .s26-faq { max-width: 760px; margin: 0 auto; width: 100%; }
+[data-skin="2026"] .s26-faq details { border-top: 1px solid var(--s26-ln); padding: 6px 0; }
+[data-skin="2026"] .s26-faq details:last-child { border-bottom: 1px solid var(--s26-ln); }
+[data-skin="2026"] .s26-faq summary { cursor: pointer; font-size: 17px; font-weight: 500; color: var(--s26-t); list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 52px; }
+[data-skin="2026"] .s26-faq summary::-webkit-details-marker { display: none; }
+[data-skin="2026"] .s26-faq summary::after { content: "+"; color: var(--s26-t3); font-size: 22px; flex: none; }
+[data-skin="2026"] .s26-faq details[open] summary::after { content: "\2013"; }
+[data-skin="2026"] .s26-faq details p { margin: 0; padding: 0 0 16px; color: var(--s26-t2); font-size: 15px; line-height: 1.7; max-width: 64ch; }
+
+/* ---- Índice "Neste guia" ---- */
+[data-skin="2026"] .s26-toc { display: flex; flex-wrap: wrap; gap: 8px; max-width: 760px; margin: 0 auto; width: 100%; }
+[data-skin="2026"] .s26-toc > span { font-family: var(--s26-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--s26-t3); width: 100%; }
+[data-skin="2026"] .s26-toc a { border: 1px solid var(--s26-ln); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--s26-t2); }
+[data-skin="2026"] .s26-toc a:hover { color: #fff; border-color: rgba(255,255,255,.25); }
+
+/* ---- Artigo (guia) e tabela ---- */
+[data-skin="2026"] .s26-art { max-width: 760px; margin: 0 auto; width: 100%; }
+[data-skin="2026"] .s26-art h2 { margin: 48px 0 14px; font-weight: 700; font-size: clamp(24px, 3vw, 32px); line-height: 1.05; letter-spacing: -.035em; color: var(--s26-t); text-wrap: balance; scroll-margin-top: 24px; }
+[data-skin="2026"] .s26-art h3 { margin: 26px 0 8px; font-size: 17px; font-weight: 600; letter-spacing: -.01em; color: var(--s26-t); }
+[data-skin="2026"] .s26-art p,
+[data-skin="2026"] .s26-art li { font-size: 16px; line-height: 1.75; color: var(--s26-body); }
+[data-skin="2026"] .s26-art p { margin: 0 0 16px; }
+[data-skin="2026"] .s26-art ol,
+[data-skin="2026"] .s26-art ul { margin: 0 0 18px; padding-left: 22px; }
+[data-skin="2026"] .s26-art li { margin-bottom: 6px; }
+[data-skin="2026"] .s26-art strong { color: var(--s26-t); }
+[data-skin="2026"] .s26-tbl { overflow-x: auto; margin: 18px 0 24px; border: 1px solid var(--s26-ln); border-radius: 14px; -webkit-overflow-scrolling: touch; }
+[data-skin="2026"] .s26-tbl table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 480px; }
+[data-skin="2026"] .s26-tbl th,
+[data-skin="2026"] .s26-tbl td { padding: 12px 14px; border-bottom: 1px solid var(--s26-ln); text-align: left; vertical-align: top; color: #b4b4bc; }
+[data-skin="2026"] .s26-tbl thead th { font-family: var(--s26-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--s26-t3); font-weight: 500; }
+[data-skin="2026"] .s26-tbl tr:last-child td { border-bottom: 0; }
+[data-skin="2026"] .s26-tbl td:first-child { color: var(--s26-t); white-space: nowrap; }
+[data-skin="2026"] .s26-msg { margin: 0 0 16px; padding: 16px 18px; background: rgba(124,58,237,.09); border: 1px solid rgba(167,139,250,.28); border-radius: 14px; font-size: 15px; line-height: 1.65; color: #e4e4e7; }
+[data-skin="2026"] .s26-src { margin: 36px auto 0; max-width: 640px; font-size: 12px; line-height: 1.7; color: var(--s26-t3); }
+[data-skin="2026"] .s26-src a { color: var(--s26-v3); text-decoration: underline; }
+
+/* ---- Chamada final ---- */
+[data-skin="2026"] .s26-cta { text-align: center; padding: 72px var(--s26-gutter) 80px; }
+[data-skin="2026"] .s26-cta > .s26-in { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+[data-skin="2026"] .s26-cta .s26-h2 { font-size: clamp(30px, 4.4vw, 52px); }
+[data-skin="2026"] .s26-cta .s26-ctas { margin-top: 0; }
+
+/* ---- Celular ---- */
+@media (max-width: 700px) {
+  [data-skin="2026"] { --s26-gutter: 20px; }
+  [data-skin="2026"] .s26-hero { padding-top: 48px; padding-bottom: 40px; }
+  [data-skin="2026"] .s26-sec { padding-top: 40px; padding-bottom: 40px; }
+  [data-skin="2026"] .s26-cta { padding-top: 48px; padding-bottom: 64px; }
+  [data-skin="2026"] .s26-cards,
+  [data-skin="2026"] .s26-shots { grid-template-columns: 1fr; }
+  [data-skin="2026"] .s26-ctas { flex-direction: column; align-items: stretch; }
+  [data-skin="2026"] .s26-ctas .s26-btn { width: 100%; white-space: normal; }
+}
+
+/* ---- Toque: sem hover "grudado" (CLAUDE.md, armadilha 7). Nada aqui é
+   revelado por hover; o que muda no hover é só cor e elevação, e no toque a
+   elevação sai para o botão não ficar suspenso depois do clique. ---- */
+@media (hover: none) {
+  [data-skin="2026"] .s26-btn-p:hover { transform: none; box-shadow: 0 1px 0 rgba(255,255,255,.22) inset, 0 8px 28px rgba(124,58,237,.25); }
+  [data-skin="2026"] .s26-btn-g:hover { border-color: rgba(255,255,255,.12); background: rgba(255,255,255,.03); color: var(--s26-soft); }
+  [data-skin="2026"] .s26-toc a:hover { color: var(--s26-t2); border-color: var(--s26-ln); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-skin="2026"] .s26-btn { transition: none; }
+  [data-skin="2026"] .s26-btn-p:hover { transform: none; }
+}

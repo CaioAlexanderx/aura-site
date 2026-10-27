@@ -38,6 +38,15 @@
   X-Robots-Tag: noindex, nofollow, noarchive
   Cache-Control: public, max-age=0, must-revalidate
 
+# 27/10/2026: paginas internas de revisao ("_*.html", ex.: a demo da pele
+# 2026). Fora do sitemap, do llms.txt e do IndexNow; noindex no HTML e aqui.
+/_skin-2026-demo
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: public, max-age=0, must-revalidate
+
+/_skin-2026-demo.html
+  X-Robots-Tag: noindex, nofollow, noarchive
+
 # App — CSP + cache
 /app/*
   Cache-Control: public, max-age=86400

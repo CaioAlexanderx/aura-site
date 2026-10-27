@@ -26,4 +26,11 @@ Não há suíte de framework; os testes de fumaça rodam com Node puro:
 ```
 node scripts/tests/indexnow.test.js
 node scripts/tests/promessas-sem-lastro.test.js   # site sem TEF, multi-gateway, lotes/validade nem balanço de estoque (roda também no CI)
+node scripts/tests/skin-2026.test.js              # pele 2026 dormente: escopo em [data-skin="2026"], fontes locais, demo fora dos índices
 ```
+
+Todos de uma vez: `node --test scripts/tests/*.test.js`.
+
+## Pele 2026 (fase 2, em construção)
+
+`css/skin-2026.css` só vale para a página com `data-skin="2026"` (no `<html>`); hoje nenhuma página pública a carrega. Fontes em `assets/fonts/` (woff2 do Fontsource, licença OFL ao lado), logo em `assets/brand/`. Demonstração interna, fora do sitemap e com noindex: `/_skin-2026-demo`. Arquivos `_*.html` são páginas internas de revisão: o `inject-jsonld.py` e o teste de origem os pulam.
