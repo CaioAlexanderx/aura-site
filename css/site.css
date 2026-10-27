@@ -278,6 +278,8 @@ img, svg { display: block; max-width: 100%; }
   transition: background 0.2s var(--ease);
 }
 .nav-mobile-toggle:hover { background: rgba(124,58,237,0.22); }
+/* acima do painel (z 98) quando o painel mora dentro do <nav>, para fechar pelo mesmo botão */
+.nav-mobile-toggle { position: relative; z-index: 99; }
 @media (max-width: 880px) {
   .site-nav .nav-links { display: none; }
   .nav-mobile-toggle { display: flex; }
