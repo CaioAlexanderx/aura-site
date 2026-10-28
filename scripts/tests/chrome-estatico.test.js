@@ -26,7 +26,7 @@ function teste(nome, fn) {
   catch (e) { falhas++; console.log('FAIL - ' + nome + '\n       ' + String(e.message).replace(/\n/g, '\n       ')); }
 }
 
-// Páginas públicas: as 34 da raiz, fora Casamento* e as internas _*.
+// Páginas públicas: as 35 da raiz (34 + aura-ou-gestaoclick, 27/10), fora Casamento* e as internas _*.
 const PUBLICAS = fs.readdirSync(ROOT)
   .filter((f) => f.endsWith('.html') && !f.startsWith('Casamento') && !f.startsWith('_'))
   .sort();
@@ -50,10 +50,10 @@ const hrefs = (html) => [...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
 
 const COMPARTILHADAS = PUBLICAS.filter((f) => !PROPRIOS.includes(f) && !LEGAIS.includes(f));
 
-teste('34 páginas públicas, cada uma numa categoria', () => {
-  assert.equal(PUBLICAS.length, 34, 'páginas: ' + PUBLICAS.join(', '));
+teste('35 páginas públicas, cada uma numa categoria', () => {
+  assert.equal(PUBLICAS.length, 35, 'páginas: ' + PUBLICAS.join(', '));
   for (const f of [...PROPRIOS, ...LEGAIS]) assert.ok(PUBLICAS.includes(f), 'sumiu ' + f);
-  assert.equal(COMPARTILHADAS.length, 28);
+  assert.equal(COMPARTILHADAS.length, 29);
 });
 
 teste('nenhuma página pública depende de data-mount para ter menu ou rodapé', () => {
@@ -61,7 +61,7 @@ teste('nenhuma página pública depende de data-mount para ter menu ou rodapé',
   assert.deepEqual(restos, [], 'rode python scripts/inject-chrome.py e commite: ' + restos.join(', '));
 });
 
-teste('as 28 páginas do chrome.js têm o menu e o rodapé gravados, iguais ao js/chrome.js', () => {
+teste('as 29 páginas do chrome.js têm o menu e o rodapé gravados, iguais ao js/chrome.js', () => {
   for (const f of COMPARTILHADAS) {
     const html = read(f);
     const nav = blocos(html, 'nav'), foot = blocos(html, 'footer');
