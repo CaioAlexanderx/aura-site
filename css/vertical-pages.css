@@ -115,6 +115,10 @@
 .v-feature p { font-size: 14px; line-height: 1.55; color: var(--section-ink-2); }
 
 /* Vertical breadcrumbs (other verticals carousel) */
+/* frase abaixo dos chips (/negocio, 28/10/2026) */
+.v-others-note { margin: 28px auto 0; text-align: center; }
+.v-others-note a { color: var(--violet); font-weight: 600; }
+.v-others-note a:hover { text-decoration: underline; }
 .v-others {
   display: flex;
   gap: 12px;

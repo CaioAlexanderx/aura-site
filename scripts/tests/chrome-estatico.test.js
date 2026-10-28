@@ -74,15 +74,57 @@ teste('as 29 páginas do chrome.js têm o menu e o rodapé gravados, iguais ao j
   }
 });
 
+// Coluna "Segmentos" do rodapé (fase 2, PR 3), na ordem do Léo. Cada link
+// precisa ter a página na raiz (nada de link inventado).
+const SEGMENTOS = [
+  ['/sistema-para-loja-de-roupas', 'Loja de roupas'],
+  ['/sistema-para-loja-de-material-de-construcao', 'Material de construção'],
+  ['/sistema-para-loja-de-celular', 'Celular e assistência técnica'],
+  ['/sistema-para-loja-de-calcados', 'Loja de calçados'],
+  ['/sistema-para-otica', 'Ótica'],
+  ['/sistema-para-papelaria', 'Papelaria'],
+  ['/sistema-para-loja-de-perfumaria', 'Perfumaria e cosméticos'],
+  ['/sistema-para-loja-de-semijoias', 'Semijoias e bijuteria'],
+  ['/segmentos', 'Todos os ramos →'],
+];
+const linksComTexto = (html) => [...html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([^<]*)<\/a>/g)].map((m) => [m[1], m[2].trim()]);
+
 teste('o HTML bruto dessas páginas traz os links das verticais e do produto', () => {
-  const noMenu = ['/negocio', '/studio', '/dojo', '/planos', '/sobre', '/comecar'];
-  const noRodape = ['/negocio', '/studio', '/dojo', '/planos', '/comparativo', '/erp-para-pequenas-empresas', '/sobre', '/privacidade', '/dpa'];
+  const noMenu = ['/negocio', '/studio', '/segmentos', '/planos', '/sobre', '/comecar'];
+  const noRodape = ['/negocio', '/studio', '/planos', '/comparativo', '/erp-para-pequenas-empresas', '/sobre', '/privacidade', '/dpa', ...SEGMENTOS.map((s) => s[0])];
   for (const f of COMPARTILHADAS) {
     const html = read(f);
     const hNav = hrefs(blocos(html, 'nav')[0] || ''), hFoot = hrefs(blocos(html, 'footer')[0] || '');
     for (const h of noMenu) assert.ok(hNav.includes(h), f + ': menu sem ' + h);
     for (const h of noRodape) assert.ok(hFoot.includes(h), f + ': rodapé sem ' + h);
   }
+});
+
+teste('menu e rodapé sem Dojô e sem Jacareí; Segmentos no menu e coluna Segmentos no rodapé, na ordem', () => {
+  for (const [nome, html] of [['navHTML', NAV], ['footerHTML', FOOTER]]) {
+    assert.ok(!hrefs(html).includes('/dojo'), nome + ' ainda leva a /dojo');
+    assert.ok(!/Doj[ôo]/.test(html), nome + ' ainda cita o Dojô');
+    assert.ok(!/Jacare/i.test(html), nome + ' ainda cita Jacareí');
+  }
+  assert.ok(FOOTER.includes('© 2026 Aura. Tecnologia para Negócios · AURA LTDA, CNPJ 66.088.450/0001-96'), 'linha de baixo do rodapé');
+  // "Segmentos" entre Verticais e Planos, no computador e no painel do celular
+  const meio = NAV.slice(NAV.indexOf('class="nav-links"'), NAV.indexOf('nav-mobile-toggle'));
+  const painel = NAV.slice(NAV.indexOf('nav-mobile-panel'));
+  for (const [onde, trecho] of [['menu', meio], ['painel do celular', painel]]) {
+    const iSeg = trecho.indexOf('<a href="/segmentos">Segmentos</a>');
+    assert.ok(iSeg > trecho.indexOf('/studio') && iSeg < trecho.indexOf('href="/planos"'), onde + ': Segmentos fora do lugar');
+  }
+  const seg = FOOTER.slice(FOOTER.indexOf('<div class="footer-seg">'));
+  assert.deepEqual(linksComTexto(seg.slice(0, seg.indexOf('<h5>Produto</h5>'))), SEGMENTOS);
+  for (const [href] of SEGMENTOS) assert.ok(fs.existsSync(path.join(ROOT, href.slice(1) + '.html')), 'sem página para ' + href);
+  // a home tem menu e rodapé próprios: mesma regra
+  const home = read('index.html');
+  const homeNav = home.slice(home.indexOf('<nav class="site-nav"'), home.indexOf('<!-- ============== HERO'));
+  const homeFoot = home.slice(home.indexOf('<footer class="site-footer"'));
+  assert.ok(!homeNav.includes('/dojo') && !homeFoot.includes('/dojo'), 'home: menu ou rodapé ainda leva a /dojo');
+  assert.equal((homeNav.match(/<a href="\/segmentos">Segmentos<\/a>/g) || []).length, 2, 'home: Segmentos no menu e no painel do celular');
+  const hSeg = homeFoot.slice(homeFoot.indexOf('<div class="footer-seg">'));
+  assert.deepEqual(linksComTexto(hSeg.slice(0, hSeg.indexOf('<h5>Produto</h5>'))), SEGMENTOS);
 });
 
 teste('home, Studio e Dojô seguem com menu e rodapé próprios no HTML; legais seguem sem', () => {

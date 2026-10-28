@@ -289,6 +289,8 @@ html[data-skin="2026"] body {
   color: color-mix(in srgb, var(--v-accent, #7c3aed) 55%, #fff);
 }
 [data-skin="2026"] .site-nav .nav-dropdown-item .v-mark svg { width: 18px; height: 18px; color: inherit; }
+[data-skin="2026"] .site-nav .nav-dropdown-item .v-mark-img { background: none; }
+[data-skin="2026"] .site-nav .nav-dropdown-item .v-mark-img img { display: block; width: 100%; height: 100%; }
 [data-skin="2026"] .site-nav .nav-dropdown-item .v-name { font-family: var(--s26-sans); font-size: 14px; font-weight: 600; line-height: 1.4; }
 [data-skin="2026"] .site-nav .nav-dropdown-item .v-tag { font-size: 12px; line-height: 1.4; color: var(--s26-t3); opacity: 1; margin-top: 0; }
 
@@ -344,10 +346,12 @@ html[data-skin="2026"] body {
 }
 [data-skin="2026"] .site-footer::before { content: none; }
 [data-skin="2026"] .site-footer .container { max-width: 1180px; margin: 0 auto; padding: 0; }
-[data-skin="2026"] .site-footer .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1.2fr 1.2fr; gap: 32px; }
+[data-skin="2026"] .site-footer .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1.1fr 1fr 1fr; gap: 32px; }
 [data-skin="2026"] .site-footer .footer-grid h5 { margin: 0 0 12px; font-family: var(--s26-mono); font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--s26-t3); }
 [data-skin="2026"] .site-footer .footer-grid a { display: block; padding: 5px 0; font-size: 14px; color: var(--s26-t2); opacity: 1; transform: none; transition: color .2s; }
 [data-skin="2026"] .site-footer .footer-grid a:hover { color: #fff; transform: none; }
+[data-skin="2026"] .site-footer .footer-grid .footer-seg-all { margin-top: 6px; font-weight: 500; color: var(--s26-v); }
+[data-skin="2026"] .site-footer .footer-grid .footer-seg-all:hover { color: #fff; }
 /* coluna da marca: os estilos em linha vêm do js/chrome.js, daí o !important */
 [data-skin="2026"] .site-footer .footer-grid > div:first-child > div:first-child { margin-bottom: 0 !important; }
 [data-skin="2026"] .site-footer .footer-grid > div:first-child > div:first-child > img { width: 34px !important; height: 34px !important; box-shadow: none !important; }
@@ -369,7 +373,12 @@ html[data-skin="2026"] body {
 /* Pontos de corte do molde: 900 px reflui o rodapé, 860 px troca o meio do
    menu pelo botão, 700 px é o celular. */
 @media (max-width: 900px) {
-  [data-skin="2026"] .site-footer .footer-grid { grid-template-columns: 1fr 1fr; }
+  /* marca em cima, Verticais e Produto lado a lado, Segmentos na largura toda
+     com a lista em duas colunas (o grid denso puxa Produto para o lado de Verticais) */
+  [data-skin="2026"] .site-footer .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px 16px; grid-auto-flow: row dense; }
+  [data-skin="2026"] .site-footer .footer-grid > div:first-child,
+  [data-skin="2026"] .site-footer .footer-grid .footer-seg { grid-column: 1 / -1; }
+  [data-skin="2026"] .site-footer .footer-grid .footer-seg-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; }
 }
 @media (max-width: 860px) {
   [data-skin="2026"] .site-nav .nav-links > a,
@@ -381,7 +390,6 @@ html[data-skin="2026"] body {
   [data-skin="2026"] .site-nav { padding: 14px 16px; }
   [data-skin="2026"] .site-nav .nav-links { display: none; }
   [data-skin="2026"] .site-footer { padding: 36px 20px 24px; }
-  [data-skin="2026"] .site-footer .footer-grid { grid-template-columns: 1fr; }
   [data-skin="2026"] .site-footer .footer-bottom { flex-direction: row; align-items: center; }
 }
 /* Toque (CLAUDE.md, armadilha 7): o submenu "Verticais" abre no hover; em tela
