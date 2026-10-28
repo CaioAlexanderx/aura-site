@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#050103">
+<meta name="format-detection" content="telephone=no, email=no, address=no">
+<title>Lista Gótica · Caio e Lorena</title>
+<meta name="description" content="Jogo de equipes da festa de Caio e Lorena · 31.10.2026">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@300;400;600&family=Pinyon+Script&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050103; --wine: #5e0512; --ink: #ece7de; --ink-soft: rgba(236,231,222,.78);
+    --rose: #e6b8bd; --line: rgba(226,222,214,.28); --line-soft: rgba(226,222,214,.14);
+    --panel: rgba(6,2,4,.86); --noivo: #ece7de; --noiva: #e6b8bd; --roxo: #9b6bd1;
+    --script: 'Pinyon Script','Snell Roundhand',cursive; --slab: 'Josefin Slab',Georgia,serif; --serif: 'Playfair Display',Georgia,serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: rgba(236,231,222,.12); }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; overflow: hidden; -webkit-text-size-adjust: 100%; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--slab); font-weight: 300; -webkit-font-smoothing: antialiased; overscroll-behavior: none; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  img { display: block; max-width: 100%; }
+  :focus-visible { outline: 1px solid var(--ink); outline-offset: 4px; }
+
+  .bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: var(--wine); overflow: hidden; }
+  .bg__roses { position: absolute; inset: 0; background: url("/assets/casamento/rosas.webp") center/cover; opacity: .55; animation: drift 30s ease-in-out infinite; }
+  .bg__vignette { position: absolute; inset: 0; background: radial-gradient(ellipse 118% 102% at 50% 50%, rgba(4,1,3,.45) 30%, rgba(4,1,3,.8) 75%, rgba(4,1,3,.92) 100%); }
+  @keyframes drift { 0%,100% { transform: scale(1.08) } 50% { transform: scale(1.14) translate(-2%,1.5%) } }
+
+  .app { position: relative; z-index: 1; height: 100%; height: 100dvh; display: flex; flex-direction: column; padding-top: env(safe-area-inset-top,0px); }
+  .top { display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px 16px; border-bottom: 1px solid var(--line); background: rgba(6,2,4,.9); }
+  .top__title { font-family: var(--script); font-size: 26px; line-height: 1; flex: none; }
+  .top__round { margin-left: auto; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; font-weight: 600; opacity: .8; white-space: nowrap; }
+  .top__btn { width: 40px; height: 40px; font-size: 22px; line-height: 1; opacity: .75; flex: none; }
+  .body { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 22px 16px calc(28px + env(safe-area-inset-bottom,0px)); }
+  .screen { max-width: 520px; margin: 0 auto; text-align: center; }
+
+  .eyebrow { font-size: 11px; letter-spacing: .4em; text-indent: .4em; font-weight: 600; opacity: .72; text-transform: uppercase; }
+  .title { font-family: var(--script); font-size: clamp(44px,10vw,66px); line-height: 1.05; margin-top: 8px; text-wrap: balance; }
+  .lead { font-size: 16px; line-height: 1.7; margin-top: 14px; color: var(--ink-soft); text-wrap: pretty; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 14px 24px; border: 1px solid rgba(236,231,222,.6); font-size: 12px; letter-spacing: .26em; text-indent: .26em; font-weight: 600; text-transform: uppercase; transition: background .2s, color .2s, opacity .2s; width: min(100%,320px); }
+  .btn--solid { background: var(--ink); color: #12060a; }
+  .btn--ghost { border-color: var(--line-soft); opacity: .8; min-height: 44px; }
+  .btn:disabled { opacity: .35; cursor: default; }
+  .btn--rose { border-color: var(--rose); color: var(--rose); }
+  .stack { display: grid; gap: 12px; justify-items: center; margin-top: 24px; }
+  .frame { position: relative; margin-top: 22px; padding: 22px 16px; background: rgba(3,1,2,.78); border: 1px solid var(--line); text-align: left; }
+  .frame::before { content: ""; position: absolute; inset: 6px; border: 1px solid var(--line-soft); pointer-events: none; }
+  .frame > * { position: relative; }
+  .rules { list-style: none; display: grid; gap: 12px; counter-reset: r; }
+  .rules li { counter-increment: r; display: grid; grid-template-columns: 28px 1fr; gap: 10px; font-size: 15px; line-height: 1.55; color: var(--ink-soft); }
+  .rules li::before { content: counter(r, upper-roman); font-family: var(--serif); font-size: 15px; color: var(--ink); text-align: center; border: 1px solid var(--line); height: 28px; line-height: 26px; }
+  .rules b { color: var(--ink); font-weight: 600; }
+
+  /* equipes */
+  .casas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+  .casa { padding: 14px 8px; border: 1px solid var(--line); background: rgba(6,2,4,.85); display: grid; justify-items: center; gap: 8px; }
+  .casa img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid var(--noivo); }
+  .casa--noiva img { border-color: var(--noiva); }
+  .casa span { font-size: 11px; letter-spacing: .24em; text-transform: uppercase; font-weight: 600; }
+  .casa--noiva span { color: var(--rose); }
+
+  /* tabuleiro */
+  .board { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 20px; }
+  .cell { position: relative; aspect-ratio: 1; border: 1px solid var(--line-soft); background: rgba(6,2,4,.7); display: grid; place-items: center; font-family: var(--serif); font-size: 13px; color: rgba(236,231,222,.45); }
+  .cell--start, .cell--end { border-color: var(--line); color: var(--ink); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; font-family: var(--slab); font-weight: 600; }
+  .cell--end { background: rgba(94,5,18,.55); }
+  .cell--end::after { content: ""; position: absolute; inset: 3px; border: 1px solid var(--line-soft); }
+  .peao { position: absolute; width: 58%; height: 58%; border-radius: 50%; object-fit: cover; border: 2px solid var(--noivo); box-shadow: 0 4px 14px rgba(0,0,0,.8); transition: transform .4s cubic-bezier(.22,.84,.32,1); }
+  .peao--noivo { left: -6%; top: -8%; }
+  .peao--noiva { right: -6%; bottom: -8%; border-color: var(--noiva); }
+  .placar { display: flex; justify-content: center; gap: 22px; margin-top: 16px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; }
+  .placar b { font-family: var(--serif); font-weight: 400; font-size: 20px; letter-spacing: 0; margin-left: 6px; }
+  .placar .noiva { color: var(--rose); }
+
+  /* vez / escolha de carta */
+  .quem { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 18px; }
+  .quem img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2px solid var(--noivo); }
+  .quem--noiva img { border-color: var(--noiva); }
+  .quem--noiva .title { color: var(--rose); }
+  .cards { display: grid; gap: 12px; margin-top: 22px; text-align: left; }
+  .card { width: 100%; display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 14px; padding: 14px 16px; background: rgba(6,2,4,.85); border: 1px solid var(--line); text-align: left; transition: border-color .2s, background .2s; }
+  .card:hover { border-color: rgba(236,231,222,.6); }
+  .card.is-nova { border-color: var(--roxo); }
+  .card__ic { width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid var(--line-soft); }
+  .card__ic svg { width: 28px; height: 28px; fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .card__cat { font-family: var(--serif); font-size: 18px; line-height: 1.25; }
+  .card__modo { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; font-weight: 600; color: var(--rose); margin-top: 4px; }
+  .card__nova { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; color: var(--roxo); }
+
+  /* carta na mão do ator */
+  .carta { margin-top: 18px; padding: 22px 18px; background: rgba(3,1,2,.85); border: 1px solid var(--line); text-align: left; position: relative; }
+  .carta::before { content: ""; position: absolute; inset: 6px; border: 1px solid var(--line-soft); pointer-events: none; }
+  .carta > * { position: relative; }
+  .carta__cat { font-family: var(--serif); font-size: 24px; text-align: center; }
+  .carta__modo { text-align: center; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; font-weight: 600; color: var(--rose); margin-top: 6px; }
+  .carta__dica { text-align: center; font-size: 13px; font-style: italic; color: var(--ink-soft); margin-top: 6px; }
+  .itens { list-style: none; display: grid; gap: 8px; margin-top: 18px; }
+  .item { display: grid; grid-template-columns: 1fr 52px; align-items: center; gap: 10px; min-height: 52px; padding: 8px 8px 8px 14px; background: rgba(6,2,4,.85); border: 1px solid var(--line-soft); font-size: 18px; transition: background .2s, color .2s; }
+  .item__ok { width: 44px; height: 44px; border: 1px solid var(--line); display: grid; place-items: center; font-size: 22px; }
+  .item.is-ok { background: var(--ink); color: #12060a; }
+  .item.is-ok .item__ok { border-color: #12060a; }
+  .item.is-skip { opacity: .4; text-decoration: line-through; }
+  .maldicao { margin-top: 16px; padding: 12px 14px; border: 1px dashed rgba(155,107,209,.7); color: var(--roxo); font-size: 14px; line-height: 1.5; }
+  .maldicao b { font-family: var(--serif); font-size: 18px; color: var(--roxo); display: block; margin-top: 2px; }
+  .maldicao.is-ativa { background: rgba(155,107,209,.18); }
+  .maldicao-btn { margin-top: 10px; width: 100%; border-color: var(--roxo); color: var(--roxo); }
+  .maldicao-btn.is-on { background: var(--roxo); color: #12060a; }
+
+  /* timer */
+  .timer { font-family: var(--serif); font-size: 64px; line-height: 1; font-variant-numeric: tabular-nums; margin-top: 6px; }
+  .timer.is-fim { color: var(--rose); }
+  .track { height: 3px; background: var(--line-soft); margin-top: 10px; }
+  .track__bar { height: 100%; width: 100%; background: var(--rose); transition: width 1s linear; }
+  .timer-wrap.is-urgente .timer { animation: pulsa .5s ease-in-out infinite alternate; color: var(--rose); }
+  @keyframes pulsa { from { transform: scale(1) } to { transform: scale(1.06) } }
+
+  /* desenho */
+  .draw { position: relative; margin-top: 12px; border: 1px solid var(--line); background: #0c0406; touch-action: none; }
+  .draw canvas { display: block; width: 100%; height: 56vh; height: 56dvh; touch-action: none; }
+  .draw__bar { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .draw__bar .btn { width: 100%; min-height: 48px; padding: 10px 8px; letter-spacing: .14em; text-indent: .14em; font-size: 11px; }
+  .peek { position: absolute; inset: 0; background: rgba(5,1,3,.96); display: grid; place-items: center; text-align: center; padding: 20px; }
+  .peek b { font-family: var(--serif); font-weight: 400; font-size: clamp(30px,8vw,44px); line-height: 1.2; text-wrap: balance; }
+  .peek small { display: block; margin-top: 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); }
+  .contador { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; font-weight: 600; opacity: .8; margin-top: 8px; }
+
+  /* resultado */
+  .delta { font-family: var(--serif); font-size: 84px; line-height: 1; margin-top: 10px; }
+  .delta.neg { color: var(--roxo); }
+  .delta small { font-size: 20px; font-family: var(--slab); color: var(--ink-soft); }
+  .frase { font-family: var(--script); font-size: 30px; line-height: 1.2; margin-top: 8px; text-wrap: balance; }
+  .fim-casal { margin: 18px auto 0; width: min(100%,300px); border: 1px solid var(--line); box-shadow: 0 0 0 6px rgba(6,2,4,.9), 0 0 0 7px var(--line-soft), 0 24px 60px rgba(0,0,0,.7); }
+  .fim-casal img { width: 100%; }
+
+  .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom,0px)); transform: translate(-50%,20px); background: var(--ink); color: #12060a; padding: 12px 20px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; opacity: 0; transition: opacity .25s, transform .25s; z-index: 100; pointer-events: none; }
+  .toast.is-on { opacity: 1; transform: translate(-50%,0); }
+
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="bg__roses"></div><div class="bg__vignette"></div></div>
+
+<div class="app">
+  <div class="top">
+    <a class="top__title" href="/Casamento-caio-e-lorena#jogos" aria-label="Voltar ao site">Lista Gótica</a>
+    <span class="top__round" id="top-round"></span>
+    <button class="top__btn" type="button" id="btn-reiniciar" aria-label="Reiniciar partida" title="Reiniciar">&#x21bb;</button>
+  </div>
+  <div class="body"><div class="screen" id="tela"></div></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="/assets/casamento/lista-cartas.js?v=1"></script>
+<script>
+(function () {
+  'use strict';
+  var TEMPO = 60, RODADAS = 5, CASAS = 20, MALDICAO_PENA = 2;
+  var CASA = [
+    { id: 0, nome: 'Casa do Noivo', img: '/assets/casamento/quiz-caio.webp',   cls: 'noivo' },
+    { id: 1, nome: 'Casa da Noiva', img: '/assets/casamento/quiz-lorena.webp', cls: 'noiva' }
+  ];
+  var MODO = {
+    cantar:  { nome: 'Cantarolar', dica: 'De boca fechada. Só o hmmmm, nenhuma palavra.',
+               ic: '<svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>' },
+    mimica:  { nome: 'Mímica', dica: 'Nem uma palavra, nem um som. Só o corpo.',
+               ic: '<svg viewBox="0 0 24 24"><path d="M4 7c3-4 13-4 16 0v4c0 6-3 9-8 10-5-1-8-4-8-10z"/><path d="M8 11h2M14 11h2"/><path d="M9 15q3 2 6 0"/></svg>' },
+    desenho: { nome: 'Desenhar', dica: 'No celular. Sem letras, sem números, sem símbolos.',
+               ic: '<svg viewBox="0 0 24 24"><path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/><path d="M4 20l1-4"/></svg>' }
+  };
+  var $ = function (id) { return document.getElementById(id); };
+  var tela = $('tela'), topRound = $('top-round');
+  var CHAVE = 'lista-gotica:v1';
+
+  /* ---------------- estado ---------------- */
+  var S = null;
+  function salvar() { try { localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) {} }
+  function carregar() { try { var v = localStorage.getItem(CHAVE); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
+  function limpar() { try { localStorage.removeItem(CHAVE); } catch (e) {} }
+
+  function embaralhar(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+
+  function novaPartida() {
+    var baralho = { cantar: [], mimica: [], desenho: [] };
+    CARTAS.forEach(function (c, i) { if (baralho[c.modo]) baralho[c.modo].push(i); });
+    Object.keys(baralho).forEach(function (m) { embaralhar(baralho[m]); });
+    S = { fase: 'vez', rodada: 1, vez: 0, pos: [0, 0], jogadas: [0, 0], baralho: baralho, maos: [[], []], nova: [null, null], atual: null, extra: 0 };
+    [0, 1].forEach(function (t) { ['cantar', 'mimica', 'desenho'].forEach(function (m) { S.maos[t].push(puxar(m)); }); });
+    salvar(); render();
+  }
+  function puxar(modo) {
+    var b = S.baralho[modo];
+    if (!b.length) { /* acabou o modo: recicla todas as cartas dele */
+      CARTAS.forEach(function (c, i) { if (c.modo === modo) b.push(i); }); embaralhar(b);
+    }
+    return b.shift();
+  }
+
+  /* ---------------- helpers de tela ---------------- */
+  function h(html) { tela.innerHTML = html; tela.scrollTop = 0; $('tela').parentNode.scrollTop = 0; }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var toastEl = $('toast'), toastT;
+  function toast(msg) { toastEl.textContent = msg; toastEl.classList.add('is-on'); clearTimeout(toastT); toastT = setTimeout(function () { toastEl.classList.remove('is-on'); }, 2200); }
+  function vibra(p) { try { if (navigator.vibrate) navigator.vibrate(p); } catch (e) {} }
+  var audio;
+  function beep(freq, dur) {
+    try {
+      audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+      var o = audio.createOscillator(), g = audio.createGain();
+      o.type = 'sine'; o.frequency.value = freq; g.gain.value = .08; o.connect(g); g.connect(audio.destination);
+      o.start(); g.gain.exponentialRampToValueAtTime(.0001, audio.currentTime + dur); o.stop(audio.currentTime + dur);
+    } catch (e) {}
+  }
+  var wake = null;
+  function acordar() { try { if (navigator.wakeLock && !wake) navigator.wakeLock.request('screen').then(function (w) { wake = w; w.addEventListener('release', function () { wake = null; }); }); } catch (e) {} }
+  function romano(n) { return ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'][n - 1] || n; }
+  function cabecalho() {
+    if (!S || S.fase === 'intro') { topRound.textContent = ''; return; }
+    topRound.textContent = (S.rodada > RODADAS ? 'Morte súbita ' : 'Rodada ') + romano(S.rodada) + ' de ' + romano(RODADAS);
+  }
+  function tabuleiroHtml() {
+    var html = '<div class="board" aria-label="Tabuleiro">';
+    /* serpentina 3 linhas x 7 colunas: 0..6, 13..7, 14..20 */
+    for (var r = 0; r < 3; r++) for (var c = 0; c < 7; c++) {
+      var n = r === 1 ? 13 - c : r * 7 + c;
+      var cls = 'cell' + (n === 0 ? ' cell--start' : n === CASAS ? ' cell--end' : '');
+      html += '<div class="' + cls + '" data-n="' + n + '">' + (n === 0 ? 'Partida' : n === CASAS ? 'Altar' : n);
+      if (S.pos[0] === n) html += '<img class="peao peao--noivo" src="' + CASA[0].img + '" alt="Casa do Noivo">';
+      if (S.pos[1] === n) html += '<img class="peao peao--noiva" src="' + CASA[1].img + '" alt="Casa da Noiva">';
+      html += '</div>';
+    }
+    html += '</div><div class="placar"><span>Noivo<b>' + S.pos[0] + '</b></span><span class="noiva">Noiva<b>' + S.pos[1] + '</b></span></div>';
+    return html;
+  }
+  function casaAtual() { return CASA[S.vez]; }
+
+  /* ---------------- telas ---------------- */
+  function render() {
+    cabecalho();
+    ({ intro: telaIntro, vez: telaVez, escolha: telaEscolha, revelar: telaRevelar, jogo: telaJogo, resultado: telaResultado, fim: telaFim })[S ? S.fase : 'intro']();
+  }
+
+  function telaIntro() {
+    h('<div class="eyebrow">Jogo II · equipes</div><h1 class="title">Lista Gótica</h1>' +
+      '<p class="lead">Duas casas. Cinco rodadas. Uma travessia até o altar.</p>' +
+      '<div class="casas"><div class="casa"><img src="' + CASA[0].img + '" alt=""><span>Casa do Noivo</span></div><div class="casa casa--noiva"><img src="' + CASA[1].img + '" alt=""><span>Casa da Noiva</span></div></div>' +
+      '<div class="frame"><ol class="rules">' +
+      '<li><span>Até 5 pessoas por casa. <b>Um celular por mesa</b>, que vai passando de mão em mão.</span></li>' +
+      '<li><span>Na sua vez, a casa escolhe <b>uma de três cartas</b>. Cada carta tem uma categoria, 5 itens e um modo: <b>cantarolar</b> (boca fechada), <b>mímica</b> (sem som) ou <b>desenhar</b> (no celular).</span></li>' +
+      '<li><span>Só quem vai atuar vê a carta. Em <b>60 segundos</b>, a casa tenta adivinhar os 5 itens. Pode chutar à vontade: errar não custa nada.</span></li>' +
+      '<li><span>Cada acerto, <b>uma casa à frente</b>.</span></li>' +
+      '<li><span><b>A Maldição:</b> toda carta tem uma palavra amaldiçoada. Se a casa disser ela, <b>volta duas casas</b>. Quem atua sabe qual é e não pode avisar.</span></li>' +
+      '<li><span>Revezem quem atua a cada rodada. Depois de 5 rodadas, quem estiver <b>mais perto do altar</b> vence.</span></li>' +
+      '</ol></div>' +
+      '<div class="stack"><button class="btn btn--solid" type="button" id="btn-comecar">Começar a travessia</button></div>');
+    $('btn-comecar').addEventListener('click', function () { acordar(); novaPartida(); });
+  }
+
+  function telaVez() {
+    var c = casaAtual();
+    h('<div class="eyebrow">É a vez da</div>' +
+      '<div class="quem quem--' + c.cls + '"><img src="' + c.img + '" alt=""><h2 class="title">' + c.nome + '</h2></div>' +
+      '<p class="lead">Decidam quem vai atuar nesta rodada (quem ainda não foi). Essa pessoa pega o celular e escolhe a carta.</p>' +
+      tabuleiroHtml() +
+      '<div class="stack"><button class="btn btn--solid" type="button" id="btn-escolher">Ver as cartas</button></div>');
+    $('btn-escolher').addEventListener('click', function () { S.fase = 'escolha'; salvar(); render(); });
+  }
+
+  function telaEscolha() {
+    var c = casaAtual(), mao = S.maos[S.vez];
+    var html = '<div class="eyebrow">' + esc(c.nome) + ' · rodada ' + romano(S.rodada) + '</div><h2 class="title">Escolha uma carta</h2>' +
+      '<p class="lead">Só a categoria e o modo aparecem. Os itens, só depois de escolher.</p><div class="cards">';
+    mao.forEach(function (id, i) {
+      var k = CARTAS[id], m = MODO[k.modo], nova = S.nova[S.vez] === id;
+      html += '<button class="card' + (nova ? ' is-nova' : '') + '" type="button" data-i="' + i + '"><span class="card__ic">' + m.ic + '</span>' +
+        '<span><span class="card__cat">' + esc(k.cat) + '</span><span class="card__modo">' + m.nome + '</span></span>' +
+        '<span class="card__nova">' + (nova ? 'nova' : '') + '</span></button>';
+    });
+    html += '</div>';
+    h(html);
+    tela.querySelectorAll('.card').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var i = +b.getAttribute('data-i'), id = mao[i], modo = CARTAS[id].modo;
+        mao.splice(i, 1); var repo = puxar(modo); mao.push(repo); S.nova[S.vez] = repo;
+        S.atual = { id: id, ok: [], skip: [], maldicao: false, idx: 0 };
+        S.fase = 'revelar'; salvar(); render();
+      });
+    });
+  }
+
+  function telaRevelar() {
+    var c = casaAtual(), k = CARTAS[S.atual.id], m = MODO[k.modo];
+    h('<div class="eyebrow">' + esc(c.nome) + '</div><h2 class="title">Só quem atua</h2>' +
+      '<p class="lead">Vire o celular pra você. O resto da casa não pode ver a tela até o tempo acabar.</p>' +
+      '<div class="carta"><div class="carta__cat">' + esc(k.cat) + '</div><div class="carta__modo">' + m.nome + '</div><div class="carta__dica">' + m.dica + '</div></div>' +
+      '<div class="stack"><button class="btn btn--solid" type="button" id="btn-revelar">Revelar a carta</button></div>');
+    $('btn-revelar').addEventListener('click', function () { S.fase = 'jogo'; S.atual.inicio = null; salvar(); render(); });
+  }
+
+  /* ---------------- rodada ---------------- */
+  var cron = null;
+  function telaJogo() {
+    var k = CARTAS[S.atual.id], m = MODO[k.modo], A = S.atual;
+    var modoDesenho = k.modo === 'desenho';
+    var html = '<div class="eyebrow">' + esc(k.cat) + ' · ' + m.nome + '</div>' +
+      '<div class="timer-wrap"><div class="timer" id="timer">' + TEMPO + '</div><div class="track"><div class="track__bar" id="barra"></div></div></div>';
+    if (!modoDesenho) {
+      html += '<ul class="itens" id="itens">';
+      k.itens.forEach(function (it, i) { html += '<li class="item" data-i="' + i + '"><span>' + esc(it) + '</span><button class="item__ok" type="button" aria-label="Acertou">✓</button></li>'; });
+      html += '</ul>';
+    } else {
+      html += '<div class="contador" id="contador"></div>' +
+        '<div class="draw"><canvas id="canvas"></canvas><div class="peek" id="peek" hidden><div><b id="peek-item"></b><small>solte para esconder</small></div></div></div>' +
+        '<div class="draw__bar">' +
+        '<button class="btn" type="button" id="btn-ver">Segurar p/ ver</button>' +
+        '<button class="btn btn--solid" type="button" id="btn-ok">Acertou ✓</button>' +
+        '<button class="btn btn--ghost" type="button" id="btn-limpar">Limpar</button>' +
+        '<button class="btn btn--ghost" type="button" id="btn-pular">Pular</button>' +
+        '</div>';
+    }
+    html += '<div class="maldicao" id="maldicao"><span>Palavra amaldiçoada</span><b>' + esc(k.maldicao) + '</b></div>' +
+      '<button class="btn maldicao-btn" type="button" id="btn-maldicao">A casa disse a palavra</button>' +
+      '<div class="stack" style="margin-top:14px"><button class="btn btn--ghost" type="button" id="btn-iniciar">Iniciar os 60 segundos</button></div>';
+    h(html);
+
+    var iniciado = false, fim = false;
+    var timerEl = $('timer'), barra = $('barra'), wrap = tela.querySelector('.timer-wrap');
+    function encerrar() {
+      if (fim) return; fim = true; clearInterval(cron);
+      timerEl.textContent = '0'; timerEl.classList.add('is-fim'); barra.style.width = '0%';
+      vibra([200, 100, 200, 100, 400]); beep(220, .6);
+      S.atual.fimTempo = true; salvar();
+      setTimeout(function () { S.fase = 'resultado'; salvar(); render(); }, 900);
+    }
+    function tick() {
+      var rest = Math.max(0, Math.round((A.inicio + TEMPO * 1000 - Date.now()) / 1000));
+      timerEl.textContent = rest; barra.style.width = (rest / TEMPO * 100) + '%';
+      if (rest <= 10) { wrap.classList.add('is-urgente'); if (rest > 0) beep(660, .08); }
+      if (rest <= 0) encerrar();
+    }
+    function iniciar() {
+      if (iniciado) return; iniciado = true; acordar();
+      if (!A.inicio) { A.inicio = Date.now(); salvar(); }
+      $('btn-iniciar').textContent = 'Encerrar agora';
+      $('btn-iniciar').onclick = function () { encerrar(); };
+      cron = setInterval(tick, 250); tick();
+    }
+    $('btn-iniciar').addEventListener('click', iniciar);
+    if (A.inicio) iniciar(); /* voltou do bloqueio de tela no meio da rodada */
+
+    $('btn-maldicao').addEventListener('click', function () {
+      A.maldicao = !A.maldicao; salvar();
+      this.classList.toggle('is-on', A.maldicao); $('maldicao').classList.toggle('is-ativa', A.maldicao);
+      this.textContent = A.maldicao ? 'Maldição marcada (toque p/ desfazer)' : 'A casa disse a palavra';
+      if (A.maldicao) vibra(300);
+    });
+
+    if (!modoDesenho) {
+      tela.querySelectorAll('.item').forEach(function (li) {
+        var i = +li.getAttribute('data-i');
+        if (A.ok.indexOf(i) >= 0) li.classList.add('is-ok');
+        li.querySelector('.item__ok').addEventListener('click', function () {
+          if (!iniciado) iniciar();
+          var p = A.ok.indexOf(i);
+          if (p >= 0) A.ok.splice(p, 1); else { A.ok.push(i); vibra(40); }
+          li.classList.toggle('is-ok', p < 0); salvar();
+        });
+      });
+    } else {
+      var cv = $('canvas'), ctx = cv.getContext('2d'), desenhando = false, ultimo = null;
+      function ajustar() {
+        var r = cv.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+        cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#ece7de';
+      }
+      ajustar(); window.addEventListener('resize', ajustar);
+      function pt(e) { var r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+      cv.addEventListener('pointerdown', function (e) { if (!iniciado) iniciar(); desenhando = true; ultimo = pt(e); cv.setPointerCapture(e.pointerId); ctx.beginPath(); ctx.moveTo(ultimo.x, ultimo.y); ctx.lineTo(ultimo.x + .1, ultimo.y); ctx.stroke(); });
+      cv.addEventListener('pointermove', function (e) { if (!desenhando) return; var p = pt(e); ctx.beginPath(); ctx.moveTo(ultimo.x, ultimo.y); ctx.lineTo(p.x, p.y); ctx.stroke(); ultimo = p; });
+      function solta() { desenhando = false; }
+      cv.addEventListener('pointerup', solta); cv.addEventListener('pointercancel', solta); cv.addEventListener('pointerleave', solta);
+      $('btn-limpar').addEventListener('click', function () { ctx.clearRect(0, 0, cv.width, cv.height); });
+
+      var contador = $('contador'), peek = $('peek'), peekItem = $('peek-item');
+      function atualiza() {
+        if (A.idx >= k.itens.length) { contador.textContent = 'Carta completa!'; peekItem.textContent = '—'; $('btn-ok').disabled = true; $('btn-pular').disabled = true; $('btn-ver').disabled = true; return; }
+        contador.textContent = 'Item ' + (A.idx + 1) + ' de ' + k.itens.length + ' · ' + A.ok.length + ' acerto' + (A.ok.length === 1 ? '' : 's');
+        peekItem.textContent = k.itens[A.idx];
+      }
+      atualiza();
+      var ver = $('btn-ver');
+      function mostra(e) { e.preventDefault(); peek.hidden = false; }
+      function esconde() { peek.hidden = true; }
+      ver.addEventListener('pointerdown', mostra); ver.addEventListener('pointerup', esconde); ver.addEventListener('pointercancel', esconde); ver.addEventListener('pointerleave', esconde);
+      ver.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+      function proximo() { A.idx++; ctx.clearRect(0, 0, cv.width, cv.height); salvar(); atualiza(); }
+      $('btn-ok').addEventListener('click', function () { if (!iniciado) iniciar(); A.ok.push(A.idx); vibra(40); proximo(); });
+      $('btn-pular').addEventListener('click', function () { if (!iniciado) iniciar(); A.skip.push(A.idx); proximo(); });
+    }
+  }
+
+  function telaResultado() {
+    clearInterval(cron);
+    var c = casaAtual(), k = CARTAS[S.atual.id], acertos = S.atual.ok.length, pena = S.atual.maldicao ? MALDICAO_PENA : 0;
+    var delta = acertos - pena, destino = Math.max(0, Math.min(CASAS, S.pos[S.vez] + delta));
+    var frase = pena ? 'A Maldição cobrou o seu preço.' : acertos === 5 ? 'Carta limpa. Que assombro.' : acertos >= 3 ? 'Boa travessia.' : acertos === 0 ? 'Nem um passo. A noite é longa.' : 'Um passo de cada vez.';
+    h('<div class="eyebrow">' + esc(c.nome) + ' · ' + esc(k.cat) + '</div>' +
+      '<div class="delta' + (delta < 0 ? ' neg' : '') + '">' + (delta > 0 ? '+' : '') + delta + ' <small>casa' + (Math.abs(delta) === 1 ? '' : 's') + '</small></div>' +
+      '<div class="frase">' + frase + '</div>' +
+      '<p class="lead">' + acertos + ' acerto' + (acertos === 1 ? '' : 's') + (pena ? ' · −' + pena + ' pela Maldição (<i>' + esc(k.maldicao) + '</i>)' : '') + '</p>' +
+      '<div class="stack"><button class="btn btn--solid" type="button" id="btn-mover">Mover no tabuleiro</button></div>');
+    $('btn-mover').addEventListener('click', function () {
+      S.pos[S.vez] = destino; S.jogadas[S.vez]++; S.atual = null;
+      /* próxima vez */
+      if (S.vez === 0) { S.vez = 1; }
+      else {
+        S.vez = 0; S.rodada++;
+        var acabou = S.rodada > RODADAS && (S.pos[0] !== S.pos[1] || S.rodada > RODADAS + 3);
+        if (acabou || S.pos[0] >= CASAS || S.pos[1] >= CASAS) { S.fase = 'fim'; salvar(); render(); return; }
+        if (S.rodada > RODADAS) toast('Empate! Morte súbita');
+      }
+      S.fase = 'vez'; salvar(); render();
+    });
+  }
+
+  function telaFim() {
+    var p0 = S.pos[0], p1 = S.pos[1], v = p0 === p1 ? null : (p0 > p1 ? CASA[0] : CASA[1]);
+    var titulo = v ? v.nome + ' venceu' : 'Empate';
+    var sub = v ? 'Chegou mais perto do altar.' : 'Nem a morte súbita decidiu. Os noivos desempatam.';
+    h('<div class="eyebrow">Fim da travessia</div>' +
+      (v ? '<div class="quem quem--' + v.cls + '"><img src="' + v.img + '" alt=""></div>' : '') +
+      '<h2 class="title">' + titulo + '</h2><p class="lead">' + sub + '</p>' +
+      tabuleiroHtml() +
+      '<figure class="fim-casal"><img src="/assets/casamento/quiz-casal.webp" alt="Caio e Lorena"></figure>' +
+      '<div class="stack"><button class="btn btn--solid" type="button" id="btn-nova">Nova partida</button><a class="btn btn--ghost" href="/Casamento-caio-e-lorena#jogos">Voltar ao site</a></div>');
+    $('btn-nova').addEventListener('click', function () { limpar(); novaPartida(); });
+  }
+
+  $('btn-reiniciar').addEventListener('click', function () {
+    if (!S || S.fase === 'intro') return;
+    if (confirm('Reiniciar a partida? O tabuleiro volta pro começo.')) { clearInterval(cron); limpar(); S = null; render(); }
+  });
+
+  S = carregar();
+  if (S && !S.fase) S = null;
+  render();
+})();
+</script>
+</body>
+</html>
