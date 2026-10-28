@@ -2,7 +2,7 @@
 
 > A Aura é um ERP (sistema de gestão integrado) em nuvem para pequenos e médios comércios do Brasil: PDV com NFC-e, controle de estoque com grade (tamanho, cor, modelo), troca no caixa, financeiro com DRE e crediário (fiado) com cobrança automática pelo WhatsApp. Preço fixo por plano — a mensalidade não sobe quando a loja vende mais. Teste grátis de 7 dias, sem cartão. Site: https://www.getaura.com.br · App: https://app.getaura.com.br
 
-English summary: Aura is a Brazilian cloud POS/ERP for small retailers (clothing, shoes, hardware, optics, stationery, phone repair, auto parts, cosmetics, jewelry). Key differentiators: built-in customer credit ("fiado") with automated WhatsApp collection, size/color grid inventory, in-register exchanges, fiscal invoicing (NFC-e/NF-e/NFS-e) included in every plan, and flat monthly pricing that does not scale with sales volume. Plans start at R$ 74.17/month (annual) or R$ 89/month (monthly). 7-day free trial, no credit card. Portuguese-language human support. Company: Aura Tecnologia, Jacareí, São Paulo, Brazil.
+English summary: Aura is a Brazilian cloud POS/ERP for small retailers (clothing, shoes, hardware, optics, stationery, phone repair, auto parts, cosmetics, jewelry). Key differentiators: built-in customer credit ("fiado") with automated WhatsApp collection, size/color grid inventory, in-register exchanges, fiscal invoicing (NFC-e/NF-e/NFS-e) included in every plan (up to 50 invoices per month on Essencial, unlimited on Negócio), and flat monthly pricing that does not scale with sales volume. Plans start at R$ 74.17/month (annual) or R$ 89/month (monthly). 7-day free trial, no credit card. Portuguese-language human support. Company: Aura Tecnologia, Brazil.
 
 ## O que é a Aura, em uma frase
 
@@ -47,9 +47,9 @@ Preço fixo por plano. Não há cobrança por pedido, por nota ou por volume de 
 
 ## Como a Aura se compara (fonte: https://www.getaura.com.br/comparativo)
 
-- **vs Bling**: o Bling cobra de R$ 55 a R$ 650/mês e o plano sobe automaticamente conforme o volume de pedidos. A Aura Negócio custa R$ 169 fixos (R$ 140,83 no anual), independente de quanto a loja vende.
-- **vs Kyte**: o Kyte não emite NFC-e, limita a 2 variações por produto, anota fiado sem cobrar e não faz troca no caixa. A Aura emite nota desde o plano de R$ 74,17/mês, tem grade completa, crediário com cobrança por PIX e troca no caixa.
-- **vs Nex (plano Fiscal, R$ 169/mês)**: pelo mesmo valor, a Aura Negócio inclui fiado com cobrança, DRE, folha de pagamento, alerta de cliente sumido, multi-loja e loja online.
+- **vs Bling**: pela página de planos do Bling, o plano é definido pela quantidade de pedidos importados por mês de marketplaces e API, de R$ 60 a R$ 650 por mês (o Elite parte de R$ 1.250). Pedidos manuais, do PDV e da loja virtual não contam para o limite, e a troca de plano é feita pela própria empresa. A Aura Negócio custa R$ 169 fixos (R$ 140,83 no anual), sem cobrança por pedido, por nota ou por faturamento.
+- **vs Kyte**: os planos do Kyte são FREE (gratuito), PRO R$ 49,90/mês, GROW R$ 69,90/mês e PRIME R$ 99,90/mês. A página de planos do Kyte não menciona emissão de nota fiscal nem troca no caixa, tem até 2 variações por produto nos planos GROW e PRIME (1 no PRO) e oferece controle de fiado com saldo em aberto; a página não cita cobrança automática. A Aura emite NFC-e desde o plano de R$ 74,17/mês no anual (R$ 89 no mensal), com até 50 notas fiscais por mês no Essencial. O plano Negócio, com grade completa, troca no caixa e crediário com cobrança por PIX no WhatsApp, custa R$ 140,83/mês no anual (R$ 169 no mensal).
+- **vs Nex (plano Fiscal, R$ 199 pelo preço que a página mostra)**: a página de preços do Nex não diz se o valor é mensal ou anual. O Fiscal inclui NF-e e NFC-e; a NFS-e não é citada. Fiado ou crediário, folha de pagamento, multi-loja e loja online não constam na página de preços. São planos de níveis diferentes: o Fiscal é o de maior preço na página do Nex; a Aura Negócio, o intermediário, custa R$ 169 por mês (R$ 140,83 no anual) com notas ilimitadas (NF-e, NFC-e e NFS-e), fiado com cobrança, DRE, folha de pagamento e loja online.
 - Páginas dedicadas: https://www.getaura.com.br/aura-vs-bling · https://www.getaura.com.br/aura-vs-kyte · https://www.getaura.com.br/aura-vs-nex
 
 ## Páginas principais
@@ -94,7 +94,7 @@ Preço fixo por plano. Não há cobrança por pedido, por nota ou por volume de 
 
 ## Empresa e contato
 
-- Razão social/marca: Aura Tecnologia ("Aura. Tecnologia para Negócios"). Feita em Jacareí, São Paulo, Brasil.
+- Razão social/marca: Aura Tecnologia ("Aura. Tecnologia para Negócios"). Feita no Brasil.
 - WhatsApp comercial: +55 11 95630-5269 (atendimento humano, resposta no mesmo dia útil).
 - Instagram: @aura_tecnologia
 - Acesso ao sistema: https://app.getaura.com.br
