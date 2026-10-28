@@ -262,6 +262,9 @@ img, svg { display: block; max-width: 100%; }
   box-shadow: 0 4px 14px var(--v-glow, rgba(124,58,237,0.35));
 }
 .nav-dropdown-item .v-mark svg { width: 18px; height: 18px; color: white; }
+/* ícone de app em imagem (Studio: /assets/studio/app-icon.svg), ocupa a caixa toda */
+.nav-dropdown-item .v-mark-img { background: none; overflow: hidden; }
+.nav-dropdown-item .v-mark-img img { display: block; width: 100%; height: 100%; }
 .nav-dropdown-item .v-name { font-family: var(--font-heading); font-size: 17px; line-height: 1; }
 .nav-dropdown-item .v-tag { font-size: 11px; opacity: 0.55; margin-top: 4px; }
 
@@ -596,7 +599,7 @@ img, svg { display: block; max-width: 100%; }
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr repeat(3, 1fr);
+  grid-template-columns: 1.4fr repeat(4, 1fr);
   gap: 48px;
   position: relative;
   z-index: 2;
@@ -616,8 +619,16 @@ img, svg { display: block; max-width: 100%; }
   font-size: 12px;
   color: rgba(196,181,253,0.55);
 }
+/* Coluna "Segmentos" do rodapé (28/10/2026): a lista vira duas colunas no celular */
+.footer-grid .footer-seg-all { color: #c4b5fd; font-weight: 600; opacity: 1; margin-top: 4px; }
+@media (max-width: 1100px) {
+  .footer-grid { grid-template-columns: repeat(4, 1fr); }
+  .footer-grid > div:first-child { grid-column: 1 / -1; }
+}
 @media (max-width: 768px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; grid-auto-flow: row dense; }
+  .footer-grid .footer-seg { grid-column: 1 / -1; }
+  .footer-grid .footer-seg-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; }
 }
 
 /* =========================================================

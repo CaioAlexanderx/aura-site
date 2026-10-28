@@ -76,13 +76,14 @@ def organization():
     return {
         "@type": "Organization",
         "@id": ORG_ID,
-        "name": "Aura Tecnologia",
-        "alternateName": "Aura",
+        "name": "Aura",
+        "legalName": "AURA LTDA",
+        "alternateName": "Aura. Tecnologia para Negócios",
+        "taxID": "66.088.450/0001-96",
         "url": SITE + "/",
         "logo": {"@type": "ImageObject", "url": SITE + "/Icon.png"},
         "image": SITE + "/og-image.png",
         "description": "ERP e sistema de gestão em nuvem para lojas: PDV com NFC-e, estoque com grade, troca no caixa, financeiro e crediário com cobrança no WhatsApp. Preço fixo.",
-        "address": {"@type": "PostalAddress", "addressLocality": "Jacareí", "addressRegion": "SP", "addressCountry": "BR"},
         "areaServed": "BR",
         "contactPoint": [{
             "@type": "ContactPoint",
