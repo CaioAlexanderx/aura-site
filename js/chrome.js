@@ -1,6 +1,11 @@
 /* =========================================================
    AURA SITE — Shared chrome injection (nav + footer + WA)
    Used by all sub-pages so we don't repeat 200 lines of HTML.
+
+   Fonte única do menu e do rodapé: navHTML e footerHTML abaixo.
+   scripts/inject-chrome.py copia os dois para o HTML de cada página
+   (buscadores e IAs leem sem rodar JS). Mudou aqui? Rode o script e
+   commite os HTML; o teste scripts/tests/chrome-estatico.test.js confere.
    ========================================================= */
 (function() {
   const navHTML = `
@@ -87,11 +92,19 @@
   <span class="wa-num">(11) 95630-5269</span>
 </a>`;
 
-  // Inject into placeholders
-  const navMount = document.querySelector('[data-mount="nav"]');
-  const footerMount = document.querySelector('[data-mount="footer"]');
-  const waMount = document.querySelector('[data-mount="wa"]');
-  if (navMount) navMount.outerHTML = navHTML;
-  if (footerMount) footerMount.outerHTML = footerHTML;
-  if (waMount) waMount.outerHTML = waHTML;
+  // Inject into placeholders.
+  // 27/10/2026: o menu e o rodapé já vêm escritos no HTML das páginas
+  // (scripts/inject-chrome.py grava navHTML e footerHTML entre marcadores
+  // <!-- chrome:nav:start --> ... <!-- chrome:nav:end -->). Se a página já
+  // tem .site-nav / .site-footer, não injeta de novo: só tira um data-mount
+  // que tenha sobrado. A injeção fica de reserva para página sem o bloco.
+  const fill = (mountSel, presentSel, html) => {
+    const mount = document.querySelector(mountSel);
+    if (!mount) return;
+    if (presentSel && document.querySelector(presentSel)) mount.remove();
+    else mount.outerHTML = html;
+  };
+  fill('[data-mount="nav"]', '.site-nav', navHTML);
+  fill('[data-mount="footer"]', '.site-footer', footerHTML);
+  fill('[data-mount="wa"]', null, waHTML);
 })();

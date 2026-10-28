@@ -19,6 +19,13 @@
    botão primário/ghost, cartão, FAQ em sanfona, tabela, caixa "Em uma frase",
    índice "Neste guia", mais o andaime que eles pedem (topo, seção, título,
    rótulo, artigo, chamada final, moldura de captura, logo).
+
+   PR 2: menu e rodapé. A marcação é a mesma das páginas de hoje (.site-nav e
+   .site-footer, gravadas no HTML por scripts/inject-chrome.py a partir de
+   js/chrome.js); sob [data-skin="2026"] elas seguem o molde. As regras
+   funcionam com ou sem o css/site.css carregado (a demo não o carrega), por
+   isso fixam cada propriedade e vencem os estilos em linha do rodapé com
+   !important.
    ========================================================= */
 
 /* ---- Fontes ---- */
@@ -38,6 +45,10 @@
 @font-face { font-family: "Aura DM Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("/assets/fonts/dm-mono-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
 @font-face { font-family: "Aura Instrument Serif"; font-style: normal; font-weight: 400; font-display: swap; src: url("/assets/fonts/instrument-serif-latin-ext-400-normal.woff2") format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
 @font-face { font-family: "Aura Instrument Serif"; font-style: normal; font-weight: 400; font-display: swap; src: url("/assets/fonts/instrument-serif-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+/* Itálico: só a frase do rodapé ("Aura, a plataforma do empreendedor
+   brasileiro."). Única exceção à regra "serifa só no logo", aprovada pela Nina. */
+@font-face { font-family: "Aura Instrument Serif"; font-style: italic; font-weight: 400; font-display: swap; src: url("/assets/fonts/instrument-serif-latin-ext-400-italic.woff2") format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "Aura Instrument Serif"; font-style: italic; font-weight: 400; font-display: swap; src: url("/assets/fonts/instrument-serif-latin-400-italic.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
 
 /* ---- Tokens ---- */
 [data-skin="2026"] {
@@ -224,6 +235,167 @@ html[data-skin="2026"] body {
 [data-skin="2026"] .s26-cta > .s26-in { display: flex; flex-direction: column; align-items: center; gap: 28px; }
 [data-skin="2026"] .s26-cta .s26-h2 { font-size: clamp(30px, 4.4vw, 52px); }
 [data-skin="2026"] .s26-cta .s26-ctas { margin-top: 0; }
+
+/* ---- Menu (.site-nav), no molde ----
+   Ordem da marcação: logo | .nav-links (Início, Verticais, Planos, Sobre,
+   Contato, e .nav-cta-row com Entrar e Começar grátis) | botão de menu |
+   painel do celular. As margens automáticas põem os links no meio e os
+   botões à direita, como o .mid e o .rt do molde. */
+[data-skin="2026"] .site-nav {
+  position: relative; inset: auto; z-index: 20;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 24px;
+  max-width: 1240px; margin: 0 auto; padding: 18px 32px;
+  color: var(--s26-t); font-family: var(--s26-sans); transition: none;
+}
+[data-skin="2026"] .site-nav::before { content: none; }
+[data-skin="2026"] .site-nav .brand { display: flex; align-items: center; gap: 10px; font-family: var(--s26-serif); font-size: 23px; letter-spacing: -.5px; line-height: 1; }
+[data-skin="2026"] .site-nav .brand .glyph {
+  display: block; width: 28px; height: 28px; flex: none; border-radius: 50%;
+  background: url("/assets/brand/logo-aura-84.png") center / cover no-repeat;
+  box-shadow: none; transition: none;
+}
+[data-skin="2026"] .site-nav .brand:hover .glyph { transform: none; }
+[data-skin="2026"] .site-nav .brand-name { font-family: var(--s26-serif); font-weight: 400; font-size: 23px; letter-spacing: -.5px; line-height: 1; color: var(--s26-t); }
+[data-skin="2026"] .site-nav .brand-name::after { content: "."; color: var(--s26-v); }
+
+[data-skin="2026"] .site-nav .nav-links { display: flex; flex: 1; align-items: center; gap: 26px; font-size: 14px; font-weight: 500; color: var(--s26-t2); }
+[data-skin="2026"] .site-nav .nav-links > a:first-child { margin-left: auto; }
+[data-skin="2026"] .site-nav .nav-links > a,
+[data-skin="2026"] .site-nav .nav-dropdown > button {
+  display: flex; align-items: center; min-height: 44px; padding: 8px 0; border: 0; border-radius: 0;
+  background: none; color: inherit; opacity: 1; font: inherit; cursor: pointer; transition: color .2s;
+}
+[data-skin="2026"] .site-nav .nav-links > a:hover,
+[data-skin="2026"] .site-nav .nav-dropdown > button:hover { color: #fff; background: none; }
+
+[data-skin="2026"] .site-nav .nav-dropdown { position: relative; }
+[data-skin="2026"] .site-nav .nav-dropdown-panel {
+  position: absolute; left: -14px; top: calc(100% - 2px); z-index: 30; transform: none;
+  width: 300px; padding: 8px; display: none; flex-direction: column; gap: 2px;
+  background: #131316; border: 1px solid var(--s26-ln); border-radius: 16px;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+  box-shadow: 0 24px 60px rgba(0,0,0,.6); opacity: 1; pointer-events: auto; transition: none;
+}
+[data-skin="2026"] .site-nav .nav-dropdown:hover .nav-dropdown-panel,
+[data-skin="2026"] .site-nav .nav-dropdown:focus-within .nav-dropdown-panel { display: flex; transform: none; }
+[data-skin="2026"] .site-nav .nav-dropdown-item {
+  display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 10px;
+  color: var(--s26-t) !important; opacity: 1; transform: none; transition: background .2s;
+}
+[data-skin="2026"] .site-nav .nav-dropdown-item:hover { background: rgba(255,255,255,.05); transform: none; }
+[data-skin="2026"] .site-nav .nav-dropdown-item .v-mark {
+  width: 34px; height: 34px; flex: none; display: grid; place-items: center; overflow: hidden; border-radius: 10px;
+  background: color-mix(in srgb, var(--v-accent, #7c3aed) 20%, transparent); box-shadow: none;
+  color: color-mix(in srgb, var(--v-accent, #7c3aed) 55%, #fff);
+}
+[data-skin="2026"] .site-nav .nav-dropdown-item .v-mark svg { width: 18px; height: 18px; color: inherit; }
+[data-skin="2026"] .site-nav .nav-dropdown-item .v-name { font-family: var(--s26-sans); font-size: 14px; font-weight: 600; line-height: 1.4; }
+[data-skin="2026"] .site-nav .nav-dropdown-item .v-tag { font-size: 12px; line-height: 1.4; color: var(--s26-t3); opacity: 1; margin-top: 0; }
+
+[data-skin="2026"] .site-nav .nav-cta-row { display: flex; align-items: center; gap: 8px; margin-left: auto; padding-left: 0; }
+[data-skin="2026"] .site-nav .nav-cta-row .btn,
+[data-skin="2026"] .site-nav .nav-mobile-ctas .btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px; overflow: visible;
+  border-radius: 999px; font-family: var(--s26-sans); letter-spacing: 0; white-space: nowrap; text-decoration: none;
+  -webkit-backdrop-filter: none; backdrop-filter: none; transform: none; transition: transform .2s, box-shadow .2s, background .2s, color .2s;
+}
+/* Entrar: link de texto (o .ent do molde) */
+[data-skin="2026"] .site-nav .nav-cta-row .btn-ghost { height: auto; padding: 9px 14px; border: 0; background: none; box-shadow: none; font-size: 14px; font-weight: 500; color: var(--s26-t2); }
+[data-skin="2026"] .site-nav .nav-cta-row .btn-ghost:hover { color: #fff; background: rgba(255,255,255,.05); transform: none; }
+/* Começar grátis: botão primário pequeno */
+[data-skin="2026"] .site-nav .btn-primary {
+  height: 38px; padding: 0 16px; border: 0; font-size: 14px; font-weight: 700; color: #fff;
+  background: linear-gradient(180deg, var(--s26-v2) 0%, var(--s26-v-deep) 100%);
+  box-shadow: 0 1px 0 rgba(255,255,255,.22) inset, 0 8px 28px rgba(124,58,237,.25);
+}
+[data-skin="2026"] .site-nav .btn-primary:hover { transform: translateY(-2px); color: #fff; background: linear-gradient(180deg, var(--s26-v2) 0%, var(--s26-v-deep) 100%); box-shadow: 0 1px 0 rgba(255,255,255,.22) inset, 0 14px 40px rgba(124,58,237,.45); }
+
+/* Botão de menu (o .menu-b do molde): aparece a partir de 860 px */
+[data-skin="2026"] .site-nav .nav-mobile-toggle {
+  display: none; place-items: center; width: 44px; height: 44px; padding: 0; margin-left: 8px; flex: none;
+  border: 1px solid var(--s26-ln); border-radius: 10px; background: none; color: var(--s26-t); cursor: pointer;
+}
+[data-skin="2026"] .site-nav .nav-mobile-toggle:hover { background: rgba(255,255,255,.05); }
+
+/* Painel do celular (o .mp do molde): abre embaixo do menu, sem cobrir a página.
+   O js/site.js põe .nav-open no .site-nav ao tocar no botão. */
+[data-skin="2026"] .site-nav .nav-mobile-panel {
+  position: static; inset: auto; z-index: auto; order: 10; flex: 0 0 100%;
+  display: none; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 2px;
+  padding: 8px 0 4px; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; animation: none;
+  font-size: 16px;
+}
+[data-skin="2026"] .site-nav.nav-open .nav-mobile-panel { display: flex; }
+[data-skin="2026"] .site-nav .nav-mobile-panel > a {
+  display: flex; align-items: center; gap: 10px; width: auto; padding: 12px 4px; border-bottom: 1px solid var(--s26-ln);
+  font-family: var(--s26-sans); font-size: 16px; font-weight: 400; letter-spacing: 0; text-align: left;
+  color: var(--s26-t); opacity: 1; transform: none; transition: none;
+}
+[data-skin="2026"] .site-nav .nav-mobile-section { font-family: var(--s26-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--s26-t3); padding: 14px 4px 4px; }
+[data-skin="2026"] .site-nav .nav-mobile-vert .vdot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+[data-skin="2026"] .site-nav .nav-mobile-ctas { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: none; margin-top: 12px; }
+[data-skin="2026"] .site-nav .nav-mobile-ctas .btn { width: 100%; height: 46px; padding: 0 22px; font-size: 15px; }
+[data-skin="2026"] .site-nav .nav-mobile-ctas .btn-ghost { border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); box-shadow: none; color: var(--s26-soft); font-weight: 600; }
+
+/* ---- Rodapé (.site-footer), no molde ---- */
+[data-skin="2026"] .site-footer {
+  position: relative; overflow: visible; border-top: 1px solid var(--s26-ln); padding: 48px 32px 28px;
+  background: none; color: var(--s26-t); font-family: var(--s26-sans);
+}
+[data-skin="2026"] .site-footer::before { content: none; }
+[data-skin="2026"] .site-footer .container { max-width: 1180px; margin: 0 auto; padding: 0; }
+[data-skin="2026"] .site-footer .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1.2fr 1.2fr; gap: 32px; }
+[data-skin="2026"] .site-footer .footer-grid h5 { margin: 0 0 12px; font-family: var(--s26-mono); font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--s26-t3); }
+[data-skin="2026"] .site-footer .footer-grid a { display: block; padding: 5px 0; font-size: 14px; color: var(--s26-t2); opacity: 1; transform: none; transition: color .2s; }
+[data-skin="2026"] .site-footer .footer-grid a:hover { color: #fff; transform: none; }
+/* coluna da marca: os estilos em linha vêm do js/chrome.js, daí o !important */
+[data-skin="2026"] .site-footer .footer-grid > div:first-child > div:first-child { margin-bottom: 0 !important; }
+[data-skin="2026"] .site-footer .footer-grid > div:first-child > div:first-child > img { width: 34px !important; height: 34px !important; box-shadow: none !important; }
+[data-skin="2026"] .site-footer .footer-grid > div:first-child > div:first-child > span { font-family: var(--s26-serif) !important; font-weight: 400; font-size: 26px !important; letter-spacing: -.5px !important; line-height: 1; color: var(--s26-t) !important; }
+[data-skin="2026"] .site-footer .footer-grid > div:first-child > p:first-of-type { margin: 14px 0 0 !important; max-width: 280px !important; font-size: 14px !important; line-height: 1.6 !important; color: var(--s26-t2) !important; }
+/* a frase em itálico: Instrument Serif itálico (exceção aprovada pela Nina) */
+[data-skin="2026"] .site-footer .footer-grid > div:first-child > p:nth-of-type(2) { margin: 16px 0 0 !important; max-width: 290px !important; font-family: var(--s26-serif) !important; font-style: italic !important; font-weight: 400; font-size: 17px !important; line-height: 1.4 !important; letter-spacing: normal !important; color: var(--s26-t) !important; }
+[data-skin="2026"] .site-footer .footer-grid > div:first-child > div:last-child { margin-top: 20px !important; }
+[data-skin="2026"] .site-footer .footer-grid > div:first-child > div:last-child > a { border: 1px solid var(--s26-ln); background: rgba(255,255,255,.03) !important; color: var(--s26-t2) !important; }
+[data-skin="2026"] .site-footer .footer-grid > div:first-child > div:last-child > a:hover { color: #fff !important; border-color: rgba(255,255,255,.24); }
+[data-skin="2026"] .site-footer .footer-bottom {
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--s26-ln); font-size: 13px; color: var(--s26-t3);
+}
+[data-skin="2026"] .site-footer .footer-bottom .row { display: flex; gap: 20px !important; }
+[data-skin="2026"] .site-footer .footer-bottom a { color: var(--s26-t3); opacity: 1 !important; transition: color .2s; }
+[data-skin="2026"] .site-footer .footer-bottom a:hover { color: #fff; }
+
+/* Pontos de corte do molde: 900 px reflui o rodapé, 860 px troca o meio do
+   menu pelo botão, 700 px é o celular. */
+@media (max-width: 900px) {
+  [data-skin="2026"] .site-footer .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 860px) {
+  [data-skin="2026"] .site-nav .nav-links > a,
+  [data-skin="2026"] .site-nav .nav-dropdown,
+  [data-skin="2026"] .site-nav .nav-cta-row .btn-ghost { display: none; }
+  [data-skin="2026"] .site-nav .nav-mobile-toggle { display: grid; }
+}
+@media (max-width: 700px) {
+  [data-skin="2026"] .site-nav { padding: 14px 16px; }
+  [data-skin="2026"] .site-nav .nav-links { display: none; }
+  [data-skin="2026"] .site-footer { padding: 36px 20px 24px; }
+  [data-skin="2026"] .site-footer .footer-grid { grid-template-columns: 1fr; }
+  [data-skin="2026"] .site-footer .footer-bottom { flex-direction: row; align-items: center; }
+}
+/* Toque (CLAUDE.md, armadilha 7): o submenu "Verticais" abre no hover; em tela
+   de toque, de qualquer largura, o meio do menu dá lugar ao botão e ao painel,
+   que abrem no toque. */
+@media (hover: none) {
+  [data-skin="2026"] .site-nav .nav-links > a,
+  [data-skin="2026"] .site-nav .nav-dropdown,
+  [data-skin="2026"] .site-nav .nav-cta-row .btn-ghost { display: none; }
+  [data-skin="2026"] .site-nav .nav-mobile-toggle { display: grid; }
+  [data-skin="2026"] .site-nav .btn-primary:hover { transform: none; box-shadow: 0 1px 0 rgba(255,255,255,.22) inset, 0 8px 28px rgba(124,58,237,.25); }
+  [data-skin="2026"] .site-nav .nav-dropdown-item:hover,
+  [data-skin="2026"] .site-nav .nav-mobile-toggle:hover { background: none; }
+}
 
 /* ---- Celular ---- */
 @media (max-width: 700px) {

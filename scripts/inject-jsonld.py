@@ -201,6 +201,9 @@ def build_graph(fname, src):
     image = get(r'<meta property="og:image" content="([^"]+)"', src) or SITE + "/og-image.png"
     is_home = fname == "index.html"
     name = "Início" if is_home else page_name(title)
+    # Comparacoes (27/10): titulo "Aura vs Nex: o que cada plano inclui..." -> migalha "Aura vs Nex"
+    if fname.startswith("aura-vs-"):
+        name = name.split(":")[0].strip()
 
     graph = []
     if is_home:
