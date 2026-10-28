@@ -201,7 +201,8 @@ teste('comecar.js: sem primeiro toque o campo origem nem vai; sem ?ref= usa COME
 
 // ───────────── HTML ─────────────
 teste('HTML: js/origem.js em todas as páginas públicas (menos a do casamento), com defer e sem duplicar', () => {
-  const paginas = fs.readdirSync(ROOT).filter((f) => f.endsWith('.html'));
+  // "_*.html" são páginas internas de revisão (ex.: _skin-2026-demo.html), noindex e fora do sitemap.
+  const paginas = fs.readdirSync(ROOT).filter((f) => f.endsWith('.html') && !f.startsWith('_'));
   assert.ok(paginas.length >= 30);
   for (const f of paginas) {
     const n = (read(f).match(/<script src="\/js\/origem\.js" defer><\/script>/g) || []).length;

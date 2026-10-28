@@ -41,7 +41,8 @@ SITE_ID = SITE + "/#website"
 APP_ID = SITE + "/#software"
 
 SKIP = {"termos.html", "privacidade.html", "dpa.html"}
-SKIP_PREFIX = ("Casamento",)
+# "_": paginas internas de revisao (ex.: _skin-2026-demo.html), fora do indice.
+SKIP_PREFIX = ("Casamento", "_")
 
 # ---- Precos (fonte da verdade: js/plans-data.js + planos.html) ----
 # (nome, ancora em /planos, mensal, anual equivalente por mes, o que o plano inclui)
