@@ -204,11 +204,29 @@
   // =========================================================
   // MOBILE NAV TOGGLE — abre/fecha menu mobile
   // =========================================================
+  // O CSS abre o painel por .nav-mobile-panel.open; antes só .nav-open ia
+  // para o <nav> e o painel nunca aparecia no celular.
   var navToggle = document.querySelector('.nav-mobile-toggle');
   var siteNav = document.querySelector('.site-nav');
+  var navPanel = document.querySelector('.nav-mobile-panel');
   if (navToggle && siteNav) {
+    var setMenu = function(open) {
+      siteNav.classList.toggle('nav-open', open);
+      if (navPanel) navPanel.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.documentElement.style.overflow = open ? 'hidden' : '';
+    };
+    navToggle.setAttribute('aria-expanded', 'false');
     navToggle.addEventListener('click', function() {
-      siteNav.classList.toggle('nav-open');
+      setMenu(!siteNav.classList.contains('nav-open'));
+    });
+    if (navPanel) {
+      navPanel.addEventListener('click', function(e) {
+        if (e.target.closest('a, .nav-mobile-close')) setMenu(false);
+      });
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && siteNav.classList.contains('nav-open')) setMenu(false);
     });
   }
 
