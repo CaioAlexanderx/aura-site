@@ -40,7 +40,7 @@ ORG_ID = SITE + "/#organization"
 SITE_ID = SITE + "/#website"
 APP_ID = SITE + "/#software"
 
-SKIP = {"termos.html", "privacidade.html", "dpa.html"}
+SKIP = {"termos.html", "privacidade.html", "dpa.html", "lista-gotica.html"}
 # "_": paginas internas de revisao (ex.: _skin-2026-demo.html), fora do indice.
 SKIP_PREFIX = ("Casamento", "_")
 
