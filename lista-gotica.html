@@ -220,7 +220,7 @@
     } catch (e) {}
   }
   var wake = null;
-  function acordar() { try { if (navigator.wakeLock && !wake) navigator.wakeLock.request('screen').then(function (w) { wake = w; w.addEventListener('release', function () { wake = null; }); }); } catch (e) {} }
+  function acordar() { try { if (navigator.wakeLock && !wake) navigator.wakeLock.request('screen').then(function (w) { wake = w; w.addEventListener('release', function () { wake = null; }); }, function () {}); } catch (e) {} }
   function romano(n) { return ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'][n - 1] || n; }
   function cabecalho() {
     if (!S || S.fase === 'intro') { topRound.textContent = ''; return; }

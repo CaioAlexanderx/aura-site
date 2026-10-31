@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#050103">
+<title>Forca Combate · Caio e Lorena</title>
+<meta name="description" content="Duelo de forca da festa de Caio e Lorena · 31.10.2026">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@300;400;600&family=Pinyon+Script&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#050103; --wine:#5e0512; --ink:#ece7de; --ink-soft:rgba(236,231,222,.78); --rose:#e6b8bd; --roxo:#9b6bd1;
+    --line:rgba(226,222,214,.28); --line-soft:rgba(226,222,214,.14);
+    --script:'Pinyon Script','Snell Roundhand',cursive; --slab:'Josefin Slab',Georgia,serif; --serif:'Playfair Display',Georgia,serif; color-scheme:dark;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:rgba(236,231,222,.12)}
+  [hidden]{display:none!important}
+  html,body{height:100%;overflow:hidden;-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--ink);font-family:var(--slab);font-weight:300;-webkit-font-smoothing:antialiased;overscroll-behavior:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:var(--wine);overflow:hidden}
+  .bg__roses{position:absolute;inset:0;background:url("/assets/casamento/rosas.webp") center/cover;opacity:.5;animation:drift 30s ease-in-out infinite}
+  .bg__vignette{position:absolute;inset:0;background:radial-gradient(ellipse 118% 102% at 50% 50%,rgba(4,1,3,.5) 30%,rgba(4,1,3,.85) 75%,rgba(4,1,3,.95) 100%)}
+  @keyframes drift{0%,100%{transform:scale(1.08)}50%{transform:scale(1.14) translate(-2%,1.5%)}}
+  .app{position:relative;z-index:1;height:100%;height:100dvh;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
+  .top{display:flex;align-items:center;gap:10px;padding:10px 12px 10px 16px;border-bottom:1px solid var(--line);background:rgba(6,2,4,.9)}
+  .top__title{font-family:var(--script);font-size:26px;line-height:1}
+  .top__round{margin-left:auto;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;opacity:.8;white-space:nowrap}
+  .top__btn{width:40px;height:40px;font-size:22px;opacity:.75;flex:none}
+  .body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:18px 14px calc(22px + env(safe-area-inset-bottom,0px))}
+  .screen{max-width:520px;margin:0 auto;text-align:center}
+  .eyebrow{font-size:11px;letter-spacing:.4em;text-indent:.4em;font-weight:600;opacity:.72;text-transform:uppercase}
+  .title{font-family:var(--script);font-size:clamp(42px,10vw,64px);line-height:1.05;margin-top:6px;text-wrap:balance}
+  .lead{font-size:16px;line-height:1.7;margin-top:12px;color:var(--ink-soft);text-wrap:pretty}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 24px;border:1px solid rgba(236,231,222,.6);font-size:12px;letter-spacing:.26em;text-indent:.26em;font-weight:600;text-transform:uppercase;transition:background .2s,color .2s,opacity .2s;width:min(100%,320px)}
+  .btn--solid{background:var(--ink);color:#12060a}
+  .btn--ghost{border-color:var(--line-soft);opacity:.8;min-height:44px}
+  .btn--roxo{border-color:var(--roxo);color:var(--roxo)}
+  .btn:disabled{opacity:.35;cursor:default}
+  .stack{display:grid;gap:12px;justify-items:center;margin-top:22px}
+  .frame{position:relative;margin-top:20px;padding:20px 16px;background:rgba(3,1,2,.78);border:1px solid var(--line);text-align:left}
+  .frame::before{content:"";position:absolute;inset:6px;border:1px solid var(--line-soft);pointer-events:none}
+  .frame>*{position:relative}
+  .rules{list-style:none;display:grid;gap:11px;counter-reset:r}
+  .rules li{counter-increment:r;display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:15px;line-height:1.5;color:var(--ink-soft)}
+  .rules li::before{content:counter(r,upper-roman);font-family:var(--serif);font-size:15px;color:var(--ink);text-align:center;border:1px solid var(--line);height:28px;line-height:26px}
+  .rules b{color:var(--ink);font-weight:600}
+  .casas{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+  .casa{padding:12px 8px;border:1px solid var(--line);background:rgba(6,2,4,.85);display:grid;justify-items:center;gap:8px}
+  .casa img{width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid var(--ink)}
+  .casa--1 img{border-color:var(--rose)}
+  .casa span{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+  .casa--1 span{color:var(--rose)}
+  .niveis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+  .nivel{padding:14px 6px;border:1px solid var(--line);background:rgba(6,2,4,.85);display:grid;gap:4px;justify-items:center}
+  .nivel b{font-family:var(--serif);font-weight:400;font-size:17px}
+  .nivel small{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+  .nivel.is-on{background:var(--ink);color:#12060a}
+  .nivel.is-on small{color:#12060a;opacity:.7}
+
+  /* duelo */
+  .placar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin-top:4px}
+  .lado{display:grid;justify-items:center;gap:6px;padding:8px 4px;border:1px solid var(--line-soft);background:rgba(6,2,4,.6);transition:border-color .2s,box-shadow .2s}
+  .lado.is-vez{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink),0 0 24px rgba(236,231,222,.18)}
+  .lado--1.is-vez{border-color:var(--rose);box-shadow:0 0 0 1px var(--rose),0 0 24px rgba(230,184,189,.25)}
+  .lado img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--ink)}
+  .lado--1 img{border-color:var(--rose)}
+  .lado span{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+  .lado--1 span{color:var(--rose)}
+  .forca{width:84px;height:92px}
+  .forca *{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .forca .madeira{stroke:rgba(236,231,222,.45)}
+  .forca .parte{opacity:0;transition:opacity .25s}
+  .forca .parte.is-on{opacity:1}
+  .forca.is-morto .parte{stroke:var(--roxo)}
+  .vs{font-family:var(--serif);font-size:13px;letter-spacing:.2em;opacity:.6}
+  .rodadas{display:flex;justify-content:center;gap:6px;margin-top:6px}
+  .pt{width:10px;height:10px;transform:rotate(45deg);border:1px solid var(--line)}
+  .pt.is-0{background:var(--ink);border-color:var(--ink)}
+  .pt.is-1{background:var(--rose);border-color:var(--rose)}
+  .timer{display:flex;align-items:baseline;justify-content:center;gap:8px;margin-top:12px}
+  .timer b{font-family:var(--serif);font-weight:400;font-size:40px;line-height:1;font-variant-numeric:tabular-nums}
+  .timer span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.75}
+  .timer.is-urgente b{color:var(--rose);animation:pulsa .5s ease-in-out infinite alternate}
+  @keyframes pulsa{from{transform:scale(1)}to{transform:scale(1.08)}}
+  .dica{margin-top:10px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;color:var(--roxo)}
+  .palavra{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 18px;margin-top:12px;padding:0 4px}
+  .grupo{display:flex;gap:5px}
+  .letra{width:clamp(18px,6.2vw,30px);height:clamp(28px,9vw,42px);border-bottom:2px solid var(--line);display:grid;place-items:center;font-family:var(--serif);font-size:clamp(18px,6vw,28px);line-height:1}
+  .letra.is-ok{animation:rise .3s ease-out both}
+  .letra.is-fail{color:var(--roxo);border-color:var(--roxo)}
+  @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .teclado{display:grid;gap:6px;margin-top:16px}
+  .fileira{display:flex;justify-content:center;gap:5px}
+  .tecla{flex:0 0 auto;width:clamp(28px,8.6vw,40px);height:46px;border:1px solid var(--line-soft);background:rgba(6,2,4,.85);font-family:var(--serif);font-size:17px;transition:background .15s,color .15s,opacity .15s}
+  .tecla.is-ok{background:var(--ink);color:#12060a;border-color:var(--ink)}
+  .tecla.is-x{opacity:.25}
+  .tecla:disabled{cursor:default}
+  .acoes{display:grid;grid-template-columns:1fr;gap:8px;margin-top:14px}
+  .acoes .btn{width:100%;min-height:46px}
+  .chute{margin-top:12px;display:grid;gap:8px}
+  .chute input{width:100%;min-height:52px;padding:12px 14px;background:rgba(3,1,2,.85);border:1px solid var(--line);color:var(--ink);font:400 18px var(--serif);border-radius:0;text-transform:uppercase;letter-spacing:.08em;text-align:center}
+  .chute input:focus{outline:none;border-color:var(--ink)}
+  .chute .acoes{margin-top:0;grid-template-columns:1fr 1fr}
+  .aviso{min-height:1.3em;margin-top:10px;font-size:14px;font-style:italic;color:var(--rose)}
+  .shake{animation:shake .4s}
+  @keyframes shake{0%,100%{transform:none}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+
+  .frase{font-family:var(--script);font-size:30px;line-height:1.2;margin-top:8px;text-wrap:balance}
+  .revela{font-family:var(--serif);font-size:clamp(22px,6vw,30px);letter-spacing:.08em;margin-top:12px;text-wrap:balance}
+  .quem{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px}
+  .quem img{width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid var(--ink)}
+  .quem--1 img{border-color:var(--rose)}
+  .quem--1 .title{color:var(--rose)}
+  .fim-casal{margin:16px auto 0;width:min(100%,280px);border:1px solid var(--line);box-shadow:0 0 0 6px rgba(6,2,4,.9),0 0 0 7px var(--line-soft),0 24px 60px rgba(0,0,0,.7)}
+  .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:#12060a;padding:12px 20px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;opacity:0;transition:opacity .25s,transform .25s;z-index:100;pointer-events:none}
+  .toast.is-on{opacity:1;transform:translate(-50%,0)}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="bg__roses"></div><div class="bg__vignette"></div></div>
+<div class="app">
+  <div class="top">
+    <a class="top__title" href="/Casamento-caio-e-lorena#jogos">Forca Combate</a>
+    <span class="top__round" id="top-round"></span>
+    <button class="top__btn" type="button" id="btn-reiniciar" aria-label="Reiniciar" title="Reiniciar">&#x21bb;</button>
+  </div>
+  <div class="body"><div class="screen" id="tela"></div></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="/assets/casamento/forca-palavras.js?v=1"></script>
+<script>
+(function () {
+  'use strict';
+  var TEMPO = 20, PARTES = 6, META = 3, PENA_CHUTE = 2;
+  var CASA = [
+    { nome: 'Casa do Noivo', img: '/assets/casamento/quiz-caio.webp' },
+    { nome: 'Casa da Noiva', img: '/assets/casamento/quiz-lorena.webp' }
+  ];
+  var NIVEL = { 1: 'Fácil', 2: 'Médio', 3: 'Difícil' };
+  var FILEIRAS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
+  var $ = function (id) { return document.getElementById(id); };
+  var tela = $('tela'), topRound = $('top-round'), CHAVE = 'forca-combate:v1';
+  var S = null, cron = null;
+
+  function salvar() { try { localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) {} }
+  function carregar() { try { var v = localStorage.getItem(CHAVE); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
+  function limpar() { try { localStorage.removeItem(CHAVE); } catch (e) {} }
+  function embaralhar(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function norm(s) { return String(s).toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^A-Z ]/g, '').replace(/\s+/g, ' ').trim(); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var toastEl = $('toast'), toastT;
+  function toast(m) { toastEl.textContent = m; toastEl.classList.add('is-on'); clearTimeout(toastT); toastT = setTimeout(function () { toastEl.classList.remove('is-on'); }, 2000); }
+  function vibra(p) { try { if (navigator.vibrate) navigator.vibrate(p); } catch (e) {} }
+  var audio; function beep(f, d) { try { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); var o = audio.createOscillator(), g = audio.createGain(); o.type = 'sine'; o.frequency.value = f; g.gain.value = .07; o.connect(g); g.connect(audio.destination); o.start(); g.gain.exponentialRampToValueAtTime(.0001, audio.currentTime + d); o.stop(audio.currentTime + d); } catch (e) {} }
+  var wake = null; function acordar() { try { if (navigator.wakeLock && !wake) navigator.wakeLock.request('screen').then(function (w) { wake = w; w.addEventListener('release', function () { wake = null; }); }, function () {}); } catch (e) {} }
+  function h(html) { tela.innerHTML = html; tela.parentNode.scrollTop = 0; }
+  function romano(n) { return ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'][n - 1] || n; }
+
+  function novaPartida(nivel) {
+    var pool = []; PALAVRAS.forEach(function (w, i) { if (w.n === nivel) pool.push(i); }); embaralhar(pool);
+    S = { fase: 'rodada', nivel: nivel, pool: pool, rodada: 1, pontos: [0, 0], primeiro: 0, atual: null };
+    novaRodada(); salvar(); render();
+  }
+  function novaRodada() {
+    if (!S.pool.length) { PALAVRAS.forEach(function (w, i) { if (w.n === S.nivel) S.pool.push(i); }); embaralhar(S.pool); }
+    var id = S.pool.shift(), w = PALAVRAS[id];
+    S.atual = { id: id, palavra: norm(w.p), cat: w.cat, usadas: [], erros: [0, 0], vez: S.primeiro, inicio: Date.now(), fim: null, vencedor: null, motivo: '' };
+    S.primeiro = 1 - S.primeiro;
+  }
+  function cabecalho() { topRound.textContent = S && S.fase !== 'intro' ? 'Rodada ' + romano(S.rodada) + ' · ' + NIVEL[S.nivel] : ''; }
+
+  function bonecoSvg(erros, morto) {
+    var p = function (i, svg) { return '<g class="parte' + (erros > i ? ' is-on' : '') + '">' + svg + '</g>'; };
+    return '<svg class="forca' + (morto ? ' is-morto' : '') + '" viewBox="0 0 84 92" aria-hidden="true">' +
+      '<g class="madeira"><path d="M8 88H40M24 88V6M24 6H56M56 6V16"/><path d="M24 20L38 6"/></g>' +
+      p(0, '<circle cx="56" cy="24" r="8"/>') +
+      p(1, '<path d="M56 32V58"/>') +
+      p(2, '<path d="M56 38L44 50"/>') +
+      p(3, '<path d="M56 38L68 50"/>') +
+      p(4, '<path d="M56 58L46 76"/>') +
+      p(5, '<path d="M56 58L66 76"/>') +
+      '</svg>';
+  }
+  function placarHtml(A) {
+    var html = '<div class="placar">';
+    [0, 1].forEach(function (t) {
+      html += '<div class="lado lado--' + t + (A && A.vez === t && !A.fim ? ' is-vez' : '') + '"><img src="' + CASA[t].img + '" alt=""><span>' + (t ? 'Noiva' : 'Noivo') + '</span>' + bonecoSvg(A ? A.erros[t] : 0, A && A.erros[t] >= PARTES) + '</div>';
+      if (t === 0) html += '<div class="vs">VS</div>';
+    });
+    html += '</div><div class="rodadas">';
+    for (var i = 1; i <= META * 2 - 1; i++) html += '<span class="pt" id="pt-' + i + '"></span>';
+    html += '</div>';
+    return html;
+  }
+  function pintaRodadas() {
+    var k = 1; for (var i = 0; i < S.pontos[0]; i++) { var e = $('pt-' + k++); if (e) e.classList.add('is-0'); }
+    for (var j = 0; j < S.pontos[1]; j++) { var f = $('pt-' + k++); if (f) f.classList.add('is-1'); }
+  }
+  function palavraHtml(A, revelar) {
+    var html = '<div class="palavra">';
+    A.palavra.split(' ').forEach(function (g) {
+      html += '<div class="grupo">';
+      g.split('').forEach(function (c) {
+        var ok = A.usadas.indexOf(c) >= 0;
+        html += '<span class="letra' + (ok ? ' is-ok' : revelar ? ' is-fail' : '') + '">' + (ok || revelar ? c : '') + '</span>';
+      });
+      html += '</div>';
+    });
+    return html + '</div>';
+  }
+
+  function render() {
+    clearInterval(cron); cabecalho();
+    ({ intro: telaIntro, rodada: telaRodada, resultado: telaResultado, fim: telaFim })[S ? S.fase : 'intro']();
+  }
+
+  function telaIntro() {
+    var nivel = 2;
+    h('<div class="eyebrow">Jogo III · duelo</div><h1 class="title">Forca Combate</h1>' +
+      '<p class="lead">Um contra um. Mesma palavra, mesma forca. Quem enforca primeiro, perde.</p>' +
+      '<div class="casas"><div class="casa"><img src="' + CASA[0].img + '" alt=""><span>Casa do Noivo</span></div><div class="casa casa--1"><img src="' + CASA[1].img + '" alt=""><span>Casa da Noiva</span></div></div>' +
+      '<div class="eyebrow" style="margin-top:22px">Nível</div>' +
+      '<div class="niveis">' + [1, 2, 3].map(function (n) { return '<button class="nivel' + (n === nivel ? ' is-on' : '') + '" type="button" data-n="' + n + '"><b>' + NIVEL[n] + '</b><small>' + ({ 1: 'pra aquecer', 2: 'pra valer', 3: 'pra humilhar' })[n] + '</small></button>'; }).join('') + '</div>' +
+      '<div class="frame"><ol class="rules">' +
+      '<li><span>Os dois jogam <b>a mesma palavra</b>, um de cada vez. Acertou uma letra, <b>joga de novo</b>. Errou, ganha uma parte na <b>sua</b> forca e passa a vez.</span></li>' +
+      '<li><span>Quem completa a palavra <b>leva a rodada</b>. Quem completar o boneco (6 partes) <b>perde na hora</b>.</span></li>' +
+      '<li><span><b>20 segundos</b> por jogada. Estourou, conta como erro.</span></li>' +
+      '<li><span><b>Chutar a palavra</b> pode, a qualquer momento. Acertou, rodada sua. Errou, <b>duas partes</b> e passa a vez.</span></li>' +
+      '<li><span>Melhor de 5: a primeira casa a vencer <b>3 rodadas</b> leva o duelo.</span></li>' +
+      '</ol></div>' +
+      '<div class="stack"><button class="btn btn--solid" type="button" id="btn-comecar">Ao combate</button></div>');
+    tela.querySelectorAll('.nivel').forEach(function (b) { b.addEventListener('click', function () { nivel = +b.getAttribute('data-n'); tela.querySelectorAll('.nivel').forEach(function (x) { x.classList.toggle('is-on', x === b); }); }); });
+    $('btn-comecar').addEventListener('click', function () { acordar(); novaPartida(nivel); });
+  }
+
+  function telaRodada() {
+    var A = S.atual;
+    var html = placarHtml(A) +
+      '<div class="timer" id="timer"><b id="timer-n">' + TEMPO + '</b><span id="timer-quem"></span></div>' +
+      '<div class="dica">' + esc(A.cat) + '</div>' +
+      '<div id="palavra">' + palavraHtml(A) + '</div>' +
+      '<div class="aviso" id="aviso"></div>' +
+      '<div class="teclado" id="teclado">';
+    FILEIRAS.forEach(function (f) {
+      html += '<div class="fileira">';
+      f.split('').forEach(function (c) {
+        var usada = A.usadas.indexOf(c) >= 0, ok = usada && A.palavra.indexOf(c) >= 0;
+        html += '<button class="tecla' + (ok ? ' is-ok' : usada ? ' is-x' : '') + '" type="button" data-c="' + c + '"' + (usada ? ' disabled' : '') + '>' + c + '</button>';
+      });
+      html += '</div>';
+    });
+    html += '</div><div class="acoes"><button class="btn btn--roxo" type="button" id="btn-chutar">Chutar a palavra</button></div>' +
+      '<div class="chute" id="chute" hidden><input id="chute-in" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="A PALAVRA INTEIRA"><div class="acoes"><button class="btn btn--ghost" type="button" id="chute-nao">Desistir</button><button class="btn btn--solid" type="button" id="chute-sim">Arriscar</button></div></div>';
+    h(html); pintaRodadas();
+
+    var timerN = $('timer-n'), timerEl = $('timer'), quem = $('timer-quem'), aviso = $('aviso');
+    function nomeVez() { return A.vez ? 'Noiva' : 'Noivo'; }
+    function atualizaVez() { quem.textContent = 'vez da casa ' + (A.vez ? 'da Noiva' : 'do Noivo'); tela.querySelectorAll('.lado').forEach(function (l, i) { l.classList.toggle('is-vez', i === A.vez); }); }
+    function tick() {
+      var rest = Math.max(0, Math.ceil((A.inicio + TEMPO * 1000 - Date.now()) / 1000));
+      timerN.textContent = rest; timerEl.classList.toggle('is-urgente', rest <= 5);
+      if (rest <= 5 && rest > 0) beep(660, .06);
+      if (rest <= 0) { aviso.textContent = 'Tempo! A casa ' + (A.vez ? 'da Noiva' : 'do Noivo') + ' hesitou.'; erro(1); }
+    }
+    function reinicia() { A.inicio = Date.now(); timerN.textContent = TEMPO; timerEl.classList.remove('is-urgente'); }
+    function encerra(vencedor, motivo) {
+      clearInterval(cron); A.fim = true; A.vencedor = vencedor; A.motivo = motivo; S.pontos[vencedor]++;
+      salvar(); setTimeout(function () { S.fase = 'resultado'; salvar(); render(); }, 700);
+    }
+    function erro(n) {
+      A.erros[A.vez] = Math.min(PARTES, A.erros[A.vez] + n); vibra(n > 1 ? [120, 60, 120] : 120);
+      var lado = tela.querySelectorAll('.lado')[A.vez]; lado.innerHTML = '<img src="' + CASA[A.vez].img + '" alt=""><span>' + nomeVez() + '</span>' + bonecoSvg(A.erros[A.vez], A.erros[A.vez] >= PARTES); lado.classList.add('shake'); setTimeout(function () { lado.classList.remove('shake'); }, 450);
+      if (A.erros[A.vez] >= PARTES) { beep(180, .5); encerra(1 - A.vez, 'enforcou'); return; }
+      A.vez = 1 - A.vez; reinicia(); atualizaVez(); salvar();
+    }
+    function completa() { return A.palavra.split('').every(function (c) { return c === ' ' || A.usadas.indexOf(c) >= 0; }); }
+    function letra(c) {
+      if (A.fim || A.usadas.indexOf(c) >= 0) return;
+      A.usadas.push(c); var t = tela.querySelector('.tecla[data-c="' + c + '"]'); t.disabled = true;
+      if (A.palavra.indexOf(c) >= 0) {
+        t.classList.add('is-ok'); $('palavra').innerHTML = palavraHtml(A); vibra(30); beep(880, .08);
+        aviso.textContent = ''; reinicia(); salvar();
+        if (completa()) { beep(1100, .3); encerra(A.vez, 'completou'); }
+      } else { t.classList.add('is-x'); aviso.textContent = 'Não tem ' + c + '. Passa a vez.'; erro(1); }
+    }
+    tela.querySelectorAll('.tecla').forEach(function (b) { b.addEventListener('click', function () { letra(b.getAttribute('data-c')); }); });
+    $('btn-chutar').addEventListener('click', function () { $('chute').hidden = false; $('btn-chutar').hidden = true; $('chute-in').focus(); });
+    $('chute-nao').addEventListener('click', function () { $('chute').hidden = true; $('btn-chutar').hidden = false; $('chute-in').value = ''; });
+    function arriscar() {
+      if (A.fim) return;
+      var v = norm($('chute-in').value); if (!v) return;
+      $('chute').hidden = true; $('btn-chutar').hidden = false; $('chute-in').value = '';
+      if (v === A.palavra) { A.palavra.split('').forEach(function (c) { if (c !== ' ' && A.usadas.indexOf(c) < 0) A.usadas.push(c); }); $('palavra').innerHTML = palavraHtml(A); beep(1100, .3); vibra([50, 40, 50]); encerra(A.vez, 'cravou'); }
+      else { aviso.textContent = '"' + v + '"? Não. Duas partes.'; erro(PENA_CHUTE); }
+    }
+    $('chute-sim').addEventListener('click', arriscar);
+    $('chute-in').addEventListener('keydown', function (e) { if (e.key === 'Enter') arriscar(); });
+
+    atualizaVez(); if (!A.inicio || Date.now() > A.inicio + TEMPO * 1000) reinicia();
+    cron = setInterval(tick, 250); tick();
+  }
+
+  function telaResultado() {
+    var A = S.atual, v = A.vencedor, c = CASA[v];
+    var frases = { completou: 'Letra por letra, até o fim.', cravou: 'Cravou a palavra. Sem medo.', enforcou: 'O adversário enforcou. Vitória por sobrevivência.' };
+    var acabou = S.pontos[0] >= META || S.pontos[1] >= META;
+    h(placarHtml(null) + '<div class="eyebrow" style="margin-top:18px">Rodada ' + romano(S.rodada) + ' · ' + esc(A.cat) + '</div>' +
+      '<div class="quem quem--' + v + '"><img src="' + c.img + '" alt=""><h2 class="title">' + (v ? 'Noiva' : 'Noivo') + '</h2></div>' +
+      '<div class="frase">' + frases[A.motivo] + '</div>' +
+      '<div class="revela">' + esc(A.palavra) + '</div>' +
+      '<p class="lead">' + S.pontos[0] + ' × ' + S.pontos[1] + '</p>' +
+      '<div class="stack"><button class="btn btn--solid" type="button" id="btn-prox">' + (acabou ? 'Ver o resultado' : 'Próxima rodada') + '</button></div>');
+    pintaRodadas();
+    $('btn-prox').addEventListener('click', function () {
+      if (acabou) { S.fase = 'fim'; } else { S.rodada++; novaRodada(); S.fase = 'rodada'; }
+      salvar(); render();
+    });
+  }
+
+  function telaFim() {
+    var v = S.pontos[0] > S.pontos[1] ? 0 : 1, c = CASA[v];
+    h('<div class="eyebrow">Fim do combate</div>' +
+      '<div class="quem quem--' + v + '"><img src="' + c.img + '" alt=""></div>' +
+      '<h2 class="title">' + c.nome + ' venceu</h2>' +
+      '<p class="lead">' + S.pontos[0] + ' × ' + S.pontos[1] + ' no nível ' + NIVEL[S.nivel].toLowerCase() + '.' + (S.pontos[v] === META && S.pontos[1 - v] === 0 ? ' Sem perder uma rodada. Que assombro.' : '') + '</p>' +
+      '<figure class="fim-casal"><img src="/assets/casamento/quiz-casal.webp" alt="Caio e Lorena"></figure>' +
+      '<div class="stack"><button class="btn btn--solid" type="button" id="btn-nova">Revanche</button><a class="btn btn--ghost" href="/Casamento-caio-e-lorena#jogos">Voltar ao site</a></div>');
+    $('btn-nova').addEventListener('click', function () { limpar(); S = null; render(); });
+  }
+
+  var armado = 0;
+  $('btn-reiniciar').addEventListener('click', function () {
+    if (!S) return;
+    if (Date.now() - armado < 3000) { clearInterval(cron); limpar(); S = null; armado = 0; render(); toast('Combate reiniciado'); }
+    else { armado = Date.now(); toast('Toque de novo para reiniciar'); }
+  });
+
+  S = carregar(); if (S && !S.fase) S = null;
+  render();
+})();
+</script>
+</body>
+</html>
