@@ -164,14 +164,27 @@
   function h(html) { tela.innerHTML = html; tela.parentNode.scrollTop = 0; }
   function romano(n) { return ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'][n - 1] || n; }
 
+  /* anti-repetição por dispositivo: palavras já jogadas neste celular (entre partidas) */
+  var CHAVE_USADAS = 'forca-combate:usadas';
+  function jaUsadas() { try { return JSON.parse(localStorage.getItem(CHAVE_USADAS) || '[]'); } catch (e) { return []; } }
+  function marcarUsada(p) { try { var u = jaUsadas(); if (u.indexOf(p) < 0) { u.push(p); localStorage.setItem(CHAVE_USADAS, JSON.stringify(u)); } } catch (e) {} }
+  function montarPool(nivel) {
+    var u = jaUsadas(), pool = [];
+    PALAVRAS.forEach(function (w, i) { if (w.n === nivel && u.indexOf(norm(w.p)) < 0) pool.push(i); });
+    if (pool.length < 5) { /* esgotou o nível neste aparelho: libera as desse nível de novo */
+      var doNivel = {}; PALAVRAS.forEach(function (w) { if (w.n === nivel) doNivel[norm(w.p)] = 1; });
+      try { localStorage.setItem(CHAVE_USADAS, JSON.stringify(u.filter(function (p) { return !doNivel[p]; }))); } catch (e) {}
+      pool = []; PALAVRAS.forEach(function (w, i) { if (w.n === nivel) pool.push(i); });
+    }
+    return embaralhar(pool);
+  }
   function novaPartida(nivel) {
-    var pool = []; PALAVRAS.forEach(function (w, i) { if (w.n === nivel) pool.push(i); }); embaralhar(pool);
-    S = { fase: 'rodada', nivel: nivel, pool: pool, rodada: 1, pontos: [0, 0], primeiro: 0, atual: null };
+    S = { fase: 'rodada', nivel: nivel, pool: montarPool(nivel), rodada: 1, pontos: [0, 0], primeiro: 0, atual: null };
     novaRodada(); salvar(); render();
   }
   function novaRodada() {
-    if (!S.pool.length) { PALAVRAS.forEach(function (w, i) { if (w.n === S.nivel) S.pool.push(i); }); embaralhar(S.pool); }
-    var id = S.pool.shift(), w = PALAVRAS[id];
+    if (!S.pool.length) S.pool = montarPool(S.nivel);
+    var id = S.pool.shift(), w = PALAVRAS[id]; marcarUsada(norm(w.p));
     S.atual = { id: id, palavra: norm(w.p), cat: w.cat, usadas: [], erros: [0, 0], vez: S.primeiro, inicio: Date.now(), fim: null, vencedor: null, motivo: '' };
     S.primeiro = 1 - S.primeiro;
   }

@@ -159,7 +159,7 @@
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="/assets/casamento/lista-cartas.js?v=2"></script>
+<script src="/assets/casamento/lista-cartas.js?v=3"></script>
 <script>
 (function () {
   'use strict';
@@ -188,19 +188,29 @@
 
   function embaralhar(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
 
+  /* anti-repetição por dispositivo: cartas já jogadas neste celular (entre partidas) */
+  var CHAVE_USADAS = 'lista-gotica:usadas';
+  function chaveCarta(c) { return c.modo + '|' + c.cat; }
+  function usadas() { try { return JSON.parse(localStorage.getItem(CHAVE_USADAS) || '[]'); } catch (e) { return []; } }
+  function marcarUsada(id) { try { var u = usadas(); var k = chaveCarta(CARTAS[id]); if (u.indexOf(k) < 0) { u.push(k); localStorage.setItem(CHAVE_USADAS, JSON.stringify(u)); } } catch (e) {} }
+  function montarBaralho(modo) {
+    var u = usadas(), b = [];
+    CARTAS.forEach(function (c, i) { if (c.modo === modo && u.indexOf(chaveCarta(c)) < 0) b.push(i); });
+    if (b.length < 4) { /* esgotou o modo neste aparelho: libera as desse modo de novo */
+      try { localStorage.setItem(CHAVE_USADAS, JSON.stringify(u.filter(function (k) { return k.indexOf(modo + '|') !== 0; }))); } catch (e) {}
+      b = []; CARTAS.forEach(function (c, i) { if (c.modo === modo) b.push(i); });
+    }
+    return embaralhar(b);
+  }
   function novaPartida() {
-    var baralho = { cantar: [], mimica: [], desenho: [] };
-    CARTAS.forEach(function (c, i) { if (baralho[c.modo]) baralho[c.modo].push(i); });
-    Object.keys(baralho).forEach(function (m) { embaralhar(baralho[m]); });
+    var baralho = { cantar: montarBaralho('cantar'), mimica: montarBaralho('mimica'), desenho: montarBaralho('desenho') };
     S = { fase: 'vez', rodada: 1, vez: 0, pos: [0, 0], jogadas: [0, 0], baralho: baralho, maos: [[], []], nova: [null, null], atual: null, extra: 0 };
     [0, 1].forEach(function (t) { ['cantar', 'mimica', 'desenho'].forEach(function (m) { S.maos[t].push(puxar(m)); }); });
     salvar(); render();
   }
   function puxar(modo) {
     var b = S.baralho[modo];
-    if (!b.length) { /* acabou o modo: recicla todas as cartas dele */
-      CARTAS.forEach(function (c, i) { if (c.modo === modo) b.push(i); }); embaralhar(b);
-    }
+    if (!b.length) { S.baralho[modo] = b = montarBaralho(modo); }
     return b.shift();
   }
 
@@ -289,7 +299,7 @@
     tela.querySelectorAll('.card').forEach(function (b) {
       b.addEventListener('click', function () {
         var i = +b.getAttribute('data-i'), id = mao[i], modo = CARTAS[id].modo;
-        mao.splice(i, 1); var repo = puxar(modo); mao.push(repo); S.nova[S.vez] = repo;
+        marcarUsada(id); mao.splice(i, 1); var repo = puxar(modo); mao.push(repo); S.nova[S.vez] = repo;
         S.atual = { id: id, ok: [], skip: [], maldicao: false, idx: 0 };
         S.fase = 'revelar'; salvar(); render();
       });
