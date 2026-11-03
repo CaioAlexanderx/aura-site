@@ -29,6 +29,7 @@ node scripts/tests/indexnow.test.js
 node scripts/tests/promessas-sem-lastro.test.js   # site sem TEF, multi-gateway, lotes/validade nem balanço de estoque (roda também no CI)
 node scripts/tests/skin-2026.test.js              # pele 2026 dormente: escopo em [data-skin="2026"], fontes locais, demo fora dos índices
 node scripts/tests/chrome-estatico.test.js        # menu e rodapé no HTML bruto de toda página pública; inject-chrome.py idempotente
+node scripts/tests/faixa-bf.test.js               # faixa da Black Friday (home e /planos): textos, janela 02/11–30/11 em Brasília, fechar
 ```
 
 Todos de uma vez: `node --test scripts/tests/*.test.js`.
