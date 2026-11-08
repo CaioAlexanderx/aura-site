@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Black Friday na Aura: 50% na primeira mensalidade</title>
+<meta name="description" content="Do sistema para loja Aura, 50% de desconto na primeira mensalidade com o código BLACK50, até 30/11 ou enquanto houver cupons. Veja as regras e como usar.">
+<link rel="canonical" href="https://www.getaura.com.br/black-friday">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aura">
+<meta property="og:title" content="Black Friday na Aura: 50% na primeira mensalidade">
+<meta property="og:description" content="Do sistema para loja Aura, 50% de desconto na primeira mensalidade com o código BLACK50, até 30/11 ou enquanto houver cupons. Veja as regras e como usar.">
+<meta property="og:url" content="https://www.getaura.com.br/black-friday">
+<meta property="og:image" content="https://www.getaura.com.br/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/Icon.png">
+<link rel="apple-touch-icon" href="/Icon.png">
+<link rel="stylesheet" href="/css/tokens.css?v=2">
+<link rel="stylesheet" href="/css/site.css?v=3">
+<!-- Encerramento: fora de 02/11 a 30/11/2026 (Brasília) troca a oferta pelo aviso. Sem defer, de propósito. -->
+<script src="/js/black-friday.js?v=1"></script>
+<style>
+  /* Página /black-friday (mockup v3 aprovado). Tudo com prefixo bf-, só nesta página. */
+  .bf { --bf-t: #f4f4f5; --bf-t2: #a1a1aa; --bf-t3: #8b8b94; --bf-ln: rgba(255,255,255,.08); --bf-v3: #a78bfa; --bf-v4: #c4b5fd; color: var(--bf-t); line-height: 1.5; }
+  html.bf-encerrada main[data-bf-oferta] { display: none !important; }
+  .bf .bf-in { max-width: 880px; margin: 0 auto; }
+  .bf .bf-hero { position: relative; isolation: isolate; overflow: hidden; padding: 150px 32px 56px; text-align: center; }
+  .bf .bf-hero::before { content: ""; position: absolute; inset: 0; z-index: -2; background-image: radial-gradient(rgba(167,139,250,.22) 1px, transparent 1.3px); background-size: 28px 28px; background-position: center top; -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 30%, #000 0%, transparent 75%); mask-image: radial-gradient(ellipse 60% 70% at 50% 30%, #000 0%, transparent 75%); }
+  .bf .bf-hero::after { content: ""; position: absolute; left: 50%; top: -100px; width: 800px; height: 640px; margin-left: -400px; z-index: -1; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,.2) 0%, rgba(124,58,237,.05) 45%, transparent 68%); filter: blur(30px); pointer-events: none; }
+  .bf .bf-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: #d4d4d8; }
+  .bf .bf-eyebrow i { width: 5px; height: 5px; border-radius: 50%; background: var(--bf-v3); box-shadow: 0 0 10px var(--bf-v3); display: block; flex: none; }
+  .bf .bf-h1 { margin: calc(18px - .08em) 0 -.14em; padding: .08em 0 .14em; font-family: var(--font-body); font-weight: 800; font-size: clamp(34px, 5.2vw, 62px); line-height: .98; letter-spacing: -.045em; color: transparent; background: linear-gradient(172deg, #ffffff 0%, #f4f4f5 22%, #b4b4bc 46%, #e9e9ee 58%, #8e8e96 100%); -webkit-background-clip: text; background-clip: text; text-wrap: balance; }
+  .bf .bf-h1 em { font-style: normal; -webkit-text-fill-color: var(--bf-v4); color: var(--bf-v4); }
+  .bf .bf-lead { margin: 22px auto 0; max-width: 640px; font-size: clamp(16px, 1.5vw, 18px); line-height: 1.6; color: var(--bf-t2); text-wrap: pretty; }
+  .bf .bf-cupom { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; border: 1px dashed rgba(167,139,250,.5); background: rgba(124,58,237,.08); border-radius: 14px; padding: 8px 16px; min-height: 54px; font-size: 13px; color: var(--bf-t2); }
+  .bf .bf-cupom b { font-family: var(--font-mono); font-size: 18px; letter-spacing: .14em; color: #fff; font-weight: 500; }
+  .bf .bf-cupom button { margin-right: -8px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.05); color: #e4e4e7; border-radius: 10px; padding: 8px 14px; min-height: 38px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .bf .bf-cupom button[hidden] { display: none; }
+  .bf .bf-cupom button:hover { border-color: rgba(255,255,255,.28); color: #fff; }
+  .bf .bf-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 30px; }
+  .bf .bf-ctas .btn { justify-content: center; border-radius: 999px; padding: 0 22px; height: 46px; font-size: 15px; }
+  .bf .bf-ghost { border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); color: #d4d4d8; font-weight: 600; }
+  .bf .bf-ghost:hover { border-color: rgba(255,255,255,.28); background: rgba(255,255,255,.06); color: #fff; transform: translateY(-2px); }
+  .bf .bf-fine { margin: 16px 0 0; font-size: 13px; color: var(--bf-t3); }
+  .bf a:focus-visible, .bf button:focus-visible { outline: 2px solid var(--bf-v4); outline-offset: 3px; border-radius: 8px; }
+
+  .bf .bf-sec { padding: 56px 32px; scroll-margin-top: 64px; }
+  .bf .bf-sec > .bf-in { display: flex; flex-direction: column; gap: 28px; }
+  .bf .bf-sec.bf-alt { background: rgba(255,255,255,.015); border-block: 1px solid var(--bf-ln); }
+  .bf .bf-hd { display: flex; flex-direction: column; gap: 12px; max-width: 640px; }
+  .bf .bf-hd p { margin: 0; color: var(--bf-t2); font-size: 16px; line-height: 1.65; }
+  .bf .bf-h2 { margin: 0; font-family: var(--font-body); font-weight: 700; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.05; letter-spacing: -.035em; color: var(--bf-t); text-wrap: balance; }
+  .bf .bf-h2 em { font-style: normal; color: var(--bf-v4); }
+
+  .bf .bf-planos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .bf .bf-pl { border: 1px solid var(--bf-ln); background: rgba(255,255,255,.025); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .bf .bf-pl.bf-f { border-color: rgba(167,139,250,.4); background: rgba(124,58,237,.06); }
+  .bf .bf-tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--bf-v3); }
+  .bf .bf-pl h3 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -.02em; color: var(--bf-t); }
+  .bf .bf-de { margin-top: 10px; font-size: 15px; color: var(--bf-t3); }
+  .bf .bf-de s { text-decoration-thickness: 1.5px; }
+  .bf .bf-por { font-size: clamp(40px, 5vw, 56px); font-weight: 800; letter-spacing: -.04em; line-height: 1; color: #fff; }
+  .bf .bf-por small { font-size: 15px; font-weight: 500; letter-spacing: 0; color: var(--bf-t2); margin-right: 10px; }
+  .bf .bf-nt { margin: 6px 0 0; font-size: 14px; color: var(--bf-t2); }
+  .bf .bf-nota { margin: 0; max-width: 760px; font-size: 15px; line-height: 1.7; color: var(--bf-t2); }
+
+  .bf .bf-passos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0; padding: 0; list-style: none; }
+  .bf .bf-ps { border: 1px solid var(--bf-ln); background: rgba(255,255,255,.025); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .bf .bf-n { width: 34px; height: 34px; border-radius: 50%; background: rgba(124,58,237,.18); color: var(--bf-v4); display: grid; place-items: center; font-family: var(--font-mono); font-weight: 500; }
+  .bf .bf-ps h3 { margin: 0; font-size: 19px; line-height: 1.2; font-weight: 700; letter-spacing: -.02em; color: var(--bf-t); }
+  .bf .bf-ps p { margin: 0; font-size: 15px; line-height: 1.65; color: var(--bf-t2); }
+
+  .bf .bf-regras { max-width: 760px; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; border: 1px solid var(--bf-ln); border-radius: 16px; overflow: hidden; }
+  .bf .bf-regras li { display: flex; gap: 14px; padding: 16px 20px; border-bottom: 1px solid var(--bf-ln); font-size: 16px; line-height: 1.55; color: #d4d4d8; }
+  .bf .bf-regras li:last-child { border-bottom: 0; }
+  .bf .bf-regras li::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--bf-v3); margin-top: 9px; }
+
+  .bf .bf-ans { margin: 0; max-width: 760px; padding: 22px 24px; border: 1px solid rgba(167,139,250,.28); background: rgba(124,58,237,.07); border-radius: 16px; font-size: 16px; line-height: 1.7; color: #e4e4e7; }
+  .bf .bf-ans b { color: var(--bf-v4); font-weight: 600; }
+
+  /* FAQ: .lp-faq-item (h3 + p) é o que o scripts/inject-jsonld.py lê para o FAQPage. */
+  .bf .bf-faq { max-width: 760px; width: 100%; }
+  .bf .bf-faq .lp-faq-item { border-top: 1px solid var(--bf-ln); padding: 16px 0; }
+  .bf .bf-faq .lp-faq-item:last-child { border-bottom: 1px solid var(--bf-ln); }
+  .bf .bf-faq h3 { margin: 0 0 8px; font-size: 17px; font-weight: 500; line-height: 1.4; color: var(--bf-t); }
+  .bf .bf-faq p { margin: 0; color: var(--bf-t2); font-size: 15px; line-height: 1.7; max-width: 64ch; }
+
+  .bf .bf-cta { text-align: center; padding: 72px 32px 80px; }
+  .bf .bf-cta > .bf-in { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+  .bf .bf-cta .bf-h2 { font-size: clamp(30px, 4.4vw, 52px); }
+  .bf .bf-cta .bf-ctas { margin-top: 0; }
+  .bf .bf-cta .bf-fine { margin-top: -12px; }
+
+  .bf .bf-fim { padding-bottom: 120px; }
+
+  @media (max-width: 900px) {
+    .bf .bf-planos, .bf .bf-passos { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 700px) {
+    .bf .bf-hero { padding: 112px 20px 40px; }
+    .bf .bf-sec { padding: 40px 20px; }
+    .bf .bf-cta { padding: 48px 20px 64px; }
+    .bf .bf-ctas { flex-direction: column; align-items: stretch; }
+    .bf .bf-ctas .btn { width: 100%; }
+    .bf .bf-cupom { flex-wrap: wrap; justify-content: center; padding: 12px; }
+    .bf .bf-cupom button { margin-right: 0; }
+    .bf .bf-pl { padding: 22px; }
+    .bf .bf-fim { padding-bottom: 80px; }
+  }
+</style>
+<script src="/js/origem.js" defer></script>
+<!-- jsonld:start -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://www.getaura.com.br/black-friday#webpage",
+   "url": "https://www.getaura.com.br/black-friday",
+   "name": "Black Friday na Aura: 50% na primeira mensalidade",
+   "description": "Do sistema para loja Aura, 50% de desconto na primeira mensalidade com o código BLACK50, até 30/11 ou enquanto houver cupons. Veja as regras e como usar.",
+   "inLanguage": "pt-BR",
+   "isPartOf": {
+    "@id": "https://www.getaura.com.br/#website"
+   },
+   "about": {
+    "@id": "https://www.getaura.com.br/#software"
+   },
+   "breadcrumb": {
+    "@id": "https://www.getaura.com.br/black-friday#breadcrumb"
+   },
+   "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://www.getaura.com.br/og-image.png"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "@id": "https://www.getaura.com.br/black-friday#breadcrumb",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Início",
+     "item": "https://www.getaura.com.br/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Black Friday na Aura: 50% na primeira mensalidade",
+     "item": "https://www.getaura.com.br/black-friday"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://www.getaura.com.br/black-friday#faq",
+   "url": "https://www.getaura.com.br/black-friday",
+   "inLanguage": "pt-BR",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "O código vale no plano anual?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sim, na primeira mensalidade; o anual é cobrado mês a mês."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Perco os dias de teste se assinar antes do fim?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sim: ao assinar, o teste termina e a primeira cobrança é feita; por isso, assine quando já tiver visto a Aura funcionar na sua loja. O teste dura 7 dias contados a partir da sua primeira venda, com limite de 15 dias desde o cadastro."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Posso juntar o BLACK50 com outro código?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Não: o pagamento aceita um código por vez."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Até quando vale?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Até 30/11/2026 ou enquanto houver cupons; depois disso o preço volta ao de lista."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<!-- jsonld:end -->
+</head>
+<body data-screen-label="Black Friday">
+<!-- chrome:nav:start (gerado por scripts/inject-chrome.py a partir de js/chrome.js; edite lá) -->
+<nav class="site-nav" data-cursor="hover">
+  <a href="/" class="brand">
+    <span class="glyph"></span>
+    <span class="brand-name">Aura</span>
+  </a>
+  <div class="nav-links">
+    <a href="/">Início</a>
+    <div class="nav-dropdown">
+      <button>Verticais ▾</button>
+      <div class="nav-dropdown-panel">
+        <a class="nav-dropdown-item" href="/negocio" style="--v-accent:#7c3aed; --v-glow:rgba(124,58,237,0.4)"><span class="v-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4l8 16H4z"/><circle cx="12" cy="14" r="1.5" fill="currentColor"/></svg></span><span><div class="v-name">Aura Negócio</div><div class="v-tag">Carro-chefe · varejo geral</div></span></a>
+        <a class="nav-dropdown-item" href="/studio" style="--v-accent:#E11D74; --v-glow:rgba(225,29,116,0.4)"><span class="v-mark v-mark-img"><img src="/assets/studio/app-icon.svg" alt="" width="34" height="34"></span><span><div class="v-name">Aura Studio</div><div class="v-tag">Customização, impressão, ateliês</div></span></a>
+      </div>
+    </div>
+    <a href="/segmentos">Segmentos</a>
+    <a href="/planos">Planos</a>
+    <a href="/sobre">Sobre</a>
+    <a href="/#contato">Contato</a>
+    <span class="nav-cta-row">
+      <a href="https://app.getaura.com.br" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Entrar</a>
+      <a href="/comecar" class="btn btn-primary btn-sm">Começar grátis</a>
+    </span>
+  </div>
+  <button class="nav-mobile-toggle" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h14M3 10h14M3 14h14"/></svg></button>
+  <div class="nav-mobile-panel">
+    <a href="/">Início</a>
+    <div class="nav-mobile-section">Verticais</div>
+    <a href="/negocio" class="nav-mobile-vert"><span class="vdot" style="background:#7c3aed"></span>Aura Negócio</a>
+    <a href="/studio" class="nav-mobile-vert"><span class="vdot" style="background:#E11D74"></span>Aura Studio</a>
+    <a href="/segmentos">Segmentos</a>
+    <a href="/planos">Planos</a>
+    <a href="/sobre">Sobre</a>
+    <a href="/#contato">Contato</a>
+    <div class="nav-mobile-ctas">
+      <a href="https://app.getaura.com.br" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">Entrar</a>
+      <a href="/comecar" class="btn btn-primary btn-lg">Começar grátis</a>
+    </div>
+  </div>
+</nav>
+<!-- chrome:nav:end -->
+
+<main class="bf" id="conteudo" data-bf-oferta>
+  <section class="bf-hero"><div class="bf-in">
+    <span class="bf-eyebrow"><i></i>Black Friday · até 30/11</span>
+    <h1 class="bf-h1">Black Friday na Aura: <em>50% na primeira mensalidade</em></h1>
+    <p class="bf-lead">Crie sua conta, teste a Aura e, na hora de assinar, digite o código BLACK50 no pagamento. A primeira mensalidade sai com 50% de desconto, em qualquer plano. Vale até 30/11 ou enquanto houver cupons.</p>
+    <div class="bf-cupom"><span>Seu código</span><b>BLACK50</b><button type="button" data-bf-copiar hidden>Copiar</button></div>
+    <div class="bf-ctas"><a class="btn btn-primary" href="/comecar?utm_source=site&amp;utm_campaign=bf2026">Começar grátis</a><a class="btn bf-ghost" href="#regras">Ver as regras</a></div>
+    <p class="bf-fine">Sem cartão para começar o teste. O desconto vale ao assinar.</p>
+  </div></section>
+
+  <section class="bf-sec bf-alt" id="quanto"><div class="bf-in">
+    <div class="bf-hd"><h2 class="bf-h2">Quanto fica a <em>primeira mensalidade</em></h2><p>Plano mensal. Depois da primeira, o preço é o de lista e não sobe quando você vende mais.</p></div>
+    <div class="bf-planos">
+      <div class="bf-pl"><span class="bf-tag">Plano</span><h3>Essencial</h3><div class="bf-de">de <s>R$ 89</s></div><div class="bf-por"><small>por</small> R$ 44,50</div><p class="bf-nt">na primeira mensalidade</p></div>
+      <div class="bf-pl bf-f"><span class="bf-tag">Plano</span><h3>Negócio</h3><div class="bf-de">de <s>R$ 169</s></div><div class="bf-por"><small>por</small> R$ 84,50</div><p class="bf-nt">na primeira mensalidade</p></div>
+    </div>
+    <p class="bf-nota">No plano anual, o desconto vale na primeira das mensalidades.</p>
+  </div></section>
+
+  <section class="bf-sec" id="como"><div class="bf-in">
+    <div class="bf-hd"><h2 class="bf-h2">Como usar, em <em>3 passos</em></h2></div>
+    <ol class="bf-passos">
+      <li class="bf-ps"><span class="bf-n" aria-hidden="true">1</span><h3>Crie a conta e use a Aura no teste</h3><p>Sem cartão. O teste dura 7 dias contados a partir da sua primeira venda, com limite de 15 dias desde o cadastro.</p></li>
+      <li class="bf-ps"><span class="bf-n" aria-hidden="true">2</span><h3>Na hora de assinar, escolha o plano</h3><p>Essencial ou Negócio, mensal ou anual.</p></li>
+      <li class="bf-ps"><span class="bf-n" aria-hidden="true">3</span><h3>Digite BLACK50 no pagamento</h3><p>Use o campo de cupom do pagamento; o valor com desconto aparece antes de confirmar.</p></li>
+    </ol>
+  </div></section>
+
+  <section class="bf-sec bf-alt" id="regras"><div class="bf-in">
+    <div class="bf-hd"><h2 class="bf-h2">Regras, <em>sem letra miúda</em></h2></div>
+    <ul class="bf-regras">
+      <li>O desconto é só da primeira mensalidade.</li>
+      <li>Vale para uma assinatura nova, uma vez por conta.</li>
+      <li>O código tem um número limitado de usos e pode acabar antes de 30/11.</li>
+      <li>Ao assinar, o período de teste termina e a primeira mensalidade é cobrada.</li>
+      <li>Não há fidelidade mínima.</li>
+    </ul>
+  </div></section>
+
+  <section class="bf-sec" id="assinantes"><div class="bf-in">
+    <div class="bf-hd"><h2 class="bf-h2">E quem já <em>assina a Aura?</em></h2></div>
+    <p class="bf-ans">O desconto é da primeira mensalidade de uma assinatura nova, então não muda a mensalidade de quem já paga. Para <b>quem já assina</b>, a campanha tem outro presente: indique um lojista e ganhe <b>1 mensalidade grátis</b> quando ele pagar a primeira. Quem você indicar também ganha os 50% com o BLACK50. Valem até 3 indicações por ano, para contas em dia; se muitas indicações pagarem no mesmo mês, o mês grátis pode ficar para o mês seguinte.</p>
+  </div></section>
+
+  <section class="bf-sec bf-alt" id="faq"><div class="bf-in">
+    <div class="bf-hd"><h2 class="bf-h2">Perguntas <em>e respostas</em></h2></div>
+    <div class="bf-faq">
+      <div class="lp-faq-item"><h3>O código vale no plano anual?</h3><p>Sim, na primeira mensalidade; o anual é cobrado mês a mês.</p></div>
+      <div class="lp-faq-item"><h3>Perco os dias de teste se assinar antes do fim?</h3><p>Sim: ao assinar, o teste termina e a primeira cobrança é feita; por isso, assine quando já tiver visto a Aura funcionar na sua loja. O teste dura 7 dias contados a partir da sua primeira venda, com limite de 15 dias desde o cadastro.</p></div>
+      <div class="lp-faq-item"><h3>Posso juntar o BLACK50 com outro código?</h3><p>Não: o pagamento aceita um código por vez.</p></div>
+      <div class="lp-faq-item"><h3>Até quando vale?</h3><p>Até 30/11/2026 ou enquanto houver cupons; depois disso o preço volta ao de lista.</p></div>
+    </div>
+  </div></section>
+
+  <section class="bf-cta"><div class="bf-in">
+    <h2 class="bf-h2">Veja a Aura funcionando na sua loja <em>antes de assinar</em></h2>
+    <div class="bf-ctas"><a class="btn btn-primary" href="/comecar?utm_source=site&amp;utm_campaign=bf2026">Começar grátis</a></div>
+    <p class="bf-fine">BLACK50 até 30/11 ou enquanto houver cupons.</p>
+  </div></section>
+</main>
+
+<!-- chrome:footer:start (gerado por scripts/inject-chrome.py a partir de js/chrome.js; edite lá) -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+          <img src="/Icon.png" alt="Aura" style="width: 38px; height: 38px; border-radius: 50%; box-shadow: 0 6px 18px rgba(124,58,237,0.5);" />
+          <span style="font-family: var(--font-heading); font-size: 26px; color: white; letter-spacing: -0.02em;">Aura<span style="color: #a78bfa;">.</span></span>
+        </div>
+        <p style="font-size: 14px; line-height: 1.6; color: rgba(196,181,253,0.7); max-width: 280px;">Tecnologia para Negócios. Três produtos especialistas, uma plataforma única, feita no Brasil.</p>
+        <p style="font-family: var(--font-heading); font-style: italic; font-size: 17px; line-height: 1.4; color: #fff; max-width: 300px; margin-top: 20px; letter-spacing: -0.01em;">"Aura, a plataforma do empreendedor brasileiro."</p>
+        <div style="margin-top: 24px; display: flex; gap: 10px;">
+          <a href="https://instagram.com/aura_tecnologia" target="_blank" rel="noopener" aria-label="Instagram" style="width: 36px; height: 36px; padding: 0; border-radius: 10px; background: rgba(124,58,237,0.18); display: grid; place-items: center; color: #c4b5fd;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg></a>
+          <a href="https://tiktok.com/@aura_tecnologia" target="_blank" rel="noopener" aria-label="TikTok" style="width: 36px; height: 36px; padding: 0; border-radius: 10px; background: rgba(124,58,237,0.18); display: grid; place-items: center; color: #c4b5fd;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 6.7c-1.7-.4-3-1.6-3.6-3.2-.1-.4-.2-.7-.2-1H12v13.4c0 1.6-1.3 2.9-2.9 2.9s-2.9-1.3-2.9-2.9 1.3-2.9 2.9-2.9c.3 0 .6 0 .9.1V8.5c-.3 0-.6-.1-.9-.1-3.7 0-6.7 3-6.7 6.7s3 6.7 6.7 6.7 6.7-3 6.7-6.7V9.5c1.4 1 3 1.6 4.7 1.6V7.3c-.3 0-.6-.2-.9-.6z"/></svg></a>
+          <a href="https://wa.me/5511956305269" target="_blank" rel="noopener" aria-label="WhatsApp" style="width: 36px; height: 36px; padding: 0; border-radius: 10px; background: rgba(37,211,102,0.18); display: grid; place-items: center; color: #6ee7a8;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.1-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Verticais</h5>
+        <a href="/negocio">Aura Negócio</a><a href="/studio">Aura Studio</a>
+      </div>
+      <div class="footer-seg">
+        <h5>Segmentos</h5>
+        <div class="footer-seg-list"><a href="/sistema-para-loja-de-roupas">Loja de roupas</a><a href="/sistema-para-loja-de-material-de-construcao">Material de construção</a><a href="/sistema-para-loja-de-celular">Celular e assistência técnica</a><a href="/sistema-para-loja-de-calcados">Loja de calçados</a><a href="/sistema-para-otica">Ótica</a><a href="/sistema-para-papelaria">Papelaria</a><a href="/sistema-para-loja-de-perfumaria">Perfumaria e cosméticos</a><a href="/sistema-para-loja-de-semijoias">Semijoias e bijuteria</a></div>
+        <a href="/segmentos" class="footer-seg-all">Todos os ramos →</a>
+      </div>
+      <div>
+        <h5>Produto</h5>
+        <a href="/planos">Planos</a><a href="/comparativo">Comparativo</a><a href="/erp-para-pequenas-empresas">ERP para pequenas empresas</a><a href="https://app.getaura.com.br" target="_blank" rel="noopener">Entrar</a><a href="/comecar">Criar conta grátis</a><a href="/sobre">Sobre a Aura</a>
+      </div>
+      <div>
+        <h5>Contato</h5>
+        <a href="https://wa.me/5511956305269" target="_blank" rel="noopener">(11) 95630-5269</a><a href="/#contato">Quero que me chamem</a><a href="https://instagram.com/aura_tecnologia" target="_blank" rel="noopener">@aura_tecnologia</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Aura. Tecnologia para Negócios · AURA LTDA, CNPJ 66.088.450/0001-96</div>
+      <div class="row" style="gap: 24px;"><a href="/privacidade" style="opacity: 0.6;">Privacidade</a><a href="/dpa" style="opacity: 0.6;">DPA</a></div>
+    </div>
+  </div>
+</footer>
+<!-- chrome:footer:end -->
+<div data-mount="wa"></div>
+<script src="/js/chrome.js"></script>
+<script src="/js/site.js"></script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25ce08563247490b918793727e3c1eb1"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
