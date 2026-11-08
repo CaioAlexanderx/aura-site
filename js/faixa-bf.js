@@ -19,9 +19,10 @@
      depois da janela a chave é apagada. Sem localStorage, fecha só nesta página.
    • Em /planos, a mesma linha de condição no fim do cartão do Essencial e do
      Negócio (cartões do js/plans-render.js, ids "essencial" e "negocio").
-   • "Ver a oferta" leva a /comecar?utm_source=site&utm_campaign=bf2026: o
-     js/origem.js de /comecar grava o UTM como primeiro toque (regra de sempre:
-     não sobrescreve um primeiro toque válido).
+   • "Ver a oferta" leva a /black-friday?utm_source=site&utm_campaign=bf2026
+     (página com a oferta e as regras, b-mk-29): o js/origem.js da página grava
+     o UTM como primeiro toque (regra de sempre: não sobrescreve um primeiro
+     toque válido), e o "Começar grátis" de lá segue para /comecar.
 
    Mesmo padrão do js/origem.js: no navegador vira window.AuraFaixaBF e já monta;
    no Node (teste) exporta as funções puras.
@@ -37,7 +38,7 @@
   var FIM = "2026-11-30";    // último dia (inclusive), até 23:59
   var TZ = "America/Sao_Paulo";
   var KEY = "aura_bf2026_fechada";
-  var LINK = "/comecar?utm_source=site&utm_campaign=bf2026";
+  var LINK = "/black-friday?utm_source=site&utm_campaign=bf2026";
 
   // Strings com escape \u: o arquivo é servido sem charset garantido.
   var TEXTO_FAIXA = "<b>Black Friday na Aura:</b> 50% na primeira mensalidade com o código <b>BLACK50</b>, até 30/11 ou enquanto houver cupons.";

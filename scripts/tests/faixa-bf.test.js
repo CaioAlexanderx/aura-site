@@ -31,7 +31,7 @@ teste('textos: faixa, link e linha dos planos exatamente como aprovados', () => 
   assert.equal(F.TEXTO_FAIXA, TEXTO_FAIXA);
   assert.equal(F.TEXTO_LINK, 'Ver a oferta →');
   assert.equal(F.TEXTO_PLANO, TEXTO_PLANO);
-  assert.equal(F.LINK, '/comecar?utm_source=site&utm_campaign=bf2026');
+  assert.equal(F.LINK, '/black-friday?utm_source=site&utm_campaign=bf2026');
 });
 
 teste('textos: sem contagem regressiva, "últimas vagas" nem "grátis"', () => {
@@ -146,7 +146,7 @@ teste('navegador: dentro da janela monta a faixa no topo do body, antes do menu,
   assert.equal(n.body.children[0], f, 'primeiro filho do body');
   assert.equal(n.body.children[1], n.nav, 'menu logo depois');
   assert.ok(f.innerHTML.includes('<span class="bf-tx">' + TEXTO_FAIXA + '</span>'));
-  assert.ok(f.innerHTML.includes('<a class="bf-ver" href="/comecar?utm_source=site&utm_campaign=bf2026">Ver a oferta →</a>'));
+  assert.ok(f.innerHTML.includes('<a class="bf-ver" href="/black-friday?utm_source=site&utm_campaign=bf2026">Ver a oferta →</a>'));
   assert.match(f.innerHTML, /<button class="bf-x" type="button" data-bf-fechar aria-label="[^"]+">×<\/button>/);
   assert.equal(f.getAttribute('role'), 'region');
   assert.ok(n.html.classList.contains('bf-faixa-on'));

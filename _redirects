@@ -87,3 +87,7 @@
 
 # 31/10/2026: Jogo III do casamento (Forca Combate).
 /forca-combate.html /forca-combate 301
+
+# 08/11/2026: pagina da Black Friday 2026 (BLACK50, ate 30/11). Em 01/12 a
+# URL continua no ar com o aviso de encerramento (nao apagar).
+/black-friday.html /black-friday 301
