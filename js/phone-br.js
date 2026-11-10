@@ -32,14 +32,24 @@
     return MOBILE_RE.test(normalize(value));
   }
 
+  // 10/11/2026: o número passou de 11 dígitos mesmo sem o 55? Nada é cortado.
+  var TOO_LONG_MSG = "Esse número ficou com dígitos a mais. Confira, por favor: é o DDD e o número, como (66) 99238-4539.";
+  function isTooLong(value) {
+    return normalize(value).length > 11;
+  }
+
   // Máscara progressiva: (11) 99999-9999
+  // 10/11/2026: o 55 sai ANTES de limitar (normalize); com dígitos a mais
+  // devolve os dígitos sem máscara, para nada sumir da tela. Antes o
+  // slice(0, 11) cortava o fim do número.
   function format(value) {
-    var d = normalize(value).slice(0, 11);
+    var d = normalize(value);
+    if (d.length > 11) return d;
     if (!d) return "";
     if (d.length <= 2) return "(" + d;
     if (d.length <= 7) return "(" + d.slice(0, 2) + ") " + d.slice(2);
     return "(" + d.slice(0, 2) + ") " + d.slice(2, 7) + "-" + d.slice(7);
   }
 
-  return { MOBILE_RE: MOBILE_RE, ERROR_MSG: ERROR_MSG, normalize: normalize, isValid: isValid, format: format };
+  return { MOBILE_RE: MOBILE_RE, ERROR_MSG: ERROR_MSG, TOO_LONG_MSG: TOO_LONG_MSG, normalize: normalize, isValid: isValid, isTooLong: isTooLong, format: format };
 });
