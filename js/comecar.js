@@ -155,13 +155,27 @@
     return v;
   }
 
+  // 10/11/2026: o WhatsApp com +55 era cortado em 11 dígitos ANTES de tirar
+  // o 55 ("5566992384539" virava "55669923845" no cadastro). Agora o 55 do
+  // país sai primeiro (js/phone-br.js, a mesma regra do lead) e dígito a mais
+  // nunca some: fica sem máscara e o cadastro avisa.
+  var Phone = window.AuraPhone || null;
+  function phoneDigits(v) {
+    if (Phone) return Phone.normalize(v);
+    var d = String(v == null ? "" : v).replace(/\D/g, "");
+    if (d.length > 11 && d.indexOf("55") === 0) d = d.slice(2);
+    return d;
+  }
   function maskPhone(v) {
-    v = v.replace(/\D/g, "").slice(0, 11);
+    v = phoneDigits(v);
+    if (v.length > 11) return v;
     if (v.length > 10) return v.replace(/^(\d{2})(\d{5})(\d{0,4}).*$/, "($1) $2-$3");
     if (v.length > 6) return v.replace(/^(\d{2})(\d{4})(\d{0,4}).*$/, "($1) $2-$3");
     if (v.length > 2) return v.replace(/^(\d{2})(\d{0,5}).*$/, "($1) $2");
     return v;
   }
+  var PHONE_TOO_LONG = (Phone && Phone.TOO_LONG_MSG) ||
+    "Esse número ficou com dígitos a mais. Confira, por favor: é o DDD e o número, como (66) 99238-4539.";
 
   // validação de dígitos verificadores do CNPJ
   function isValidCnpj(digits) {
@@ -450,7 +464,7 @@
     var btn = $('[data-action="register"]');
     var name = ($('input[name="name"]').value || "").trim();
     var email = ($('input[name="email"]').value || "").trim().toLowerCase();
-    var phone = ($('input[name="phone"]').value || "").replace(/\D/g, "");
+    var phone = phoneDigits($('input[name="phone"]').value || "");
     var password = $('input[name="password"]').value || "";
     var terms = $('input[name="terms_accepted"]').checked;
 
@@ -458,6 +472,7 @@
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showError("register", "Esse e-mail não parece válido.");
     if (password.length < 8) return showError("register", "A senha precisa de pelo menos 8 caracteres.");
     if (!terms) return showError("register", "Falta aceitar os Termos de Uso e a Privacidade.");
+    if (phone.length > 11) return showError("register", PHONE_TOO_LONG);
 
     // Sem CNPJ: a empresa nasce com o nome do dono e ajusta depois no app.
     var companyName = state.company_name || name;
