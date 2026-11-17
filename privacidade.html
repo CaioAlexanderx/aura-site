@@ -74,6 +74,9 @@ h1 em{font-style:italic;color:var(--v200)}
 .rt th{background:rgba(109,40,217,.15);color:var(--v300);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;padding:9px 14px;text-align:left;border-bottom:1px solid rgba(167,139,250,.15)}
 .rt td{padding:11px 14px;border-bottom:1px solid rgba(167,139,250,.06);color:var(--v100);line-height:1.6;vertical-align:top}
 .rt tr:last-child td{border-bottom:none}
+/* 17/11/2026 (b-site-priv): o e-mail sem espaço alargava a tabela de direitos e a pagina rolava 130 px na horizontal em 375 px. A celula quebra palavra longa so quando precisa; no celular o recuo das celulas diminui. */
+.rt th,.rt td{overflow-wrap:anywhere}
+@media(max-width:600px){.rt th,.rt td{padding-left:8px;padding-right:8px}}
 .contact-box{background:var(--surface);border:1px solid rgba(167,139,250,.15);border-radius:12px;padding:20px 24px;margin-top:20px}
 .contact-box h4{font-size:15px;font-weight:500;color:var(--white);margin-bottom:12px}
 .cr{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--v100);opacity:.8;margin-bottom:8px}
