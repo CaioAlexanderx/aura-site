@@ -2,8 +2,8 @@
    AURA — Origem do cadastro (primeiro toque), t2-09.
 
    Guarda no localStorage ("aura_origem", validade de 30 dias) de onde a
-   pessoa veio na PRIMEIRA página do site com UTM ou com referrer externo.
-   js/comecar.js manda esse objeto em `origem` no POST /auth/register.
+   pessoa veio na PRIMEIRA página do site. js/comecar.js manda esse objeto
+   em `origem` no POST /auth/register.
 
    O que é guardado (sem dado pessoal; chaves ausentes não entram):
      utm_source, utm_medium, utm_campaign, utm_content, utm_term  (≤ 100)
@@ -12,11 +12,24 @@
      first_seen_at  ISO da primeira página
 
    Regras:
-   • Só grava se a página tem UTM ou referrer de fora do site.
-   • Não sobrescreve um primeiro toque ainda válido (menos de 30 dias).
+   • Página com UTM ou referrer de fora do site grava o toque completo.
+   • Visita direta (sem UTM nem referrer de fora; b-mk-33 B, 17/11) grava só
+     { landing_page, first_seen_at }.
+   • Não sobrescreve um primeiro toque ainda válido (menos de 30 dias), com
+     uma exceção: uma visita com UTM ou referrer de fora substitui uma visita
+     direta. Nunca o contrário.
    • Sem localStorage (navegação privada, bloqueado), segue em memória na
      página atual e nunca quebra a página.
    • Não mexe em ?ref= (indicação) nem em ?ramo=: não lê nem grava nenhum dos dois.
+
+   Links para o app (b-mk-33 A1, 17/11): o localStorage do www não é visível
+   em app.getaura.com.br. Por isso os links para o app ("Entrar" e qualquer
+   outro) levam o primeiro toque guardado na query: utm_* com o mesmo nome,
+   origem_site (host do referrer), origem_pagina (caminho da página de
+   entrada) e origem_data (first_seen_at). Sem primeiro toque, o link fica
+   como está. Parâmetro que o link já tem não é trocado. O href é ajustado
+   ao carregar e de novo no clique (links montados depois por JS).
+   O app (aura-app, utils/origemDoCadastro.ts) lê esses nomes.
 
    Mesmo padrão do js/phone-br.js: no navegador vira window.AuraOrigem e já
    captura; no Node (teste) exporta as funções puras.
@@ -33,6 +46,9 @@
   var UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
   var MAX_UTM = 100, MAX_PATH = 300, MAX_HOST = 200;
   var OWN_DOMAIN = "getaura.com.br";
+  var APP_HOST = "app.getaura.com.br";
+  // chave do primeiro toque -> nome do parâmetro no link para o app
+  var LINK_PARAMS = { referrer: "origem_site", landing_page: "origem_pagina", first_seen_at: "origem_data" };
 
   var memo = null; // fallback quando o localStorage não está disponível
 
@@ -113,12 +129,81 @@
     return o;
   }
 
+  // O toque diz de onde veio (UTM ou site de origem)? Visita direta não diz.
+  function hasSignal(o) {
+    if (!o || typeof o !== "object") return false;
+    if (o.referrer) return true;
+    for (var i = 0; i < UTM_KEYS.length; i++) if (o[UTM_KEYS[i]]) return true;
+    return false;
+  }
+
   // Decide se esta página vira o primeiro toque. Devolve o objeto novo ou null.
   function decide(existing, utm, refHost, pathname, now) {
     var temSinal = (utm && Object.keys(utm).length > 0) || !!refHost;
-    if (!temSinal) return null;
-    if (isValid(existing, now)) return null; // não sobrescreve primeiro toque válido
+    if (isValid(existing, now)) {
+      // primeiro toque válido fica, menos a visita direta, que dá lugar a uma
+      // visita com UTM ou referrer de fora
+      if (hasSignal(existing) || !temSinal) return null;
+    }
     return build(utm, refHost, pathname, now);
+  }
+
+  // Parâmetros do primeiro toque para o link do app (só as chaves do contrato).
+  function linkParams(o) {
+    var s = sanitize(o);
+    var out = [];
+    if (!s) return out;
+    UTM_KEYS.forEach(function (k) { if (s[k]) out.push([k, s[k]]); });
+    ["referrer", "landing_page", "first_seen_at"].forEach(function (k) {
+      if (s[k]) out.push([LINK_PARAMS[k], s[k]]);
+    });
+    return out;
+  }
+
+  // href de um link para app.getaura.com.br com o primeiro toque na query.
+  // Outro destino, href inválido ou sem primeiro toque: devolve o href igual.
+  // Não troca parâmetro que o link já tem nem mexe no #.
+  function decorateHref(href, o, base) {
+    if (!href || !o) return href;
+    var u;
+    try { u = new URL(href, base || undefined); } catch (e) { return href; }
+    if (u.protocol !== "https:" && u.protocol !== "http:") return href;
+    if (u.hostname.toLowerCase() !== APP_HOST) return href;
+    var pares = linkParams(o);
+    var mudou = false;
+    pares.forEach(function (p) {
+      if (!u.searchParams.has(p[0])) { u.searchParams.set(p[0], p[1]); mudou = true; }
+    });
+    return mudou ? u.toString() : href;
+  }
+
+  function decorateAnchor(a, o) {
+    try {
+      var href = a && a.getAttribute && a.getAttribute("href");
+      if (!href) return;
+      var novo = decorateHref(href, o, window.location.href);
+      if (novo !== href) a.setAttribute("href", novo);
+    } catch (e) {}
+  }
+
+  function decorateLinks() {
+    try {
+      var o = get();
+      if (!o || !document.querySelectorAll) return;
+      var links = document.querySelectorAll('a[href*="' + APP_HOST + '"]');
+      for (var i = 0; i < links.length; i++) decorateAnchor(links[i], o);
+    } catch (e) {}
+  }
+
+  // No clique (inclusive o do meio), antes de o navegador seguir o link.
+  function onLinkClick(ev) {
+    try {
+      var el = ev && ev.target;
+      while (el && el.nodeType === 1 && String(el.tagName).toUpperCase() !== "A") el = el.parentNode;
+      if (!el || el.nodeType !== 1) return;
+      var o = get();
+      if (o) decorateAnchor(el, o);
+    } catch (e) {}
   }
 
   function read() {
@@ -148,6 +233,16 @@
         window.location.pathname, Date.now());
       if (o) write(o);
     } catch (e) {}
+    try {
+      decorateLinks();
+      if (document.addEventListener) {
+        document.addEventListener("click", onLinkClick, true);
+        document.addEventListener("auxclick", onLinkClick, true);
+        // script com defer roda antes do DOMContentLoaded; links que outro
+        // script monte até lá entram aqui
+        document.addEventListener("DOMContentLoaded", decorateLinks);
+      }
+    } catch (e) {}
   }
 
   return {
@@ -155,6 +250,7 @@
     // funções puras (teste)
     parseUtm: parseUtm, externalReferrerHost: externalReferrerHost, landingPath: landingPath,
     sanitize: sanitize, isValid: isValid, build: build, decide: decide,
-    KEY: KEY, TTL_MS: TTL_MS,
+    hasSignal: hasSignal, linkParams: linkParams, decorateHref: decorateHref,
+    KEY: KEY, TTL_MS: TTL_MS, LINK_PARAMS: LINK_PARAMS,
   };
 });
