@@ -4,7 +4,7 @@ Site institucional da Aura (getaura.com.br): HTML estático servido por um Worke
 
 ## Publicar uma página nova
 
-1. Crie o `.html` na raiz e adicione a URL limpa ao `sitemap.xml` (e um redirect `.html` para URL limpa em `_redirects`, como as outras).
+1. Crie o `.html` na raiz e adicione a URL limpa ao `sitemap.xml` (e um redirect `.html` para URL limpa em `_redirects`, como as outras). O `<lastmod>` não precisa de cuidado: no deploy, `scripts/sitemap-lastmod.js --build` (o `build` do `wrangler.jsonc`) troca cada um pela data, em Brasília, do último commit do `.html` da URL, e nunca volta uma data. `node scripts/sitemap-lastmod.js` mostra o que mudaria; `--write` grava no checkout.
 2. Gere o JSON-LD: `python scripts/inject-jsonld.py` (passa por todas as páginas, mas só grava as que mudaram de conteúdo; na `main` sem mudança ele não altera nenhum arquivo). `python scripts/inject-jsonld.py --check` confere sem gravar e sai com erro se a fonte do script (planos, preços, recursos) ficou para trás do HTML: nesse caso corrija o script, não o HTML.
 3. Menu e rodapé: ponha `<div data-mount="nav"></div>` no começo do `<body>` e `<div data-mount="footer"></div>` no fim (como as outras páginas) e rode `python scripts/inject-chrome.py`. O script grava o menu e o rodapé do `js/chrome.js` no HTML, entre marcadores `<!-- chrome:nav:start -->` / `<!-- chrome:nav:end -->`, para buscadores e IAs lerem sem rodar JS. Para mudar o menu ou o rodapé, edite `js/chrome.js` e rode o script de novo (`--check` confere sem gravar).
 4. Se a página entra no resumo para IAs, acrescente a linha em `llms.txt`.
@@ -31,6 +31,7 @@ node scripts/tests/skin-2026.test.js              # pele 2026 dormente: escopo e
 node scripts/tests/chrome-estatico.test.js        # menu e rodapé no HTML bruto de toda página pública; inject-chrome.py idempotente
 node scripts/tests/faixa-bf.test.js               # faixa da Black Friday (home e /planos): textos, janela 02/11–30/11 em Brasília, fechar
 node scripts/tests/black-friday.test.js           # página /black-friday: textos aprovados, FAQ = JSON-LD, links com UTM, encerramento em 01/12, sitemap
+node scripts/tests/sitemap-lastmod.test.js        # lastmod pela data do último commit da página: só para a frente, data de Brasília, build do wrangler
 ```
 
 Todos de uma vez: `node --test scripts/tests/*.test.js`.
