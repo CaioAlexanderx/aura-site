@@ -2,6 +2,13 @@
   "name": "aura-site",
   "compatibility_date": "2026-04-26",
   "main": "src/worker.js",
+  // 17/11/2026 (b-mk-15): antes de subir, o lastmod de cada URL do
+  // sitemap.xml passa a ser a data (Brasília) do último commit da página.
+  // Só grava no Workers Builds (WORKERS_CI=1) e nunca derruba o deploy:
+  // em falha ou clone raso, vai o sitemap do commit. Ver o script.
+  "build": {
+    "command": "node scripts/sitemap-lastmod.js --build"
+  },
   "assets": {
     "directory": "./",
     "binding": "ASSETS"
