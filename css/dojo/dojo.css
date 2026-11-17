@@ -350,7 +350,7 @@ a { color: inherit; text-decoration: none; }
 .dj-win-dots{ display:flex; gap: 6px; }
 .dj-win-dots i{ width: 11px; height: 11px; border-radius: 50%; background: var(--ink-4); display:block; }
 .dj-win-dots i:nth-child(1){ background:#d08a7e; } .dj-win-dots i:nth-child(2){ background:#d7c08a; } .dj-win-dots i:nth-child(3){ background:#9fbf94; }
-.dj-win-url{ flex:1; display:flex; align-items:center; gap: 8px; background: var(--glass-hi); border:1px solid var(--line); border-radius: 8px; padding: 7px 12px; font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-2); }
+.dj-win-url{ flex:1; min-width: 0; overflow: hidden; display:flex; align-items:center; gap: 8px; background: var(--glass-hi); border:1px solid var(--line); border-radius: 8px; padding: 7px 12px; font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-2); }
 .dj-win-url svg{ width: 12px; height: 12px; color: var(--ok); flex:0 0 12px; }
 .dj-win-url b{ color: var(--ink); font-weight: 500; }
 .dj-win-body{ padding: 30px 28px; }
@@ -521,7 +521,9 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 980px){
   .dj-hero-grid{ grid-template-columns: 1fr; gap: 40px; }
   .dj-hero-visual{ height: 520px; }
-  .dj-pillar{ grid-template-columns: 1fr; gap: 40px; }
+  /* 17/11/2026: minmax(0,1fr), nao 1fr: a janela de demonstracao (URL e tabela)
+     alargava a coluna para 394 px e cortava o texto ao lado em 375 px. */
+  .dj-pillar{ grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .dj-pillar.flip .dj-pillar-text{ order: 0; }
   .dj-price{ grid-template-columns: 1fr; gap: 28px; }
   .dj-fpkt-band{ grid-template-columns: 1fr; text-align: center; justify-items: center; gap: 18px; }
