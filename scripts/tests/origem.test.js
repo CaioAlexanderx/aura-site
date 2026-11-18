@@ -48,8 +48,25 @@ teste('landingPath: só o caminho, vazio vira "/", corta em 300', () => {
   assert.equal(O.landingPath('/' + 'a'.repeat(400)).length, 300);
 });
 
-teste('decide: sem UTM e sem referrer externo não grava nada', () => {
-  assert.equal(O.decide(null, {}, '', '/planos', AGORA), null);
+teste('decide: visita direta (sem UTM e sem referrer externo) grava só página de entrada e data (b-mk-33 B)', () => {
+  assert.deepEqual(O.decide(null, {}, '', '/planos', AGORA), { landing_page: '/planos', first_seen_at: '2026-10-20T12:00:00.000Z' });
+  assert.deepEqual(O.decide(null, {}, '', '', AGORA), { landing_page: '/', first_seen_at: '2026-10-20T12:00:00.000Z' });
+});
+
+teste('decide: visita com UTM ou referrer de fora substitui uma direta; direta nunca substitui nada', () => {
+  const direta = { landing_page: '/', first_seen_at: new Date(AGORA - 2 * DIA).toISOString() };
+  assert.deepEqual(O.decide(direta, { utm_source: 'google' }, '', '/planos', AGORA),
+    { utm_source: 'google', landing_page: '/planos', first_seen_at: '2026-10-20T12:00:00.000Z' });
+  assert.equal(O.decide(direta, {}, 'www.google.com', '/planos', AGORA).referrer, 'www.google.com');
+  assert.equal(O.decide(direta, {}, '', '/planos', AGORA), null, 'direta não troca direta');
+  const comUtm = { utm_source: 'google', landing_page: '/a', first_seen_at: new Date(AGORA - 2 * DIA).toISOString() };
+  assert.equal(O.decide(comUtm, {}, '', '/b', AGORA), null, 'direta não troca UTM');
+  const comRef = { referrer: 'www.google.com', landing_page: '/a', first_seen_at: new Date(AGORA - 2 * DIA).toISOString() };
+  assert.equal(O.decide(comRef, {}, '', '/b', AGORA), null, 'direta não troca referrer de fora');
+  assert.equal(O.hasSignal(direta), false);
+  assert.equal(O.hasSignal(comUtm), true);
+  assert.equal(O.hasSignal(comRef), true);
+  assert.equal(O.hasSignal(null), false);
 });
 
 teste('decide: com UTM grava; com só referrer externo grava; objeto no formato do contrato', () => {
@@ -109,10 +126,24 @@ teste('navegador: primeira visita com UTM grava aura_origem; a segunda não sobr
   assert.equal(JSON.parse(storage.aura_origem).utm_source, 'google');
 });
 
-teste('navegador: ?ref= e ?ramo= sozinhos (sem UTM, sem referrer externo) não gravam nada', () => {
+teste('navegador: ?ref= e ?ramo= sozinhos contam como visita direta e não entram na origem', () => {
   const storage = {};
   navegador({ search: '?ref=REF-ABC123&ramo=otica', referrer: 'https://www.getaura.com.br/planos', pathname: '/comecar', storage });
-  assert.equal(storage.aura_origem, undefined);
+  assert.deepEqual(JSON.parse(storage.aura_origem), { landing_page: '/comecar', first_seen_at: '2026-10-20T12:00:00.000Z' });
+});
+
+teste('navegador: visita direta grava; navegar no site não troca; a seguinte com UTM substitui; outra direta depois não mexe', () => {
+  const storage = {};
+  navegador({ pathname: '/', storage });
+  assert.deepEqual(JSON.parse(storage.aura_origem), { landing_page: '/', first_seen_at: '2026-10-20T12:00:00.000Z' });
+  navegador({ pathname: '/sobre', referrer: 'https://www.getaura.com.br/', storage, agora: AGORA + DIA });
+  assert.equal(JSON.parse(storage.aura_origem).landing_page, '/');
+  navegador({ search: '?utm_source=instagram&utm_medium=bio', pathname: '/planos', storage, agora: AGORA + 2 * DIA });
+  const g = JSON.parse(storage.aura_origem);
+  assert.equal(g.utm_source, 'instagram');
+  assert.equal(g.landing_page, '/planos');
+  navegador({ pathname: '/', storage, agora: AGORA + 3 * DIA });
+  assert.equal(JSON.parse(storage.aura_origem).utm_source, 'instagram');
 });
 
 teste('navegador: depois de 30 dias um novo toque vale', () => {
@@ -127,12 +158,111 @@ teste('navegador: localStorage bloqueado não quebra e a página atual ainda tem
   assert.equal(win.AuraOrigem.get().utm_source, 'google');
 });
 
-teste('navegador: get() devolve null sem primeiro toque e ignora localStorage adulterado', () => {
-  assert.equal(navegador({}).win.AuraOrigem.get(), null);
+teste('navegador: localStorage adulterado é limpo; vencido ou ilegível vira uma visita direta nova', () => {
+  const direta = { landing_page: '/planos', first_seen_at: '2026-10-20T12:00:00.000Z' };
   const storage = { aura_origem: '{"utm_source":"x","email":"a@b.com","first_seen_at":"2020-01-01T00:00:00Z"}' };
-  assert.equal(navegador({ storage }).win.AuraOrigem.get(), null); // vencido
+  const get = (storage) => JSON.parse(JSON.stringify(navegador({ storage }).win.AuraOrigem.get()));
+  assert.deepEqual(get(storage), direta); // vencido
   const storage2 = { aura_origem: 'não é json' };
-  assert.equal(navegador({ storage: storage2 }).win.AuraOrigem.get(), null);
+  assert.deepEqual(get(storage2), direta);
+  const storage3 = { aura_origem: '{"utm_source":"x","email":"a@b.com","first_seen_at":"2026-10-19T00:00:00.000Z"}' };
+  assert.deepEqual(get(storage3), { utm_source: 'x', first_seen_at: '2026-10-19T00:00:00.000Z' });
+});
+
+// ───────────── links para o app levam o primeiro toque (b-mk-33 A1) ─────────────
+const TOQUE = { utm_source: 'google', utm_medium: 'cpc', landing_page: '/planos', referrer: 'www.google.com', first_seen_at: '2026-10-20T12:00:00.000Z' };
+
+teste('decorateHref: só links do app; utm_*, origem_site, origem_pagina e origem_data; nada pessoal', () => {
+  const u = new URL(O.decorateHref('https://app.getaura.com.br', TOQUE));
+  assert.equal(u.hostname, 'app.getaura.com.br');
+  assert.deepEqual([...u.searchParams.keys()], ['utm_source', 'utm_medium', 'origem_site', 'origem_pagina', 'origem_data']);
+  assert.equal(u.searchParams.get('utm_source'), 'google');
+  assert.equal(u.searchParams.get('origem_site'), 'www.google.com');
+  assert.equal(u.searchParams.get('origem_pagina'), '/planos');
+  assert.equal(u.searchParams.get('origem_data'), '2026-10-20T12:00:00.000Z');
+  // visita direta: só página e data
+  const d = new URL(O.decorateHref('https://app.getaura.com.br/login', { landing_page: '/', first_seen_at: '2026-10-20T12:00:00.000Z' }));
+  assert.equal(d.pathname, '/login');
+  assert.deepEqual([...d.searchParams.keys()], ['origem_pagina', 'origem_data']);
+  // chave fora do contrato não vai
+  const sujo = O.decorateHref('https://app.getaura.com.br', { utm_source: 'x', email: 'a@b.com', ref: 'REF-1', first_seen_at: '2026-10-20T12:00:00.000Z' });
+  assert.ok(!/a(%40|@)b\.com/.test(sujo) && !sujo.includes('REF-1'), sujo);
+});
+
+teste('decorateHref: outro destino, sem primeiro toque ou href estranho ficam iguais; não troca parâmetro do link', () => {
+  for (const h of ['/comecar', 'https://www.getaura.com.br/planos', 'https://wa.me/5511999999999', 'https://app.getaura.com.br.mal.com/', 'mailto:oi@getaura.com.br', 'javascript:void(0)', '#topo']) {
+    assert.equal(O.decorateHref(h, TOQUE, 'https://www.getaura.com.br/'), h, h);
+  }
+  assert.equal(O.decorateHref('https://app.getaura.com.br', null), 'https://app.getaura.com.br');
+  assert.equal(O.decorateHref('https://app.getaura.com.br', {}), 'https://app.getaura.com.br');
+  const ja = new URL(O.decorateHref('https://app.getaura.com.br/register?utm_source=parceiro&ref=REF-ANA1#x', TOQUE));
+  assert.equal(ja.searchParams.get('utm_source'), 'parceiro', 'o do link fica');
+  assert.equal(ja.searchParams.get('ref'), 'REF-ANA1');
+  assert.equal(ja.searchParams.get('utm_medium'), 'cpc');
+  assert.equal(ja.hash, '#x');
+  const uma = O.decorateHref('https://app.getaura.com.br', TOQUE);
+  assert.equal(O.decorateHref(uma, TOQUE), uma, 'idempotente');
+});
+
+// página de mentira com links, para o carregamento e o clique
+function paginaComLinks({ search = '', referrer = '', pathname = '/planos', storage = {}, quebrado = false, agora = AGORA, hrefs = [] } = {}) {
+  const ls = quebrado
+    ? { getItem() { throw new Error('bloqueado'); }, setItem() { throw new Error('bloqueado'); } }
+    : { getItem: (k) => (k in storage ? storage[k] : null), setItem: (k, v) => { storage[k] = String(v); } };
+  const mkA = (href) => ({
+    nodeType: 1, tagName: 'A', attrs: { href }, parentNode: null,
+    getAttribute(n) { return this.attrs[n] == null ? null : this.attrs[n]; },
+    setAttribute(n, v) { this.attrs[n] = String(v); },
+  });
+  const links = hrefs.map(mkA);
+  const ouvintes = {};
+  const doc = {
+    referrer,
+    querySelectorAll(sel) {
+      assert.equal(sel, 'a[href*="app.getaura.com.br"]');
+      return links.filter((a) => String(a.attrs.href).includes('app.getaura.com.br'));
+    },
+    addEventListener(t, f) { (ouvintes[t] = ouvintes[t] || []).push(f); },
+  };
+  const win = { localStorage: ls, location: { search, pathname, hostname: 'www.getaura.com.br', href: 'https://www.getaura.com.br' + pathname + search } };
+  const RealDate = Date;
+  const FakeDate = class extends RealDate { constructor(...a) { super(...(a.length ? a : [agora])); } static now() { return agora; } };
+  vm.runInNewContext(read('js/origem.js'), { self: win, window: win, document: doc, URL, URLSearchParams, Date: FakeDate, JSON, Object, String, Math, isFinite, parseInt });
+  const clicar = (alvo, tipo = 'click') => (ouvintes[tipo] || []).forEach((f) => f({ target: alvo }));
+  return { links, ouvintes, mkA, clicar, storage };
+}
+
+teste('página: ao carregar, os links do app levam o primeiro toque; os outros ficam iguais', () => {
+  const p = paginaComLinks({ search: '?utm_source=google&utm_medium=cpc', referrer: 'https://www.google.com/', hrefs: ['https://app.getaura.com.br', '/comecar', 'https://wa.me/5511999999999', 'https://app.getaura.com.br/login'] });
+  const [entrar, comecar, zap, login] = p.links.map((a) => a.attrs.href);
+  const u = new URL(entrar);
+  assert.equal(u.searchParams.get('utm_source'), 'google');
+  assert.equal(u.searchParams.get('origem_site'), 'www.google.com');
+  assert.equal(u.searchParams.get('origem_pagina'), '/planos');
+  assert.equal(comecar, '/comecar');
+  assert.equal(zap, 'https://wa.me/5511999999999');
+  assert.equal(new URL(login).pathname, '/login');
+  assert.equal(new URL(login).searchParams.get('utm_medium'), 'cpc');
+  assert.ok(p.ouvintes.click && p.ouvintes.auxclick && p.ouvintes.DOMContentLoaded, 'clique, clique do meio e DOMContentLoaded');
+});
+
+teste('página: link montado depois (por JS) ganha o primeiro toque no clique, inclusive clicando num filho', () => {
+  const p = paginaComLinks({ search: '?utm_source=instagram' });
+  const tardio = p.mkA('https://app.getaura.com.br');
+  p.clicar({ nodeType: 1, tagName: 'SPAN', parentNode: tardio });
+  assert.equal(new URL(tardio.attrs.href).searchParams.get('utm_source'), 'instagram');
+  const outro = p.mkA('/planos');
+  p.clicar(outro, 'auxclick');
+  assert.equal(outro.attrs.href, '/planos');
+  p.clicar({ nodeType: 3, parentNode: null }); // nó de texto: nada quebra
+  p.clicar(null);
+});
+
+teste('página: sem localStorage os links ainda levam o toque desta página (visita direta: página e data)', () => {
+  const p = paginaComLinks({ quebrado: true, pathname: '/sobre', hrefs: ['https://app.getaura.com.br'] });
+  const u = new URL(p.links[0].attrs.href);
+  assert.deepEqual([...u.searchParams.keys()], ['origem_pagina', 'origem_data']);
+  assert.equal(u.searchParams.get('origem_pagina'), '/sobre');
 });
 
 // ───────────── /comecar manda `origem` e não quebra ?ref= nem ?ramo= ─────────────
